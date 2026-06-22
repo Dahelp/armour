@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 15:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="30">Фильтры масляные</category></categories>				
+				<offers><offer id="11443" available="true">
+                      <url>ek-2362-maslyanyj-filtr-ekka</url>
+                      <price>850</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-2362-maslyanyj-filtr-EKKA.png</picture>
+					  <quantity>243</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2362 масляный фильтр EKKA</name>
+					  <model>EK-2362</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description>Купить фильтр EK-2362 EKKA | Характеристики, фото | Масляный фильтр ЕК 2362 аналог 320A4038 | Прямые поставки с завода изготовителя.</description>
+					  <keywords></keywords><param name="Высота, мм">205</param><param name="Наружный Диаметр, мм">97</param><param name="Резьба">M24X1,25</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

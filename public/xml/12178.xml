@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-05-07 15:05">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="13">Цельнолитые шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="12178" available="true">
+                      <url>15-45-8-15-4-1-2-8-300-clip-nm-contirun-ekka</url>
+                      <price>4100</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>13</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/15-45-8-15-4-1-2-8-300-CLIP-NM-CONTIRUN-EKKA.jpg</picture>
+					  <quantity>13</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины (15 4.5-8) 15*4 1/2-8 /3.00 CLIP NM CONTIRUN EKKA</name>
+					  <model>CLIP</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Колеса для вилочных погрузчиков  это один из ключевых компонентов, предназначенных для загрузки и выгрузки не больших грузов и транспортировки на малые расстояния. Белые цельнолитые шины 15 4.5-8, 15*4 1/2-8 CLIP NM CONTIRUN EKKA сохраняют эксплуатационные свойства на протяжении всего обусловленного для них ресурса вне зависимости от приобретенных повреждений. Покрышки нашли масштабный спектр применения в разных отраслях.</p>
+<p>
+	Суперэластик отличается особой конструкцией, которая состоит из трёх частей:</p>
+<p>
+	Протекторной части, где она создает сцепление с опорной поверхностью.</p>
+<p>
+	Демпфирующая часть. Функциональное назначение заключается в необходимости обеспечить амортизационные способности с неровностями покрытия.</p>
+<p>
+	Посадочная часть. Её предназначение в том, чтобы обеспечить без проворота взаимодействие шины с ободом колеса в течении всего срока эксплуатации.</p>
+<p>
+	Шина 125 75-8 (15-4.5-8) суперэластик благодаря высокой стойкости к истиранию рисунка протектора и отличному сцеплению с рабочей поверхностью, обеспечивается высокий уровень безопасности для оператора и окружающих. Рисунок протектора дает надежное соприкосновение с различными типами покрытий, повышая маневренность и эффективность работы погрузчика.</p>
+<p>
+	</p>]]></opisanie>
+					  <title>Купить 15*4 1/2-8 (125 75-8 ) CLIP NM CONTIRUN EKKA</title>
+					  <description>Купить белые (не маркие) шины в размере 15*4 1/2-8, 15 4.5-8 ЕККА. Цельнолитые колеса для вилочного погрузчика устойчивы к повреждениям. Доставка до терминала транспортных компаний</description>
+					  <keywords></keywords><param name="Вес (кг)">10</param><param name="Макс. Нагрузка (кг, 10км/ч)">905</param><param name="Наружный диаметр (мм)">370</param><param name="Объем (м3)">0.16</param><param name="Размер Диска (RIM)">3.00D-8</param><param name="Размер шины">15*4 1/2-8</param><param name="Ширина протектора (мм)">109</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

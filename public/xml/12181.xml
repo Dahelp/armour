@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-05-14 10:05">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="13">Цельнолитые шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="12181" available="true">
+                      <url>shiny-500-8-contirun-ekka-bez-burta</url>
+                      <price>7180</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>13</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-500-8-CONTIRUN-EKKA-bez-burta.jpg</picture>
+					  <quantity>46</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 5.00-8 CONTIRUN EKKA без бурта</name>
+					  <model>STANDART</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Главное достоинство цельнолитых колес  их непревзойденная стойкость к повреждениям. Поскольку вилочные погрузчики работают в условиях, где подстерегают колющие, режущие предметы вроде стекла, металла или камней, шины 5.00-8 CONTIRUN EKKA становятся залогом вашей безопасности. Они эффективно защищают от проколов и других неприятностей, отвечая за бесперебойную функционирование вашей техники.</p>
+<p>
+	Производство колес 5.00-8 STANDART цельнолитых осуществляется на передовом китайском предприятии. Инновационные технологии и многоступенчатый контроль качества на каждом этапе гарантируют высочайшую надежность и долговечность продукции. Применение современных разработок обеспечивает низкое сопротивление качению, что напрямую влияет на экономию топлива автопогрузчика, а также улучшенное сцепление с поверхностью, повышая управляемость и безопасность.</p>
+<p>
+	Разработчики также позаботились о комфорте водителя. ЕККА спроектированы для обеспечения максимально плавного хода и снижения уровня вибраций, что способствует уменьшению утомляемости и повышению эффективности работы оператора.</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>5.00-8 цельнолитые шины EKKA для вилочного погрузчика</title>
+					  <description>Обеспечьте свою технику надежными цельнолитыми шинами EKKA 5.00-8 CONTIRUN без бурта. Выгодная цена, долговечность и отличные характеристики – все, что вам нужно для уверенной работы.</description>
+					  <keywords></keywords><param name="Вес (кг)">18</param><param name="Макс. Нагрузка (кг, 10км/ч)">1210</param><param name="Наружный диаметр (мм)">455</param><param name="Объем (м3)">0.03</param><param name="Размер Диска (RIM)">3.00D</param><param name="Размер шины">5.00-8</param><param name="Ширина протектора (мм)">125</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

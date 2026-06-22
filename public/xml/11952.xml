@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 16:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="13">Цельнолитые шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="11952" available="false">
+                      <url>shiny-28-9-15-16pr-nhs-ttf-ekka-c604-ht606</url>
+                      <price>9020</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>13</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-28-9-15-16PR-NHS-TTF-EKKA-C604-HT606.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 28*9-15 16PR NHS TTF EKKA C604 / HT606</name>
+					  <model>C604</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Ищете оптимальное решение для приобретения качественных шин 28 9-15 NHS для погрузчика без лишних затрат? Откройте для себя наш обширный выбор моделей C604(HT606), которые отвечают самым строгим требованиям к качеству и предлагаются по выгодной цене.</p>
+<p>
+	В процессе подбора колес для вилочных погрузчиков мы руководствуемся двумя ключевыми критериями: механической прочностью и эффективностью демпфирования. Эти характеристики критически важны для обеспечения стабильного и плавного хода машины, особенно при эксплуатации на участках с неоднородным покрытием. Исходя из этого, мы предлагаем пневматические покрышки как наилучший вариант. Их строение способствует существенному снижению уровня вибраций, уменьшению динамических нагрузок на элементы подвески и, как следствие, повышению эргономических показателей рабочего места оператора.</p>
+<p>
+	Шина 28*9-15 TTF EKKA  это воплощение надежности и долговечности. Созданная из высококачественных материалов, она способна выдерживать значительные нагрузки (16PR) и сохранять свои превосходные эксплуатационные свойства даже при интенсивных торможениях и маневрах. Ее выдающаяся устойчивость к износу и прочность конструкции гарантируют длительный срок службы, что в свою очередь значимо сокращает ваши расходы на содержание автопогрузчика.</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>Шины на погрузчик 28*9-15 16PR NHS TTF EKKA C604 / HT606</title>
+					  <description>Шинокомплект EKKA C604 (HT606), размер 28*9-15 TTF с индексом нагрузки 16PR и маркировкой NHS – это ваш выбор для приобретения надежных и качественных шин для вилочных погрузчиков по выгодной цене.</description>
+					  <keywords></keywords><param name="Вес (кг)">26</param><param name="Глубина Протектора (мм)">16</param><param name="Макс. Давление (kPa)">1000</param><param name="Макс. Нагрузка (кг, 25км/ч)">3115</param><param name="Наружный диаметр (мм)">670</param><param name="Объем (м3)">0.12</param><param name="Размер Диска (RIM)">7.00</param><param name="Размер шины">28*9-15</param><param name="Слойность (PR)">16</param><param name="Тип протектора">С604</param><param name="Ширина протектора (мм)">208</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

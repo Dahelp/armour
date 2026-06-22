@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="22">Шины для квадроциклов</category></categories>				
+				<offers><offer id="10273" available="true">
+                      <url>25-1000-12-6PR-TL-RIM-80-shina-pnevmaticheskaya-ekka-mars</url>
+                      <price>8550</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/10381136.jpg</picture>
+					  <quantity>57</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>25*10.00-12 6PR TL RIM 8.0 Шина пневматическая EKKA Mars</name>
+					  <model>Mars</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Вес (кг)">9,5
+</param><param name="Макс. Давление (kPa)">7</param><param name="Макс. Нагрузка (кг)">190</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">25*10.00-12</param><param name="Слойность (PR)">6</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9538" available="true">
+                      <url>13-500-6-2PR-TL-shina-pnevmaticheskaya-P336-EKKA</url>
+                      <price>2050</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/13-500-6-2PR-TL-shina-pnevmaticheskaya-P336-EKKA.png</picture>
+					  <quantity>192</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>13*5.00-6 2PR TL Шина пневматическая P336 EKKA</name>
+					  <model>P336</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 13*5.00-6 2PR P336 EKKA купить</title>
+					  <description>Купить шину 13*5.00-6 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">1,7</param><param name="Макс. Нагрузка (кг)">88</param><param name="Объем (м3)">0,014</param><param name="Размер Диска (RIM)">6.0</param><param name="Размер шины">13*5.00-6</param><param name="Слойность (PR)">2</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9087" available="true">
+                      <url>13-500-6-4PR-TL-RIM-35-shina-pnevmaticheskaya-EKKA-P332</url>
+                      <price>2100</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/1313735.jpg</picture>
+					  <quantity>1</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>13*5.00-6 4PR TL RIM 3.5 Шина пневматическая EKKA P332</name>
+					  <model>P332</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 13*5.00-6 4PR P332 EKKA купить</title>
+					  <description>Купить шину 13*5.00-6 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">1,570</param><param name="Давление (P.S.I.)">40</param><param name="Макс. Нагрузка (кг)">200</param><param name="Размер Диска (RIM)">3.5</param><param name="Размер шины">13*5.00-6</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9543" available="true">
+                      <url>145-70-6-2PR-TL-shina-pnevmaticheskaya-P319-EKKA</url>
+                      <price>2450</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/2420936.jpg</picture>
+					  <quantity>50</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>145/70-6 2PR TL Шина пневматическая P319 EKKA</name>
+					  <model>P319</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 145/70-6 2PR P319 EKKA купить</title>
+					  <description>Купить шину 145/70-6 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">1.92</param><param name="Глубина Протектора (мм)">5.5</param><param name="Макс. Нагрузка (кг)">75</param><param name="Размер Диска (RIM)">4.5</param><param name="Размер шины">145/70-6</param><param name="Слойность (PR)">2</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9324" available="false">
+                      <url>145-70-6-4PR-TL-shina-pnevmaticheska-P361-EKKA</url>
+                      <price>2100</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/4546645.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>145/70-6 4PR TL Шина пневматическа P361 EKKA</name>
+					  <model>P361</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>145/70-6 4PR P361 EKKA купить</title>
+					  <description>Купить шину 145/70-6 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Глубина Протектора (мм)">6</param><param name="Макс. Нагрузка (кг)">75</param><param name="Размер Диска (RIM)">4.5</param><param name="Размер шины">145/70-6</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9086" available="false">
+                      <url>15-600-6-4PR-TL-RIM-450-shina-pnevmaticheskaya-EKKA-P332</url>
+                      <price>2950</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/4446129.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>15*6.00-6 4PR TL RIM 4.50 Шина пневматическая EKKA P332</name>
+					  <model>P332</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 15*6.00-6 4PR P332 EKKA купить</title>
+					  <description>Купить шину 15*6.00-6 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">2,190</param><param name="Давление (P.S.I.)">30</param><param name="Макс. Нагрузка (кг)">259</param><param name="Размер Диска (RIM)">4.50</param><param name="Размер шины">15*6.00-6</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9083" available="true">
+                      <url>16-650-8-2PR-TL-RIM-5375-shina-pnevmaticheskaya-EKKA-P508</url>
+                      <price>3500</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/18836137.jpg</picture>
+					  <quantity>19</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>16*6.50-8 2PR TL RIM 5.375 Шина пневматическая EKKA P508</name>
+					  <model>P508</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 16*6.50-8 2PR P508 EKKA купить</title>
+					  <description>Купить шину 16*6.50-8 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">2,820</param><param name="Давление (P.S.I.)">15</param><param name="Макс. Нагрузка (кг)">190</param><param name="Объем (м3)">0,015</param><param name="Размер Диска (RIM)">5.375</param><param name="Размер шины">16*6.50-8</param><param name="Слойность (PR)">2</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9088" available="true">
+                      <url>16-650-8-4PR-TL-RIM-5375-shina-pnevmaticheskaya-EKKA-P332</url>
+                      <price>3800</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/1731884.jpg</picture>
+					  <quantity>96</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>16*6.50-8 4PR TL RIM 5.375 Шина пневматическая EKKA P332</name>
+					  <model>P332</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 16*6.50-8 4PR P332 EKKA купить</title>
+					  <description>Купить шину 16*6.50-8 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">2,820</param><param name="Давление (P.S.I.)">28</param><param name="Макс. Нагрузка (кг)">308</param><param name="Объем (м3)">0,015</param><param name="Размер Диска (RIM)">5.375</param><param name="Размер шины">16*6.50-8</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9536" available="true">
+                      <url>16-800-7-4PR-TL-P319-EKKA</url>
+                      <price>3500</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/457811.jpg</picture>
+					  <quantity>101</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>16*8.00-7 4PR TL P319 EKKA</name>
+					  <model>P319</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 16*8.00-7 4PR P319 EKKA купить</title>
+					  <description>Купить шину 16*8.00-7 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">3</param><param name="Глубина Протектора (мм)">9</param><param name="Давление (P.S.I.)">7</param><param name="Макс. Нагрузка (кг)">80</param><param name="Размер Диска (RIM)">6.5</param><param name="Размер шины">16*8.00-7</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9537" available="false">
+                      <url>16-800-7-4PR-TL-shina-pnevmaticheskaya-P329-EKKA</url>
+                      <price>3850</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/40578106.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>16*8.00-7 4PR TL Шина пневматическая P329 EKKA</name>
+					  <model>P329</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 16*8.00-7 4PR P329 EKKA купить</title>
+					  <description>Купить шину 16*8.00-7 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">3</param><param name="Глубина Протектора (мм)">12</param><param name="Давление (P.S.I.)">7</param><param name="Макс. Нагрузка (кг)">175</param><param name="Размер Диска (RIM)">6.5</param><param name="Размер шины">16*8.00-7</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9091" available="true">
+                      <url>16-800-7-4PR-TL-RIM-65-shina-pnevmaticheskaya-EKKA-P361</url>
+                      <price>3650</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/226573.jpg</picture>
+					  <quantity>188</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>16*8.00-7 4PR TL RIM 6.5 Шина пневматическая EKKA P361</name>
+					  <model>P361</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 16*8.00-7 4PR P361 EKKA купить</title>
+					  <description>Купить шину 16*8.00-7 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">3,280</param><param name="Давление (P.S.I.)">7</param><param name="Макс. Нагрузка (кг)">80</param><param name="Объем (м3)">0,015</param><param name="Размер Диска (RIM)">6.5</param><param name="Размер шины">16*8.00-7</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><param name="Тип применения">Квадроцикл</param><country_of_origin></country_of_origin>
+</offer><offer id="9094" available="true">
+                      <url>18-850-8-4PR-TL-RIM-70-shina-pnevmaticheskaya-EKKA-P509</url>
+                      <price>4150</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/43160116.jpg</picture>
+					  <quantity>64</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>18*8.50-8 4PR TL RIM 7.0 Шина пневматическая EKKA P509</name>
+					  <model>P509</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 18*8.50-8 4PR P509 EKKA купить</title>
+					  <description>Купить шину 18*8.50-8 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">4,620</param><param name="Давление (P.S.I.)">22</param><param name="Макс. Нагрузка (кг)">370</param><param name="Объем (м3)">0,025</param><param name="Размер Диска (RIM)">7.0</param><param name="Размер шины">18*8.50-8</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9085" available="false">
+                      <url>18-950-8-4PR-TL-RIM-70-shina-pnevmaticheskaya-EKKA-P332</url>
+                      <price>4350</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/86241100.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>18*9.50-8 4PR TL RIM 7.0 Шина пневматическая EKKA P332</name>
+					  <model>P332</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 18*9.50-8 4PR P332 EKKA купить</title>
+					  <description>Купить шину 18*9.50-8 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">4,360</param><param name="Давление (P.S.I.)">24</param><param name="Макс. Нагрузка (кг)">472</param><param name="Объем (м3)">0,026</param><param name="Размер Диска (RIM)">7.0</param><param name="Размер шины">18*9.50-8</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9084" available="true">
+                      <url>18-950-8-4PR-TL-RIM-70-shina-pnevmaticheskaya-EKKA-P508</url>
+                      <price>3850</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/4274257.jpg</picture>
+					  <quantity>28</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>18*9.50-8 4PR TL RIM 7.0 Шина пневматическая EKKA P508</name>
+					  <model>P508</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 18*9.50-8 4PR P508 EKKA купить</title>
+					  <description>Купить шину 18*9.50-8 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">4,360</param><param name="Давление (P.S.I.)">24</param><param name="Макс. Нагрузка (кг)">472</param><param name="Объем (м3)">0,026</param><param name="Размер Диска (RIM)">7.0</param><param name="Размер шины">18*9.50-8</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9082" available="true">
+                      <url>19-700-8-4PR-TL-RIM-55-shina-pnevmaticheskaya-EKKA-P311</url>
+                      <price>5200</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/5269555.jpg</picture>
+					  <quantity>92</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>19*7.00-8 4PR TL RIM 5.5 Шина пневматическая EKKA P311</name>
+					  <model>P311</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 19*7.00-8 4PR P311 EKKA купить</title>
+					  <description>Купить шину 19*7.00-8 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">4,740</param><param name="Давление (P.S.I.)">10</param><param name="Макс. Нагрузка (кг)">100</param><param name="Объем (м3)">0,027</param><param name="Размер Диска (RIM)">5.5</param><param name="Размер шины">19*7.00-8</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><param name="Тип применения">Квадроцикл</param><country_of_origin></country_of_origin>
+</offer><offer id="9081" available="true">
+                      <url>19-950-8-4PR-TL-RIM-70-shina-pnevmaticheskaya-EKKA-P311</url>
+                      <price>5850</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/43280120.jpg</picture>
+					  <quantity>1</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>19*9.50-8 4PR TL RIM 7.0 Шина пневматическая EKKA P311</name>
+					  <model>P311</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 19*9.50-8 4PR P311 EKKA купить</title>
+					  <description>Купить шину 19*9.50-8 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">5900</param><param name="Давление (P.S.I.)">10</param><param name="Макс. Нагрузка (кг)">125</param><param name="Объем (м3)">0,036</param><param name="Размер Диска (RIM)">7.0</param><param name="Размер шины">19*9.50-8</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9092" available="false">
+                      <url>20-1000-10-4PR-TL-RIM-80-shina-pnevmaticheskaya-EKKA-P361</url>
+                      <price>6700</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/7146249.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>20*10.00-10 4PR TL RIM 8.0 Шина пневматическая EKKA P361</name>
+					  <model>P361</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 20*10.00-10 4PR P361 EKKA купить</title>
+					  <description>Купить шину 20*10.00-10 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">6,680</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">118</param><param name="Объем (м3)">0,034</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">20*10.00-10</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9089" available="true">
+                      <url>20-1000-8-4PR-TL-RIM-80-shina-pnevmaticheskaya-EKKA-P332</url>
+                      <price>4600</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/6246243.jpg</picture>
+					  <quantity>36</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>20*10.00-8 4PR TL RIM 8.0 Шина пневматическая EKKA P332</name>
+					  <model>P332</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 20*10.00-8 4PR P332 EKKA купить</title>
+					  <description>Купить шину 20*10.00-8 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">5,050</param><param name="Давление (P.S.I.)">22</param><param name="Макс. Нагрузка (кг)">540</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">20*10.00-8</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9079" available="true">
+                      <url>20-1000-9-4PR-TL-RIM-80-shina-pnevmaticheskaya-EKKA-P354</url>
+                      <price>6500</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/27424116.jpg</picture>
+					  <quantity>105</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>20*10.00-9 4PR TL RIM 8.0 Шина пневматическая EKKA P354</name>
+					  <model>P354</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 20*10.00-9 4PR P354 EKKA купить</title>
+					  <description>Купить шину 20*10.00-9 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">6</param><param name="Давление (P.S.I.)">10</param><param name="Макс. Нагрузка (кг)">118</param><param name="Объем (м3)">0,030</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">20*10.00-9</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9327" available="true">
+                      <url>20-1000-9-4PR-TL-shina-pnevmaticheskaya-P357-EKKA</url>
+                      <price>6500</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/2812216.jpg</picture>
+					  <quantity>40</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>20*10.00-9 4PR TL Шина пневматическая P357 EKKA</name>
+					  <model>P357</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 20*10.00-9 4PR P357 EKKA купить</title>
+					  <description>Купить шину 20*10.00-9 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">7.320</param><param name="Глубина Протектора (мм)">18</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">118</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">20*10.00-9</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9539" available="false">
+                      <url>20-1100-9-4PR-TL-shina-pnevmaticheskaya-P357-EKKA</url>
+                      <price>6650</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/349538.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>20*11.00-9 4PR TL Шина пневматическая P357 EKKA</name>
+					  <model>P357</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 20*11.00-9 4PR P357 EKKA купить</title>
+					  <description>Купить шину 20*11.00-9 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">7.08</param><param name="Глубина Протектора (мм)">18</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">290</param><param name="Размер Диска (RIM)">9.0</param><param name="Размер шины">20*11.00-9</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9325" available="true">
+                      <url>20-700-8-2PR-TL-shina-pnevmaticheskaya-P322-EKKA</url>
+                      <price>4100</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/9879310.jpg</picture>
+					  <quantity>112</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>20*7.00-8 2PR TL Шина пневматическая P322 EKKA</name>
+					  <model>P322</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 20*7.00-8 2PR P322 EKKA купить</title>
+					  <description>Купить шину 20*7.00-8 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">3.404
+</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">89</param><param name="Объем (м3)">0.1</param><param name="Размер Диска (RIM)">5.5</param><param name="Размер шины">20*7.00-8</param><param name="Слойность (PR)">2</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9095" available="true">
+                      <url>205-50-10-4PR-TL-RIM-65-shina-pnevmaticheskaya-EKKA-P823</url>
+                      <price>5600</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/5035651.jpg</picture>
+					  <quantity>112</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>205/50-10 4PR TL RIM 6.5 Шина пневматическая EKKA P823</name>
+					  <model>P823</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 205/50-10 4PR P823 EKKA купить</title>
+					  <description>Купить шину 205/50-10 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">5</param><param name="Давление (P.S.I.)">30</param><param name="Макс. Нагрузка (кг)">306</param><param name="Объем (м3)">0,037</param><param name="Размер Диска (RIM)">6.5</param><param name="Размер шины">205/50-10</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9093" available="false">
+                      <url>21-1200-8-2PR-TL-RIM-95-shina-pnevmaticheskaya-EKKA-P325</url>
+                      <price>3850</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/4669639.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>21*12.00-8 2PR TL RIM 9.5 Шина пневматическая EKKA P325</name>
+					  <model>P325</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 21*12.00-8 2PR P325 EKKA купить</title>
+					  <description>Купить шину 21*12.00-8 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">5,5</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">161</param><param name="Объем (м3)">0,030</param><param name="Размер Диска (RIM)">9.5</param><param name="Размер шины">21*12.00-8</param><param name="Слойность (PR)">2</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9326" available="true">
+                      <url>21-700-10-4PR-TL-shina-pnevmaticheskaya-P348-EKKA</url>
+                      <price>5500</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/8867031.jpg</picture>
+					  <quantity>95</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>21*7.00-10 4PR TL Шина пневматическая P348 EKKA</name>
+					  <model>P348</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 21*7.00-10 4PR P348 EKKA купить</title>
+					  <description>Купить шину 21*7.00-10 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">5.080</param><param name="Глубина Протектора (мм)">15</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">93</param><param name="Объем (м3)">0.22</param><param name="Размер Диска (RIM)">5.5</param><param name="Размер шины">21*7.00-10</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9080" available="true">
+                      <url>21-700-10-4PR-TL-RIM-55-shina-pnevmaticheskaya-EKKA-P354</url>
+                      <price>5600</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/17102311.jpg</picture>
+					  <quantity>95</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>21*7.00-10 4PR TL RIM 5.5 Шина пневматическая EKKA P354</name>
+					  <model>P354</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 21*7.00-10 4PR P354 EKKA купить</title>
+					  <description>Купить шину 21*7.00-10 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">4,990</param><param name="Давление (P.S.I.)">10</param><param name="Макс. Нагрузка (кг)">93</param><param name="Объем (м3)">0,030</param><param name="Размер Диска (RIM)">5.5</param><param name="Размер шины">21*7.00-10</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9090" available="false">
+                      <url>21-700-10-4PR-TL-RIM-55-shina-pnevmaticheskaya-EKKA-P361</url>
+                      <price>5100</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/143511.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>21*7.00-10 4PR TL RIM 5.5 Шина пневматическая EKKA P361</name>
+					  <model>P361</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 21*7.00-10 4PR P361 EKKA купить</title>
+					  <description>Купить шину 21*7.00-10 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">4,990</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Давление (kPa)">5</param><param name="Макс. Нагрузка (кг)">93</param><param name="Объем (м3)">0,030</param><param name="Размер Диска (RIM)">5.5</param><param name="Размер шины">21*7.00-10</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9096" available="true">
+                      <url>22-1000-10-4PR-TL-RIM-80-shina-pnevmaticheskaya-EKKA-P306</url>
+                      <price>8200</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/5356356.jpg</picture>
+					  <quantity>35</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>22*10.00-10 4PR TL RIM 8.0 Шина пневматическая EKKA P306</name>
+					  <model>P306</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 22*10.00-10 4PR P306 EKKA купить</title>
+					  <description>Купить шину 22*10.00-10 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">8</param><param name="Давление (P.S.I.)">14</param><param name="Макс. Нагрузка (кг)">175</param><param name="Объем (м3)">0,042</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">22*10.00-10</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><param name="Тип применения">Квадроцикл</param><country_of_origin></country_of_origin>
+</offer><offer id="9329" available="true">
+                      <url>22-1000-10-4PR-TL-shina-pnevmaticheskaya-P357-EKKA</url>
+                      <price>7700</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/51102726.jpg</picture>
+					  <quantity>13</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>22*10.00-10 4PR TL Шина пневматическая P357 EKKA</name>
+					  <model>P357</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 22*10.00-10 4PR P357 EKKA купить</title>
+					  <description>Купить шину 22*10.00-10 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">8.051</param><param name="Глубина Протектора (мм)">18</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">136</param><param name="Объем (м3)">0,08</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">22*10.00-10</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9328" available="false">
+                      <url>22-1100-9-4PR-TL-shina-pnevmaticheskaya-P357-EKKA</url>
+                      <price>6350</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/50214107.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>22*11.00-9 4PR TL Шина пневматическая P357 EKKA</name>
+					  <model>P357</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 22*11.00-9 4PR P357 EKKA купить</title>
+					  <description>Купить шину 22*11.00-9 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">8.328</param><param name="Глубина Протектора (мм)">18</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">154</param><param name="Объем (м3)">0.033</param><param name="Размер Диска (RIM)">9.0</param><param name="Размер шины">22*11.00-9</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9097" available="true">
+                      <url>22-700-10-4PR-TL-RIM-55-shina-pnevmaticheskaya-EKKA-P306</url>
+                      <price>5950</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/3066586.jpg</picture>
+					  <quantity>43</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>22*7.00-10 4PR TL RIM 5.5 Шина пневматическая EKKA P306</name>
+					  <model>P306</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 22*7.00-10 4PR P306 EKKA купить</title>
+					  <description>Купить шину 22*7.00-10 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">5,6</param><param name="Давление (P.S.I.)">14</param><param name="Макс. Нагрузка (кг)">172</param><param name="Объем (м3)">0,022</param><param name="Размер Диска (RIM)">5.5</param><param name="Размер шины">22*7.00-10</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9544" available="true">
+                      <url>22-700-12-6PR-TL-shina-pnevmaticheskaya-P3501-EKKA</url>
+                      <price>5000</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/8628343.jpg</picture>
+					  <quantity>82</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>22*7.00-12 6PR TL Шина пневматическая P3501 EKKA</name>
+					  <model>P3501</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 22*7.00-12 6PR P3501 EKKA купить</title>
+					  <description>Купить шину 22*7.00-12 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">6</param><param name="Макс. Нагрузка (кг)">330</param><param name="Объем (м3)">0.039</param><param name="Размер Диска (RIM)">6.0</param><param name="Размер шины">22*7.00-12</param><param name="Слойность (PR)">6</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9540" available="true">
+                      <url>23-700-10-4PR-TL-shina-pnevmaticheskaya-P348-EKKA</url>
+                      <price>6000</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/37277122.jpg</picture>
+					  <quantity>78</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>23*7.00-10 4PR TL Шина пневматическая P348 EKKA</name>
+					  <model>P348</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 23*7.00-10 4PR P348 EKKA купить</title>
+					  <description>Купить шину 23*7.00-10 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">5.8</param><param name="Глубина Протектора (мм)">15</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">109</param><param name="Размер Диска (RIM)">5.5</param><param name="Размер шины">23*7.00-10</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9331" available="true">
+                      <url>25-1000-12-4PR-TL-shina-pnevmaticheskaya-P341-EKKA</url>
+                      <price>8400</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/1039043.jpg</picture>
+					  <quantity>50</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>25*10.00-12 4PR TL Шина пневматическая P341 EKKA</name>
+					  <model>P341</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 25*10.00-12 4PR P341 EKKA купить</title>
+					  <description>Купить шину 25*10.00-12 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">10.405</param><param name="Глубина Протектора (мм)">20</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">166</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">25*10.00-12</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9335" available="true">
+                      <url>25-1000-12-4PR-TL-shina-pnevmaticheskaya-P377-EKKA</url>
+                      <price>8100</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/43103972.jpg</picture>
+					  <quantity>12</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>25*10.00-12 4PR TL Шина пневматическая P377 EKKA</name>
+					  <model>P377</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 25*10.00-12 4PR P377 EKKA купить</title>
+					  <description>Купить шину 25*10.00-12 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">9.304</param><param name="Глубина Протектора (мм)">16</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">166</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">25*10.00-12</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9333" available="false">
+                      <url>25-1000R12-6PR-TL-shina-pnevmaticheskaya-P3035-EKKA</url>
+                      <price>9350</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/21932149.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>25*10.00R12 6PR TL Шина пневматическая P3035 EKKA</name>
+					  <model>P3035</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 25*10.00R12 6PR P3035 EKKA купить</title>
+					  <description>Купить шину 25*10.00R12 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">10.522</param><param name="Глубина Протектора (мм)">16.2</param><param name="Давление (P.S.I.)">18</param><param name="Макс. Нагрузка (кг)">308</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">25*10.00R12</param><param name="Слойность (PR)">6</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9330" available="true">
+                      <url>25-800-12-4PR-TL-shina-pnevmaticheskaya-P341-EKKA</url>
+                      <price>7600</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/8426623.jpg</picture>
+					  <quantity>34</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>25*8.00-12 4PR TL Шина пневматическая P341 EKKA</name>
+					  <model>P341</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 25*8.00-12 4PR P341 EKKA купить</title>
+					  <description>Купить шину 25*8.00-12 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">9.430</param><param name="Глубина Протектора (мм)">20</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">132</param><param name="Размер Диска (RIM)">6.5</param><param name="Размер шины">25*8.00-12</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9334" available="true">
+                      <url>25-800-12-4PR-TL-shina-pnevmaticheskaya-P377-EKKA</url>
+                      <price>6700</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/8551775.jpg</picture>
+					  <quantity>1</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>25*8.00-12 4PR TL Шина пневматическая P377 EKKA</name>
+					  <model>P377</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 25*8.00-12 4PR P377 EKKA купить</title>
+					  <description>Купить шину 25*8.00-12 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">7.628</param><param name="Глубина Протектора (мм)">16</param><param name="Давление (P.S.I.)">5</param><param name="Макс. Нагрузка (кг)">132</param><param name="Размер Диска (RIM)">6.5</param><param name="Размер шины">25*8.00-12</param><param name="Слойность (PR)">4</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9332" available="true">
+                      <url>25-800R12-6PR-TL-shina-pnevmaticheskaya-P3035-EKKA</url>
+                      <price>8050</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/1492690.jpg</picture>
+					  <quantity>6</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>25*8.00R12 6PR TL Шина пневматическая P3035 EKKA</name>
+					  <model>P3035</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 25*8.00R12 6PR P3035 EKKA купить</title>
+					  <description>Купить шину 25*8.00R12 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">9.6</param><param name="Глубина Протектора (мм)">16.2</param><param name="Давление (P.S.I.)">18</param><param name="Макс. Нагрузка (кг)">252</param><param name="Размер Диска (RIM)">6.5</param><param name="Размер шины">25*8.00R12</param><param name="Слойность (PR)">6</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9542" available="true">
+                      <url>29-1100-14-6PR-TL-shina-pnevmaticheskaya-EKKA-P350</url>
+                      <price>14600</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/8791386.jpg</picture>
+					  <quantity>20</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>29*11.00-14 6PR TL Шина пневматическая EKKA P350</name>
+					  <model>P350</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 29*11.00-14 6PR P350 EKKA купить</title>
+					  <description>Купить шину 29*11.00-14 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">11.0</param><param name="Глубина Протектора (мм)">20</param><param name="Давление (P.S.I.)">7</param><param name="Макс. Нагрузка (кг)">190</param><param name="Размер Диска (RIM)">8.0</param><param name="Размер шины">29*11.00-14</param><param name="Слойность (PR)">6</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9541" available="true">
+                      <url>29-900-14-6PR-TL-shina-pnevmaticheskaya-EKKA-P350</url>
+                      <price>12650</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/7095566.jpg</picture>
+					  <quantity>25</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>29*9.00-14 6PR TL Шина пневматическая EKKA P350</name>
+					  <model>P350</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 29*9.00-14 6PR P350 EKKA купить</title>
+					  <description>Купить шину 29*9.00-14 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">10.3</param><param name="Глубина Протектора (мм)">20</param><param name="Давление (P.S.I.)">7</param><param name="Макс. Нагрузка (кг)">155</param><param name="Размер Диска (RIM)">7.0</param><param name="Размер шины">29*9.00-14</param><param name="Слойность (PR)">6</param><param name="Тип">(TL) Бескамерная шина</param><country_of_origin></country_of_origin>
+</offer><offer id="9078" available="true">
+                      <url>300-4-4PR-TT-RIM-215-shina-pnevmaticheskaya-EKKA-P523</url>
+                      <price>1100</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>22</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/5398991.jpg</picture>
+					  <quantity>35</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>3.00-4 4PR TT RIM 2.15 Шина пневматическая EKKA P523</name>
+					  <model>P523</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шина 3.00-4 4PR P523 EKKA купить</title>
+					  <description>Купить шину 3.00-4 EKKA для квадроциклов в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">0,8</param><param name="Давление (P.S.I.)">50</param><param name="Макс. Нагрузка (кг)">100</param><param name="Объем (м3)">0,001</param><param name="Размер Диска (RIM)">2.15</param><param name="Размер шины">3.00-4</param><param name="Слойность (PR)">4</param><param name="Тип">(TT) Камерная шина</param><param name="Тип применения">Квадроцикл</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

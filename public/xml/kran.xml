@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="16">Шины для крановой техники</category></categories>				
+				<offers><offer id="6944" available="false">
+                      <url>tovar-238</url>
+                      <price>75540</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>16</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/238.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 14.00R24  PR B05N HILO</name>
+					  <model>B05N</model>
+                      <vendor>HILO</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Шины 14.00R24 B05N HILO с металокордом </p>]]></opisanie>
+					  <title>Шины 14.00R24  PR B05N HILO купить</title>
+					  <description>Купить шины 14.00R24 HILO для крановой техники в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Глубина Протектора (мм)">23</param><param name="Макс. Нагрузка (кг)">6000</param><param name="Наружный диаметр (мм)">1356</param><param name="Размер Диска (RIM)">10.00W</param><param name="Размер шины">14.00R24</param><param name="Слойность (PR)">***</param><param name="Тип протектора">E2</param><param name="Ширина протектора (мм)">382</param><country_of_origin></country_of_origin>
+</offer><offer id="6938" available="false">
+                      <url>tovar-239</url>
+                      <price>110660</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>16</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/239.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 14.00R25 *** B05N HILO</name>
+					  <model>B05N</model>
+                      <vendor>HILO</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Крановая шина 14.00R25 (385/95R25) B05N HILO с металлокордом для мобильных кранов. Шина 14.00R25 HILO радиальной конструкции</p>]]></opisanie>
+					  <title>Шины 14.00R25 *** B05N HILO купить</title>
+					  <description>Купить шины 14.00R25  HILO для крановой техники в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Глубина Протектора (мм)">23</param><param name="Макс. Нагрузка (кг)">6000</param><param name="Наружный диаметр (мм)">1356</param><param name="Размер Диска (RIM)">10.00/1.5</param><param name="Размер шины">14.00R25</param><param name="Слойность (PR)">***</param><param name="Тип протектора">E2</param><param name="Ширина протектора (мм)">382</param><country_of_origin></country_of_origin>
+</offer><offer id="6940" available="false">
+                      <url>tovar-240</url>
+                      <price>145600</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>16</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/240.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 16.00R25 B05N HILO</name>
+					  <model>B05N</model>
+                      <vendor>HILO</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Шины 16.00R25 B05N HILO с металокордом </p>]]></opisanie>
+					  <title>Шины 16.00R25 B05N HILO купить</title>
+					  <description>Купить шины 16.00R25 HILO для крановой техники в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Глубина Протектора (мм)">23</param><param name="Макс. Нагрузка (кг)">7750</param><param name="Наружный диаметр (мм)">1493</param><param name="Размер Диска (RIM)">11.25/2.0</param><param name="Размер шины">16.00R25</param><param name="Слойность (PR)">***</param><param name="Тип протектора">E2</param><param name="Ширина протектора (мм)">432</param><country_of_origin></country_of_origin>
+</offer><offer id="10447" available="true">
+                      <url>shiny-1600R25-445-95R25-BOTO-GCA5-E-2-177E-TL</url>
+                      <price>113520</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>16</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-1600R25-445-95R25-BOTO-GCA5-E-2-177E-TL.jpg</picture>
+					  <quantity>20</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 16.00R25 (445/95R25) BOTO GCA5 E-2 177E TL</name>
+					  <model>E2 GCA5</model>
+                      <vendor>BOTO</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Индустриальная техника нуждается в надежной и качественной резине. Именно от используемых покрышек во многом зависит безопасность работы и качество выполнения поставленной задачи. Среди доступного на рынке ассортимента особенно выделяются шины BOTO 16.00R25 или (445/95R25), оптимально сочетающие в себе прекрасные технические параметры, высокие эксплуатационные свойства и демократичный ценник.</p>
+<p>
+	<strong>Шины и их особенности</strong></p>
+<p>
+	Выполненная из специального компаунда резина имеет бескамерную основу и весьма комфортна в эксплуатации. Радиальный формат корда исключает перекрещивание стальных нитей. Вес покрышки при этом снижается, а ее прочностные показатели и сопротивляемость проколам остаются на довольно высоком уровне.</p>
+<p>
+	Рисунок протектора обладает увеличенным контактным пятном. За счет этого техника имеет хорошую курсовую устойчивость, а скорость ее перемещения между объектами может достигать 50-70 км/час.</p>
+<p>
+	<strong>Преимущества покрышек</strong></p>
+<p>
+	Среди главных их особенностей нужно выделить такие:</p>
+<ul>
+	<li>
+		Длительный эксплуатационный период;</li>
+	<li>
+		Стойкость касательно нагрузок и повреждений;</li>
+	<li>
+		Высокий показатель грузоподъемности;</li>
+	<li>
+		Улучшенные тяговые параметры;</li>
+	<li>
+		Хорошая проходимость по разным покрытиям;</li>
+	<li>
+		Равномерная изнашиваемость;</li>
+	<li>
+		Небольшой вес и комфортная управляемость.</li>
+</ul>
+<p>
+	<strong>Особенности использования</strong></p>
+<p>
+	Шина 16.00R25 *** 177E TL GCA5 E-2 BOTO демонстрирует высокую эффективность на на любых покрытиях. Ее использование допустимо на открытых территориях и в складских помещениях. Предельно допустимые нагрузки при этом отличаются и зависят от выбранного уровня давления. Оптимально такие покрышки подходят для мобильной крановой техники разной спецификации. Причем не только отечественного изготовления. На машинах импортного производства модель столь же эффективна и полезна.</p>
+<p>
+	Резина 16.00R25 станет отличным приобретением для использования на строительстве и в производственных условиях. Важно лишь не ошибиться в характеристиках при выборе. Исключить досадные недоразумения позволит обращение к профессионалам, которые подберут покрышки с учетом бюджета и условий дальнейшей эксплуатации.</p>
+<p>
+	</p>]]></opisanie>
+					  <title>Шины 16.00R25 (445/95R25) BOTO GCA5 E-2 177E TL купить</title>
+					  <description>Купить шины 16.00R25 (445/95R25) BOTO GCA5 E-2 177E TL для крановой техники в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">210</param><param name="Глубина Протектора (мм)">25</param><param name="Макс. Нагрузка (кг)">7300</param><param name="Наружный диаметр (мм)">1493</param><param name="Объем (м3)">0.96</param><param name="Размер Диска (RIM)">11.25/2.0</param><param name="Размер шины">16.00R25</param><param name="Слойность (PR)">***</param><param name="Тип протектора">E2</param><param name="Ширина протектора (мм)">432</param><country_of_origin></country_of_origin>
+</offer><offer id="10446" available="true">
+                      <url>shiny-1400R25-385-95R25-BOTO-GCA5-E-2-170E-TL</url>
+                      <price>87750</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>16</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-1400R25-385-95R25-BOTO-GCA5-E-2-170E-TL.jpg</picture>
+					  <quantity>3</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 14.00R25 (385/95R25) BOTO GCA5 E-2 170E TL</name>
+					  <model>E2 GCA5</model>
+                      <vendor>BOTO</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Индустриальная техника нуждается в качественных покрышках. Они должны быть не только практичными и безопасными, но и надежными с возможностью использования на разных типах покрытий. Оптимальным вариантом по всем этим критериям являются шины BOTO 14.00R25 (385/95R25) *** 170E TL GCA5 E-2, обладающие при всех своих достоинствах вполне демократичным ценником.</p>
+<p>
+	Описание шин</p>
+<p>
+	Разработанная по особой технологии резиновая смесь обладает прекрасными прочностными показателями. Использование таких покрышек допустимо на разных основаниях, причем длительное время и без утраты первоначальных преимуществ. Радиальная основа улучшает сопротивляемость проколам и сторонним воздействиям, а бескамерный формат делает резину комфортной в управлении.</p>
+<p>
+	Универсальный рисунок протектора GCA5 E-2 демонстрирует высокие эксплуатационные свойства, а колеса с ним имеют такие преимущества:</p>
+<ul>
+	<li>
+		Незначительный вес;</li>
+	<li>
+		Хорошие тяговые показатели;</li>
+	<li>
+		Длительный период службы;</li>
+	<li>
+		Отличное сцепление с основой;</li>
+	<li>
+		Стойкость к нагрузкам;</li>
+	<li>
+		Равномерная изнашиваемость.</li>
+</ul>
+<p>
+	Использование покрышек</p>
+<p>
+	В зависимости от модификации шина 14.00R25 BOTO пригодна для крановой техники различных моделей, эксплуатация которых проходит в сложных условиях. Модель оптимально взаимодействует с техникой любых производителей, среди которых и иностранные компании.</p>
+<p>
+	14.00R25  универсальная резина с отличными техническими показателями. Ее использование допустимо в разных условиях, а умеренная стоимость делает выбор в пользу именно этой модели целесообразным и оправданным в большинстве случаев.</p>
+<p>
+	</p>]]></opisanie>
+					  <title>Шины 14.00R25 (385/95R25) BOTO GCA5 E-2 170E TL купить</title>
+					  <description>Купить шины 14.00R25 (385/95R25) BOTO GCA5 E-2 170E TL для крановой техники в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">153</param><param name="Глубина Протектора (мм)">23</param><param name="Макс. Нагрузка (кг)">6000</param><param name="Наружный диаметр (мм)">1368</param><param name="Объем (м3)">0,72</param><param name="Размер Диска (RIM)">10.00/1.5</param><param name="Размер шины">14.00R25</param><param name="Слойность (PR)">***</param><param name="Тип протектора">E2</param><param name="Ширина протектора (мм)">375</param><country_of_origin></country_of_origin>
+</offer><offer id="6941" available="false">
+                      <url>tovar-403</url>
+                      <price>72870</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>16</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/403.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 17.5R25 *** B05N HILO</name>
+					  <model>B05N</model>
+                      <vendor>HILO</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	17.5R25 B05N TL Е2 HILO Шины ЦМК (Целнометаллический корд) на кран</p>]]></opisanie>
+					  <title>Шины 17.5R25 *** B05N HILO купить</title>
+					  <description>Купить шины 17.5R25 HILO для крановой техники в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Глубина Протектора (мм)">28</param><param name="Макс. Нагрузка (кг)">6000</param><param name="Наружный диаметр (мм)">1348</param><param name="Размер Диска (RIM)">14.00/1.5</param><param name="Размер шины">17.5R25</param><param name="Слойность (PR)">***</param><param name="Тип протектора">E2</param><param name="Ширина протектора (мм)">445</param><country_of_origin></country_of_origin>
+</offer><offer id="6949" available="false">
+                      <url>tovar-404</url>
+                      <price>133480</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>16</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/404.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 20.5R25 *** B05N HILO</name>
+					  <model>B05N</model>
+                      <vendor>HILO</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	20.5R25 B05N TL Е2 HILO Шины ЦМК (Целнометаллический корд)</p>]]></opisanie>
+					  <title>Шины 20.5R25 *** B05N HILO купить</title>
+					  <description>Купить шины 20.5R25 HILO для крановой техники в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Глубина Протектора (мм)">31</param><param name="Макс. Нагрузка (кг)">7750</param><param name="Наружный диаметр (мм)">1492</param><param name="Размер Диска (RIM)">17.00/2.0</param><param name="Размер шины">20.5R25</param><param name="Слойность (PR)">****</param><param name="Тип протектора">E2</param><param name="Ширина протектора (мм)">520</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

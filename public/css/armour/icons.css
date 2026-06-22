@@ -1,0 +1,781 @@
+/* stylelint-disable */
+/*
+@font-face {
+  font-family: "icons";
+  src: url('advanta/dist/fonts/icons.eot');
+  src: url('advanta/dist/fonts/icons.eot?#iefix') format('eot'),
+  url('advanta/dist/fonts/icons.woff') format('woff'),
+  url('advanta/dist/fonts/icons.ttf') format('truetype');
+}
+*/
+%icon {
+  font-family: "icons";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-transform: none;
+  font-size: 1.2em;
+  width: 1.2em;
+  display: inline-block;
+  text-align: center;
+  vertical-align: sub;
+  margin-right: 0.3em;
+}
+
+@function icon-char($filename) {
+  $char: "";
+
+@if $filename == 15min {
+$char: "\E001";
+}
+@if $filename == arrow-down {
+$char: "\E002";
+}
+@if $filename == arrow-left {
+$char: "\E003";
+}
+@if $filename == arrow-right {
+$char: "\E004";
+}
+@if $filename == arrow-up {
+$char: "\E005";
+}
+@if $filename == atention {
+$char: "\E006";
+}
+@if $filename == attachment {
+$char: "\E007";
+}
+@if $filename == bills {
+$char: "\E008";
+}
+@if $filename == building {
+$char: "\E009";
+}
+@if $filename == calendar {
+$char: "\E00A";
+}
+@if $filename == cancel {
+$char: "\E00B";
+}
+@if $filename == car {
+$char: "\E00C";
+}
+@if $filename == case {
+$char: "\E00D";
+}
+@if $filename == catalog {
+$char: "\E00E";
+}
+@if $filename == check-button {
+$char: "\E00F";
+}
+@if $filename == check-circle-fill {
+$char: "\E010";
+}
+@if $filename == check {
+$char: "\E011";
+}
+@if $filename == comparison {
+$char: "\E012";
+}
+@if $filename == deals {
+$char: "\E013";
+}
+@if $filename == discount {
+$char: "\E014";
+}
+@if $filename == doc {
+$char: "\E015";
+}
+@if $filename == dot {
+$char: "\E016";
+}
+@if $filename == error {
+$char: "\E017";
+}
+@if $filename == exclamation-circle-fill {
+$char: "\E018";
+}
+@if $filename == facebook {
+$char: "\E019";
+}
+@if $filename == flag {
+$char: "\E01A";
+}
+@if $filename == folder {
+$char: "\E01B";
+}
+@if $filename == gift {
+$char: "\E01C";
+}
+@if $filename == hand-signature {
+$char: "\E01D";
+}
+@if $filename == info {
+$char: "\E01E";
+}
+@if $filename == instagram {
+$char: "\E01F";
+}
+@if $filename == logo-advanta {
+$char: "\E020";
+}
+@if $filename == long-arrow-left {
+$char: "\E021";
+}
+@if $filename == long-arrow-right {
+$char: "\E022";
+}
+@if $filename == mail {
+$char: "\E023";
+}
+@if $filename == map-point-bold {
+$char: "\E024";
+}
+@if $filename == map-point {
+$char: "\E025";
+}
+@if $filename == menu-mobile {
+$char: "\E026";
+}
+@if $filename == minus {
+$char: "\E027";
+}
+@if $filename == money {
+$char: "\E028";
+}
+@if $filename == ms-word {
+$char: "\E029";
+}
+@if $filename == package {
+$char: "\E02A";
+}
+@if $filename == pad-doc {
+$char: "\E02B";
+}
+@if $filename == path-map {
+$char: "\E02C";
+}
+@if $filename == pdf-file {
+$char: "\E02D";
+}
+@if $filename == person {
+$char: "\E02E";
+}
+@if $filename == phone {
+$char: "\E02F";
+}
+@if $filename == play-button {
+$char: "\E030";
+}
+@if $filename == plus {
+$char: "\E031";
+}
+@if $filename == print {
+$char: "\E032";
+}
+@if $filename == question {
+$char: "\E033";
+}
+@if $filename == questions {
+$char: "\E034";
+}
+@if $filename == quotes {
+$char: "\E035";
+}
+@if $filename == rutube {
+$char: "\E036";
+}
+@if $filename == search {
+$char: "\E037";
+}
+@if $filename == sertificate {
+$char: "\E038";
+}
+@if $filename == shipping {
+$char: "\E039";
+}
+@if $filename == shopping-cart {
+$char: "\E03A";
+}
+@if $filename == skype {
+$char: "\E03B";
+}
+@if $filename == smartphone {
+$char: "\E03C";
+}
+@if $filename == spinner {
+$char: "\E03D";
+}
+@if $filename == star-fill {
+$char: "\E03E";
+}
+@if $filename == star {
+$char: "\E03F";
+}
+@if $filename == super_sale {
+$char: "\E040";
+}
+@if $filename == telegram {
+$char: "\E041";
+}
+@if $filename == telephone {
+$char: "\E042";
+}
+@if $filename == to-do-list {
+$char: "\E043";
+}
+@if $filename == todo-cheked {
+$char: "\E044";
+}
+@if $filename == tools {
+$char: "\E045";
+}
+@if $filename == viber {
+$char: "\E046";
+}
+@if $filename == vk {
+$char: "\E047";
+}
+@if $filename == warehouse {
+$char: "\E048";
+}
+@if $filename == warranty {
+$char: "\E049";
+}
+@if $filename == whatsapp {
+$char: "\E04A";
+}
+@if $filename == wish {
+$char: "\E04B";
+}
+@if $filename == wordwide {
+$char: "\E04C";
+}
+@if $filename == work {
+$char: "\E04D";
+}
+@if $filename == x {
+$char: "\E04E";
+}
+@if $filename == x_adv_mail {
+$char: "\E04F";
+}
+@if $filename == x_adv_mobile {
+$char: "\E050";
+}
+@if $filename == x_adv_phone {
+$char: "\E051";
+}
+@if $filename == youtube {
+$char: "\E052";
+}
+
+@return $char;
+}
+
+@mixin icon($filename, $insert: before) {
+  &:#{$insert} {
+    content: icon-char($filename);
+    @extend %icon;
+  }
+}
+
+.icon-15min {
+  @include icon(15min);
+}
+.icon-arrow-down {
+  @include icon(arrow-down);
+}
+.icon-arrow-left {
+  @include icon(arrow-left);
+}
+.icon-arrow-right {
+  @include icon(arrow-right);
+}
+.icon-arrow-up {
+  @include icon(arrow-up);
+}
+.icon-atention {
+  @include icon(atention);
+}
+.icon-attachment {
+  @include icon(attachment);
+}
+.icon-bills {
+  @include icon(bills);
+}
+.icon-building {
+  @include icon(building);
+}
+.icon-calendar {
+  @include icon(calendar);
+}
+.icon-cancel {
+  @include icon(cancel);
+}
+.icon-car {
+  @include icon(car);
+}
+.icon-case {
+  @include icon(case);
+}
+.icon-catalog {
+  @include icon(catalog);
+}
+.icon-check-button {
+  @include icon(check-button);
+}
+.icon-check-circle-fill {
+  @include icon(check-circle-fill);
+}
+.icon-check {
+  @include icon(check);
+}
+.icon-comparison {
+  @include icon(comparison);
+}
+.icon-deals {
+  @include icon(deals);
+}
+.icon-discount {
+  @include icon(discount);
+}
+.icon-doc {
+  @include icon(doc);
+}
+.icon-dot {
+  @include icon(dot);
+}
+.icon-error {
+  @include icon(error);
+}
+.icon-exclamation-circle-fill {
+  @include icon(exclamation-circle-fill);
+}
+.icon-facebook {
+  @include icon(facebook);
+}
+.icon-flag {
+  @include icon(flag);
+}
+.icon-folder {
+  @include icon(folder);
+}
+.icon-gift {
+  @include icon(gift);
+}
+.icon-hand-signature {
+  @include icon(hand-signature);
+}
+.icon-info {
+  @include icon(info);
+}
+.icon-instagram {
+  @include icon(instagram);
+}
+.icon-logo-advanta {
+  @include icon(logo-advanta);
+}
+.icon-long-arrow-left {
+  @include icon(long-arrow-left);
+}
+.icon-long-arrow-right {
+  @include icon(long-arrow-right);
+}
+.icon-mail {
+  @include icon(mail);
+}
+.icon-map-point-bold {
+  @include icon(map-point-bold);
+}
+.icon-map-point {
+  @include icon(map-point);
+}
+.icon-menu-mobile {
+  @include icon(menu-mobile);
+}
+.icon-minus {
+  @include icon(minus);
+}
+.icon-money {
+  @include icon(money);
+}
+.icon-ms-word {
+  @include icon(ms-word);
+}
+.icon-package {
+  @include icon(package);
+}
+.icon-pad-doc {
+  @include icon(pad-doc);
+}
+.icon-path-map {
+  @include icon(path-map);
+}
+.icon-pdf-file {
+  @include icon(pdf-file);
+}
+.icon-person {
+  @include icon(person);
+}
+.icon-phone {
+  @include icon(phone);
+}
+.icon-play-button {
+  @include icon(play-button);
+}
+.icon-plus {
+  @include icon(plus);
+}
+.icon-print {
+  @include icon(print);
+}
+.icon-question {
+  @include icon(question);
+}
+.icon-questions {
+  @include icon(questions);
+}
+.icon-quotes {
+  @include icon(quotes);
+}
+.icon-rutube {
+  @include icon(rutube);
+}
+.icon-search {
+  @include icon(search);
+}
+.icon-sertificate {
+  @include icon(sertificate);
+}
+.icon-shipping {
+  @include icon(shipping);
+}
+.icon-shopping-cart {
+  @include icon(shopping-cart);
+}
+.icon-skype {
+  @include icon(skype);
+}
+.icon-smartphone {
+  @include icon(smartphone);
+}
+.icon-spinner {
+  @include icon(spinner);
+}
+.icon-star-fill {
+  @include icon(star-fill);
+}
+.icon-star {
+  @include icon(star);
+}
+.icon-super_sale {
+  @include icon(super_sale);
+}
+.icon-telegram {
+  @include icon(telegram);
+}
+.icon-telephone {
+  @include icon(telephone);
+}
+.icon-to-do-list {
+  @include icon(to-do-list);
+}
+.icon-todo-cheked {
+  @include icon(todo-cheked);
+}
+.icon-tools {
+  @include icon(tools);
+}
+.icon-viber {
+  @include icon(viber);
+}
+.icon-vk {
+  @include icon(vk);
+}
+.icon-warehouse {
+  @include icon(warehouse);
+}
+.icon-warranty {
+  @include icon(warranty);
+}
+.icon-whatsapp {
+  @include icon(whatsapp);
+}
+.icon-wish {
+  @include icon(wish);
+}
+.icon-wordwide {
+  @include icon(wordwide);
+}
+.icon-work {
+  @include icon(work);
+}
+.icon-x {
+  @include icon(x);
+}
+.icon-x_adv_mail {
+  @include icon(x_adv_mail);
+}
+.icon-x_adv_mobile {
+  @include icon(x_adv_mobile);
+}
+.icon-x_adv_phone {
+  @include icon(x_adv_phone);
+}
+.icon-youtube {
+  @include icon(youtube);
+}
+
+
+.link-icon-15min > a{
+  @include icon(15min);
+}
+.link-icon-arrow-down > a{
+  @include icon(arrow-down);
+}
+.link-icon-arrow-left > a{
+  @include icon(arrow-left);
+}
+.link-icon-arrow-right > a{
+  @include icon(arrow-right);
+}
+.link-icon-arrow-up > a{
+  @include icon(arrow-up);
+}
+.link-icon-atention > a{
+  @include icon(atention);
+}
+.link-icon-attachment > a{
+  @include icon(attachment);
+}
+.link-icon-bills > a{
+  @include icon(bills);
+}
+.link-icon-building > a{
+  @include icon(building);
+}
+.link-icon-calendar > a{
+  @include icon(calendar);
+}
+.link-icon-cancel > a{
+  @include icon(cancel);
+}
+.link-icon-car > a{
+  @include icon(car);
+}
+.link-icon-case > a{
+  @include icon(case);
+}
+.link-icon-catalog > a{
+  @include icon(catalog);
+}
+.link-icon-check-button > a{
+  @include icon(check-button);
+}
+.link-icon-check-circle-fill > a{
+  @include icon(check-circle-fill);
+}
+.link-icon-check > a{
+  @include icon(check);
+}
+.link-icon-comparison > a{
+  @include icon(comparison);
+}
+.link-icon-deals > a{
+  @include icon(deals);
+}
+.link-icon-discount > a{
+  @include icon(discount);
+}
+.link-icon-doc > a{
+  @include icon(doc);
+}
+.link-icon-dot > a{
+  @include icon(dot);
+}
+.link-icon-error > a{
+  @include icon(error);
+}
+.link-icon-exclamation-circle-fill > a{
+  @include icon(exclamation-circle-fill);
+}
+.link-icon-facebook > a{
+  @include icon(facebook);
+}
+.link-icon-flag > a{
+  @include icon(flag);
+}
+.link-icon-folder > a{
+  @include icon(folder);
+}
+.link-icon-gift > a{
+  @include icon(gift);
+}
+.link-icon-hand-signature > a{
+  @include icon(hand-signature);
+}
+.link-icon-info > a{
+  @include icon(info);
+}
+.link-icon-instagram > a{
+  @include icon(instagram);
+}
+.link-icon-logo-advanta > a{
+  @include icon(logo-advanta);
+}
+.link-icon-long-arrow-left > a{
+  @include icon(long-arrow-left);
+}
+.link-icon-long-arrow-right > a{
+  @include icon(long-arrow-right);
+}
+.link-icon-mail > a{
+  @include icon(mail);
+}
+.link-icon-map-point-bold > a{
+  @include icon(map-point-bold);
+}
+.link-icon-map-point > a{
+  @include icon(map-point);
+}
+.link-icon-menu-mobile > a{
+  @include icon(menu-mobile);
+}
+.link-icon-minus > a{
+  @include icon(minus);
+}
+.link-icon-money > a{
+  @include icon(money);
+}
+.link-icon-ms-word > a{
+  @include icon(ms-word);
+}
+.link-icon-package > a{
+  @include icon(package);
+}
+.link-icon-pad-doc > a{
+  @include icon(pad-doc);
+}
+.link-icon-path-map > a{
+  @include icon(path-map);
+}
+.link-icon-pdf-file > a{
+  @include icon(pdf-file);
+}
+.link-icon-person > a{
+  @include icon(person);
+}
+.link-icon-phone > a{
+  @include icon(phone);
+}
+.link-icon-play-button > a{
+  @include icon(play-button);
+}
+.link-icon-plus > a{
+  @include icon(plus);
+}
+.link-icon-print > a{
+  @include icon(print);
+}
+.link-icon-question > a{
+  @include icon(question);
+}
+.link-icon-questions > a{
+  @include icon(questions);
+}
+.link-icon-quotes > a{
+  @include icon(quotes);
+}
+.link-icon-rutube > a{
+  @include icon(rutube);
+}
+.link-icon-search > a{
+  @include icon(search);
+}
+.link-icon-sertificate > a{
+  @include icon(sertificate);
+}
+.link-icon-shipping > a{
+  @include icon(shipping);
+}
+.link-icon-shopping-cart > a{
+  @include icon(shopping-cart);
+}
+.link-icon-skype > a{
+  @include icon(skype);
+}
+.link-icon-smartphone > a{
+  @include icon(smartphone);
+}
+.link-icon-spinner > a{
+  @include icon(spinner);
+}
+.link-icon-star-fill > a{
+  @include icon(star-fill);
+}
+.link-icon-star > a{
+  @include icon(star);
+}
+.link-icon-super_sale > a{
+  @include icon(super_sale);
+}
+.link-icon-telegram > a{
+  @include icon(telegram);
+}
+.link-icon-telephone > a{
+  @include icon(telephone);
+}
+.link-icon-to-do-list > a{
+  @include icon(to-do-list);
+}
+.link-icon-todo-cheked > a{
+  @include icon(todo-cheked);
+}
+.link-icon-tools > a{
+  @include icon(tools);
+}
+.link-icon-viber > a{
+  @include icon(viber);
+}
+.link-icon-vk > a{
+  @include icon(vk);
+}
+.link-icon-warehouse > a{
+  @include icon(warehouse);
+}
+.link-icon-warranty > a{
+  @include icon(warranty);
+}
+.link-icon-whatsapp > a{
+  @include icon(whatsapp);
+}
+.link-icon-wish > a{
+  @include icon(wish);
+}
+.link-icon-wordwide > a{
+  @include icon(wordwide);
+}
+.link-icon-work > a{
+  @include icon(work);
+}
+.link-icon-x > a{
+  @include icon(x);
+}
+.link-icon-x_adv_mail > a{
+  @include icon(x_adv_mail);
+}
+.link-icon-x_adv_mobile > a{
+  @include icon(x_adv_mobile);
+}
+.link-icon-x_adv_phone > a{
+  @include icon(x_adv_phone);
+}
+.link-icon-youtube > a{
+  @include icon(youtube);
+}

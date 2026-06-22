@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="41">Цельнолитые шины для фронтальных погрузчиков</category></categories>				
+				<offers><offer id="7294" available="false">
+                      <url>tovar-487</url>
+                      <price>282000</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>41</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/4718890.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 17.5-25 цельнолитая стандарт IST</name>
+					  <model>IST стандарт </model>
+                      <vendor>IST</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Цельнолитые шины 17.5-25 для фронтальных погрузчиков</p>]]></opisanie>
+					  <title>Шины 17.5-25  цельнолитая стандарт IST купить</title>
+					  <description>Купить цельнолитые шины 17.5-25 IST для фронтальных погрузчиков в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Наружный диаметр (мм)">1356</param><param name="Размер Диска (RIM)">14.00</param><param name="Размер шины">17.5-25</param><param name="Тип протектора">IST Standart</param><param name="Ширина протектора (мм)">436</param><country_of_origin></country_of_origin>
+</offer><offer id="8426" available="false">
+                      <url>shiny-235-25-celnolitaya-standart-IST</url>
+                      <price>532500</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>41</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/19199116.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 23.5-25 цельнолитая стандарт IST</name>
+					  <model>IST стандарт</model>
+                      <vendor>IST</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шины 23.5-25 цельнолитая стандарт IST купить</title>
+					  <description>Купить цельнолитые шины 23.5-25 IST для фронтальных погрузчиков в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Размер шины">23.5-25</param><param name="Тип протектора">IST Standart</param><country_of_origin></country_of_origin>
+</offer><offer id="7254" available="false">
+                      <url>tovar-502</url>
+                      <price>360960</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>41</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/502.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 20.5-25 цельнолитая стандарт IST</name>
+					  <model>IST стандарт</model>
+                      <vendor>IST</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Шины 20.5-25 цельнолитая стандарт IST купить</title>
+					  <description>Купить цельнолитые шины 20.5-25 IST для фронтальных погрузчиков в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Размер шины">20.5-25</param><param name="Тип протектора">IST Standart</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

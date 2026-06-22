@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="35">Фильтр осушитель</category></categories>				
+				<offers><offer id="3313" available="true">
+                      <url>1391510-filtr-osushitel</url>
+                      <price>670</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>35</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/940.jpg</picture>
+					  <quantity>824</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>1391510 Фильтр осушитель</name>
+					  <model>1391510</model>
+                      <vendor>ASFil</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>1391510 фильтр осушитель купить</title>
+					  <description>Купить 1391510 фильтр осушитель в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">2.1</param><country_of_origin></country_of_origin>
+</offer><offer id="3315" available="true">
+                      <url>4324109272-filtr-osushitel</url>
+                      <price>680</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>35</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/941.jpg</picture>
+					  <quantity>783</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>4324109272 Фильтр осушитель</name>
+					  <model>4324109272</model>
+                      <vendor>ASFil</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>4324109272 фильтр осушитель купить</title>
+					  <description>Купить 4324109272 фильтр осушитель в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">2.7</param><country_of_origin></country_of_origin>
+</offer><offer id="3314" available="true">
+                      <url>4329012452-filtr-osushitel</url>
+                      <price>700</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>35</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/942.jpg</picture>
+					  <quantity>248</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>4329012452 Фильтр осушитель</name>
+					  <model>4329012452</model>
+                      <vendor>ASFil</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>4329012452 фильтр осушитель купить</title>
+					  <description>Купить 4329012452 фильтр осушитель в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">2.6</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

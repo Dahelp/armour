@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-05-14 10:05">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="13">Цельнолитые шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="12036" available="true">
+                      <url>shiny-250-15-700-clip-contirun-celnolitye</url>
+                      <price>28900</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>13</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-250-15-700-CLIP-CONTIRUN-celnolitye.jpg</picture>
+					  <quantity>12</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 250-15/7.00 CLIP CONTIRUN цельнолитые</name>
+					  <model>CLIP</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Цельнолитые колеса  это ваш выбор, если нужна максимальная защита от повреждений. Вилочные погрузчики часто сталкиваются с опасностями на дороге: осколками стекла, обломками металла или камнями. Шины 250-15 7.00 CLIP CONTIRUN EKKA созданы, чтобы противостоять таким препятствиям. Благодаря им, вы забудете о проколах и сможете работать без лишних забот.</p>
+<p>
+	Суперэластик позволяет погрузчикам работать без перебоев и с максимальной отдачей даже при самых продолжительных циклах. Это незаменимое качество для техники, которая ежедневно справляется с высокими нагрузками и перемещает тяжелые грузы в течение длительного времени.</p>
+<p>
+	Благодаря наличию буртика, шина размером 250-15 CONTIRUN легко монтируется на сварной диск без необходимости использования стопорных колец. Данная конструктивная особенность обеспечивает легкость установки и гарантирует надежность фиксации, что способствует оптимизации процессов технического обслуживания и замены.</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>Купить CONTIRUN EKKA шины 250-15 7.00 CLIP</title>
+					  <description>Выгодное предложение: цельнолитые шины EKKA 250-15 CONTIRUN с буртом. Надежность, долговечность и превосходные характеристики – по отличной цене!</description>
+					  <keywords></keywords><param name="Вес (кг)">75</param><param name="Макс. Нагрузка (кг, 10км/ч)">4366</param><param name="Наружный диаметр (мм)">693</param><param name="Объем (м3)">0.12</param><param name="Размер Диска (RIM)">7.00</param><param name="Размер шины">250-15</param><param name="Ширина протектора (мм)">228</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

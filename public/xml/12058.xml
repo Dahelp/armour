@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 16:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="38">Сварные диски для минипогрузчика типа Bobcat, Case</category></categories>				
+				<offers><offer id="12058" available="true">
+                      <url>disk-na-lonking-825x165-pcd8x200-hub150</url>
+                      <price>8530</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>38</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/disk-na-Lonking-825x165-PCD8x200-HUB150.jpg</picture>
+					  <quantity>113</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Диск на Lonking 8.25x16.5 PCD8x200 HUB150</name>
+					  <model></model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Представляем диск EKKA 8.25 x 16.5, разработанный специально для мини-погрузчиков типа Lonking. Этот диск совместим с шинами размера 10-16.5 и спроектирован для работы в условиях повышенных нагрузок, характерных для современных строительных площадок.</p>
+<p>
+	Его прочная стальная конструкция и точные присоединительные параметры обода 8.25 16.5  PCD 8x200 (8 отверстий на окружности диаметром 200 мм), центральное отверстие (HUB) 150 мм и вылет (ET) -50 мм  обеспечивают быструю и надежную установку.</p>
+<p>
+	Инвестируйте в качественные компоненты для вашей строительной техники, чтобы гарантировать ее бесперебойную и безопасную работу. Мы предлагаем прямые поставки от производителя, что позволяет нам поддерживать конкурентоспособные цены. Детальные технические характеристики представлены для вашего ознакомления.</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>Диск на мини погрузчик 8.25 16.5 PCD8x200 HUB150 ET-50 EKKA</title>
+					  <description>Диск 8.25 16.5 (ET-50 PCD8x200 HUB150 EKKA) для шин 10-16.5 на мини-погрузчик. Прямые поставки от производителя по выгодным ценам. Подробные характеристики доступны для просмотра.</description>
+					  <keywords></keywords><param name="Вес (кг)">18</param><param name="Вылет диска (мм)">-50</param><param name="Диаметр крепежных отверстий (мм)">16.8</param><param name="Диаметр расположения крепёжных отверстий, мм">200</param><param name="Диаметр центрального отверстия (мм)">150</param><param name="Количество крепежных отверстий">8</param><param name="Объем (м3)">0.05</param><param name="Размер Диска (RIM)">8.25х16.5</param><param name="Размер шины">10-16.5</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

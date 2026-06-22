@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="33">Фильтры сапуна</category></categories>				
+				<offers><offer id="9181" available="true">
+                      <url>EK-1161-filtr-sapuna</url>
+                      <price>1170</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>33</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/739.jpg</picture>
+					  <quantity>142</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-7361 (EK-1161) EKKA Фильтр сапуна</name>
+					  <model>EK-7361</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-7361 (EK-1161) EKKA фильтр сапуна купить</title>
+					  <description>Купить EK-7361 (EK-1161) EKKA фильтр сапуна в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Высота, мм">95</param><param name="Диаметр патрубка">25</param><param name="Наружный Диаметр, мм">88</param><param name="Старое наименование">EK-1161</param><country_of_origin></country_of_origin>
+</offer><offer id="5235" available="true">
+                      <url>filter-103</url>
+                      <price>490</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>33</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/802.jpg</picture>
+					  <quantity>158</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-7451 (EK-3051) EKKA Фильтр сапуна</name>
+					  <model>EK-7451</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Фильтр сапуна EK-7451 аналог 31EE-02110-A 31EE02010 31EE02110 72951908 72214502 14500233 14596399 KRJ3461 207-60-51310 2076051310 A-71330 A71330 AF26675 PA5316 P502563</p>]]></opisanie>
+					  <title>EK-7451 (EK-3051) EKKA фильтр сапуна купить</title>
+					  <description>Купить EK-7451 (EK-3051) EKKA фильтр сапуна в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.2</param><param name="Внутренний Диаметр, мм">31</param><param name="Высота, мм">39</param><param name="Наружный Диаметр, мм">54</param><param name="Объем, м3">0.001</param><param name="Старое наименование">EK-3051</param><country_of_origin></country_of_origin>
+</offer><offer id="5236" available="true">
+                      <url>filter-104</url>
+                      <price>780</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>33</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/811.jpg</picture>
+					  <quantity>283</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-7400 (EK-3100) EKKA Фильтр сапуна</name>
+					  <model>EK-7400</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Фильтр сапуна EK-7400 аналог 31EH-00480 32QA-00140 32QA00140 31EH00480 20Y-60-21410 20Y6021410 823002830 SA823002830 AF27917 A92040 SA12606</p>]]></opisanie>
+					  <title>EK-7400 (EK-3100) EKKA фильтр сапуна купить</title>
+					  <description>Купить EK-7400 (EK-3100) EKKA фильтр сапуна в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.2</param><param name="Внутренний Диаметр, мм">45</param><param name="Высота, мм">27</param><param name="Наружный Диаметр, мм">70</param><param name="Объем, м3">0.001</param><param name="Старое наименование">EK-3100</param><country_of_origin></country_of_origin>
+</offer><offer id="8384" available="true">
+                      <url>EK-4476-filtr-sapuna</url>
+                      <price>540</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>33</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/851.jpg</picture>
+					  <quantity>145</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-7476 (EK-4476) EKKA Фильтр сапуна</name>
+					  <model>EK-7476</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-7476 (EK-4476) EKKA фильтр сапуна купить</title>
+					  <description>Купить EK-7476 (EK-4476) EKKA фильтр сапуна в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.2</param><param name="Внутренний Диаметр 1, мм">43</param><param name="Внутренний Диаметр 2, мм">21</param><param name="Высота, мм">55</param><param name="Наружный Диаметр, мм">67</param><param name="Объем, м3">0.001</param><param name="Старое наименование">EK-4476</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

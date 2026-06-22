@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 16:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="32">Фильтры кабины</category></categories>				
+				<offers><offer id="11446" available="true">
+                      <url>filtr-kabiny-ek-5252</url>
+                      <price>590</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/filtr-kabiny-EK-5252.jpg</picture>
+					  <quantity>98</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Фильтр кабины EK-5252</name>
+					  <model>EK-5252</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Купить EKKA фильтр кабины EK-5252</title>
+					  <description>Приобрести салонный фильтр EKKA EK-5252, являющийся аналогом артикула A9408350047. Ознакомиться с техническими характеристиками. Обеспечиваем отправку в регионы через транспортные службы.</description>
+					  <keywords></keywords><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

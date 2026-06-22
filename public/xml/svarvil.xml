@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="37">Сварные диски для вилочных погрузчиков</category></categories>				
+				<offers><offer id="10439" available="true">
+                      <url>disk-700T-15-et-30-pcd6-220-hub170</url>
+                      <price>10910</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>37</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/disk-700T-15.jpg</picture>
+					  <quantity>158</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Диск 7.00T-15 ET-30 PCD6x220 HUB170</name>
+					  <model></model>
+                      <vendor>LANTIAN</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Диск 7.00T-15 ET-30 PCD6x220 HUB170 купить</title>
+					  <description>Купить диски для спецтехники 7.00T-15 ET-30 PCD6x220 HUB170 в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вылет диска (мм)">-30</param><param name="Диаметр крепежных отверстий (мм)">32.0</param><param name="Диаметр расположения крепёжных отверстий, мм">220</param><param name="Диаметр центрального отверстия (мм)">170</param><param name="Количество крепежных отверстий">6</param><param name="Размер Диска (RIM)">7.00T-15</param><param name="Размер шины">28*9-15</param><country_of_origin></country_of_origin>
+</offer><offer id="11185" available="true">
+                      <url>tovar_disk-232</url>
+                      <price>10910</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>37</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/232.jpg</picture>
+					  <quantity>117</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Диск 7.00T-15 ET10 PCD6x220 HUB165</name>
+					  <model></model>
+                      <vendor>LANTIAN</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Диск 7.00T-15 ET10 PCD6x220 HUB165 купить</title>
+					  <description>Купить диски для спецтехники 7.00T-15 ET10 PCD6x220 HUB165 в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вылет диска (мм)">10</param><param name="Диаметр крепежных отверстий (мм)">32.0</param><param name="Диаметр расположения крепёжных отверстий, мм">220</param><param name="Диаметр центрального отверстия (мм)">165</param><param name="Количество крепежных отверстий">6</param><param name="Размер Диска (RIM)">7.00T-15</param><param name="Размер шины">28*9-15</param><country_of_origin></country_of_origin>
+</offer><offer id="10679" available="true">
+                      <url>tovar_disk-233</url>
+                      <price>10910</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>37</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/233.jpg</picture>
+					  <quantity>97</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Диск 7.00T-15 ET77 PCD6x200 HUB150</name>
+					  <model></model>
+                      <vendor>LANTIAN</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Диск 7.00T-15 ET77 PCD6x200 HUB150 купить</title>
+					  <description>Купить диски для спецтехники 7.00T-15 ET77 PCD6x200 HUB150 в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вылет диска (мм)">77</param><param name="Диаметр крепежных отверстий (мм)">32.0</param><param name="Диаметр расположения крепёжных отверстий, мм">200</param><param name="Диаметр центрального отверстия (мм)">150</param><param name="Количество крепежных отверстий">6</param><param name="Размер Диска (RIM)">7.00T-15</param><param name="Размер шины">28*9-15</param><country_of_origin></country_of_origin>
+</offer><offer id="10680" available="true">
+                      <url>tovar_disk-234</url>
+                      <price>10910</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>37</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/234.jpg</picture>
+					  <quantity>259</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Диск 7.00T-15 ET19 PCD6x220 HUB175</name>
+					  <model></model>
+                      <vendor>LANTIAN</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Диск 7.00T-15 ET19 PCD6x220 HUB175 купить</title>
+					  <description>Купить диски для спецтехники 7.00T-15 ET19 PCD6x220 HUB175 в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вылет диска (мм)">19</param><param name="Диаметр крепежных отверстий (мм)">32.0</param><param name="Диаметр расположения крепёжных отверстий, мм">220</param><param name="Диаметр центрального отверстия (мм)">175</param><param name="Количество крепежных отверстий">6</param><param name="Размер Диска (RIM)">7.00T-15</param><param name="Размер шины">28*9-15</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

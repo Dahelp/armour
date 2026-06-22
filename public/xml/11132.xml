@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 16:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="32">Фильтры кабины</category></categories>				
+				<offers><offer id="11132" available="true">
+                      <url>ek-5078-filtr-kabiny</url>
+                      <price>570</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-5078-filtr-kabiny.jpg</picture>
+					  <quantity>22</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5078 фильтр кабины</name>
+					  <model>EK-5078</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Фильтр кондиционера EK5078 эффективно очищает воздух в кабине спецтехники от пыли и прочих загрязнителей, создавая комфортные условия для оператора. Произведенные по современным технологиям, салонные фильтры EKKA EK-5078 отличаются превосходной эффективностью фильтрации, увеличенной пылесборной способность и улучшенной пропускной возможностью по сравнению с аналогичными продуктами.</p>]]></opisanie>
+					  <title>ЕККА ЕК-5078 фильтр кабины - купить</title>
+					  <description>Купить фильтр салона EK-5078 EKKA | Подобрать аналог | Характеристики доступны для просмотра | Доставка в регионы транспортными компаниями.</description>
+					  <keywords></keywords><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

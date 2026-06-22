@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="32">Фильтры кабины</category></categories>				
+				<offers><offer id="9191" available="true">
+                      <url>filter-153</url>
+                      <price>1060</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/853.jpg</picture>
+					  <quantity>241</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5010 (EK-5010A) EKKA Фильтр кабины</name>
+					  <model>EK-5010</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-5010 (EK-5010A) EKKA фильтр кабины купить</title>
+					  <description>Купить EK-5010 (EK-5010A) EKKA фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Высота, мм">56,5</param><param name="Длина, мм">325</param><param name="Старое наименование">EK-5010A</param><param name="Ширина, мм">153</param><country_of_origin></country_of_origin>
+</offer><offer id="9192" available="true">
+                      <url>filter-152</url>
+                      <price>1410</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/854.jpg</picture>
+					  <quantity>163</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5009 (EK-5010B) EKKA Фильтр кабины</name>
+					  <model>EK-5009</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-5009 (EK-5010B) EKKA фильтр кабины купить</title>
+					  <description>Купить EK-5009 (EK-5010B) EKKA фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Высота, мм">30</param><param name="Длина, мм">146</param><param name="Старое наименование">EK-5010B</param><param name="Ширина, мм">302</param><country_of_origin></country_of_origin>
+</offer><offer id="9193" available="true">
+                      <url>filter-154</url>
+                      <price>780</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/855.jpg</picture>
+					  <quantity>175</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5011 Фильтр кабины</name>
+					  <model>EK-5011</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-5011 фильтр кабины купить</title>
+					  <description>Купить ek-5011 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><country_of_origin></country_of_origin>
+</offer><offer id="5237" available="true">
+                      <url>filter-99</url>
+                      <price>1030</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/856.jpg</picture>
+					  <quantity>27</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5016 Фильтр кабины</name>
+					  <model>EK-5016</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Фильтр кабины EK5016 аналог Hitachi ZX-3G/5G 4251527, 143005210б 5224121650б DGMKL72515б SKL46373б SC80043</p>
+]]></opisanie>
+					  <title>EK-5016 фильтр кабины купить</title>
+					  <description>Купить ek-5016 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.39</param><param name="Высота, мм">50</param><param name="Длина, мм">310</param><param name="Объем, м3">0.002
+</param><param name="Ширина, мм">155</param><country_of_origin></country_of_origin>
+</offer><offer id="4577" available="true">
+                      <url>filter-100</url>
+                      <price>1030</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/857.jpg</picture>
+					  <quantity>6</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5018 Фильтр кабины</name>
+					  <model>EK-5018</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Фильтр кабины EK5018 аналог JCB 331/25629 332/A9113 33125629 332A9113 AF55767 SC60045 CU4330 PA5401</p>
+]]></opisanie>
+					  <title>EK-5018 фильтр кабины купить</title>
+					  <description>Купить ek-5018 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.4</param><param name="Высота, мм">48</param><param name="Длина, мм">425</param><param name="Объем, м3">0.004</param><param name="Ширина, мм">63</param><country_of_origin></country_of_origin>
+</offer><offer id="9194" available="true">
+                      <url>filter-155</url>
+                      <price>1270</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/858.jpg</picture>
+					  <quantity>237</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5020 Фильтр кабины</name>
+					  <model>EK-5020</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-5020 фильтр кабины купить</title>
+					  <description>Купить ek-5020 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Высота, мм">77</param><param name="Длина, мм">203</param><param name="Ширина, мм">299</param><country_of_origin></country_of_origin>
+</offer><offer id="9195" available="true">
+                      <url>filter-156</url>
+                      <price>920</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/859.jpg</picture>
+					  <quantity>75</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5051 Фильтр кабины</name>
+					  <model>EK-5051</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-5051 фильтр кабины купить</title>
+					  <description>Купить ek-5051 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Высота, мм">35</param><param name="Длина, мм">300</param><param name="Ширина, мм">130</param><country_of_origin></country_of_origin>
+</offer><offer id="7749" available="false">
+                      <url>filter-101</url>
+                      <price>1110</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/860.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5053 Фильтр кабины</name>
+					  <model>EK-5053</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Фильтр кабины EK5053 аналог 14X-911-7750 17801-74010 17801-87104 17801-87601 17801-55010 17801-87715 17801-01020 17M-911-3530 014300-5090 14X9117750 17M9113530 5690761190 46147 46243 546147 546243 71498266 4234793 C2368 AF4652 AF25573 P606272 P500138</p>
+]]></opisanie>
+					  <title>EK-5053 фильтр кабины купить</title>
+					  <description>Купить ek-5053 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.52</param><param name="Высота, мм">51</param><param name="Длина, мм">225</param><param name="Объем, м3">0.002
+</param><param name="Ширина, мм">168</param><country_of_origin></country_of_origin>
+</offer><offer id="5116" available="true">
+                      <url>filter-102</url>
+                      <price>1420</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/861.jpg</picture>
+					  <quantity>705</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5075 Фильтр кабины</name>
+					  <model>EK-5075</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Фильтр кабины EK5075 аналог Hitachi ZX-3G/5G YA00001490 SC 80070 SKL46665</p>
+]]></opisanie>
+					  <title>EK-5075 фильтр кабины купить</title>
+					  <description>Купить ek-5075 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.15</param><param name="Длина, мм">310</param><param name="Объем, м3">0.004</param><param name="Ширина, мм">110</param><country_of_origin></country_of_origin>
+</offer><offer id="9196" available="true">
+                      <url>filter-157</url>
+                      <price>650</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/862.jpg</picture>
+					  <quantity>44</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5079 Фильтр кабины</name>
+					  <model>EK-5079</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-5079 фильтр кабины купить</title>
+					  <description>Купить ek-5079 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Высота, мм">20</param><param name="Длина, мм">230</param><param name="Ширина, мм">103</param><country_of_origin></country_of_origin>
+</offer><offer id="9641" available="true">
+                      <url>filter-158</url>
+                      <price>960</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/863.jpg</picture>
+					  <quantity>134</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5070 (EK-5080) EKKA Фильтр кабины</name>
+					  <model>EK-5070</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-5070 (EK-5080) EKKA фильтр кабины купить</title>
+					  <description>Купить EK-5070 (EK-5080) EKKA фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Старое наименование">EK-5080</param><country_of_origin></country_of_origin>
+</offer><offer id="9642" available="true">
+                      <url>filter-159</url>
+                      <price>1040</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/864.jpg</picture>
+					  <quantity>232</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5001 (EK-5100) EKKA Фильтр кабины</name>
+					  <model>EK-5001</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-5001 (EK-5100) EKKA фильтр кабины купить</title>
+					  <description>Купить EK-5001 (EK-5100) EKKA фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Старое наименование">EK-5100</param><country_of_origin></country_of_origin>
+</offer><offer id="3798" available="false">
+                      <url>STKT6808-filtr-kabiny</url>
+                      <price>540</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/935.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>STKT6808 Фильтр кабины</name>
+					  <model>STKT6808</model>
+                      <vendor>Stal</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>STKT6808 фильтр кабины купить</title>
+					  <description>Купить stkt6808 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.1</param><country_of_origin></country_of_origin>
+</offer><offer id="3796" available="true">
+                      <url>STKT6819-filtr-kabiny</url>
+                      <price>950</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/936.jpg</picture>
+					  <quantity>9</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>STKT6819 Фильтр кабины</name>
+					  <model>STKT6819</model>
+                      <vendor>Stal</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>STKT6819 фильтр кабины купить</title>
+					  <description>Купить stkt6819 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.31</param><country_of_origin></country_of_origin>
+</offer><offer id="3797" available="false">
+                      <url>STKT6821-filtr-kabiny</url>
+                      <price>750</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/937.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>STKT6821 Фильтр кабины</name>
+					  <model>STKT6821</model>
+                      <vendor>Stal</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>STKT6821 фильтр кабины купить</title>
+					  <description>Купить stkt6821 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.13</param><param name="Объем, м3">0.001</param><country_of_origin></country_of_origin>
+</offer><offer id="3795" available="false">
+                      <url>STKT6825-filtr-kabiny</url>
+                      <price>1050</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/938.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>STKT6825 Фильтр кабины</name>
+					  <model>STKT6825</model>
+                      <vendor>Stal</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>STKT6825 фильтр кабины купить</title>
+					  <description>Купить stkt6825 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.55</param><country_of_origin></country_of_origin>
+</offer><offer id="9367" available="true">
+                      <url>EK-5031-filtr-kabiny</url>
+                      <price>1060</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/70537107.jpg</picture>
+					  <quantity>136</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5031 Фильтр кабины</name>
+					  <model>EK-5031</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-5031 фильтр кабины купить</title>
+					  <description>Купить ek-5031 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><country_of_origin></country_of_origin>
+</offer><offer id="9368" available="true">
+                      <url>EK-5032-filtr-kabiny</url>
+                      <price>1110</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/10695142.jpg</picture>
+					  <quantity>187</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5032 Фильтр кабины</name>
+					  <model>EK-5032</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>EK-5032 фильтр кабины купить</title>
+					  <description>Купить ek-5032 фильтр кабины в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><country_of_origin></country_of_origin>
+</offer><offer id="11111" available="true">
+                      <url>EK-3625A-filtr-kabiny</url>
+                      <price>1350</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-3625A-filtr-kabiny.jpg</picture>
+					  <quantity>47</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-3625A фильтр кабины</name>
+					  <model>EK-3625A</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Внутренний Диаметр, мм">88</param><param name="Высота, мм">241</param><param name="Наружный Диаметр, мм">153</param><country_of_origin></country_of_origin>
+</offer><offer id="11254" available="true">
+                      <url>EK-5063-filtr-kabiny-EKKA</url>
+                      <price>1670</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-5063-filtr-kabiny-EKKA.jpg</picture>
+					  <quantity>50</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5063 фильтр кабины EKKA</name>
+					  <model>EK-5063</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Высота, мм">47</param><param name="Длина, мм">313</param><param name="Ширина, мм">254</param><country_of_origin></country_of_origin>
+</offer><offer id="11130" available="true">
+                      <url>EK-5077-filtr-kabiny-EKKA</url>
+                      <price>560</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-5077-filtr-kabiny-EKKA.jpg</picture>
+					  <quantity>36</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5077 фильтр кабины EKKA</name>
+					  <model>EK-5077</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Высота, мм">24</param><param name="Длина, мм">600</param><param name="Ширина, мм">124</param><country_of_origin></country_of_origin>
+</offer><offer id="11255" available="true">
+                      <url>EK-5256-filtr-kabiny-EKKA</url>
+                      <price>1060</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-5256-filtr-kabiny-EKKA.jpg</picture>
+					  <quantity>31</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5256 фильтр кабины EKKA</name>
+					  <model>EK-5256</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Высота, мм">35</param><param name="Длина, мм">315</param><param name="Ширина, мм">229</param><country_of_origin></country_of_origin>
+</offer><offer id="11330" available="true">
+                      <url>EK-5253-filtr-kabiny-EKKA</url>
+                      <price>430</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-5253-filtr-kabiny-EKKA.jpg</picture>
+					  <quantity>85</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5253 фильтр кабины EKKA</name>
+					  <model>EK-5253</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Высота, мм">15</param><param name="Длина, мм">450</param><param name="Ширина, мм">195</param><country_of_origin></country_of_origin>
+</offer><offer id="11448" available="false">
+                      <url>ek-5258-filtr-kabiny-ekka</url>
+                      <price>2620</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/ek-5258-filtr-kabiny-EKKA.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>ЕК-5258 фильтр кабины EKKA</name>
+					  <model>ЕК-5258</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Высота, мм">31</param><param name="Длина, мм">406</param><param name="Ширина, мм">240</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2024-11-20 09:11">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="11">Пневматические шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="7144" available="false">
+                      <url>tovar-523</url>
+                      <price>12900</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>11</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/523.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 28*9-15 14PR TTF QH201 SUPERGUIDER</name>
+					  <model>TTF QH201</model>
+                      <vendor>SUPERGUIDER</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie></opisanie>
+					  <title>Шины 28*9-15 14PR TTF QH201 SUPERGUIDER купить</title>
+					  <description>Купить пневматические шины 28*9-15 SUPERGUIDER для вилочных погрузчиков в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Макс. Давление (kPa)">970</param><param name="Макс. Нагрузка (кг)">3415</param><param name="Наружный диаметр (мм)">710</param><param name="Размер Диска (RIM)">7.0</param><param name="Размер шины">28*9-15</param><param name="Слойность (PR)">14</param><param name="Тип протектора">QH201</param><param name="Ширина протектора (мм)">220</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

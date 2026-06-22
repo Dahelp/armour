@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2024-11-18 16:11">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="11">Пневматические шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="9236" available="true">
+                      <url>shiny-23-9-10-225-75-10-18PR-TTF-C601-ekka</url>
+                      <price>13490</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>11</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/958.jpg</picture>
+					  <quantity>9</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 23*9-10 (225/75-10) 18PR TTF C601 EKKA</name>
+					  <model>C601</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <content><p>
+	Шина 23*9-10 NHS 18PR в комплект входит камера, ободная лента, модель C601. На шинах EKKA увеличена глубина протектора. По своим эксплуатационным характеристикам обладает повышенной износостойкостью, подобранная рецептура резины, увеличивает работу шин на погрузчике. Аналог этого размера шина 225 75-10. Так же в продаже имеются цельнолитые шины бренд IST 23 9 10.</p></content>
+					  <title>Шины 23*9-10 (225/75-10) 18PR TTF C601 EKKA шинокомплект купить</title>
+					  <description>Купить пневматические шины 23*9-10 (225/75-10) EKKA для вилочных погрузчиков в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес (кг)">22</param><param name="Глубина Протектора (мм)">18</param><param name="Макс. Давление (kPa)">900</param><param name="Макс. Нагрузка (кг)">2905</param><param name="Наружный диаметр (мм)">584</param><param name="Объем (м3)">0.07</param><param name="Размер Диска (RIM)">7</param><param name="Размер шины">23*9-10</param><param name="Слойность (PR)">18</param><param name="Ширина протектора (мм)">229</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

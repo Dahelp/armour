@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 16:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="32">Фильтры кабины</category></categories>				
+				<offers><offer id="11131" available="false">
+                      <url>ekka-ek-5255-filtr-kabiny</url>
+                      <price>600</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EKKA-EK-5255-filtr-kabiny.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EKKA EK-5255 фильтр кабины</name>
+					  <model>EK-5255</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Салонный фильтр EK-5255 является неотъемлемой частью системы вентиляции мини-погрузчика, отвечающей за поддержание чистоты и свежести воздуха в кабине. Он эффективно предотвращает проникновение загрязняющих веществ и мелких частиц, обеспечивая комфортные условия для оператора. Произведенный с применением современных технологий, бренд EKKA гарантирует стабильно высокую эффективность фильтрации и продолжительный срок службы. Фильтр EK5255 отличается простотой установки и полной совместимостью с оригинальным фильтром Bobcat 7176099, а также соответствует всем производственным стандартам.</p>
+<p>
+	Работоспособность: создаёт постоянно функционирующую эффективность фильтрации на протяжении длительного времени и сокращает интервалы замены.</p>
+<p>
+	Надежность: Соответствие строгим стандартам качества и безопасности гарантирует стабильную работу в экстремальных условиях.</p>
+<p>
+	Обслуживание: Простая установка и эксплуатация минимизируют время простоя погрузчика.</p>
+<p>
+	Сопоставимость: подходит для широкого спектра спецтехники, обеспечивая оптимальную производительность.</p>
+<p>
+	Рациональность: снижает эксплуатационные расходы и повышает общую эффективность работы.</p>
+<p>
+	</p>]]></opisanie>
+					  <title>Фильтр салона EK-5255 – купить продукцию EKKA</title>
+					  <description>Фильтр салона EK-5255 залог чистоты и свежести воздуха внутри мини-погрузчика. Продукция EKKA отличается высокой производительностью и долговечностью, соответствует оригинальному фильтру Bobcat 7176099, а также стандартам производителей.</description>
+					  <keywords></keywords><param name="Высота, мм">24</param><param name="Длина, мм">234</param><param name="Ширина, мм">69</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

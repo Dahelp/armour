@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 16:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="11">Пневматические шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="11955" available="true">
+                      <url>shiny-650-10-10pr-ttf-c604ht606-ekka</url>
+                      <price>6060</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>11</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-650-10-10PR-TTF-C604HT606-EKKA.jpg</picture>
+					  <quantity>146</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 6.50-10 10PR TTF C604(HT606) EKKA</name>
+					  <model>C604</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Шина модели C604 / HT606  это универсальное решение для вилочных погрузчиков, предназначенное для эксплуатации в разнообразных условиях. Эти пневматические колеса 6.50-10 EKKA 10PR TTF идеально подходят для складов, производственных площадок и открытых территорий, где важна маневренность. Они обеспечивают качественное сцепление и уверенность даже на неровных и твердых покрытиях.</p>
+<p>
+	Конструкция автошины с перекрещивающимися слоями корда создает прочную сетчатую структуру. Это повышает жесткость боковины и ее устойчивость к порезам и проколам. Такая защита особенно ценна при работе на поверхностях с колющими предметами или неровностями, где риск повреждения высок. Кроме того, равномерное распределение нагрузки по всей поверхности протектора предотвращает преждевременный износ и продлевает срок службы. Эта резина создана для того, чтобы выдерживать существенные статические и динамические нагрузки, характерные для интенсивной эксплуатации складской техники с тяжелыми грузами.</p>
+<p>
+	Ищете шины типоразмера 6.50-10 EKKA? Наша компания  ваш надежный поставщик. Мы предлагаем обширный ассортимент покрышек от проверенных производителей. Сделайте свой выбор и оформите заказ  мы позаботимся об оперативной доставке транспортной компанией в любую точку России!</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>Купить шины EKKA на погрузчик 6.50-10 10PR TTF C604(HT606)</title>
+					  <description>Хотите купить шины 6.50-10 10PR EKKA TTF C604 / HT606 ? Вам к нам! У нас всегда в наличии большой выбор покрышек от лучших производителей. Просто выберите нужные колеса и сделайте заказ – мы быстро отправим в регионы ТК.</description>
+					  <keywords></keywords><param name="Вес (кг)">13</param><param name="Глубина Протектора (мм)">14</param><param name="Макс. Давление (kPa)">790</param><param name="Макс. Нагрузка (кг)">1655</param><param name="Наружный диаметр (мм)">595</param><param name="Объем (м3)">0.05</param><param name="Размер Диска (RIM)">5.00E</param><param name="Размер шины">6.50-10</param><param name="Слойность (PR)">10</param><param name="Тип протектора">C604</param><param name="Ширина протектора (мм)">175</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 16:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="38">Сварные диски для минипогрузчика типа Bobcat, Case</category></categories>				
+				<offers><offer id="12059" available="true">
+                      <url>disk-975x165-et-50-pcd8x200-hub150</url>
+                      <price>8930</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>38</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/disk-975x165-ET-50-PCD8x200-HUB150.jpg</picture>
+					  <quantity>102</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Диск 9.75x16.5 ET-50 PCD8x200 HUB150</name>
+					  <model></model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Для мини-погрузчиков типа Lonking и других производителей мы предлагаем диск EKKA размером 9.75 x 16.5, разработанный для шин 12-16.5. Этот диск отличается исключительной прочностью и способен выдерживать серьезные нагрузки, что делает его надежным решением для интенсивной эксплуатации на строительных объектах. Его конструкция из высококачественной стали и точные параметры крепления  PCD 8x200, центральное отверстие под ступицу 150 мм и отрицательный вылет -50 мм  гарантируют быструю и надежную установку колесного диска 9.75 16.5.</p>
+<p>
+	Инвестируя в качественные комплектующие от производителя, вы обеспечиваете долгий срок службы и безопасность вашей спецтехники. Мы предоставляем полную техническую информацию и выгодные цены благодаря прямым поставкам.</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>Диск EKKA 9.75 16.5 для мини погрузчиков - купить</title>
+					  <description>Нужен диск для вашего мини-погрузчика? У нас есть отличный вариант, диск колеса 9.75 16.5 (для шины 12-16.5). Параметры: PCD8x200 HUB150 ET -50. Прямые заводские поставки, низкие цены. Характеристики доступны.</description>
+					  <keywords></keywords><param name="Вес (кг)">19</param><param name="Вылет диска (мм)">-50</param><param name="Диаметр крепежных отверстий (мм)">16.8</param><param name="Диаметр расположения крепёжных отверстий, мм">200</param><param name="Диаметр центрального отверстия (мм)">150</param><param name="Количество крепежных отверстий">8</param><param name="Объем (м3)">0.06</param><param name="Размер Диска (RIM)">9.75х16.5</param><param name="Размер шины">12-16.5</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

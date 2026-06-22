@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="30">Фильтры масляные</category></categories>				
+				<offers><offer id="6336" available="true">
+                      <url>filter-71</url>
+                      <price>2390</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/744.jpg</picture>
+					  <quantity>384</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2808 (EK-1808) EKKA Фильтр масляный</name>
+					  <model> EK-2808</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK-2808 аналог 7N7500, 4P2839, 1R0726, 1R-0726, H1815, P7003, PT399, 5159</p>]]></opisanie>
+					  <title>EK-2808 (EK-1808) EKKA масляный фильтр купить</title>
+					  <description>Купить EK-2808 (EK-1808) EKKA масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.58</param><param name="Внутренний Диаметр, мм">67</param><param name="Высота, мм">253</param><param name="Наружный Диаметр, мм">188</param><param name="Объем, м3">0.01</param><param name="Старое наименование">EK-1808</param><country_of_origin></country_of_origin>
+</offer><offer id="5241" available="true">
+                      <url>filter-72</url>
+                      <price>1700</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/749.jpg</picture>
+					  <quantity>258</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2823 (EK-1823) EKKA Фильтр масляный</name>
+					  <model>EK-2823</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK-2823 аналог CAT 3223155 322-3155, HiFi 10112</p>]]></opisanie>
+					  <title>EK-2823 (EK-1823) EKKA масляный фильтр купить</title>
+					  <description>Купить EK-2823 (EK-1823) EKKA масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.3</param><param name="Внутренний Диаметр 1, мм">29</param><param name="Внутренний Диаметр 2, мм">22</param><param name="Высота, мм">233</param><param name="Наружный Диаметр 1, мм">102</param><param name="Наружный Диаметр 2, мм">78</param><param name="Объем, м3">0.001</param><param name="Старое наименование">EK-1823</param><country_of_origin></country_of_origin>
+</offer><offer id="5238" available="true">
+                      <url>filter-73</url>
+                      <price>1370</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/750.jpg</picture>
+					  <quantity>109</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2833 (EK-1833) EKKA Фильтр масляный</name>
+					  <model>EK-2833</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK-2833 аналог 1420640, 1802109 1802909 4571840125 A0001802109 A0001802909 A4571840125 263J1-07001, WIX 57213 24981, P550769, LF16046</p>]]></opisanie>
+					  <title>EK-2833 (EK-1833) EKKA масляный фильтр купить</title>
+					  <description>Купить EK-2833 (EK-1833) EKKA масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.6</param><param name="Высота, мм">248</param><param name="Наружный Диаметр, мм">120</param><param name="Объем, м3">0.02</param><param name="Старое наименование">EK-1833</param><country_of_origin></country_of_origin>
+</offer><offer id="4582" available="true">
+                      <url>filter-74</url>
+                      <price>470</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/752.jpg</picture>
+					  <quantity>402</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2001 Фильтр масляный</name>
+					  <model>EK-2001</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2001 аналог 11700375, 35292358, 117003756, 3116609R92, V37546, P1350576 499950338, 3917868R1, 3I1263, 5W5887, 5W5887N, 9N5860, 9Y4474, 4119775B, 5106133 5502455 595625405 7005658 7020038, 32915500</p>
+]]></opisanie>
+					  <title>EK-2001 масляный фильтр купить</title>
+					  <description>Купить ek-2001 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.6</param><param name="Высота, мм">126</param><param name="Наружный Диаметр, мм">93</param><param name="Объем, м3">0.002</param><param name="Резьба">1"-12</param><country_of_origin></country_of_origin>
+</offer><offer id="6320" available="true">
+                      <url>filter-75</url>
+                      <price>820</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/753.jpg</picture>
+					  <quantity>192</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2003 Фильтр масляный</name>
+					  <model>EK-2003</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2003 аналог 6136-51-5120 6134515120 6136-51-5121 6134515121 3254001600 32G4001100 3424011101 XCAE-00494 XCAE00494 4110000561155 4110000566005 YJX6332 W 1150/7 W11507 W11168 P550086 P550708 JX1011B JX1012 JX1013 JX713 ST10713</p>
+]]></opisanie>
+					  <title>EK-2003 масляный фильтр купить</title>
+					  <description>Купить ek-2003 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.86</param><param name="Высота, мм">170</param><param name="Наружный Диаметр, мм">110</param><param name="Объем, м3">0.003</param><param name="Резьба">1.1/8"-16</param><country_of_origin></country_of_origin>
+</offer><offer id="4585" available="true">
+                      <url>filter-76</url>
+                      <price>630</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/754.jpg</picture>
+					  <quantity>225</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2005 Фильтр масляный</name>
+					  <model>EK-2005</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2005 аналог 32/925953, 2910140 2910970, 332Y3268, 65055105009 400508-00082 65.05510-5028A 65.05510-5021B C47100005 65.05510-5021A 65.05510-5021B, 2471Y9014C, 11E1-70140 31LC-69040 11E1-70140-AS 11E170120 11E1-70120 11E1-70140 11E170140 YUBP00654</p>
+]]></opisanie>
+					  <title>EK-2005 масляный фильтр купить</title>
+					  <description>Купить ek-2005 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.69</param><param name="Высота, мм">171</param><param name="Наружный Диаметр, мм">94</param><param name="Объем, м3">0.002</param><param name="Резьба">1“-16</param><country_of_origin></country_of_origin>
+</offer><offer id="4885" available="true">
+                      <url>filter-77</url>
+                      <price>1020</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/755.jpg</picture>
+					  <quantity>214</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2006 Фильтр масляный</name>
+					  <model>EK-2006</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2006 аналог 65.05510-5026B 65055105026B 65.05510-5026A 65055105026A 600-211-1291 600-211-1231 600-211-1290 600-211-1230 6002111230 6002111231E 6002111290 6002111291 47100080P, WIX 51669</p>
+]]></opisanie>
+					  <title>EK-2006 масляный фильтр купить</title>
+					  <description>Купить ek-2006 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.87</param><param name="Высота, мм">270</param><param name="Наружный Диаметр, мм">110</param><param name="Объем, м3">0.004</param><param name="Резьба">1.1/2"-12</param><country_of_origin></country_of_origin>
+</offer><offer id="4907" available="true">
+                      <url>filter-78</url>
+                      <price>930</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/756.jpg</picture>
+					  <quantity>469</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2016 Фильтр масляный</name>
+					  <model>EK-2016</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2016 аналог VOE478736 478736 VOE21707133 21707133 478362 478736 4787362 4666341 4666343 217071344 85114049 21170569 3134053 6884417 1R-1807 1R1807 1R-0739 1R0739 3Y0900 3Y0900X 3Y900 3Y900X 2Y8096 2P4004 1R0658 1R0058 3I0730 1R0058 1R0658 1R0739 1W3300 D17-002-02</p>
+]]></opisanie>
+					  <title>EK-2016 масляный фильтр купить</title>
+					  <description>Купить ek-2016 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.977</param><param name="Высота, мм">258</param><param name="Наружный Диаметр, мм">107</param><param name="Объем, м3">0.004</param><param name="Резьба">1.1/8"-16</param><country_of_origin></country_of_origin>
+</offer><offer id="4583" available="true">
+                      <url>filter-79</url>
+                      <price>1100</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/758.jpg</picture>
+					  <quantity>575</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2018 Фильтр масляный</name>
+					  <model>EK-2018</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2018 аналог 3I1202 9Y4464 4639464 E12000200 4085913 40859131 YA0000379 65.05510-5022B 65.05510-5020В 65.05510-5027 471-00086 K6000-1012240A 400508-00053 2474-9052 2474Y9052A 65055105012A 65055105020A 65055105020B 12000200 120002001 M12000200 24355 79250015 991213279<br />
+	KOMATSU 1212622H1 127564 6216543120 CULF670 BF0829 CU3307885 6002111230 600-211-1230 6002111231E 600-211-1231E 6002111290 600-211-1290 6002111291 600-211-1291</p>
+]]></opisanie>
+					  <title>EK-2018 масляный фильтр купить</title>
+					  <description>Купить ek-2018 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1.21</param><param name="Высота, мм">249</param><param name="Наружный Диаметр, мм">120</param><param name="Объем, м3">0.005</param><param name="Резьба">1.1/2"-12</param><country_of_origin></country_of_origin>
+</offer><offer id="4908" available="true">
+                      <url>filter-80</url>
+                      <price>1040</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/760.jpg</picture>
+					  <quantity>181</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2024 Фильтр масляный</name>
+					  <model>EK-2024</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2024 аналог 12978467 11996228 27872 3131750 40412306 9Y4468 9Y4524 7C4228 1W4845 1W8845 4175913 41759131 4448735 4429727 4379562 4204048 42040481 4283860 42838601 4285964 42859641 4371313 4380540 4470167 4379562 E12978467 H3754002100 6002121511 600-212-1511 6002121510 600-212-1510 L3542PP CU3304232 CULF777 VS7035</p>
+]]></opisanie>
+					  <title>EK-2024 масляный фильтр купить</title>
+					  <description>Купить ek-2024 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1.05</param><param name="Высота, мм">249</param><param name="Наружный Диаметр, мм">120</param><param name="Объем, м3">0.004
+</param><param name="Резьба">1.3/8"-16</param><country_of_origin></country_of_origin>
+</offer><offer id="5250" available="true">
+                      <url>filter-81</url>
+                      <price>780</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/762.jpg</picture>
+					  <quantity>293</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2030 Фильтр масляный</name>
+					  <model>EK-2030</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2030 аналог XJAF-00718 32В40-00100 XJAF00718 894321-2191 4183853 289617A1 215148A1 218012A1 2800020 289617A1 215148A1 218012A1 76546351 76590662 76595689 71457011 76609873 87405529 AT308583</p>
+]]></opisanie>
+					  <title>EK-2030 масляный фильтр купить</title>
+					  <description>Купить ek-2030 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.825</param><param name="Высота, мм">148</param><param name="Наружный Диаметр, мм">104</param><param name="Объем, м3">0.002</param><param name="Резьба">1"-12</param><country_of_origin></country_of_origin>
+</offer><offer id="4876" available="true">
+                      <url>filter-82</url>
+                      <price>2120</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/763.jpg</picture>
+					  <quantity>145</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2031 Фильтр масляный</name>
+					  <model>EK-2031</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2031 аналог 7W5497 4W6000 2721788 2752604 2P4005 2Y8097 2444484 1W2660 2752604 2P4005 1R0716 1R-0716 1R1808 1R-1808 8T7452 3I0731 15209-Z5001 15607-2190 1-86750-074-0 5-86500-376-0 275-2604 2752604 24082 51792 551792 51792MP 51792XD 57792 51848</p>
+]]></opisanie>
+					  <title>EK-2031 масляный фильтр купить</title>
+					  <description>Купить ek-2031 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1.8</param><param name="Высота, мм">313</param><param name="Наружный Диаметр, мм">136</param><param name="Объем, м3">0.007</param><param name="Резьба">1.1/2"-16</param><country_of_origin></country_of_origin>
+</offer><offer id="5251" available="true">
+                      <url>filter-83</url>
+                      <price>900</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/764.jpg</picture>
+					  <quantity>507</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2034 Фильтр масляный</name>
+					  <model>EK-2034</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2034 аналоги 6100070005 400504-00005 400403-00045 35330687<br />
+	3223831236 3055270R91 3136460R91 3136406R91 3059247R91</p>
+]]></opisanie>
+					  <title>EK-2034 масляный фильтр купить</title>
+					  <description>Купить ek-2034 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1.175</param><param name="Высота, мм">207</param><param name="Наружный Диаметр, мм">96</param><param name="Объем, м3">0.003</param><param name="Резьба">1"-12</param><country_of_origin></country_of_origin>
+</offer><offer id="4875" available="true">
+                      <url>filter-84</url>
+                      <price>2000</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/765.jpg</picture>
+					  <quantity>494</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2035 Фильтр масляный</name>
+					  <model>EK-2035</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Масляный фильтр EK 2035 аналог 11E1-70130 11NA-70110 11NA70110 YUBP00302 11E170130PB 6742-01-4120 1295155H1 CULF3548 21M0111510 CULF9009 1294153H1 1294153H91 6742012430 6742014120 20701K1230 20801K1310 CU3318853 CU3825970 CULF3000 14503824 54429 M12969457 V1113896 12969457 129694576 86990980 75285999 87298980 87349593 441703A1 73188091 76194691</p>
+]]></opisanie>
+					  <title>EK-2035 масляный фильтр купить</title>
+					  <description>Купить ek-2035 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1.7</param><param name="Высота, мм">294</param><param name="Наружный Диаметр, мм">118</param><param name="Объем, м3">0.005</param><param name="Резьба">2.1/4"-12</param><country_of_origin></country_of_origin>
+</offer><offer id="4592" available="true">
+                      <url>filter-85</url>
+                      <price>1240</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/767.jpg</picture>
+					  <quantity>369</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2038 Фильтр масляный</name>
+					  <model>EK-2038</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный фильтр </strong><strong>EK</strong> <strong>2038 аналог</strong> 4484495 44844951 1132402322 4448336 4658521 4696643 84206729 4622562 263G1-07011 4661256 76612484 4448336-1 58118096 581/18096 02/801481 58018096 2801481 76615720 76616021 87327673 84206729 71423006 7219776 72130527 76615720</p>
+]]></opisanie>
+					  <title>EK-2038 масляный фильтр купить</title>
+					  <description>Купить ek-2038 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1.21</param><param name="Высота, мм">215</param><param name="Наружный Диаметр, мм">112</param><param name="Объем, м3">0.004</param><param name="Резьба">1.1/2"-12</param><country_of_origin></country_of_origin>
+</offer><offer id="5242" available="true">
+                      <url>filter-86</url>
+                      <price>630</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/769.jpg</picture>
+					  <quantity>233</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2057 Фильтр масляный</name>
+					  <model>EK-2057</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный</strong> <strong>фильтр</strong><strong> EK 2057 </strong><strong>аналог</strong> 1992368 1992368B 11N4-70110 11N470110 11E170110 11E170110PB 6731525130 21P01K1390 CULF3553 161625 6732515140 CULF3345 13284716 14503447 991233145 13474382 59728170</p>
+]]></opisanie>
+					  <title>EK-2057 масляный фильтр купить</title>
+					  <description>Купить ek-2057 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.975</param><param name="Высота, мм">137</param><param name="Наружный Диаметр, мм">95</param><param name="Объем, м3">0.002
+</param><param name="Резьба">1"-16</param><country_of_origin></country_of_origin>
+</offer><offer id="6321" available="true">
+                      <url>filter-87</url>
+                      <price>460</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/770.jpg</picture>
+					  <quantity>64</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2059 Фильтр масляный</name>
+					  <model>EK-2059</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный фильтр </strong><strong>EK</strong> <strong>2059 аналог</strong> 87409203 87415600 84475542 13287305 31782304 721150720 LF16011 SO10070 W 712/21</p>
+]]></opisanie>
+					  <title>EK-2059 масляный фильтр купить</title>
+					  <description>Купить ek-2059 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.52</param><param name="Высота, мм">89</param><param name="Наружный Диаметр, мм">77</param><param name="Объем, м3">0.001</param><param name="Резьба">3/4"-16</param><country_of_origin></country_of_origin>
+</offer><offer id="4581" available="true">
+                      <url>filter-88</url>
+                      <price>810</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/771.jpg</picture>
+					  <quantity>131</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2060 Фильтр масляный</name>
+					  <model>EK-2060</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный фильтр EK 2060 аналог</strong> 5C1791 9Y4458 7W2327 7W2326 7W-2326 3I1296 7W6221 9Y4479 02/100284 02/100073 02100073 02/100073А 02100073А 2100284 2100284A 2654401<br />
+	2654403 F2826500 265-4407 F28/26500 2654441 T64101001 T74105021 26540347 2654400 2654401 901103</p>
+]]></opisanie>
+					  <title>EK-2060 масляный фильтр купить</title>
+					  <description>Купить ek-2060 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.64</param><param name="Высота, мм">179</param><param name="Наружный Диаметр, мм">97</param><param name="Объем, м3">0.002</param><param name="Резьба">3/4"-16</param><country_of_origin></country_of_origin>
+</offer><offer id="4900" available="true">
+                      <url>filter-89</url>
+                      <price>740</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/775.jpg</picture>
+					  <quantity>232</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2077 Фильтр масляный</name>
+					  <model>EK-2077</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный фильтр </strong><strong>EK</strong> <strong>2077 аналог</strong> 72130494 72215353 87803261 87803260 84228510 W95026 W95039 15208LA40A 15208LA40B 4897898 4989314</p>
+]]></opisanie>
+					  <title>EK-2077 масляный фильтр купить</title>
+					  <description>Купить ek-2077 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1.15</param><param name="Высота, мм">175</param><param name="Наружный Диаметр, мм">98</param><param name="Объем, м3">0.002
+</param><param name="Резьба">M27*2</param><country_of_origin></country_of_origin>
+</offer><offer id="6322" available="true">
+                      <url>filter-90</url>
+                      <price>680</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/777.jpg</picture>
+					  <quantity>238</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2095 Фильтр масляный</name>
+					  <model>EK-2095</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный фильтр </strong><strong>EK</strong> <strong>2095 аналог</strong> Bobcat 6675517 6678233 CASE 86402050 86546618 W 920/80</p>
+]]></opisanie>
+					  <title>EK-2095 масляный фильтр купить</title>
+					  <description>Купить ek-2095 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1.15</param><param name="Высота, мм">93.5</param><param name="Наружный Диаметр, мм">92</param><param name="Объем, м3">0.001</param><param name="Резьба">3/4"-16</param><country_of_origin></country_of_origin>
+</offer><offer id="4624" available="true">
+                      <url>filter-91</url>
+                      <price>710</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/778.jpg</picture>
+					  <quantity>303</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2101 Фильтр масляный</name>
+					  <model>EK-2101</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный</strong> <strong>фильтр</strong><strong> EK 2101 </strong><strong>аналог</strong> JCB 320/04133 320/04133A 32004133 32004133A 320/04134 32004134 W 950/38 W95038 WIX 57233 SO 11080 SO 11080</p>
+]]></opisanie>
+					  <title>EK-2101 масляный фильтр купить</title>
+					  <description>Купить ek-2101 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.6</param><param name="Высота, мм">165</param><param name="Наружный Диаметр, мм">93</param><param name="Объем, м3">0.002</param><param name="Резьба">M22 x 1.5</param><country_of_origin></country_of_origin>
+</offer><offer id="4584" available="true">
+                      <url>filter-93</url>
+                      <price>2480</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/780.jpg</picture>
+					  <quantity>172</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2114 Фильтр масляный</name>
+					  <model>EK-2114</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный фильтр </strong><strong>EK</strong> <strong>2114 аналог</strong> 6002111340 600-211-1340 6216545110 474-00034А 97400034 474-00034 11NB-70110 11ND-70110 11ND70110 11NB70110 324617A1 76612210 87408494 3406809 3406810 2882673 3101868 4331003 2874490 2882674 3101869 4331005</p>
+]]></opisanie>
+					  <title>EK-2114 масляный фильтр купить</title>
+					  <description>Купить ek-2114 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1.7</param><param name="Высота, мм">325</param><param name="Наружный Диаметр, мм">118</param><param name="Объем, м3">0.006</param><param name="Резьба">M95*2.5</param><country_of_origin></country_of_origin>
+</offer><offer id="8724" available="true">
+                      <url>filter-92</url>
+                      <price>1680</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/781.jpg</picture>
+					  <quantity>87</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2121 Фильтр масляный</name>
+					  <model>EK-2121</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный</strong> <strong>фильтр</strong><strong> EK 2121 </strong><strong>аналог</strong> RE502513 RE504836 RE541420 7090561 57750 57750S W1022 SO10044 F2826510</p>
+]]></opisanie>
+					  <title>EK-2121 масляный фильтр купить</title>
+					  <description>Купить ek-2121 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.9</param><param name="Высота, мм">155</param><param name="Наружный Диаметр, мм">100</param><param name="Объем, м3">0.002
+</param><country_of_origin></country_of_origin>
+</offer><offer id="6327" available="true">
+                      <url>filter-94</url>
+                      <price>800</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/784.jpg</picture>
+					  <quantity>199</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2152 Фильтр масляный</name>
+					  <model>EK-2152</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный фильтр </strong><strong>EK</strong> <strong>2152 аналог</strong> 87679598 87803201 504182851 87679494 87679598</p>
+]]></opisanie>
+					  <title>EK-2152 масляный фильтр купить</title>
+					  <description>Купить ek-2152 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.85</param><param name="Высота, мм">98.4</param><param name="Наружный Диаметр, мм">93.7</param><param name="Объем, м3">0.001</param><param name="Резьба">M27*2.0</param><country_of_origin></country_of_origin>
+</offer><offer id="5239" available="true">
+                      <url>filter-95</url>
+                      <price>1430</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/785.jpg</picture>
+					  <quantity>190</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2156 Фильтр масляный</name>
+					  <model>EK-2156</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	<strong>Масляный фильтр </strong><strong>EK</strong> <strong>2156 аналог</strong> 2631283C10 26312-83C10 XKBH-01965 XKBH01965 C-2811 MB-JX653 JX653</p>
+]]></opisanie>
+					  <title>EK-2156 масляный фильтр купить</title>
+					  <description>Купить ek-2156 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.7</param><param name="Высота, мм">225</param><param name="Наружный Диаметр, мм">136</param><param name="Объем, м3">0.02</param><param name="Резьба">M46X1.2</param><country_of_origin></country_of_origin>
+</offer><offer id="3305" available="true">
+                      <url>LF16233-maslyanyj-filtr</url>
+                      <price>660</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/927.jpg</picture>
+					  <quantity>820</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>LF16233 Фильтр масляный</name>
+					  <model>LF16233</model>
+                      <vendor>ASFil</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>LF16233 масляный фильтр купить</title>
+					  <description>Купить lf16233 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.65</param><country_of_origin></country_of_origin>
+</offer><offer id="3306" available="false">
+                      <url>LF16244-maslyanyj-filtr</url>
+                      <price>660</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/928.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>LF16244 Фильтр масляный</name>
+					  <model>LF16244</model>
+                      <vendor>ASFil</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>LF16244 масляный фильтр купить</title>
+					  <description>Купить lf16244 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.38</param><country_of_origin></country_of_origin>
+</offer><offer id="3307" available="true">
+                      <url>LF3607-maslyanyj-filtr</url>
+                      <price>440</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/929.jpg</picture>
+					  <quantity>938</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>LF3607 Фильтр масляный</name>
+					  <model>LF3607</model>
+                      <vendor>ASFil</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>LF3607 масляный фильтр купить</title>
+					  <description>Купить lf3607 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.18</param><country_of_origin></country_of_origin>
+</offer><offer id="3310" available="false">
+                      <url>LF3654-maslyanyj-filtr</url>
+                      <price>690</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/930.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>LF3654 Фильтр масляный</name>
+					  <model>LF3654</model>
+                      <vendor>ASFil</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>LF3654 масляный фильтр купить</title>
+					  <description>Купить lf3654 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1.1</param><param name="Объем, м3">0.003
+</param><country_of_origin></country_of_origin>
+</offer><offer id="3303" available="true">
+                      <url>LF3829-maslyanyj-filtr</url>
+                      <price>740</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/931.jpg</picture>
+					  <quantity>907</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>LF3829 Фильтр масляный</name>
+					  <model>LF3829</model>
+                      <vendor>ASFil</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>LF3829 масляный фильтр купить</title>
+					  <description>Купить lf3829 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.6</param><country_of_origin></country_of_origin>
+</offer><offer id="3302" available="true">
+                      <url>LF3867-maslyanyj-filtr</url>
+                      <price>640</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/932.jpg</picture>
+					  <quantity>732</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>LF3867 Фильтр масляный</name>
+					  <model>LF3867</model>
+                      <vendor>ASFil</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>LF3867 масляный фильтр купить</title>
+					  <description>Купить lf3867 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.3</param><country_of_origin></country_of_origin>
+</offer><offer id="3311" available="true">
+                      <url>Z13D94-maslyanyj-filtr</url>
+                      <price>630</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/8072528.jpg</picture>
+					  <quantity>498</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Z13D94 Фильтр масляный</name>
+					  <model>Z13D94</model>
+                      <vendor>ASFil</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>Z13D94 масляный фильтр купить</title>
+					  <description>Купить z13d94 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">0.32</param><country_of_origin></country_of_origin>
+</offer><offer id="3818" available="true">
+                      <url>JX718-maslyanyj-filtr</url>
+                      <price>560</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/934.jpg</picture>
+					  <quantity>23</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>JX718 Фильтр масляный</name>
+					  <model>JX718</model>
+                      <vendor>Stal</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title>JX718 масляный фильтр купить</title>
+					  <description>Купить jx718 масляный фильтр в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Вес, кг">1</param><country_of_origin></country_of_origin>
+</offer><offer id="11102" available="true">
+                      <url>EK-2186-maslyanyj-filtr</url>
+                      <price>1350</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-2186-maslyanyj-filtr.jpg</picture>
+					  <quantity>60</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2186 масляный фильтр</name>
+					  <model>EK-2186</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Высота, мм">175</param><param name="Наружный Диаметр, мм">102</param><param name="Резьба">M27х2</param><country_of_origin></country_of_origin>
+</offer><offer id="11101" available="false">
+                      <url>EK-2037-maslyanyj-filtr</url>
+                      <price>420</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-2037-maslyanyj-filtr.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2037 масляный фильтр</name>
+					  <model>EK-2037</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Высота, мм">89</param><param name="Наружный Диаметр, мм">83</param><param name="Резьба">M20X1,5</param><country_of_origin></country_of_origin>
+</offer><offer id="11249" available="true">
+                      <url>EK-2028-maslyanyj-filtr</url>
+                      <price>980</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-2028-maslyanyj-filtr.jpg</picture>
+					  <quantity>8</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2028 масляный фильтр</name>
+					  <model>EK-2028</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Высота, мм">210</param><param name="Наружный Диаметр, мм">111</param><param name="Резьба">1"1/2-12UNF</param><country_of_origin></country_of_origin>
+</offer><offer id="11319" available="true">
+                      <url>EK-2903-maslyanyj-filtr-EKKA</url>
+                      <price>1070</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>30</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-2903-maslyanyj-filtr-EKKA.jpg</picture>
+					  <quantity>100</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-2903 масляный фильтр EKKA</name>
+					  <model>EK-2903</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Внутренний Диаметр, мм">39</param><param name="Высота, мм">234</param><param name="Наружный Диаметр, мм">112</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

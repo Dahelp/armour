@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="40">Сварные диски на погрузчики NEW HOLLAND B115</category></categories>				
+				<offers><offer id="16509" available="false">
+                      <url>tovar_disk-408</url>
+                      <price>46200</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>40</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/408.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Диск W14Lx28</name>
+					  <model></model>
+                      <vendor>New Holland</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Диск W14Lx28 на ПОГРУЗЧИКИ NEW HOLLAND B115</p>
+<div>
+	диск колеса 87614574</div>]]></opisanie>
+					  <title>Диск W14Lx28 купить</title>
+					  <description>Купить диски для спецтехники W14Lx28 в нашей компании с доставкой по всей России</description>
+					  <keywords></keywords><param name="Диаметр крепежных отверстий (мм)">24</param><param name="Диаметр расположения крепёжных отверстий, мм">335</param><param name="Диаметр центрального отверстия (мм)">281</param><param name="Количество крепежных отверстий">5</param><param name="Размер Диска (RIM)">W14Lx28</param><param name="Размер шины">16.9-28</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-05-07 15:05">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="13">Цельнолитые шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="12179" available="true">
+                      <url>shiny-bez-burta-15-45-8-15-4-1-2-8-contirun-ekka-standart-celnolitye</url>
+                      <price>3400</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>13</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-bez-burta-15-45-8-15-4-1-2-8-CONTIRUN-EKKA-STANDART-celnolitye.jpg</picture>
+					  <quantity>8</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины без бурта 15 4.5-8 (15*4 1/2-8) CONTIRUN EKKA STANDART цельнолитые</name>
+					  <model>STANDART</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Купить качественные шины 15 4.5-8 (15*4 1/2-8, 125/75-8) CONTIRUN EKKA для вилочного погрузчика, они характеризуются продолжительным периодом службы, даже при активном использовании на территории складских помещений. На технику, работающую на территории с повышенным риском, где присутствуют колющие, режущие, острые предметы устанавливается цельнолитая шина устойчивая к сквозным пробоям, порезам.</p>
+<p>
+	Колеса (суперэластик) 125/75-8 EKKA используются для перевозки грузов на небольшие расстояния, характеризуются они более высокой нагрузочной способностью, но есть и небольшие минусы это выражается в скромных демпфирующих и скоростных свойствах. Это означает, что погрузчик передвигается в основном по относительно ровным поверхностям.</p>
+<p>
+	Если возникли трудности с выбором цельнолитых колес? Обращайтесь в нашу компанию. У нас представлен широкий выбор литых шин от проверенных производителей. Мы оперативно и грамотно окажем вам помощь в подборе резины, нужного размера, которые точно подойдут для вашей специализированной техники и будут соответствовать всем необходимым требованиям.</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>15 4.5-8 (15*4 1/2-8) купить цельнолитые шины EKKA STANDART CONTIRUN</title>
+					  <description>Купить качественные цельнолитые шины для вилочного погрузчика 15 4.5-8 (15*4 1/2-8, 125/75-8) STANDART</description>
+					  <keywords></keywords><param name="Вес (кг)">10</param><param name="Макс. Нагрузка (кг, 10км/ч)">905</param><param name="Наружный диаметр (мм)">370</param><param name="Объем (м3)">0.16</param><param name="Размер Диска (RIM)">3.00D-8</param><param name="Размер шины">15*4 1/2-8</param><param name="Ширина протектора (мм)">109</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 16:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="13">Цельнолитые шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="12180" available="false">
+                      <url>shiny-400-8-300-standart-contirun-ekka</url>
+                      <price>4070</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>13</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-400-8-300-STANDART-CONTIRUN-EKKA.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 4.00-8/3.00 STANDART CONTIRUN EKKA</name>
+					  <model>STANDART</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	В рамках эксплуатации тележек, вилочных погрузчиков, где высока реальность контакта с острыми объектами, шины 4.00-8 модели CONTIRUN EKKA демонстрируют превосходную стойкость, прочность и устойчивость к механическим воздействиям. Это существенно минимизирует вероятность пробоев и иных повреждений, обеспечивая надежность в эксплуатации. Цельнолитая шина 4.00-8 EKKA, создана с применением современных технологий. Они идеально подходят для эксплуатации в тяжелых условиях и при высоких нагрузках, обеспечивая стабильность и безопасность в интервале всего время использования.</p>
+<p>
+	Цельнолитая резина STANDART CONTIRUN без бурта состоят из трех частей:</p>
+<p>
+	Протекторный слой: Выполнен из износостойкого материала для максимальной долговечности.</p>
+<p>
+	Амортизирующий слой: эффективно распределяет нагрузку и поглощает вибрации, повышая комфорт и снижая износ.</p>
+<p>
+	Посадочная часть: гарантирует прочное и надежное соединение с ободом (3.00D-8) на протяжении всего срока хождения.</p>
+<p>
+	Ищете качественные колеса? Автошины 4.00-8 суперэластик  это то, что вам нужно, будь то склад, завод, порт или стройка. Главное их преимущество  они просто не убиваемые! Забудьте о неприятных сюрпризах в виде проколов, которые так часто случаются с обычными покрышками. И никаких больше заморочек с проверкой давления  это сэкономит вам кучу времени и нервов.</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>4.00-8 STANDART CONTIRUN EKKA – цельнолитая шина</title>
+					  <description>Забудьте о проколах и порезах с цельнолитой шиной 4.00-8 STANDART CONTIRUN EKKA! Ее секрет – в особых эластомерных материалах, которые делают колеса невероятно прочной и долговечной. Вы можете смело эксплуатировать резину, не беспокоясь о повреждениях и д</description>
+					  <keywords></keywords><param name="Вес (кг)">11</param><param name="Макс. Нагрузка (кг, 10км/ч)">1055</param><param name="Наружный диаметр (мм)">400</param><param name="Объем (м3)">0.02</param><param name="Размер Диска (RIM)">3.00D</param><param name="Размер шины">4.00-8</param><param name="Ширина протектора (мм)">111</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

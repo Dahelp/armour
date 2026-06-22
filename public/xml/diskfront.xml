@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="42">Диски на фронтальный погрузчик</category></categories>				
+				<offers><offer id="11199" available="false">
+                      <url>disk-1950-25-25-4190000412</url>
+                      <price>47970</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>42</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/disk-1950-25-25-4190000412.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Диск 19.50/2.5-25 ET0 PCD10x480 HUB421 EKKA 4190000412</name>
+					  <model>19.50/2.5-25</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Колесный диск устанавливается на фронтальный погрузчик SDLG LG953, LG952, Luqing LQ953.</p>
+<p>
+	Каталожный номер 4190000412.</p>
+<p>
+	Размер диска 19.50/2,5-25 под шину 23.5-25.</p>
+<p>
+	Диск под камерную шину.</p>]]></opisanie>
+					  <title>Диск на фронтальный погрузчик 19.50/2.5-25 (23.5-25) 4190000412 ET0 PCD10x480 HUB421 купить</title>
+					  <description>Купить диск для спецтехники 19.50/2.5-25 ET0 PCD10x480 HUB421 EKKA в нашей компании с доставкой по всей России</description>
+					  <keywords>Диск 19.50/2.5-25, 4190000412, диски на погрузчик</keywords><param name="Диаметр расположения крепёжных отверстий, мм">480</param><param name="Диаметр центрального отверстия (мм)">420</param><param name="Количество крепежных отверстий">10</param><param name="Размер Диска (RIM)">19.50/2.5</param><param name="Размер шины">23.5-25</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

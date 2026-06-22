@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2025-01-20 11:01">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="45">Обондные ленты (флиппер)</category></categories>				
+				<offers><offer id="6642" available="true">
+                      <url>obodnaya-lenta-175-25</url>
+                      <price>2100</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>45</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/obodnaya-lenta-175-25.jpg</picture>
+					  <quantity>1</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Ободная лента 17.5-25</name>
+					  <model></model>
+                      <vendor></vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Ободная лента устанавливается на камерную шину. Лента или по-другому флиппер защищает камеру от перетирания о диск.</p>]]></opisanie>
+					  <title>Ободная лента 17.5-25 флиппер купить</title>
+					  <description>Наш магазин предлагает ободные ленты флиппер на шины 17.5-25 по низким ценам от поставщика</description>
+					  <keywords></keywords><param name="Вес (кг)">5</param><param name="Размер ободной ленты">17.5-25</param><param name="Тип применения">спецтехника</param><country_of_origin></country_of_origin>
+</offer><offer id="8915" available="false">
+                      <url>obodnaya-lenta-1200-24-1400-24</url>
+                      <price>1160</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>45</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/obodnaya-lenta-1200-24-1400-24.jpg</picture>
+					  <quantity>0</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Ободная лента 12.00-24/14.00-24</name>
+					  <model></model>
+                      <vendor></vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Ободная лента устанавливается на камерную шину. Лента или по-другому флиппер защищает камеру от перетирания о диск.</p>
+]]></opisanie>
+					  <title>Ободная лента 12.00-24/14.00-24 флиппер купить</title>
+					  <description>Наш магазин предлагает ободные ленты флиппер на шины 12.00-24/14.00-24 по низким ценам от поставщика</description>
+					  <keywords></keywords><param name="Вес (кг)">3</param><param name="Размер ободной ленты">12.00-24, 14.00-24</param><param name="Тип применения">грузовая, спецтехника</param><country_of_origin></country_of_origin>
+</offer><offer id="11013" available="true">
+                      <url>obodnaya-lenta-235-25</url>
+                      <price>2560</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>45</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/obodnaya-lenta-235-25.jpg</picture>
+					  <quantity>32</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Ободная лента 23.5-25</name>
+					  <model></model>
+                      <vendor></vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Ободная лента устанавливается на камерную шину. Лента или по-другому флиппер защищает камеру от перетирания о диск.</p>]]></opisanie>
+					  <title>Ободная лента 23.5-25 флиппер купить</title>
+					  <description>Наш магазин предлагает ободные ленты флиппер на шины 23.5-25 по низким ценам от поставщика</description>
+					  <keywords></keywords><param name="Вес (кг)">8,5</param><param name="Размер ободной ленты">23.5-25</param><param name="Тип применения">спецтехника</param><country_of_origin></country_of_origin>
+</offer><offer id="8503" available="true">
+                      <url>obodnaya-lenta-205-25</url>
+                      <price>2400</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>45</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/obodnaya-lenta-205-25.jpg</picture>
+					  <quantity>46</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Ободная лента 20.5-25</name>
+					  <model></model>
+                      <vendor></vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Ободная лента устанавливается на камерную шину. Лента или по-другому флиппер защищает камеру от перетирания о диск.</p>]]></opisanie>
+					  <title>Ободная лента 20.5-25 флиппер купить</title>
+					  <description>Наш магазин предлагает ободные ленты флиппер на шины 20.5-25 по низким ценам от поставщика</description>
+					  <keywords></keywords><param name="Вес (кг)">7,5</param><param name="Размер ободной ленты">20.5-25</param><param name="Тип применения">спецтехника</param><country_of_origin></country_of_origin>
+</offer><offer id="11015" available="true">
+                      <url>obodnaya-lenta-16-70-24-405-70-24</url>
+                      <price>1380</price>
+					  <price_opt>0</price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>45</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/obodnaya-lenta-16-70-24-405-70-24.jpg</picture>
+					  <quantity>21</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Ободная лента 16 70-24 (405/70-24)</name>
+					  <model></model>
+                      <vendor>NONAME</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Вес (кг)">5</param><param name="Размер ободной ленты">16/70-24, 405/70-24</param><param name="Размер шины">16/70-24</param><param name="Тип применения">грузовая, спецтехника</param><country_of_origin></country_of_origin>
+</offer><offer id="11015" available="true">
+                      <url>obodnaya-lenta-16-70-24-405-70-24</url>
+                      <price>1380</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>45</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/obodnaya-lenta-16-70-24-405-70-24.jpg</picture>
+					  <quantity>21</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Ободная лента 16 70-24 (405/70-24)</name>
+					  <model></model>
+                      <vendor>NONAME</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Вес (кг)">5</param><param name="Рекомендуемая ободная лента">16/70-24, 405/70-24</param><param name="Тип применения">грузовая, спецтехника</param><country_of_origin></country_of_origin>
+</offer><offer id="11867" available="true">
+                      <url>265-25-obodnaya-lenta-ekka</url>
+                      <price>3250</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>45</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/265-25-obodnaya-lenta-EKKA.jpg</picture>
+					  <quantity>16</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>26.5-25 Ободная лента EKKA</name>
+					  <model></model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[]]></opisanie>
+					  <title></title>
+					  <description></description>
+					  <keywords></keywords><param name="Вес (кг)">10</param><param name="Размер ободной ленты">26.5-25</param><param name="Тип применения">спецтехника</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

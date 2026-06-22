@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 16:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="13">Цельнолитые шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="12188" available="true">
+                      <url>shiny-600-9-celnolitye-contirun-ekka</url>
+                      <price>8990</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>13</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-600-9-celnolitye-CONTIRUN-EKKA.jpg</picture>
+					  <quantity>10</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 6.00-9 цельнолитые CONTIRUN EKKA</name>
+					  <model>STANDART</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Для обеспечения максимальной производительности вилочных погрузчиков в сложных условиях эксплуатации, цельнолитые колеса отличаются высокой прочностью. Их основная особенность  повышенная устойчивость к механическим повреждениям, включая проколы от острых предметов, таких как стекло, металлические обломки или камни.</p>
+<p>
+	Шины 6.00-9/4.00 STANDART CONTIRUN EKKA сочетают передовые технологии и выгодное соотношение цены и качества, они гарантируют надежное сцепление и безопасность в любых рабочих сценариях.</p>
+<p>
+	Цельнолитая конструкция состоит из трех ключевых элемента:</p>
+<p>
+	Протектор: Изготовлен из резиновых смесей, устойчивого к истиранию.</p>
+<p>
+	Средний слой: выполняет превосходную амортизацию, равномерно распределяет нагрузку и поглощает удары.</p>
+<p>
+	Посадочная зона: Разработана для основательного и долговечного крепления на ободе.</p>
+<p>
+	Благодаря отсутствию бурта, суперэластик 6.00-9 contirun легко устанавливаются на различные типы дисков: сварные (с кольцами) и разборные 4.00E-9, что делает их универсальными. Тип обода подбирается исходя из специфики погрузчика и ваших предпочтений.</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>Купить 6.00-9 цельнолитые шины CONTIRUN EKKA</title>
+					  <description>Вам нужны надежные шины для вашей техники? Цельнолитые колеса EKKA 6.00-9 CONTIRUN STANDART без бурта – это именно то, что вам нужно. Выгодная цена, долговечность и превосходные характеристики в одном решении для вашей уверенной работы.</description>
+					  <keywords></keywords><param name="Вес (кг)">26</param><param name="Макс. Нагрузка (кг, 10км/ч)">1920</param><param name="Наружный диаметр (мм)">515</param><param name="Объем (м3)">0.04</param><param name="Размер Диска (RIM)">4.00E</param><param name="Размер шины">6.00-9</param><param name="Ширина протектора (мм)">143</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

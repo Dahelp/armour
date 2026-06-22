@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-05-14 10:05">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="13">Цельнолитые шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="12187" available="true">
+                      <url>shiny-200-50-10-clip-contirun-ekka-celnolitye</url>
+                      <price>8940</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>13</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-200-50-10-CLIP-CONTIRUN-EKKA-celnolitye.jpg</picture>
+					  <quantity>20</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 200/50-10 CLIP CONTIRUN EKKA цельнолитые</name>
+					  <model>CLIP</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Если ваши вилочные погрузчики работают в сложных условиях  на складах, в цехах, портах или стройплощадках  шины 200/50-10 цельнолитые CONTIRUN EKKA станут оптимальным решением. Главное их достоинство  непревзойденная стойкость к повреждениям. Забудьте о проколах и необходимости постоянно проверять давление, как с пневматическими покрышками. Суперэластик обеспечит вам бесперебойную работу и минимум хлопот с обслуживанием.</p>
+<p>
+	Рассматривая соотношение цены и качества, колеса ЕККА 200х50-10 представляет собой надежную и экономически оправданную инвестицию. Несмотря на то, что первоначальная стоимость может быть выше, чем у камерных шин, их долговечность и минимальная потребность в обслуживании гарантируют окупаемость вложений.</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>Шины на погрузчик 200/50-10 цельнолитые</title>
+					  <description>Купить цельнолитые шины на вилочный погрузчик 200/50-10 соотношение цены и качества | Продукция CONTIRUN EKKA  станет оптимальным решением | Отгрузка в регионы ТК, до терминала довозим собственными силами.</description>
+					  <keywords></keywords><param name="Вес (кг)">24</param><param name="Макс. Нагрузка (кг, 10км/ч)">2370</param><param name="Наружный диаметр (мм)">441</param><param name="Объем (м3)">0.04</param><param name="Размер Диска (RIM)">6.50</param><param name="Размер шины">200/50-10</param><param name="Ширина протектора (мм)">187</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

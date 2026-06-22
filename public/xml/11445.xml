@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-04-29 15:04">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="32">Фильтры кабины</category></categories>				
+				<offers><offer id="11445" available="true">
+                      <url>ek-5019-filtr-kabiny-</url>
+                      <price>390</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>32</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/EK-5019-filtr-kabiny.jpg</picture>
+					  <quantity>48</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>EK-5019 фильтр кабины</name>
+					  <model>EK-5019</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Фильтр кабины EK-5019 от EKKA  это ключевой компонент системы вентиляции экскаватора, гарантирующий чистый и свежий воздух в салоне. Он эффективно задерживает мельчайшие частицы пыли и грязи, вредные выхлопные газы, создавая комфортную среду для водителя. Благодаря передовым технологиям, фильтр EK5019 отличается высокой степенью очистки и длительным сроком службы. Он полностью совместим с оригинальным фильтром кабины 4643580 и соответствует всем требованиям производителей техники, легко устанавливается и не требует частой замены благодаря своей износостойкости. Надежность, подтвержденная строгими стандартами, делает его идеальным для работы в любых условиях. Простота установки и эксплуатации минимизирует время простоя техники, а его универсальность и экономичность снижают эксплуатационные расходы.</p>
+<p>
+	</p>]]></opisanie>
+					  <title>EK-5019 фильтр кабины для очистки воздуха</title>
+					  <description>Фильтр кабины EKKA EK-5019 обеспечивает чистоту воздуха в салоне, защищая от вредных примесей. Полностью совместим с оригинальным фильтром 4643580. Гарантированная надежность.</description>
+					  <keywords></keywords><param name="Высота, мм">45</param><param name="Длина, мм">280</param><param name="Ширина, мм">160</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>

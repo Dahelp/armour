@@ -1,0 +1,7 @@
+/vendor/
+/tmp/cache/
+/tmp/*.log
+
+.env
+.env.*
+!.env.example

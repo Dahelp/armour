@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+              <yml_catalog date="2026-05-14 10:05">
+              <shop>
+                <name></name>
+                <company></company>
+                <url>https://armour-shina.ru/</url>
+                <currencies>
+                  <currency id="RUR" rate="1"/>
+                </currencies>
+				<categories><category id="13">Цельнолитые шины для вилочных погрузчиков</category></categories>				
+				<offers><offer id="12186" available="true">
+                      <url>shiny-21-8-9-600-clip-nm-contirun-ekka</url>
+                      <price>14000</price>
+					  <price_opt></price_opt>
+                      <currencyId>RUR</currencyId>
+                      <categoryId>13</categoryId>
+                      <picture>https://armour-shina.ru/userfiles/product_img/baseimg/shiny-21-8-9-600-CLIP-NM-CONTIRUN-EKKA.jpg</picture>
+					  <quantity>8</quantity>
+					  <store>true</store>
+  				      <pickup>true</pickup>
+  				      <delivery>true</delivery>
+					  <local_delivery_cost></local_delivery_cost>
+                      <name>Шины 21*8-9/6.00 CLIP NM CONTIRUN EKKA</name>
+					  <model>CLIP</model>
+                      <vendor>EKKA</vendor>                     
+					  <sales_notes></sales_notes>
+					  <opisanie><![CDATA[<p>
+	Для интенсивной эксплуатации в производственных и складских условиях подойдут цельнолитые шины 21*8-9 6.00 CONTIRUN EKKA CLIP. Белая резина NM  это практичный выбор. Она не оставляет следов на полу. Это делает данную модель идеальным решением для эксплуатации в средах, где поддержание чистоты имеет первостепенное значение, например, на складах с продукцией, требующей строгих санитарных норм, или в торговых комплексах.</p>
+<p>
+	Суперэластик 21х8-9 (200/75-9) гарантирует стабильное и безопасное перемещение погрузчиков, минимизируя риск непредвиденных остановок и снижая общие эксплуатационные расходы. Это делает их превосходным выбором для предприятий, нацеленных на повышение эффективности логистики и обеспечение безопасности персонала. EKKA  это передовое решение, объединяющее в себе исключительную долговечность, комфорт и надежность. Благодаря инновационным материалам и конструкции, эти колеса обеспечивают выдающуюся производительность и длительный срок службы, что делает их незаменимыми для складской техники, работающей в условиях высоких нагрузок.</p>
+<p>
+	</p>
+]]></opisanie>
+					  <title>CONTIRUN EKKA 21*8-9 (200/75-9) CLIP NM Белая резина</title>
+					  <description>Ищете надежные и долговечные колеса? Закажите цельнолитые шины EKKA 21*8-9 (200/75-9) CONTIRUN белого цвета с буртом по выгодной цене. Они обеспечат вам отличные характеристики и долгий срок службы.</description>
+					  <keywords></keywords><param name="Вес (кг)">33</param><param name="Макс. Нагрузка (кг, 10км/ч)">2810</param><param name="Наружный диаметр (мм)">505</param><param name="Объем (м3)">0.06</param><param name="Размер Диска (RIM)">6.00E</param><param name="Размер шины">21*8-9</param><param name="Ширина протектора (мм)">192</param><country_of_origin></country_of_origin>
+</offer></offers>
+  </shop>
+</yml_catalog>
