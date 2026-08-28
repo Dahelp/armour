@@ -1,6 +1,9 @@
 {
   "license": "proprietary",
   "autoload": {
+    "files": [
+      "app/services/mailer/swift_compat.php"
+    ],
     "psr-4": {
       "ishop\\": "vendor/ishop/core",
       "app\\": "app"
@@ -10,12 +13,12 @@
     "php": "^8.2",
     "gabordemooij/redbean": "^5.7",
     "vlucas/valitron": "^1.4",
-    "swiftmailer/swiftmailer": "^6.3",
     "phpoffice/phpword": "^1.4",
     "datatables/datatables": "^1.10",
     "datatables.net/editor-php": "^2.0",
     "phpoffice/phpspreadsheet": "^5.9",
     "dompdf/dompdf": "^3.1.6",
-    "guzzlehttp/guzzle": "^8.1"
+    "guzzlehttp/guzzle": "^8.1",
+    "symfony/mailer": "^7.4"
   }
 }

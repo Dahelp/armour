@@ -22,6 +22,12 @@ Required for outgoing mail:
 
 FTP variables are only required by the administrative FTP import.
 
+Outgoing mail is delivered by Symfony Mailer 7.4. Existing order, callback,
+password recovery and newsletter call sites use a compatibility bridge during
+the migration, so their public behaviour remains unchanged. SMTP credentials
+are URL-encoded before the transport DSN is created. Use `ssl` for implicit TLS
+(normally port 465) or `tls` for required STARTTLS (normally port 587).
+
 `CRON_TOKEN` is required for scheduled HTTP jobs. Prefer sending it in the
 `X-Cron-Token` header. A `token` query parameter is supported for schedulers
 that cannot send custom headers, but headers avoid leaking the token into URLs
