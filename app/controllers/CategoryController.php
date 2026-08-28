@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Breadcrumbs;
 use app\models\Category;
+use app\services\CatalogListingLoader;
 use app\widgets\filter\Filter;
 use ishop\App;
 use ishop\libs\Pagination;
@@ -23,7 +24,7 @@ class CategoryController extends AppController {
         $cat_model = new Category();
         $ids = $cat_model->getIds($category->id);
         $ids = !$ids ? $category->id : $ids . $category->id;
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $page = max(1, isset($_GET['page']) ? (int)$_GET['page'] : 1);
         $perpage = App::$app->getProperty('pagination');
 
         $sql_part = '';
@@ -46,19 +47,22 @@ class CategoryController extends AppController {
 			
         }
 
-		if(!empty($_GET['sort'])){
-			if($_GET['sort'] == "price") { $sql_sort = "ORDER BY price ASC"; }
-			if($_GET['sort'] == "nal") { $sql_sort = "ORDER BY stock_status_id DESC"; }
-			if($_GET['sort'] == "rate") { $sql_sort = "ORDER BY hit DESC"; }
-		}else{
-			$sql_sort = "ORDER BY FIELD(`stock_status_id`, 1,3,2,0), name ASC";
-		}
+		$sqlSortOptions = [
+			'price' => 'ORDER BY price ASC',
+			'nal' => 'ORDER BY stock_status_id DESC',
+			'rate' => 'ORDER BY hit DESC',
+		];
+		$sql_sort = $sqlSortOptions[(string)($_GET['sort'] ?? '')]
+			?? 'ORDER BY FIELD(`stock_status_id`, 1,3,2,0), name ASC';
 
-        $total = \R::count('product', "hide = 'show' AND category_id IN ($ids) $sql_part $sql_sort");
+        $total = \R::count('product', "hide = 'show' AND category_id IN ($ids) $sql_part");
         $pagination = new Pagination($page, $perpage, $total);
         $start = $pagination->getStart();
 
         $products = \R::find('product', "hide = 'show' AND category_id IN ($ids) $sql_part $sql_sort LIMIT $start, $perpage");
+		[$productAttributes, $brands] = (new CatalogListingLoader())->load($products);
+		$subcategories = \R::getAll('SELECT id, alias, img, name FROM category WHERE parent_id = ?', [$category->id]);
+		$inseoProd = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $category->id]);
 		
         //InSEO
 		$inseo = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['category', $category->id]);
@@ -74,14 +78,14 @@ class CategoryController extends AppController {
 		/*SEO*/
 		
         if($this->isAjax()){
-            $this->loadView('filter', compact('products', 'total', 'pagination', 'ids', 'inseo', 'filter', 'attr_id', 'cnt', 'alias'));
+            $this->loadView('filter', compact('products', 'total', 'pagination', 'ids', 'inseo', 'inseoProd', 'filter', 'attr_id', 'cnt', 'alias', 'category', 'productAttributes', 'brands'));
         }
 		
 		if($this->route["controller"]){ $path_controller = "/".mb_strtolower($this->route["controller"]).""; }else{ $path_controller = ""; }
 		if($this->route["alias"]){ $path_alias = "/".$this->route["alias"].""; }else{ $path_alias = ""; }		
 		$this->setMeta($title, $description, $keywords, '' . App::$app->getProperty('shop_name') . '', ''.PATH.'/images/' . App::$app->getProperty('og_logo') . '', ''.PATH.''.$path_controller.''.$path_alias.'');
 		/*SEO*/
-        $this->set(compact('filter', 'products', 'breadcrumbs', 'pagination', 'total', 'category', 'ids', 'inseo', 'alias'));
+        $this->set(compact('filter', 'products', 'breadcrumbs', 'pagination', 'total', 'category', 'ids', 'inseo', 'inseoProd', 'alias', 'subcategories', 'productAttributes', 'brands'));
     }
 
 }

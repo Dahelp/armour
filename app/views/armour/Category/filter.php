@@ -16,14 +16,9 @@
 		</thead>
 		<tbody>
     <?php foreach($products as $product): ?>
-		<?php $inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $category->id]); ?>
-		<?php
-			$attr = \R::getAll("SELECT*FROM product_attribute WHERE product_id = ?", [$product["id"]]);
-			foreach($attr as $att){
-				$attribute[$att['attribute_id']] = $att["attribute_text"];
-			}
-			$brand = \R::findOne('brand', "id = ?", [$product["brand_id"]]);
-		?>
+		<?php $inseo_prod = $inseoProd; ?>
+		<?php $attribute = $productAttributes[(int)$product['id']] ?? []; ?>
+		<?php $brand = $brands[(int)$product['brand_id']] ?? []; ?>
         <tr class="product type-product">
 			<td>
 				<a class="card-img-top d-block overflow-hidden" href="<?=$product["alias"]?>">							

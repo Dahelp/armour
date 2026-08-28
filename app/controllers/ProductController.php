@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\admin\Review;
 use app\models\Breadcrumbs;
 use app\models\Product;
+use app\services\CatalogListingLoader;
 use ishop\App;
 
 class ProductController extends AppController {
@@ -119,8 +120,42 @@ class ProductController extends AppController {
 			$similar_categories[$item['category_id']][] = $item;
 		}
 
+		$recommendationProducts = array_merge($related, $similar_all);
+		[$recommendationAttributes, $recommendationBrands] = (new CatalogListingLoader())->load($recommendationProducts);
+		$recommendationCategoryIds = array_values(array_unique(array_map(
+			static fn(array $item): int => (int)$item['category_id'],
+			$recommendationProducts
+		)));
+		$recommendationCategories = [];
+		if ($recommendationCategoryIds !== []) {
+			$categoryRows = \R::getAll(
+				'SELECT id, name, table_alt FROM category WHERE id IN (' . \R::genSlots($recommendationCategoryIds) . ')',
+				$recommendationCategoryIds
+			);
+			foreach ($categoryRows as $categoryRow) {
+				$recommendationCategories[(int)$categoryRow['id']] = $categoryRow;
+			}
+		}
+
 		// отзывы
         $review = \R::getAll("SELECT * FROM review_product JOIN review ON review.id = review_product.review_id WHERE review_product.product_id = ? ORDER BY review.date_post DESC", [$product->id]);
+		$reviewCount = count($review);
+		$reviewStats = [
+			'review_count' => $reviewCount,
+			'average_rating' => $reviewCount > 0
+				? array_sum(array_map(static fn(array $row): float => (float)$row['point'], $review)) / $reviewCount
+				: 0.0,
+		];
+		$productFilters = \R::getAll(
+			'SELECT ag.title, ag.url_params, av.value, av.alias
+			 FROM attribute_group ag
+			 INNER JOIN attribute_category ac ON ac.group_id = ag.id
+			 INNER JOIN attribute_value av ON av.attr_group_id = ag.id
+			 INNER JOIN attribute_product ap ON ap.attr_id = av.id
+			 WHERE ap.product_id = ?
+			 GROUP BY ag.id, ag.title, ag.url_params, av.value, av.alias',
+			[$product->id]
+		);
 		
         // запись в куки запрошенного товара
         $p_model = new Product();
@@ -138,6 +173,18 @@ class ProductController extends AppController {
 		
 		// группа аттрибутов товаров
         $attribute_group = \R::getAll("SELECT * FROM attribute JOIN product_attribute ON product_attribute.attribute_group_id = attribute.id WHERE product_attribute.product_id = ? GROUP BY product_attribute.attribute_group_id", [$product->id]);
+		$productAttributeRows = \R::getAll(
+			'SELECT pa.attribute_group_id, pa.attribute_id, pa.attribute_text, a.attribute_name
+			 FROM product_attribute pa
+			 INNER JOIN attribute a ON a.id = pa.attribute_id
+			 WHERE pa.product_id = ?
+			 ORDER BY a.attribute_position',
+			[$product->id]
+		);
+		$productAttributesByGroup = [];
+		foreach ($productAttributeRows as $attributeRow) {
+			$productAttributesByGroup[(int)$attributeRow['attribute_group_id']][] = $attributeRow;
+		}
 		
 		// галерея
         $gallery = \R::findAll('gallery', 'product_id = ?', [$product->id]);
@@ -175,7 +222,13 @@ class ProductController extends AppController {
 			'vendor',
 			'inseo',
 			'action',
-			'review'
+			'review',
+			'reviewStats',
+			'productFilters',
+			'productAttributesByGroup',
+			'recommendationAttributes',
+			'recommendationBrands',
+			'recommendationCategories'
 		));
     }
 	

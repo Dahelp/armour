@@ -12,12 +12,15 @@ class Breadcrumbs{
 
         if($breadcrumbs_array){			
 			$breadcrumbs = "<a href='" . PATH . "'>Главная</a><span class='breadcrumb-separator'> / </span><a href='" . PATH . "/catalog'>Каталог</a><span class='breadcrumb-separator'> / </span>";
+			$categoryTypes = [];
+			foreach ($cats as $category) {
+				$categoryTypes[(string)$category['alias']] = (int)($category['type_id'] ?? 0);
+			}
             $i=2;
 			foreach($breadcrumbs_array as $alias => $name){
 				$position = $i+1;
 				$pos = $i+1;
-				$caturl = \R::findOne('category', 'alias = ?', [$alias]);
-				if($caturl["type_id"] == "1"){					
+				if(($categoryTypes[$alias] ?? 0) === 1){
 					if($alias_active != $alias){
 						$breadcrumbs .= "<a href='" . PATH . "/{$alias}'><span itemprop='name'>{$name}</span></a><span class='breadcrumb-separator'> / </span>";
 					}else{

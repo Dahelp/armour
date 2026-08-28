@@ -1,10 +1,6 @@
 <?php
-	$attr = \R::getAll("SELECT*FROM product_attribute WHERE product_id = ?", [$product["id"]]);
-	foreach($attr as $att){
-		$attribute[$att['attribute_id']] = $att["attribute_text"];
-	}
-	$brand = \R::findOne('brand', "id = ?", [$product["brand_id"]]);
-	
+	$attribute = is_array($attribute) ? $attribute : [];
+	$brand = is_array($brand) ? $brand : [];
 ?>
 <tr class="product type-product">
     <td>

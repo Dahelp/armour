@@ -1,4 +1,4 @@
-<?php $inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $category->id]); ?>
+<?php $inseo_prod = $inseoProd; ?>
 <!--start-breadcrumbs-->
 <div class="storefront-breadcrumb">
 	<div class="col-full">
@@ -18,15 +18,14 @@
 				<header class="woocommerce-products-header" itemscope="" itemtype="https://schema.org/Product">
 					<h1 itemprop="name"><?=$category->name?></h1>
 				</header>
-				<?php $podcategory = \R::getAll("SELECT * FROM category WHERE parent_id =?", [$category->id]);
-					if($podcategory) { ?>
+				<?php if($subcategories) { ?>
 					<div class="sub-category sub-category-custom ">
 						<div class="cat-tab">
 							<div class="cat-tab__content sub-category-hide-content-mobile">
 								<div id="catalog" class="active">
 									<div class="woocommerce">
 										<ul class="products products__odd">
-											<?php foreach($podcategory as $podcat) { ?>
+											<?php foreach($subcategories as $podcat) { ?>
 												<li class="product-category">
 													<a href="<?=$podcat["alias"]?>">
 														<img src="images/category/baseimg/<?=$podcat["img"]?>" alt="категория <?=mb_strtolower($podcat["name"]);?>">
@@ -59,7 +58,7 @@
 							<tbody>
 								<?php foreach($products as $product): ?>
 									
-									<?php new \app\widgets\product\Product($product, $curr, $attribute, $brand, 'product_table_'.$category->table_alt.'_tpl.php'); ?>
+					<?php new \app\widgets\product\Product($product, $curr, $productAttributes[(int)$product['id']] ?? [], $brands[(int)$product['brand_id']] ?? [], 'product_table_'.$category->table_alt.'_tpl.php'); ?>
 								<?php endforeach; ?>
 							</tbody>
 						</table>

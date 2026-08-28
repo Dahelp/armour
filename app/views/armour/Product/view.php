@@ -44,9 +44,8 @@
 												<div class="flex pt-3">
 													<a href="#tab-reviews">
 														<div class="rating">
-														<?php $review_prod = \R::getAll("SELECT SUM(review.point) as bal FROM review_product JOIN review ON review.id = review_product.review_id WHERE review_product.product_id = ?", [$product->id]); ?>
-														<?php $rwcount = \R::count('review_product', "product_id = ?", [$product->id]); ?>
-														<?php if($rwcount>0) { $srew = $review_prod[0]['bal']/$rwcount; }else{ $srew = 0; } ?>
+												<?php $rwcount = (int)($reviewStats['review_count'] ?? 0); ?>
+												<?php $srew = (float)($reviewStats['average_rating'] ?? 0); ?>
 														<?php for ($i = 1; $i <= 5; $i++) { ?>
 															<?php if ($srew < $i) { ?>
 																<span class="fa fa-stack"><i class="far fa-star fa-stack-2x"></i></span>
@@ -73,7 +72,7 @@
 											<div class="brand_and_top_box"><a href="#tab-additional_information">Все характеристики</a></div>
 										</div>                                        
 										
-										<?php $filters = \R::getAll('SELECT attribute_group.title, attribute_group.url_params, attribute_value.value, attribute_value.alias FROM attribute_group, attribute_category, attribute_product, attribute_value WHERE attribute_category.group_id = attribute_group.id AND attribute_product.attr_id = attribute_value.id AND attribute_value.attr_group_id = attribute_group.id AND attribute_product.product_id = ? GROUP BY attribute_group.title', [$product['id']]); ?>
+										<?php $filters = $productFilters; ?>
 					
 										<div class="group_attr">
 											<table>
@@ -111,7 +110,7 @@
 							<?php if($_SESSION['cart'][$product->id]) { ?>
 								<div class="quantity-block my_quant-<?=$product->id;?>" style="display:inline-flex;">
 									<button type="button" class="quantity-arrow-minus my-minus-<?=$product->id?> my-minus" data-id="<?=$product->id?>" data-qty="1"> - </button>
-									<input type="number" data-id="<?=$product["id"]?>" placeholder="1" class="input-text qty text qty-item-<?=$product["id"]?>" step="1" min="1" max="<?=$product["quantity"]?>" name="quantity" value="<?php if($_SESSION['cart'][$product["id"]][qty]){ echo $_SESSION['cart'][$product["id"]][qty]; }else{ echo "1"; }?>" title="Кол-во" maxlength="4">
+									<input type="number" data-id="<?=$product["id"]?>" placeholder="1" class="input-text qty text qty-item-<?=$product["id"]?>" step="1" min="1" max="<?=$product["quantity"]?>" name="quantity" value="<?php if($_SESSION['cart'][$product["id"]]['qty']){ echo $_SESSION['cart'][$product["id"]]['qty']; }else{ echo "1"; }?>" title="Кол-во" maxlength="4">
 									<button type="button" class="quantity-arrow-plus my-plus-<?=$product->id?> my-plus" data-id="<?=$product->id?>" data-qty="1"> + </button>
 								</div>
 								<div class="my_btn my_btn-<?=$product->id;?>" style="display:inline-flex;">
@@ -126,7 +125,7 @@
 							<?php }else{ ?>
 								<div class="quantity-block my_quant-<?=$product->id;?>" style="display:none">
 									<button type="button" class="quantity-arrow-minus my-minus-<?=$product->id?> my-minus" data-id="<?=$product->id?>" data-qty="1"> - </button>
-									<input type="number" data-id="<?=$product["id"]?>" placeholder="1" class="input-text qty text qty-item-<?=$product["id"]?>" step="1" min="1" max="<?=$product["quantity"]?>" name="quantity" value="<?php if($_SESSION['cart'][$product["id"]][qty]){ echo $_SESSION['cart'][$product["id"]][qty]; }else{ echo "1"; }?>" title="Кол-во" maxlength="4">
+									<input type="number" data-id="<?=$product["id"]?>" placeholder="1" class="input-text qty text qty-item-<?=$product["id"]?>" step="1" min="1" max="<?=$product["quantity"]?>" name="quantity" value="<?php if($_SESSION['cart'][$product["id"]]['qty']){ echo $_SESSION['cart'][$product["id"]]['qty']; }else{ echo "1"; }?>" title="Кол-во" maxlength="4">
 									<button type="button" class="quantity-arrow-plus my-plus-<?=$product->id?> my-plus" data-id="<?=$product->id?>" data-qty="1"> + </button>
 								</div>
 								<div class="my_btn my_btn-<?=$product->id;?>">
@@ -193,7 +192,7 @@
 										<tbody>
 											<?php 
 											// аттрибуты товаров
-											$attributs = \R::getAll("SELECT * FROM attribute JOIN product_attribute ON product_attribute.attribute_id = attribute.id WHERE product_attribute.product_id = ? AND product_attribute.attribute_group_id = ? ORDER BY attribute.attribute_position", [$product->id, $group["attribute_group_id"]]);
+											$attributs = $productAttributesByGroup[(int)$group['attribute_group_id']] ?? [];
 											foreach($attributs as $att): ?>
 											<?php $attribute[$att['attribute_id']] = $att["attribute_text"]; ?>
 												<tr>
@@ -336,7 +335,7 @@
 
         <?php foreach ($related_categories as $category_id => $items): ?>
             <?php
-            $cat_related = \R::findOne("category", "id = ?", [$category_id]);
+            $cat_related = $recommendationCategories[(int)$category_id] ?? null;
 
             if (!$cat_related) {
                 continue;
@@ -365,8 +364,8 @@
                             new \app\widgets\product\Product(
                                 $item2,
                                 $curr,
-                                $attribute_similar ?? [],
-                                $brand ?? [],
+                                $recommendationAttributes[(int)$item2['id']] ?? [],
+                                $recommendationBrands[(int)$item2['brand_id']] ?? [],
                                 $product_tpl
                             );
                             ?>
@@ -389,7 +388,7 @@
 
         <?php foreach ($similar_categories as $category_id => $items): ?>
             <?php
-            $cat_similar = \R::findOne("category", "id = ?", [$category_id]);
+            $cat_similar = $recommendationCategories[(int)$category_id] ?? null;
 
             if (!$cat_similar) {
                 continue;
@@ -418,8 +417,8 @@
                             new \app\widgets\product\Product(
                                 $item2,
                                 $curr,
-                                $attribute_similar ?? [],
-                                $brand ?? [],
+                                $recommendationAttributes[(int)$item2['id']] ?? [],
+                                $recommendationBrands[(int)$item2['brand_id']] ?? [],
                                 $product_tpl
                             );
                             ?>
