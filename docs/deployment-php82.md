@@ -36,7 +36,11 @@ and access logs.
 Before switching traffic:
 
 1. Rotate the old DB, SMTP and FTP passwords because they existed in Git.
-2. Run `composer install --no-dev --classmap-authoritative` on PHP 8.2 or newer.
-3. Keep `APP_DEBUG=0` in production.
-4. Apply database migrations on staging first.
-5. Leave `LEGACY_REDIRECTS_ENABLED=0` until the redirect map is verified.
+2. Apply `database/migrations/20260828_001_create_legacy_url_redirect.sql` and
+   `database/migrations/20260828_002_add_url_alias_sef_index.sql`; the second
+   migration keeps
+   root-level slug routing fast as the catalogue grows.
+3. Run `composer install --no-dev --classmap-authoritative` on PHP 8.2 or newer.
+4. Keep `APP_DEBUG=0` in production.
+5. Apply database migrations on staging first.
+6. Leave `LEGACY_REDIRECTS_ENABLED=0` until the redirect map is verified.

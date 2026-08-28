@@ -9,15 +9,13 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 	<base href="<?=PATH?>/">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
-	<?php if($this->route["controller"] == "Product") {
-	if(!empty($product->hide =="lock")) { ?>
-	<meta name="robots" content="noindex, nofollow" />
-	<?php }else{ ?>
-	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-	<?php } ?>
-	<?php }else{ ?>
-	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-	<?php } ?>
+	<?php
+	$robots = $this->meta['robots'] ?? 'noindex, nofollow';
+	if ($this->route['controller'] === 'Product' && !empty($product) && $product->hide === 'lock') {
+		$robots = 'noindex, nofollow';
+	}
+	?>
+	<meta name="robots" content="<?=h($robots)?>" />
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 	<link rel="icon" href="images/favicon.svg" type="image/svg" />
     <link rel="shortcut icon" href="images/favicon.svg" type="image/svg" />

@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\admin\Cron;
 use app\models\AppModel;
 use app\models\User;
+use app\services\SitemapGenerator;
 use ishop\App;
 
 class CronController extends AppController {
@@ -60,8 +61,11 @@ class CronController extends AppController {
 	     return "Задание выполнено!";
 	}
 	
-	public function sitemapAction() {	
-	     return "Задание выполнено!";
+	public function sitemapAction() {
+		$count = (new SitemapGenerator())->generate();
+		\R::exec('UPDATE cron SET date_update = ? WHERE id = ?', [date('Y-m-d H:i:s'), $_GET['id'] ?? 2]);
+		$this->layout = false;
+		$this->set(compact('count'));
 	}
 	
 	public function ymlfidAction() {	

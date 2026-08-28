@@ -19,6 +19,7 @@ abstract class Controller{
         $this->model = $route['controller'];
         $this->view = $route['action'];
         $this->prefix = $route['prefix'];
+        $this->meta['robots'] = $this->robotsDirective();
     }
 
     public function getView(){
@@ -37,7 +38,26 @@ abstract class Controller{
 		$this->meta['shop_name'] = h($shop_name);
 		$this->meta['shop_img'] = h($shop_img);
 		$canonicalUrl = $this->route['canonical_url'] ?? $shop_url;
+		if ($canonicalUrl === '' && $this->meta['robots'] === 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1') {
+			$requestPath = (string)(parse_url((string)($_SERVER['REQUEST_URI'] ?? '/'), PHP_URL_PATH) ?: '/');
+			$requestPath = '/' . ltrim($requestPath, '/');
+			$canonicalUrl = rtrim(PATH, '/') . ($requestPath === '/' ? '/' : rtrim($requestPath, '/'));
+		}
 		$this->meta['shop_url'] = h($canonicalUrl);
+    }
+
+    private function robotsDirective(): string
+    {
+        if ($this->prefix !== '') {
+            return 'noindex, nofollow';
+        }
+
+        $noIndexControllers = ['Cart', 'Comparison', 'Complete', 'Cron', 'Search', 'User'];
+        if (in_array($this->controller, $noIndexControllers, true)) {
+            return 'noindex, nofollow';
+        }
+
+        return 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
     }
 
     public function isAjax() {

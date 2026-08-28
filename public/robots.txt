@@ -1,2 +1,11 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /admin/
+Disallow: /cron/
+Disallow: /cart/
+Disallow: /user/
+Disallow: /search/
+Disallow: /*?*
+
+Sitemap: https://techtires.ru/sitemap.xml
+Host: techtires.ru
