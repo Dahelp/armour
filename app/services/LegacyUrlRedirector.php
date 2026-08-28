@@ -14,6 +14,11 @@ final class LegacyUrlRedirector
             return;
         }
 
+        $requestMethod = strtoupper((string)($_SERVER['REQUEST_METHOD'] ?? 'GET'));
+        if (!in_array($requestMethod, ['GET', 'HEAD'], true)) {
+            return;
+        }
+
         $requestPath = self::normalisePath($requestPath);
         if ($requestPath === '') {
             return;
@@ -44,7 +49,7 @@ final class LegacyUrlRedirector
         exit;
     }
 
-    private static function normalisePath(string $path): string
+    public static function normalisePath(string $path): string
     {
         $path = rawurldecode($path);
         $path = trim(str_replace('\\', '/', $path), '/');

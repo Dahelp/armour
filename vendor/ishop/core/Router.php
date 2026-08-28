@@ -26,7 +26,7 @@ class Router{
             if(class_exists($controller)){
                 $controllerObject = new $controller(self::$route);
                 $action = self::lowerCamelCase(self::$route['action']) . 'Action';
-                if(method_exists($controllerObject, $action)){
+                if(is_callable([$controllerObject, $action])){
                     $controllerObject->$action();
                     $controllerObject->getView();
                 }else{
@@ -41,6 +41,7 @@ class Router{
     }
 
     public static function matchRoute($url){
+        self::$route = [];
         foreach(self::$routes as $pattern => $route){
             if(preg_match("#{$pattern}#i", $url, $matches)){
                 foreach($matches as $k => $v){
@@ -83,6 +84,12 @@ class Router{
                 return '';
             }
         }
+    }
+
+    public static function reset(): void
+    {
+        self::$routes = [];
+        self::$route = [];
     }
 
 }

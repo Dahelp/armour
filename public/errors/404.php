@@ -1,66 +1,26 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+<html lang="ru">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Free 404 White for Iphone, Android & Smartphone Mobile Website Template | Home :: w3layouts</title>
-    <style type="text/css">
-        body{
-            font-family:Arial, Helvetica, sans-serif;
-        }
-        .wrap{
-            width:1000px;
-            margin:0 auto;
-        }
-        .logo{
-            width:430px;
-            position:absolute;
-            top:25%;
-            left:35%;
-        }
-        p a{
-            color:#eee;
-            font-size:13px;
-            margin-left:30px;
-            padding:5px;
-            background:#FF3366;
-            text-decoration:none;
-            -webkit-border-radius:.3em;
-            -moz-border-radius:.3em;
-            border-radius:.3em;
-        }
-        p a:hover{
-            color: #fff;
-        }
-        .footer{
-            position:absolute;
-            bottom:10px;
-            right:10px;
-            font-size:12px;
-            color:#aaa;
-        }
-        .footer a{
-            color:#666;
-            text-decoration:none;
-        }
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, follow">
+    <title>Страница не найдена — TechTires</title>
+    <style>
+        body { margin: 0; background: #f5f7fa; color: #18212b; font: 16px/1.5 Arial, sans-serif; }
+        main { box-sizing: border-box; max-width: 720px; min-height: 80vh; margin: 0 auto; padding: 12vh 24px 48px; text-align: center; }
+        strong { display: block; color: #d9272e; font-size: clamp(72px, 18vw, 144px); line-height: 1; }
+        h1 { margin: 24px 0 12px; font-size: clamp(28px, 5vw, 42px); }
+        p { margin: 0 auto 28px; max-width: 560px; color: #586575; }
+        a { display: inline-block; border-radius: 6px; background: #d9272e; padding: 12px 22px; color: #fff; text-decoration: none; }
+        a:focus, a:hover { background: #b91f25; }
     </style>
 </head>
 <body>
-<div class="wrap">
-    <div class="logo">
-        <img src="/errors/images/404.png" alt=""  />
-        <p><a href="<?=PATH;?>">Go back to Home</a></p>
-    </div>
-</div>
-<div class="footer">
-    Design by - <a href="http://w3layouts.com">W3Layouts</a>
-</div>
-
+<main>
+    <strong>404</strong>
+    <h1>Страница не найдена</h1>
+    <p>Возможно, адрес изменился. Перейдите в каталог или воспользуйтесь поиском на главной странице.</p>
+    <a href="<?= htmlspecialchars(PATH, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?>">Вернуться на главную</a>
+</main>
 </body>
 </html>
