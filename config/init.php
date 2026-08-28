@@ -1,7 +1,9 @@
 <?php
 
-define("APP_ENV", getenv('APP_ENV') ?: 'production');
-$debug = filter_var(getenv('APP_DEBUG') ?: '0', FILTER_VALIDATE_BOOL);
+require_once __DIR__ . '/environment.php';
+
+define("APP_ENV", config_env('APP_ENV', 'production'));
+$debug = filter_var(config_env('APP_DEBUG', '0'), FILTER_VALIDATE_BOOL);
 define("DEBUG", $debug);
 define("ROOT", dirname(__DIR__));
 define("WWW", ROOT . '/public');
@@ -12,7 +14,7 @@ define("CACHE", ROOT . '/tmp/cache');
 define("CONF", ROOT . '/config');
 define("LAYOUT", 'watches');
 define("TEMPLATE", 'armour');
-$configuredUrl = trim((string)getenv('APP_URL'));
+$configuredUrl = trim((string)config_env('APP_URL', ''));
 if ($configuredUrl !== '') {
     $app_path = rtrim($configuredUrl, '/');
 } else {

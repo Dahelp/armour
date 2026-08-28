@@ -10,7 +10,7 @@ final class LegacyUrlRedirector
 {
     public static function redirectIfNeeded(string $requestPath): void
     {
-        if (!filter_var(getenv('LEGACY_REDIRECTS_ENABLED') ?: '0', FILTER_VALIDATE_BOOL)) {
+        if (!filter_var(config_env('LEGACY_REDIRECTS_ENABLED', '0'), FILTER_VALIDATE_BOOL)) {
             return;
         }
 
@@ -39,7 +39,7 @@ final class LegacyUrlRedirector
             $statusCode = 301;
         }
 
-        $baseUrl = rtrim((string)(getenv('LEGACY_REDIRECT_BASE_URL') ?: PATH), '/');
+        $baseUrl = rtrim((string)config_env('LEGACY_REDIRECT_BASE_URL', PATH), '/');
         header('Location: ' . $baseUrl . '/' . $targetPath, true, $statusCode);
         exit;
     }

@@ -656,7 +656,18 @@ class ProductController extends AppController {
     }
 	
 	public function filtersAction(){
-		$groups = \R::getAssoc('SELECT attribute_group.id, attribute_group.title FROM attribute_group, attribute_category WHERE attribute_category.group_id = attribute_group.id AND attribute_category.category_id = "'.$_POST['id'].'"');
+		$categoryId = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+		if (!$categoryId) {
+			http_response_code(400);
+			die;
+		}
+		$groups = \R::getAssoc(
+			'SELECT attribute_group.id, attribute_group.title
+			 FROM attribute_group
+			 JOIN attribute_category ON attribute_category.group_id = attribute_group.id
+			 WHERE attribute_category.category_id = ?',
+			[$categoryId]
+		);
 		$data = \R::getAssoc('SELECT * FROM `attribute_value` ORDER BY value');
         $attrs = [];
         foreach($data as $k => $v){

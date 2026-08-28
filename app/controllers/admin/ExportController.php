@@ -10,9 +10,15 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ExportController extends AppController {
 
-    public function indexAction(){
+	public function indexAction(){
 		
 		if($_POST) {		
+			$articles = $this->parseArticles((string)($_POST['article'] ?? ''));
+			if (!$articles) {
+				$_SESSION['error'] = 'Не выбраны корректные артикулы для экспорта';
+				redirect(PATH . '/admin/export/index');
+			}
+			$articleSlots = \R::genSlots($articles);
 		
 			if($_POST["format"] == "xls_price_roznica") {
 				$date = date('dmY');
@@ -30,7 +36,7 @@ class ExportController extends AppController {
 				$sheet->setCellValue('D1', 'Цена');
 				$sheet->setCellValue('E1', 'Ссылка на товар');
 				
-				$products = \R::find('product', "article IN (".$_POST["article"].")");
+				$products = \R::find('product', "article IN ({$articleSlots})", $articles);
 
 				$i = 2;
 				foreach($products as $prod) {
@@ -40,9 +46,9 @@ class ExportController extends AppController {
 					$sheet->setCellValue('B'.$pos.'', ''.$prod["name"].'');
 					$sheet->setCellValue('C'.$pos.'', ''.$prod["quantity"].'');
 					$sheet->setCellValue('D'.$pos.'', ''.$prod["price"].'');
-					$sheet->setCellValue('E'.$pos.'', ''.PATH.'/product/'.$prod["alias"].'');
+					$sheet->setCellValue('E'.$pos.'', ''.PATH.'/'.$prod["alias"].'');
 					
-					$sheet->getCell('E'.$pos.'')->getHyperlink()->setUrl(''.PATH.'/product/'.$prod["alias"].'');
+					$sheet->getCell('E'.$pos.'')->getHyperlink()->setUrl(''.PATH.'/'.$prod["alias"].'');
 					$sheet->getCell('E'.$pos.'')->getHyperlink()->setTooltip('Переход в карточку товара на сайт');
 					$sheet->getStyle('E'.$pos.'')->applyFromArray(
 						array(
@@ -65,7 +71,7 @@ class ExportController extends AppController {
 			}
 			if($_POST["format"] == "xml_price_roznica") {
 				
-				$products = \R::find('product', "article IN (".$_POST["article"].")");
+				$products = \R::find('product', "article IN ({$articleSlots})", $articles);
 				$date = date("Y-m-d H:m");
 				$dates = date('dmY');
 				$fd = fopen("xml/export-its-".$dates.".xml", 'w+') or die("не удалось создать файл");
@@ -80,7 +86,14 @@ class ExportController extends AppController {
 							</currencies>
 							<categories>";				
 
-				$category = \R::getAll("SELECT category.id, category.name, category.parent_id FROM `category`, `product` WHERE category.id = product.category_id AND category.hide ='show' AND product.article IN (".$_POST["article"].") GROUP BY category.id");
+				$category = \R::getAll(
+					"SELECT category.id, category.name, category.parent_id
+					 FROM category
+					 JOIN product ON category.id = product.category_id
+					 WHERE category.hide = 'show' AND product.article IN ({$articleSlots})
+					 GROUP BY category.id, category.name, category.parent_id",
+					$articles
+				);
 				foreach($category as $cat) {
 					if($cat["parent_id"] =="0"){ $parent = ""; }
 					else { $parent = "parentId='".$cat["parent_id"]."'"; }
@@ -105,7 +118,7 @@ class ExportController extends AppController {
 					  $vendor = \R::findOne('brand', "id = ?", [$prod["brand_id"]]);
 				   
 						$text.= "<offer id=\"".$prod['article']."\" available=\"".$available."\">
-								  <url>".PATH."/product/".$prod["alias"]."</url>
+						  <url>".PATH."/".$prod["alias"]."</url>
 								  <price>".$prod["price"]."</price>					 
 								  <currencyId>RUR</currencyId>
 								  <categoryId>".$prod["category_id"]."</categoryId>
@@ -143,6 +156,19 @@ class ExportController extends AppController {
 		}
 		
 		$this->setMeta('Экспорт товаров');
+	}
+
+	private function parseArticles(string $value): array
+	{
+		$items = preg_split('/\s*,\s*/', $value, -1, PREG_SPLIT_NO_EMPTY) ?: [];
+		$items = array_map(static function (string $item): string {
+			return trim($item, " \t\n\r\0\x0B\"'");
+		}, $items);
+		$items = array_filter($items, static function (string $item): bool {
+			return $item !== '' && preg_match('/^[\p{L}\p{N}._\/-]{1,100}$/u', $item) === 1;
+		});
+
+		return array_values(array_unique($items));
 	}
 	
 }

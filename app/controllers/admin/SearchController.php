@@ -8,11 +8,22 @@ class SearchController extends AppController{
 
     public function typeaheadAction(){
         if($this->isAjax()){
-            $query = !empty(trim($_GET['query'])) ? trim($_GET['query']) : null;
+            $query = preg_replace('/\s+/u', ' ', trim((string)($_GET['query'] ?? '')));
+            $query = mb_substr((string)$query, 0, 100, 'UTF-8');
             if($query){
-                //$products = \R::getAll("SELECT id, name FROM product WHERE concat(name,article) LIKE ? AND hide = 'show' LIMIT 15", ["%{$query}%"]);
-                $products = \R::getAll("SELECT id, name FROM (SELECT id, name FROM product WHERE concat(name,article) LIKE '%{$query}%' UNION SELECT product.id, product.name FROM product, plagins_cross WHERE product.id = plagins_cross.product_id AND (concat(plagins_cross.cross_name,plagins_cross.cross_abbreviated_name) LIKE '%{$query}%')) product LIMIT 15");
-				if($products) { echo json_encode($products); }
+                $like = "%{$query}%";
+                $products = \R::getAll(
+                    "SELECT id, name FROM (
+                        SELECT id, name FROM product WHERE concat(name, article) LIKE ?
+                        UNION
+                        SELECT product.id, product.name FROM product
+                        JOIN plagins_cross ON product.id = plagins_cross.product_id
+                        WHERE concat(plagins_cross.cross_name, plagins_cross.cross_abbreviated_name) LIKE ?
+                    ) product LIMIT 15",
+                    [$like, $like]
+                );
+                header('Content-Type: application/json; charset=utf-8');
+                echo json_encode($products, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
             }
         }

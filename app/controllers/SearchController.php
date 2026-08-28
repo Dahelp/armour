@@ -9,11 +9,24 @@ class SearchController extends AppController{
 
     public function typeaheadAction(){
         if($this->isAjax()){
-            $query = !empty(trim($_GET['query'])) ? trim($_GET['query']) : null;
+            $query = $this->normaliseQuery($_GET['query'] ?? '');
             if($query){
-                //$products = \R::getAll("SELECT id, name FROM product WHERE concat(name,article) LIKE ? AND hide = 'show' LIMIT 15", ["%{$query}%"]);
-                $products = \R::getAll("SELECT id, name, img, price, alias FROM (SELECT id, name, img, price, alias FROM product WHERE hide = 'show' AND concat(name,article) LIKE '%{$query}%' UNION SELECT product.id, product.name, product.img, product.price, product.alias FROM product, plagins_cross WHERE product.id = plagins_cross.product_id AND (concat(plagins_cross.cross_name,plagins_cross.cross_abbreviated_name) LIKE '%{$query}%')) product LIMIT 15");
-				if($products) { echo json_encode($products); }
+                $like = "%{$query}%";
+                $products = \R::getAll(
+                    "SELECT id, name, img, price, alias FROM (
+                        SELECT id, name, img, price, alias
+                        FROM product
+                        WHERE hide = 'show' AND concat(name, article) LIKE ?
+                        UNION
+                        SELECT product.id, product.name, product.img, product.price, product.alias
+                        FROM product
+                        JOIN plagins_cross ON product.id = plagins_cross.product_id
+                        WHERE concat(plagins_cross.cross_name, plagins_cross.cross_abbreviated_name) LIKE ?
+                    ) product LIMIT 15",
+                    [$like, $like]
+                );
+                header('Content-Type: application/json; charset=utf-8');
+                echo json_encode($products, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
             }
         }
@@ -24,19 +37,45 @@ class SearchController extends AppController{
 		
 		$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perpage = App::$app->getProperty('pagination');	
-		if(!$_GET['s']){
+		if(empty($_GET['s'])){
             throw new \Exception('Страница не найдена', 404);
         }
-        $query = !empty(trim($_GET['s'])) ? trim($_GET['s']) : null;
-		
-		$total = \R::getAll("SELECT * FROM (SELECT id, name, price, opt_price, alias, hit, new_product, sale, img, category_id, article, quantity, price_rrs FROM product WHERE hide = 'show' AND concat(name,article) LIKE '%{$query}%' UNION SELECT product.id, product.name, product.price, product.opt_price, product.alias, product.hit, product.new_product, product.sale, product.img, product.category_id, product.article, product.quantity, product.price_rrs FROM product, plagins_cross WHERE product.id = plagins_cross.product_id AND (concat(plagins_cross.cross_name,plagins_cross.cross_abbreviated_name) LIKE '%{$query}%')) product");
-        $total = count($total);
+        $query = $this->normaliseQuery($_GET['s']);
+        if ($query === '') {
+            throw new \Exception('Страница не найдена', 404);
+        }
+        $like = "%{$query}%";
+		$total = (int)\R::getCell(
+            "SELECT COUNT(*) FROM (
+                SELECT id FROM product
+                WHERE hide = 'show' AND concat(name, article) LIKE ?
+                UNION
+                SELECT product.id FROM product
+                JOIN plagins_cross ON product.id = plagins_cross.product_id
+                WHERE concat(plagins_cross.cross_name, plagins_cross.cross_abbreviated_name) LIKE ?
+            ) product",
+            [$like, $like]
+        );
 		$pagination = new Pagination($page, $perpage, $total);
         $start = $pagination->getStart();
 		
         if($query){
-            //$products = \R::find('product', "concat(name,article) LIKE ? AND hide = 'show'", ["%{$query}%"]);
-			$products = \R::getAll("SELECT * FROM (SELECT id, name, price, alias, hit, new_product, sale, img, category_id, article, quantity, stock_status_id FROM product WHERE hide = 'show' AND concat(name,article) LIKE '%{$query}%' UNION SELECT product.id, product.name, product.price, product.alias, product.hit, product.new_product, product.sale, product.img, product.category_id, product.article, product.quantity, product.stock_status_id FROM product, plagins_cross WHERE product.id = plagins_cross.product_id AND (concat(plagins_cross.cross_name,plagins_cross.cross_abbreviated_name) LIKE '%{$query}%')) product ORDER BY FIELD(`stock_status_id`, 1,3,2,0), name ASC LIMIT $start, $perpage");
+			$products = \R::getAll(
+                "SELECT * FROM (
+                    SELECT id, name, price, alias, hit, new_product, sale, img, category_id, article, quantity, stock_status_id
+                    FROM product
+                    WHERE hide = 'show' AND concat(name, article) LIKE ?
+                    UNION
+                    SELECT product.id, product.name, product.price, product.alias, product.hit, product.new_product,
+                           product.sale, product.img, product.category_id, product.article, product.quantity, product.stock_status_id
+                    FROM product
+                    JOIN plagins_cross ON product.id = plagins_cross.product_id
+                    WHERE concat(plagins_cross.cross_name, plagins_cross.cross_abbreviated_name) LIKE ?
+                ) product
+                ORDER BY FIELD(`stock_status_id`, 1, 3, 2, 0), name ASC
+                LIMIT {$start}, {$perpage}",
+                [$like, $like]
+            );
         
         }
         $this->setMeta('Поиск по: ' . h($query));
@@ -46,6 +85,12 @@ class SearchController extends AppController{
 		$this->setMeta('Поиск по: ' . h($query), '', '', '' . App::$app->getProperty('shop_name') . '', ''.PATH.'/images/' . App::$app->getProperty('og_logo') . '', ''.PATH.''.$path_controller.''.$path_alias.'');
 		/*SEO*/
         $this->set(compact('products', 'query', 'pagination', 'total'));
+    }
+
+    private function normaliseQuery(string $query): string
+    {
+        $query = preg_replace('/\s+/u', ' ', trim($query));
+        return mb_substr((string)$query, 0, 100, 'UTF-8');
     }
 
 }
