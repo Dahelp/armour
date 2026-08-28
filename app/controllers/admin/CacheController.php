@@ -15,12 +15,10 @@ class CacheController extends AppController {
         $cache = Cache::instance();
         switch($key){
             case 'category':
-                $cache->delete('cats');
-                $cache->delete('ishop_menu');
+                $cache->clear();
                 break;
             case 'filter':
-                $cache->delete('filter_group');
-                $cache->delete('filter_attrs');
+                $cache->clear();
                 break;
         }
         $_SESSION['success'] = 'Выбранный кэш удален';

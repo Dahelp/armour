@@ -23,27 +23,35 @@ class Filter{
 
     protected function run($ids = null){
         $cache = Cache::instance();
-        $this->groups = $cache->get('filter_group');
+		$groupCacheKey = $this->cacheKey('filter_group', $ids);
+		$attributeCacheKey = $this->cacheKey('filter_attrs', $ids);
+        $this->groups = $cache->get($groupCacheKey);
         if(!$this->groups){
 			if(!empty($ids)){
 				$this->groups = $this->getGroups($ids);
 			}else{
 				$this->groups = $this->getGroups();
 			}
-            $cache->set('filter_group', $this->groups, 0);
+            $cache->set($groupCacheKey, $this->groups, 3600);
         }
-        $this->attrs = $cache->get('filter_attrs');
+        $this->attrs = $cache->get($attributeCacheKey);
         if(!$this->attrs){
 			if(!empty($ids)){
 				$this->attrs = self::getAttrs($ids);
 			}else{
 				$this->attrs = self::getAttrs();
 			}
-            $cache->set('filter_attrs', $this->attrs, 0);
+            $cache->set($attributeCacheKey, $this->attrs, 3600);
         }
         $filters = $this->getHtml();
         echo $filters;
 
+    }
+
+    private function cacheKey(string $prefix, mixed $ids = null): string
+    {
+		$scope = $ids === null || $ids === '' ? 'all' : hash('sha256', (string)$ids);
+		return $prefix . ':' . $scope;
     }
 
     protected function getHtml(){
@@ -91,9 +99,10 @@ class Filter{
     public static function getCountGroups($filter){
         $filters = explode(',', $filter);
         $cache = Cache::instance();
-        $attrs = $cache->get('filter_attrs');
+        $attrs = $cache->get('filter_attrs:all');
         if(!$attrs){
             $attrs = self::getAttrs();
+			$cache->set('filter_attrs:all', $attrs, 3600);
         }
         $data = [];
         foreach($attrs as $key => $item){
