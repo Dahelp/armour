@@ -22,12 +22,13 @@ class CategoryController extends AppController {
         $breadcrumbs = Breadcrumbs::getBreadcrumbs($category->id, NULL, $alias, mb_strtolower($this->route["controller"]));
 
         $cat_model = new Category();
-        $ids = $cat_model->getIds($category->id);
-        $ids = !$ids ? $category->id : $ids . $category->id;
+        $categoryIds = $cat_model->getIdList((int)$category->id);
+        $ids = implode(',', $categoryIds);
         $page = max(1, isset($_GET['page']) ? (int)$_GET['page'] : 1);
-        $perpage = App::$app->getProperty('pagination');
+        $perpage = max(1, (int)App::$app->getProperty('pagination'));
 
         $sql_part = '';
+		$queryBindings = $categoryIds;
 		
         if(!empty($_GET['filter'])){
             /*
@@ -39,10 +40,14 @@ class CategoryController extends AppController {
             $filter = Filter::getFilter();
 			
             if($filter){               
-				
-				//$cnt = substr_count($filter, ',') + 1; //с перезагрузкой
+				$filterIds = array_values(array_unique(array_filter(array_map('intval', explode(',', $filter)))));
 				$cnt = Filter::getCountGroups($filter); //без перезагрузки
-                $sql_part = "AND product.id IN (SELECT product_id FROM attribute_product WHERE attr_id IN ($filter) GROUP BY product_id HAVING COUNT(product_id) = $cnt)";
+                if ($filterIds !== [] && $cnt > 0) {
+					$sql_part = 'AND product.id IN (SELECT product_id FROM attribute_product WHERE attr_id IN ('
+						. \R::genSlots($filterIds)
+						. ') GROUP BY product_id HAVING COUNT(DISTINCT attr_id) = ' . (int)$cnt . ')';
+					$queryBindings = array_merge($queryBindings, $filterIds);
+				}
             }
 			
         }
@@ -55,11 +60,13 @@ class CategoryController extends AppController {
 		$sql_sort = $sqlSortOptions[(string)($_GET['sort'] ?? '')]
 			?? 'ORDER BY FIELD(`stock_status_id`, 1,3,2,0), name ASC';
 
-        $total = \R::count('product', "hide = 'show' AND category_id IN ($ids) $sql_part");
+        $categorySlots = \R::genSlots($categoryIds);
+        $condition = "hide = 'show' AND category_id IN ($categorySlots) $sql_part";
+        $total = \R::count('product', $condition, $queryBindings);
         $pagination = new Pagination($page, $perpage, $total);
         $start = $pagination->getStart();
 
-        $products = \R::find('product', "hide = 'show' AND category_id IN ($ids) $sql_part $sql_sort LIMIT $start, $perpage");
+        $products = \R::find('product', "$condition $sql_sort LIMIT $start, $perpage", $queryBindings);
 		[$productAttributes, $brands] = (new CatalogListingLoader())->load($products);
 		$subcategories = \R::getAll('SELECT id, alias, img, name FROM category WHERE parent_id = ?', [$category->id]);
 		$inseoProd = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $category->id]);

@@ -50,7 +50,8 @@ class Filter{
 
     private function cacheKey(string $prefix, mixed $ids = null): string
     {
-		$scope = $ids === null || $ids === '' ? 'all' : hash('sha256', (string)$ids);
+		$normalisedIds = self::normaliseIds($ids);
+		$scope = $normalisedIds === [] ? 'all' : hash('sha256', implode(',', $normalisedIds));
 		return $prefix . ':' . $scope;
     }
 
@@ -64,25 +65,39 @@ class Filter{
         return ob_get_clean();
     }
 
-    public function getGroups($ids = null){
-		if(!empty($ids)){
-			return \R::getAssoc('SELECT attribute_group.id, attribute_group.title, attribute_category.group_id FROM attribute_group, attribute_category WHERE attribute_group.id = attribute_category.group_id AND attribute_category.category_id IN ('.$ids.') ORDER BY attribute_group.position');
+	public function getGroups($ids = null){
+		$categoryIds = self::normaliseIds($ids);
+		if($categoryIds !== []){
+			return \R::getAssoc('SELECT attribute_group.id, attribute_group.title, attribute_category.group_id FROM attribute_group, attribute_category WHERE attribute_group.id = attribute_category.group_id AND attribute_category.category_id IN (' . \R::genSlots($categoryIds) . ') ORDER BY attribute_group.position', $categoryIds);
 		}else{
 			return \R::getAssoc('SELECT id, title FROM attribute_group ORDER BY attribute_group.position');
 		}
     }
 
     protected static function getAttrs($ids = null){
-		if(!empty($ids)){
-			$data = \R::getAssoc('SELECT attribute_value.id, attribute_value.value, attribute_value.attr_group_id FROM attribute_value, attribute_product, product WHERE attribute_value.id = attribute_product.attr_id AND product.id = attribute_product.product_id AND product.category_id IN ('.$ids.') GROUP BY attribute_value.value ORDER BY attribute_value.value');
+		$categoryIds = self::normaliseIds($ids);
+		if($categoryIds !== []){
+			$data = \R::getAssoc('SELECT attribute_value.id, attribute_value.value, attribute_value.attr_group_id FROM attribute_value, attribute_product, product WHERE attribute_value.id = attribute_product.attr_id AND product.id = attribute_product.product_id AND product.category_id IN (' . \R::genSlots($categoryIds) . ') GROUP BY attribute_value.id, attribute_value.value, attribute_value.attr_group_id ORDER BY attribute_value.value', $categoryIds);
         }else{
-			$data = \R::getAssoc('SELECT attribute_value.id, attribute_value.value, attribute_value.attr_group_id FROM attribute_value, attribute_product WHERE attribute_value.id = attribute_product.attr_id GROUP BY attribute_value.value ORDER BY attribute_value.value');
+			$data = \R::getAssoc('SELECT attribute_value.id, attribute_value.value, attribute_value.attr_group_id FROM attribute_value, attribute_product WHERE attribute_value.id = attribute_product.attr_id GROUP BY attribute_value.id, attribute_value.value, attribute_value.attr_group_id ORDER BY attribute_value.value');
         }
 		$attrs = [];
         foreach($data as $k => $v){
             $attrs[$v['attr_group_id']][$k] = $v['value'];
         }
         return $attrs;
+    }
+
+    /** @return list<int> */
+    private static function normaliseIds(mixed $ids): array
+    {
+		$values = is_array($ids) ? $ids : explode(',', (string)$ids);
+		$values = array_values(array_unique(array_filter(
+			array_map('intval', $values),
+			static fn(int $value): bool => $value > 0
+		)));
+		sort($values, SORT_NUMERIC);
+		return $values;
     }
 
     public static function getFilter(){

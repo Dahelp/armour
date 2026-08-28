@@ -37,9 +37,9 @@ Before switching traffic:
 
 1. Rotate the old DB, SMTP and FTP passwords because they existed in Git.
 2. Apply `database/migrations/20260828_001_create_legacy_url_redirect.sql` and
-   `database/migrations/20260828_002_add_url_alias_sef_index.sql`; the second
-   migration keeps
-   root-level slug routing fast as the catalogue grows.
+   all following migrations in filename order. Migration `002` keeps root-level
+   slug routing fast; migration `003` adds indexes for catalogue filters,
+   product recommendations, reviews and galleries.
 3. Run `composer install --no-dev --classmap-authoritative` on PHP 8.2 or newer.
 4. Keep `APP_DEBUG=0` in production.
 5. Apply database migrations on staging first.
