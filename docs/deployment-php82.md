@@ -22,6 +22,11 @@ Required for outgoing mail:
 
 FTP variables are only required by the administrative FTP import.
 
+`CRON_TOKEN` is required for scheduled HTTP jobs. Prefer sending it in the
+`X-Cron-Token` header. A `token` query parameter is supported for schedulers
+that cannot send custom headers, but headers avoid leaking the token into URLs
+and access logs.
+
 Before switching traffic:
 
 1. Rotate the old DB, SMTP and FTP passwords because they existed in Git.

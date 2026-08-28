@@ -51,7 +51,10 @@ class User extends AppModel {
                     foreach($user as $k => $v){
                         if($k != 'password') $_SESSION['user'][$k] = $v;
                     }
-					$res = \R::exec("UPDATE user SET date_last_visit = '".date('Y-m-d H:i:s')."' WHERE email = '".$email."'");
+					\R::exec(
+						'UPDATE user SET date_last_visit = ? WHERE email = ?',
+						[date('Y-m-d H:i:s'), $email]
+					);
 					
                     return true;					
                 }
@@ -93,7 +96,7 @@ class User extends AppModel {
 		$times = $res["expire"] - $now;
 		if($times < 0) {
 			$_SESSION['error'] = 'Ссылка устарела или вы перешли по некорректной ссылке. Пройдите процедуру восстановления заново по <a href="user/recover">ссылке</a>';
-			\R::exec("DELETE FROM recover WHERE expire < '".$now."'");
+			\R::exec('DELETE FROM recover WHERE expire < ?', [$now]);
 			return false;
 		}
 		return $res;

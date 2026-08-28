@@ -4,9 +4,45 @@ namespace app\controllers;
 
 use app\models\admin\Cron;
 use app\models\AppModel;
+use app\models\User;
 use ishop\App;
 
 class CronController extends AppController {
+
+	public function __construct($route) {
+		$this->authoriseRequest();
+		$this->normaliseCronId();
+		parent::__construct($route);
+	}
+
+	private function authoriseRequest(): void {
+		if (User::isAdmin()) {
+			return;
+		}
+
+		$expectedToken = (string)config_env('CRON_TOKEN', '');
+		$providedToken = (string)($_SERVER['HTTP_X_CRON_TOKEN'] ?? ($_GET['token'] ?? ''));
+		if ($expectedToken !== '' && $providedToken !== '' && hash_equals($expectedToken, $providedToken)) {
+			return;
+		}
+
+		http_response_code(403);
+		throw new \Exception('Доступ к заданию запрещён', 403);
+	}
+
+	private function normaliseCronId(): void {
+		if (!isset($_GET['id'])) {
+			return;
+		}
+
+		$id = filter_var($_GET['id'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+		if ($id === false) {
+			http_response_code(400);
+			throw new \Exception('Некорректный идентификатор задания', 400);
+		}
+
+		$_GET['id'] = (int)$id;
+	}
 	
 	public function emailsImapAction() {	
 	     return "Задание выполнено!";
