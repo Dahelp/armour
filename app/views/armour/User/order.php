@@ -41,7 +41,7 @@
 								<?php foreach($order as $item): ?>									
 									<tr>
 										<td><img src="images/product/mini/<?=$item["img"]?>" /></td>
-										<td><a href="product/<?=$item["alias"]?>"><?=$item["name"]?></a></td>
+										<td><a href="/<?=$item["alias"]?>"><?=$item["name"]?></a></td>
 										<td><?=$item["qty"]?></td>
 										<td><?=$curr['symbol_left'];?> <?=$item["price"]?> <?=$curr['symbol_right'];?><?php $summa_sum += $item["price"]*$item["qty"]?></td>
 									</tr>

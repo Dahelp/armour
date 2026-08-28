@@ -146,7 +146,7 @@ class ProductController extends AppController {
         $mods = \R::findAll('modification', 'product_id = ?', [$product->id]);
 		
 		//InSEO
-		$inseo = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", [product, $product->category_id]);
+		$inseo = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $product->category_id]);
 		if($product->title) { $title = $product->title; }else{ $title = \ishop\App::seoreplace($inseo->title, $product->id); }
 		if($product->description) { $description = $product->description; }else{ $description = \ishop\App::seoreplace($inseo->description, $product->id); }
 		if($product->keywords) { $keywords = $product->keywords; }else{ $keywords = \ishop\App::seoreplace($inseo->keywords, $product->id); }

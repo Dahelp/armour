@@ -55,7 +55,7 @@ class CompleteController extends AppController {
         $gallery = \R::findAll('plagins_complete_gallery', 'complete_id = ?', [$complete->id]);
 		
 		//InSEO
-		$inseo = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", [complete, $complete->category_id]);
+		$inseo = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['complete', $complete->category_id]);
 		if($complete->title) { $title = $complete->title; }else{ $title = \ishop\App::seoreplace($inseo->title, $complete->id); }
 		if($complete->description) { $description = $complete->description; }else{ $description = \ishop\App::seoreplace($inseo->description, $complete->id); }
 		if($complete->keywords) { $keywords = $complete->keywords; }else{ $keywords = \ishop\App::seoreplace($inseo->keywords, $complete->id); }

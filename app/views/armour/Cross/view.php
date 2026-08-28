@@ -65,7 +65,7 @@
 				<?php if($administr['groups'] == "1") { ?>
 					<div class="edit_prod"><a target="_blank" href="<?= ADMIN ?>/product/edit?id=<?=$product->id?>"><i class="far fa-edit"></i> Редактировать</a></div>
 				<?php } ?>
-				<a class="product-meta d-block fs-sm pb-2" href="category/<?=$cat_prod->alias?>" title="<?=$cat_prod->name?>"><?=$cat_prod->name?></a>				
+				<a class="product-meta d-block fs-sm pb-2" href="/<?=$cat_prod->alias?>" title="<?=$cat_prod->name?>"><?=$cat_prod->name?></a>
                 <h1 class="h3"><?php echo "".$product->name." аналог фильтра ".$cross->cross_name." ".$crossvendor->name.""; ?></h1>
                 <div class="fw-normal">
 					<div class="item_price_2 text-accent" id="base-price" data-base="<?=$product->price * $curr['value'];?>">
@@ -136,7 +136,7 @@
 							<?php }else{ ?>
 							<li ><?=$filter['title']?>: <span itemprop="name"><?=$filter['value']?></span></li>
 						<?php } } ?>
-							<li >Модель: <span itemprop="name"><a href="product/<?=$product->alias?>" title="<?=$product->name?>"><?=$product->model?></a></span></li>
+							<li >Модель: <span itemprop="name"><a href="/<?=$product->alias?>" title="<?=$product->name?>"><?=$product->model?></a></span></li>
             		</ul>
 				</div>
               </div>
@@ -292,12 +292,12 @@
 									<?php } ?>
 									<button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Add to wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
 									</div>						            
-						            <a class="card-img-top d-block overflow-hidden" href="product/<?=$item["alias"];?>">							
+						            <a class="card-img-top d-block overflow-hidden" href="/<?=$item["alias"];?>">
 							            <img src="images/product/mini/<?=$item["img"];?>" alt="" />
 						            </a>
 									<?php $cat_prod = \R::findOne('category', "id = ?", [$item["category_id"]]); ?>
 						            <div class="card-body py-2"><span class="product-meta d-block fs-xs pb-1"><?=$cat_prod["name"]?></span>
-							            <h3 class="product-title fs-sm text-truncate"><a href="product/<?=$item["alias"];?>"><?=$item["name"];?></a></h3>
+							            <h3 class="product-title fs-sm text-truncate"><a href="/<?=$item["alias"];?>"><?=$item["name"];?></a></h3>
 							            <div class="product-price">
 											<div class="product-sku">Код: <?=$item["article"];?></div>
 											<div class="product-curr">

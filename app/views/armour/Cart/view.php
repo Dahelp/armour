@@ -38,8 +38,8 @@
                                 <tbody>
                                 <?php foreach($_SESSION['cart'] as $id => $item): ?>
                                     <tr>
-                                        <td><a href="product/<?=$item['alias'] ?>"><img src="images/product/mini/<?= $item['img'] ?>" alt="<?=$item['name'] ?>"></a></td>
-                                        <td><a href="product/<?=$item['alias'] ?>"><?=$item['name'] ?></a></td>
+                                        <td><a href="/<?=$item['alias'] ?>"><img src="images/product/mini/<?= $item['img'] ?>" alt="<?=$item['name'] ?>"></a></td>
+                                        <td><a href="/<?=$item['alias'] ?>"><?=$item['name'] ?></a></td>
                                         <td style="text-align:center">
 											<?php if($item['qty'] > 1) { ?><span data-id="<?=$id;?>" class="my-minus-<?=$id;?> my-minus"><i class="fa fa-minus" aria-hidden="true"></i></span><?php } ?>
 												<span class="qty-item"><?=$item['qty'];?></span>

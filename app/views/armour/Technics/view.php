@@ -71,7 +71,7 @@
 				<?php if($administr['groups'] == "1") { ?>
 					<div class="edit_prod"><a target="_blank" href="<?= ADMIN ?>/plagins/technics-edit?id=<?=$technics->id?>"><i class="far fa-edit"></i> Редактировать</a></div>
 				<?php } ?>
-				<a class="product-meta d-block fs-sm pb-2" href="category/<?=$cat_prod->alias?>" title="<?=$cat_prod->name?>"><?=$cat_prod->name?></a>				
+				<a class="product-meta d-block fs-sm pb-2" href="/<?=$cat_prod->alias?>" title="<?=$cat_prod->name?>"><?=$cat_prod->name?></a>
                 <h1 class="h3">
 					<?=$type->name?> <?=$manufacturer->name?> <?=$technics->model?>
 				</h1>
@@ -245,15 +245,15 @@
 										<?php } ?>
 										<button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Add to wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
 									</div>						            
-						            <a class="card-img-top d-block overflow-hidden" href="product/<?=$product->alias;?>">							
+						            <a class="card-img-top d-block overflow-hidden" href="/<?=$product->alias;?>">
 							            <img src="images/product/mini/<?=$product->img;?>" alt="" />
 						            </a>
 									<?php $cat_prod = \R::findOne('category', "id = ?", [$product->category_id]); ?>
 						            <div class="card-body py-2"><span class="product-meta d-block fs-xs pb-1"><?=$cat_prod["name"]?></span>
 							            <h3 class="product-title fs-sm text-truncate">
-											<a href="product/<?=$product->alias;?>">
+											<a href="/<?=$product->alias;?>">
 											<?php
-												$inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", [product, $category->id]);												
+												$inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $category->id]);
 												if($inseo_prod->name) { 					
 													echo $name = \ishop\App::seoreplace($inseo_prod->name, $product->id);
 												}

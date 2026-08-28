@@ -46,12 +46,12 @@
 										<button id="comparison-<?=$product["id"]?>" class="btn-comparison2 btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Добавить в сравнени" data-bs-original-title="Comparison" aria-label="Comparison"><i class="far fa-tasks"></i></button>
 									<?php } ?>
 									</div>						            
-						            <a class="card-img-top d-block overflow-hidden" href="product/<?=$product["alias"];?>">							
+						            <a class="card-img-top d-block overflow-hidden" href="/<?=$product["alias"];?>">
 							            <img src="images/product/mini/<?=$product["img"];?>" alt="" />
 						            </a>
 									<?php $cat_prod = \R::findOne('category', "id = ?", [$product["category_id"]]); ?>
 						            <div class="card-body py-2"><span class="product-meta d-block fs-xs pb-1"><?=$cat_prod["name"]?></span>
-							            <h3 class="product-title fs-sm text-truncate"><a href="product/<?=$product["alias"];?>"><?=$product["name"];?></a></h3>
+							            <h3 class="product-title fs-sm text-truncate"><a href="/<?=$product["alias"];?>"><?=$product["name"];?></a></h3>
 							            <div class="product-price">
 											<div class="product-sku">Код: <?=$product["article"];?></div>
 											<div class="product-curr">

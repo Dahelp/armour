@@ -76,12 +76,12 @@
 									<?php } ?>
 									<button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Add to wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
 									</div>						            
-						            <a class="card-img-top d-block overflow-hidden" href="product/<?=$item["alias"];?>">							
+						            <a class="card-img-top d-block overflow-hidden" href="/<?=$item["alias"];?>">
 							            <img src="images/product/mini/<?=$item["img"];?>" alt="" />
 						            </a>
 									<?php $cat_prod = \R::findOne('category', "id = ?", [$item["category_id"]]); ?>
 						            <div class="card-body py-2"><span class="product-meta d-block fs-xs pb-1"><?=$cat_prod["name"]?></span>
-							            <h3 class="product-title fs-sm text-truncate"><a href="product/<?=$item["alias"];?>"><?=$item["name"];?></a></h3>
+							            <h3 class="product-title fs-sm text-truncate"><a href="/<?=$item["alias"];?>"><?=$item["name"];?></a></h3>
 							            <div class="product-price">
 											<div class="product-sku">Код: <?=$item["article"];?></div>
 											<div class="product-curr">

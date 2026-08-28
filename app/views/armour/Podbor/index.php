@@ -1,4 +1,4 @@
-<?php $inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", [product, $category->id]); ?>
+<?php $inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $category->id]); ?>
 <!--prdt-starts-->
 <div class="prdt">
     <div class="container">

@@ -1,4 +1,5 @@
 {
+  "license": "proprietary",
   "autoload": {
     "psr-4": {
       "ishop\\": "vendor/ishop/core",
@@ -6,14 +7,15 @@
     }
   },
   "require": {
-    "gabordemooij/redbean": "dev-master",
+    "php": "^8.2",
+    "gabordemooij/redbean": "^5.7",
     "vlucas/valitron": "^1.4",
-    "swiftmailer/swiftmailer": "^5.4",
-    "phpoffice/phpword": "dev-master",
+    "swiftmailer/swiftmailer": "^6.3",
+    "phpoffice/phpword": "^1.4",
     "datatables/datatables": "^1.10",
     "datatables.net/editor-php": "^2.0",
-    "phpoffice/phpspreadsheet": "^1.12",
-    "dompdf/dompdf": "^2.0",
-    "guzzlehttp/guzzle": "*"
+    "phpoffice/phpspreadsheet": "^5.9",
+    "dompdf/dompdf": "^3.1.6",
+    "guzzlehttp/guzzle": "^8.1"
   }
 }

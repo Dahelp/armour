@@ -1,4 +1,4 @@
-<?php $inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", [product, $category->id]); ?>
+<?php $inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $category->id]); ?>
 <!--start-breadcrumbs-->
 <div class="storefront-breadcrumb">
 	<div class="col-full">

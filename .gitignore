@@ -1,4 +1,7 @@
-/vendor/
+/vendor/*
+!/vendor/ishop/
+!/vendor/ishop/core/
+!/vendor/ishop/core/**
 /tmp/cache/
 /tmp/*.log
 

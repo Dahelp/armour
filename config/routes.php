@@ -2,16 +2,22 @@
 use ishop\App;
 use ishop\Router;
 use app\models\AppModel;
+use app\services\LegacyUrlRedirector;
 
 $urli = $_SERVER['REQUEST_URI'];
 //$urli = urldecode($urli);
 $baseUrl = strtok($urli, '?');
 $urli = trim($baseUrl, '/');
-//debug($urli); exit();
 $urls = new AppModel();
+LegacyUrlRedirector::redirectIfNeeded($urli);
+//debug($urli); exit();
 $urlalias = $urli !== '' ? $urls->urlalias($urli) : false;
 if($urlalias){ 
-	Router::add('^(?P<alias>[a-z0-9\-*.\/]+)/?$', ['controller' => ''.$urlalias->view.'', 'action' => 'view']);
+	Router::add('^(?P<alias>[a-z0-9\-*.\/]+)/?$', [
+		'controller' => ''.$urlalias->view.'',
+		'action' => 'view',
+		'canonical_url' => PATH . '/' . ltrim((string)$urlalias->sef, '/'),
+	]);
 }else{
 //Router::add('^category/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Category', 'action' => 'view']);
 //Router::add('^podbor/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Podbor', 'action' => 'index']);

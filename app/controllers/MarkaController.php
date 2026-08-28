@@ -42,7 +42,7 @@ class MarkaController extends AppController {
 		}
         //InSEO
 		$params = \R::findOne('attribute_group', "id = ?", [$find["attr_group_id"]]);
-		$inseo = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", [attribute_group, $find["attr_group_id"]]);
+		$inseo = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['attribute_group', $find["attr_group_id"]]);
 		if($inseo->title) {
 			$title = \ishop\App::seoreplacefilter($inseo->title, $find->id);
 		}else{ $title = $find->title; }
@@ -76,4 +76,4 @@ class MarkaController extends AppController {
         $this->set(compact('groups', 'type'));
 	}
 
-} 
+}

@@ -83,14 +83,14 @@
 									<table class="table table-comparison">
 										<tr>									
 											<td class="compar-img">
-												<a href="product/<?=$product["alias"];?>" title="<?=$product["name"]?>">
+												<a href="/<?=$product["alias"];?>" title="<?=$product["name"]?>">
 													<img src="images/product/mini/<?=$product["img"]?>" alt="<?=$product["name"]?>" />
 													<div class="btn btn-danger btn-close-comparison"><button class="btn-close" id="compairson-close" data-id="<?=$product["id"]?>" data-categoryid="<?=$product["category_id"]?>" type="button" aria-label="Close"></button></div>
 												</a>
 											</td>
 										</tr>
 										<tr style="height:83px">
-											<td class="compar-name"><a href="product/<?=$product["alias"];?>" title="<?=$product["name"]?>"><?=$product["name"]?></a></td>
+											<td class="compar-name"><a href="/<?=$product["alias"];?>" title="<?=$product["name"]?>"><?=$product["name"]?></a></td>
 										</tr>
 										<tr style="height:40px">
 											<td class="compar-name">

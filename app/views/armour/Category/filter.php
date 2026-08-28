@@ -16,7 +16,7 @@
 		</thead>
 		<tbody>
     <?php foreach($products as $product): ?>
-		<?php $inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", [product, $category->id]); ?>
+		<?php $inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $category->id]); ?>
 		<?php
 			$attr = \R::getAll("SELECT*FROM product_attribute WHERE product_id = ?", [$product["id"]]);
 			foreach($attr as $att){

@@ -1,6 +1,8 @@
 <?php
 
-define("DEBUG", 1);
+define("APP_ENV", getenv('APP_ENV') ?: 'production');
+$debug = filter_var(getenv('APP_DEBUG') ?: '0', FILTER_VALIDATE_BOOL);
+define("DEBUG", $debug);
 define("ROOT", dirname(__DIR__));
 define("WWW", ROOT . '/public');
 define("APP", ROOT . '/app');
@@ -10,16 +12,18 @@ define("CACHE", ROOT . '/tmp/cache');
 define("CONF", ROOT . '/config');
 define("LAYOUT", 'watches');
 define("TEMPLATE", 'armour');
-// http://ishop2.loc/public/index.php
-if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
-    $app_path = "https://{$_SERVER['HTTP_HOST']}{$_SERVER['PHP_SELF']}";
+$configuredUrl = trim((string)getenv('APP_URL'));
+if ($configuredUrl !== '') {
+    $app_path = rtrim($configuredUrl, '/');
 } else {
-    $app_path = "https://{$_SERVER['HTTP_HOST']}{$_SERVER['PHP_SELF']}";
+    $https = !empty($_SERVER['HTTPS']) && strtolower((string)$_SERVER['HTTPS']) !== 'off';
+    $scheme = $https ? 'https' : 'http';
+    $host = preg_replace('/[^a-z0-9.\-:\[\]]/i', '', (string)($_SERVER['HTTP_HOST'] ?? 'localhost'));
+    $script = str_replace('\\', '/', (string)($_SERVER['SCRIPT_NAME'] ?? '/index.php'));
+    $basePath = preg_replace('#/public/index\.php$#', '', $script);
+    $basePath = preg_replace('#/index\.php$#', '', (string)$basePath);
+    $app_path = $scheme . '://' . $host . rtrim((string)$basePath, '/');
 }
-// http://ishop2.loc/public/
-$app_path = preg_replace("#[^/]+$#", '', $app_path);
-// http://ishop2.loc
-$app_path = str_replace('/public/', '', $app_path);
 define("PATH", $app_path);
 define("ADMIN", PATH . '/admin');
 

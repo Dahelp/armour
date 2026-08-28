@@ -41,7 +41,7 @@
 									<tr>
 										<td><img src="images/product/mini/<?=$item["img"]?>" /></td>
 										<td><?=$item["article"]?></td>
-										<td><a href="product/<?=$item["alias"]?>"><?=$item["name"]?></a></td>
+										<td><a href="/<?=$item["alias"]?>"><?=$item["name"]?></a></td>
 										<td><?=$item["quantity"]?></td>
 										<td><?=$curr['symbol_left'];?> <?=$item["price"]?> <?=$curr['symbol_right'];?></td>
 										<td><a href="user/bookmarks-delete?id=<?=$item["id"]?>"><i class="fas fa-times-circle text-danger"></i></a></td>

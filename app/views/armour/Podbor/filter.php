@@ -1,7 +1,7 @@
 <?php if(!empty($products)): ?>
     <?php $curr = \ishop\App::$app->getProperty('currency'); ?>
     <?php foreach($products as $product): ?>
-		<?php $inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", [product, $category->id]); ?>
+		<?php $inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $category->id]); ?>
         <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6 mb-3">
 					            <div class="card product-card card-static pb-3">
 									<div class="znachki">
@@ -16,7 +16,7 @@
 									<?php } ?>
 									<button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Add to wishlist" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
 									</div>						            
-						            <a class="card-img-top d-block overflow-hidden" href="product/<?=$product->alias;?>">							
+						            <a class="card-img-top d-block overflow-hidden" href="/<?=$product->alias;?>">
 							            <img src="images/product/mini/<?=$product->img;?>" alt="<?php																						
 												if($inseo_prod->name) { 					
 													echo $name = \ishop\App::seoreplace($inseo_prod->name, $product->id);
@@ -32,9 +32,9 @@
 									<?php $cat_prod = \R::findOne('category', "id = ?", [$product->category_id]); ?>
 						            <div class="card-body py-2"><span class="product-meta d-block fs-xs pb-1"><?=$cat_prod["name"]?></span>
 							            <h3 class="product-title fs-sm text-truncate">
-											<a href="product/<?=$product->alias;?>">
+											<a href="/<?=$product->alias;?>">
 												<?php
-													$inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", [product, $category->id]);												
+											$inseo_prod = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['product', $category->id]);
 													if($inseo_prod->name) { 					
 														echo $name = \ishop\App::seoreplace($inseo_prod->name, $product->id);
 													}
