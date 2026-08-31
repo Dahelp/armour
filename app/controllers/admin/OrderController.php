@@ -26,11 +26,17 @@ class OrderController extends AppController {
 			$id = $this->getRequestID();
 			$order = new Order();
 			$data = $_POST;
-            $order->load($data);			
-			$order->editOrder($id, $data);
-			$order->editOrderProduct($id, $data);
-			
-			\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','44','order','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+            $order->load($data);
+			\R::begin();
+			try {
+				$order->editOrder($id, $data);
+				$order->editOrderProduct($id, $data);
+				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 44, 'order', (int)$id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+				\R::commit();
+			} catch (\Throwable $exception) {
+				\R::rollback();
+				throw $exception;
+			}
 			$_SESSION['success'] = 'Изменения сохранены';
             redirect();
 		}
@@ -57,30 +63,30 @@ class OrderController extends AppController {
 		if(!empty($_POST)){
 			$order = new Order();
 			$data = $_POST;
-			$user_name = $data['user_name'];
-			if($user_name) {
-				$order->addUser($data);
-				$user = \R::findLast('user');
-				$user_id = $user->id;
-				$data['user_id'] = $user_id;
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','36','user','".$user_id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+			\R::begin();
+			try {
+				$userId = (int)($data['user_id'] ?? 0);
+				if (!empty($data['user_name'])) {
+					$userId = $order->addUser($data);
+					$data['user_id'] = $userId;
+					\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 36, 'user', $userId, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+				}
+				if (!empty($data['comp_name'])) {
+					$data['user_id'] = $userId;
+					$companyId = $order->addCompany($data);
+					$data['comp_id'] = $companyId;
+					\R::exec('UPDATE user SET comp_id = ? WHERE id = ?', [$companyId, $userId]);
+					\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 33, 'company', $companyId, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+				}
+				$order->load($data);
+				$id = $order->addOrder($data);
+				$order->addOrderProduct($id, $data);
+				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 43, 'order', $id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+				\R::commit();
+			} catch (\Throwable $exception) {
+				\R::rollback();
+				throw $exception;
 			}
-			$comp_name = $data['comp_name'];
-			if($comp_name) {
-				$order->addCompany($data);
-				$company = \R::findLast('company');
-				$comp_id = $company->id;
-				$data['comp_id'] = $comp_id;
-				\R::exec("UPDATE user SET comp_id = '".$comp_id."' WHERE id = ?", [$user_id]);
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','33','company','".$comp_id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
-			}
-            $order->load($data);
-			$last_order = \R::findLast('order');
-			$id = $last_order->id;
-			$order->addOrder($id, $data);
-			$order->addOrderProduct($id, $data);
-			
-			\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','43','order','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
 			$_SESSION['success'] = 'Заказ создан';
             redirect();
 		}

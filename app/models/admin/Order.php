@@ -11,84 +11,130 @@ use Swift_Attachment;
 
 class Order extends AppModel {
 	
-	public function addCompany($data){
+	public function addCompany($data): int {
 		$date_create = date('Y-m-d H:i:s');
-		\R::exec("INSERT INTO `company`(`comp_name`, `user_id`, `tip`, `url_address`, `postal_address`, `ogrn`, `inn`, `kpp`, `bik`, `raschet`, `korschet`, `bank`, `dir_name`, `nds`, `dogovor`, `data_create`, `hide`)
-		VALUES ('".$data['comp_name']."', '".$data['user_id']."', '1', '', '', '', '', '', '', '', '', '', '', '".$data["nds"]."', '', '".$date_create."', 'show')");
+		$company = \R::dispense('company');
+		$company->comp_name = (string)($data['comp_name'] ?? '');
+		$company->user_id = (int)($data['user_id'] ?? 0);
+		$company->tip = 1;
+		$company->url_address = '';
+		$company->postal_address = '';
+		$company->ogrn = '';
+		$company->inn = '';
+		$company->kpp = '';
+		$company->bik = '';
+		$company->raschet = '';
+		$company->korschet = '';
+		$company->bank = '';
+		$company->dir_name = '';
+		$company->nds = (string)($data['nds'] ?? '');
+		$company->dogovor = '';
+		$company->data_create = $date_create;
+		$company->hide = 'show';
+
+		return (int)\R::store($company);
 	}
 	
-	public function addUser($data){
+	public function addUser($data): int {
 		$number = 8;
 		$password = \ishop\App::generate_password($number);
 		$password = password_hash($password, PASSWORD_DEFAULT);
-		$date_create = date('Y-m-d H:i:s');
-		\R::exec("INSERT INTO `user`(`password`, `email`, `name`, `telefon`, `role`, `groups`, `admin_id`, `comp_id`, `date_create`, `newsletter`, `uxeh`, `uid_ya`, `uid_gg`, `uid_vk`) VALUES ('".$password."', '".$data['email']."', '".$data['user_name']."', '".$data['telefon']."', 'user', '".$data['vid']."', '".$_SESSION['user']['id']."', '', '".$date_create."', '', '', '', '', '')");
+		$user = \R::dispense('user');
+		$user->password = $password;
+		$user->email = (string)($data['email'] ?? '');
+		$user->name = (string)($data['user_name'] ?? '');
+		$user->telefon = (string)($data['telefon'] ?? '');
+		$user->role = 'user';
+		$user->groups = (int)($data['vid'] ?? 0);
+		$user->admin_id = (int)($_SESSION['user']['id'] ?? 0);
+		$user->comp_id = '';
+		$user->date_create = date('Y-m-d H:i:s');
+		$user->newsletter = '';
+		$user->uxeh = '';
+		$user->uid_ya = '';
+		$user->uid_gg = '';
+		$user->uid_vk = '';
+
+		return (int)\R::store($user);
 	}
 	
-	public function addOrder($id, $data){
-		$lastorder = $id + 1;
+	public function addOrder($data): int {
 		$order_prefix = \ishop\App::options('order_prefix');
-		$inv = "".$order_prefix."".$lastorder."";
-		$dostavka_id = $data['dostavka_id'];
-		$transport_id = $data['transport_id'];
-		$branch_id = $data['branch_id'];
-		$city_id = $data['city_id'];
-		$address = $data['address'];
-		$user_id = $data['user_id'];
-		$admin_id = $data['admin_id'];
-		$comp_id = $data['comp_id'];
-		$seller = $data['seller'];
-		$note = $data['note'];
-		$data_order = date('Y-m-d H:i:s');
 		$curr = \R::findOne('currency');
-		\R::exec("INSERT INTO `order`(`inv`, `user_id`, `admin_id`, `comp_id`, `seller`, `status`, `date`, `update_at`, `dostavka_id`, `transport_id`, `branch_id`, `city_id`, `address`, `currency`, `note`) VALUES ('".$inv."', '".$user_id."', '".$admin_id."', '".$comp_id."', '".seller."', '1', '".$data_order."', '', '".$dostavka_id."', '".$transport_id."', '".$branch_id."', '".$city_id."', '".$address."', '".$curr['code']."', '".$note."')"); 
+		$order = \R::dispense('order');
+		$order->inv = '';
+		$order->user_id = (int)($data['user_id'] ?? 0);
+		$order->admin_id = (int)($data['admin_id'] ?? 0);
+		$order->comp_id = (int)($data['comp_id'] ?? 0);
+		$order->seller = (int)($data['seller'] ?? 0);
+		$order->status = 1;
+		$order->date = date('Y-m-d H:i:s');
+		$order->update_at = '';
+		$order->dostavka_id = (int)($data['dostavka_id'] ?? 0);
+		$order->transport_id = (int)($data['transport_id'] ?? 0);
+		$order->branch_id = (int)($data['branch_id'] ?? 0);
+		$order->city_id = (int)($data['city_id'] ?? 0);
+		$order->address = (string)($data['address'] ?? '');
+		$order->currency = (string)($curr['code'] ?? '');
+		$order->note = (string)($data['note'] ?? '');
+		$id = (int)\R::store($order);
+		$order->inv = (string)$order_prefix . $id;
+		\R::store($order);
+
+		return $id;
 	}
 	
 	public function addOrderProduct($id, $data){
-		$lastorder = $id + 1;
-		//запишем новые
-        if(!empty($data['order_zakaz'])){
-                $sql_part = '';
-                foreach($data['order_zakaz'] as $v){
-					if($v["product_id"] !="") {
-						$product_name = \R::getCell('SELECT `name` FROM product WHERE `id` = ? LIMIT 1', [$v["product_id"]]);
-						$sql_part .= "($lastorder, '".$v["product_id"]."', '".$v["article"]."', '".$v["quantity"]."', '".$product_name."', '".$v["price"]."', '".$v["discount_value"]."', '".$v["discount_type"].", '".$v["discount"]."', '".$v["discount_amount"]."'),";
-					}
-                }
-				if($sql_part == ""){ } else {
-					$sql_part = rtrim($sql_part, ',');
-					\R::exec("INSERT INTO order_product (order_id, product_id, article, qty, name, price, `discount_value`, `discount_type`, discount, discount_amount) VALUES $sql_part");
-				}
-        }
+		$this->insertOrderProducts((int)$id, (array)($data['order_zakaz'] ?? []));
 	}
 
 	public function editOrder($id, $data){
-		$dostavka_id = $data['dostavka_id'];
-		$transport_id = $data['transport_id'];
-		$branch_id = $data['branch_id'];
-		$city_id = $data['city_id'];
-		$address = $data['address'];
-		$comp_id = $data['comp_id'];
-		\R::exec("UPDATE `order` SET `comp_id` = '".$comp_id."', `dostavka_id` = '".$dostavka_id."', `transport_id` = '".$transport_id."', `branch_id` = '".$branch_id."', `city_id` = '".$city_id."', `address` = '".$address."' WHERE `id` = ?", [$id]);
+		\R::exec('UPDATE `order` SET comp_id = ?, dostavka_id = ?, transport_id = ?, branch_id = ?, city_id = ?, address = ? WHERE id = ?', [
+			(int)($data['comp_id'] ?? 0),
+			(int)($data['dostavka_id'] ?? 0),
+			(int)($data['transport_id'] ?? 0),
+			(int)($data['branch_id'] ?? 0),
+			(int)($data['city_id'] ?? 0),
+			(string)($data['address'] ?? ''),
+			(int)$id,
+		]);
 	}
 	
 	public function editOrderProduct($id, $data){
 		// удалим все и запишем новые
-        if(!empty($data['order_zakaz'])){
-            
-                \R::exec("DELETE FROM order_product WHERE order_id = ?", [$id]);
-                $sql_part = '';
-                foreach($data['order_zakaz'] as $v){
-					if($v["product_id"] !="") {
-						$product_name = \R::getCell('SELECT `name` FROM product WHERE `id` = ? LIMIT 1', [$v["product_id"]]);
-						$sql_part .= "($id, '".$v["product_id"]."', '".$v["article"]."', '".$v["quantity"]."', '".$product_name."', '".$v["price"]."', '".$v["discount_value"]."', '".$v["discount_type"]."', '".$v["discount"]."', '".$v["discount_amount"]."'),";
-					}
-                }
-				if($sql_part == ""){ } else {
-					$sql_part = rtrim($sql_part, ',');
-					\R::exec("INSERT INTO order_product (order_id, product_id, article, qty, name, price, `discount_value`, `discount_type`, discount, discount_amount) VALUES $sql_part");
-				}
-        }
+		\R::exec('DELETE FROM order_product WHERE order_id = ?', [(int)$id]);
+		$this->insertOrderProducts((int)$id, (array)($data['order_zakaz'] ?? []));
+	}
+
+	private function insertOrderProducts(int $orderId, array $products): void {
+		$rows = [];
+		$bindings = [];
+		foreach ($products as $product) {
+			$productId = (int)($product['product_id'] ?? 0);
+			if ($productId < 1) {
+				continue;
+			}
+			$productName = (string)\R::getCell('SELECT name FROM product WHERE id = ? LIMIT 1', [$productId]);
+			$rows[] = '(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+			array_push($bindings,
+				$orderId,
+				$productId,
+				(string)($product['article'] ?? ''),
+				(float)($product['quantity'] ?? 0),
+				$productName,
+				(float)($product['price'] ?? 0),
+				(float)($product['discount_value'] ?? 0),
+				(string)($product['discount_type'] ?? ''),
+				(float)($product['discount'] ?? 0),
+				(float)($product['discount_amount'] ?? 0)
+			);
+		}
+		if ($rows !== []) {
+			\R::exec(
+				'INSERT INTO order_product (order_id, product_id, article, qty, name, price, discount_value, discount_type, discount, discount_amount) VALUES ' . implode(',', $rows),
+				$bindings
+			);
+		}
 	}
 	
 	public function managerEmail($email, $order_id, $user){
@@ -99,7 +145,7 @@ class Order extends AppModel {
 		$trans = \R::findOne('transport_company', 'id = ?', [$order["transport_id"]]);
 		$cit = \R::findOne('cities', 'city_id = ?', [$order["city_id"]]);
 		if($trans["name"]) { $transport_company = "<b>Название ТК:</b> ".$trans["name"]."<br>"; }
-		if($ord["address"] !="") { $address = "<br><b>Адрес:</b> ".$ord["address"]."<br>"; }		
+		if($order["address"] !="") { $address = "<br><b>Адрес:</b> ".$order["address"]."<br>"; }
 		if($user["groups"] == 3) { $vid = "<b>Вид клиента:</b> Физическое лицо<br>"; }
 		if($user["groups"] == 4) {
 			$comp = \R::findOne('company', 'user_id = ?', [$user['id']]);
