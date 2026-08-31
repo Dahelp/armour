@@ -2,6 +2,8 @@
 
 namespace app\controllers\admin;
 
+use app\services\UrlAliasRepository;
+
 use app\models\admin\ContentsPages;
 use app\models\admin\ContentsType;
 use app\models\AppModel;
@@ -134,7 +136,7 @@ class ContentsController extends AppController{
 				$type = \R::findOne('content_type', 'id = ?', [$page->type_id]);
 				$param_url = ucfirst($type->param_url);
 				/*Url_Alias*/
-				\R::exec("INSERT INTO `url_alias`(`sef`, `view`, `urlid`) VALUES ('".$page->alias."', '".$param_url."', '".$id."')");
+				(new UrlAliasRepository())->save((string)$page->alias, $param_url, (int)$id);
 				/*Url_Alias*/
 				
                 \R::store($page);
@@ -189,7 +191,7 @@ class ContentsController extends AppController{
 				$type = \R::findOne('content_type', 'id = ?', [$page->type_id]);
 				$param_url = ucfirst($type->param_url);
 				/*Url_Alias*/
-				\R::exec("INSERT INTO `url_alias`(`sef`, `view`, `urlid`) VALUES ('".$page->alias."', '".$param_url."', '".$id."')");
+				(new UrlAliasRepository())->save((string)$page->alias, $param_url, (int)$id);
 				/*Url_Alias*/
 				// API IndexNow
 				$indexnow = new PlaginsIndexnow();

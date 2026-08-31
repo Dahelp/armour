@@ -2,6 +2,8 @@
 
 namespace app\controllers\admin;
 
+use app\services\UrlAliasRepository;
+
 use app\models\admin\FiltrsAttr;
 use app\models\admin\FiltrsGroup;
 use app\models\AppModel;
@@ -91,7 +93,7 @@ class FiltrsController extends AppController{
 				}
 				
 				/*Url_Alias*/
-				\R::exec("UPDATE url_alias SET sef = '".$attr->alias."' WHERE urlid = ? AND view = ?", [$id, $last_controller]);
+				(new UrlAliasRepository())->save((string)$attr->alias, $last_controller, (int)$id);
 				/*Url_Alias*/
                 
                 \R::store($attr);
@@ -131,7 +133,7 @@ class FiltrsController extends AppController{
 					$attr->alias = "".$last->url_params."-".$alias."";
 				}
 				/*Url_Alias*/
-				\R::exec("INSERT INTO `url_alias`(`sef`, `view`, `urlid`) VALUES ('".$attr->alias."','".$last_controller."', '".$id."')");
+				(new UrlAliasRepository())->save((string)$attr->alias, $last_controller, (int)$id);
 				/*Url_Alias*/	
 				
                 
@@ -188,9 +190,9 @@ class FiltrsController extends AppController{
 				$last_controller = App::upFirstLetter($last->url_params);
 				/*Url_Alias*/
 				if($data['url_params']!=""){
-					\R::exec("UPDATE url_alias SET sef = '".$last->url_params."' WHERE urlid = ? AND view = ?", ['0', $last_controller]);
+					(new UrlAliasRepository())->save((string)$last->url_params, $last_controller, 0);
 				}else{
-					\R::exec("INSERT INTO `url_alias`(`sef`, `view`, `urlid`) VALUES ('".$last->url_params."','".$last_controller."', '0')");
+					(new UrlAliasRepository())->save((string)$last->url_params, $last_controller, 0);
 				}					
 				/*Url_Alias*/
 				
@@ -234,7 +236,7 @@ class FiltrsController extends AppController{
 				if($data['url_params']!=""){
 					$last->url_params = $data['url_params'];
 					$last_controller = App::upFirstLetter($last->url_params);
-					\R::exec("INSERT INTO `url_alias`(`sef`, `view`, `urlid`) VALUES ('".$last->url_params."','".$last_controller."', '0')");
+					(new UrlAliasRepository())->save((string)$last->url_params, $last_controller, 0);
 				}				
 				/*Url_Alias*/
 				

@@ -2,6 +2,8 @@
 
 namespace app\controllers\admin;
 
+use app\services\UrlAliasRepository;
+
 use app\models\admin\Brand;
 use app\models\AppModel;
 use ishop\App;
@@ -60,7 +62,7 @@ class BrandController extends AppController {
 					$b->alias = "marka-".$alias."";
 				}
 				/*Url_Alias*/
-				\R::exec("INSERT INTO `url_alias`(`sef`, `view`, `urlid`) VALUES ('".$b->alias."','Marka', '".$id."')");
+				(new UrlAliasRepository())->save((string)$b->alias, 'Marka', (int)$id);
 				/*Url_Alias*/				
                 
                 \R::store($b);
@@ -95,7 +97,7 @@ class BrandController extends AppController {
 				}
 				
 				/*Url_Alias*/
-				\R::exec("UPDATE url_alias SET sef = '".$brand->alias."' WHERE urlid = ? AND view = ?", [$id, 'Marka']);
+				(new UrlAliasRepository())->save((string)$brand->alias, 'Marka', (int)$id);
 				/*Url_Alias*/
                 
                 \R::store($brand);

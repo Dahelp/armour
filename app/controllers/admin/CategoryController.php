@@ -2,6 +2,8 @@
 
 namespace app\controllers\admin;
 
+use app\services\UrlAliasRepository;
+
 use app\models\AppModel;
 use app\models\admin\Category;
 use ishop\App;
@@ -75,7 +77,7 @@ class CategoryController extends AppController {
 				}
 				
 				/*Url_Alias*/
-				\R::exec("INSERT INTO `url_alias`(`sef`, `view`, `urlid`) VALUES ('".$category->alias."','Category', '".$id."')");
+				(new UrlAliasRepository())->save((string)$category->alias, 'Category', (int)$id);
 				/*Url_Alias*/
 				
 				\R::store($cat);
@@ -114,7 +116,7 @@ class CategoryController extends AppController {
 				}
 				
 				/*Url_Alias*/
-				\R::exec("UPDATE url_alias SET sef = '".$category->alias."' WHERE urlid = ? AND view = ?", [$id, 'Category']);
+				(new UrlAliasRepository())->save((string)$category->alias, 'Category', (int)$id);
 				/*Url_Alias*/
 				
                 \R::store($category);				
