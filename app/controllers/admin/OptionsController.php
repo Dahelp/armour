@@ -6,8 +6,11 @@ class OptionsController extends AppController{
 
     public function indexAction(){
 		if(!empty($_POST)){
-			foreach ($_POST['altname'] as $altname => $attribute) {
-				\R::exec("UPDATE options SET `znachenie` = '".$attribute['znachenie']."'  WHERE `option_id` = '".$altname."'");
+			foreach ((array)($_POST['altname'] ?? []) as $altname => $attribute) {
+				$optionId = (int)$altname;
+				if ($optionId > 0) {
+					\R::exec('UPDATE options SET znachenie = ? WHERE option_id = ?', [(string)($attribute['znachenie'] ?? ''), $optionId]);
+				}
 			}
 			
 			$_SESSION['success'] = "Изменения сохранены";

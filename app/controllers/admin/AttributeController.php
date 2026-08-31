@@ -3,6 +3,7 @@
 namespace app\controllers\admin;
 
 use app\models\admin\Attribute;
+use app\services\RelationWriter;
 use ishop\App;
 
 class AttributeController extends AppController {
@@ -39,15 +40,7 @@ class AttributeController extends AppController {
                 \R::store($p);
 				
 				//создание категорий групп
-				if($_POST['category_id'] !="") {
-					$sql_part = '';
-					foreach($_POST['category_id'] as $cat_id){
-						$cat_id = (int)$cat_id;
-						$sql_part .= "(".$cat_id.", ".$id."),";
-					}
-					$sql_part = rtrim($sql_part, ',');
-					\R::exec("INSERT INTO attribute_comparison (category_id, attribute_id) VALUES $sql_part");
-				}
+				(new RelationWriter())->replace('attribute_comparison', 'attribute_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
 				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','55','attribute_comparison','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
                 $_SESSION['success'] = 'Атрибут добавлен';
             }
@@ -72,17 +65,7 @@ class AttributeController extends AppController {
                 $attribute = \R::load('attribute', $id);               
                 \R::store($attribute);
 				//удаление категорий групп
-				\R::exec("DELETE FROM attribute_comparison WHERE attribute_id = ?", [$id]);
-				//создание категорий групп
-				if($_POST['category_id'] !="") {
-					$sql_part = '';
-					foreach($_POST['category_id'] as $cat_id){
-						$cat_id = (int)$cat_id;
-						$sql_part .= "($cat_id, $id),";
-					}
-					$sql_part = rtrim($sql_part, ',');
-					\R::exec("INSERT INTO attribute_comparison (category_id, attribute_id) VALUES $sql_part");
-				}
+				(new RelationWriter())->replace('attribute_comparison', 'attribute_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
 				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','56','attribute_comparison','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
                 $_SESSION['success'] = 'Изменения сохранены';
                 redirect();
@@ -130,17 +113,17 @@ class AttributeController extends AppController {
 							if($b !="") {
 								$attribute19 = \R::findOne('product_attribute', 'product_id = ? AND attribute_id = ?', [$product['id'], 19]);
 								if($attribute19['id']){								
-									\R::exec("UPDATE product_attribute SET attribute_text='".$b."' WHERE attribute_id = '19' AND product_id = '".$product['id']."'");
+									\R::exec('UPDATE product_attribute SET attribute_text = ? WHERE attribute_id = ? AND product_id = ?', [$b, 19, (int)$product['id']]);
 								}else{							
-									\R::exec("INSERT IGNORE INTO product_attribute (product_id, attribute_id, attribute_group_id, attribute_text) VALUES ('".$product['id']."', '19', '1', '".$b."')");										
+									\R::exec('INSERT IGNORE INTO product_attribute (product_id, attribute_id, attribute_group_id, attribute_text) VALUES (?, ?, ?, ?)', [(int)$product['id'], 19, 1, $b]);
 								}
 							}
 							if($c !="") {
 								$attribute20 = \R::findOne('product_attribute', 'product_id = ? AND attribute_id = ?', [$product['id'], 20]);
 								if($attribute20['id']){		
-									\R::exec("UPDATE product_attribute SET attribute_text='".$c."' WHERE attribute_id = '20' AND product_id = '".$product['id']."'");
+									\R::exec('UPDATE product_attribute SET attribute_text = ? WHERE attribute_id = ? AND product_id = ?', [$c, 20, (int)$product['id']]);
 								}else{							
-									\R::exec("INSERT IGNORE INTO product_attribute (product_id, attribute_id, attribute_group_id, attribute_text) VALUES ('".$product['id']."', '20', '1', '".$c."')");										
+									\R::exec('INSERT IGNORE INTO product_attribute (product_id, attribute_id, attribute_group_id, attribute_text) VALUES (?, ?, ?, ?)', [(int)$product['id'], 20, 1, $c]);
 								}
 							}
 						}						

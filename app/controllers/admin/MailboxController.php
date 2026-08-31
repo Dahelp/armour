@@ -22,7 +22,7 @@ class MailboxController extends AppController {
 		
 		$id = $this->getRequestID();
         $message = \R::findOne('mails_imap', 'message_id = ?', [$id]);
-		\R::exec("UPDATE mails_imap SET is_seen = '1' WHERE message_id = '".$id."'");
+		\R::exec('UPDATE mails_imap SET is_seen = ? WHERE message_id = ?', [1, $id]);
 		$mailbox = new Mailbox(
 			'{'.App::$app->getProperty('imap_host').':'.App::$app->getProperty('imap_port').'/imap/ssl}INBOX', // IMAP server and mailbox folder
 			''.App::$app->getProperty('imap_login').'', // Username for the before configured mailbox
@@ -60,7 +60,7 @@ class MailboxController extends AppController {
 			
 		    $mailbox->mailboxAnswerEmail($data);
 		}
-		$id = $_GET["id"];
+		$id = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]) : false;
 		if($id){
 			$message = \R::findOne('mails_imap', 'message_id = ?', [$id]);
 		}
@@ -141,10 +141,10 @@ class MailboxController extends AppController {
 		
 		\R::trash($mailbox);
 		
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','61','mails_imap','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 61, 'mails_imap', $id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
                 
         $_SESSION['success'] = 'Письмо ID '.$id.' удалено';
         redirect();
     }
 
-} 
+}

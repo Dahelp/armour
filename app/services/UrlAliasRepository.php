@@ -29,6 +29,20 @@ final class UrlAliasRepository
         \R::store($alias);
     }
 
+    public function remove(string $sef, string $view): void
+    {
+        $sef = self::normaliseSef($sef);
+        $view = trim($view);
+        if ($sef === '' || $view === '') {
+            return;
+        }
+
+        $alias = \R::findOne('url_alias', 'sef = ? AND view = ?', [$sef, $view]);
+        if ($alias) {
+            \R::trash($alias);
+        }
+    }
+
     public static function normaliseSef(string $sef): string
     {
         if (preg_match('#^[a-z][a-z0-9+.-]*://#i', trim($sef))) {

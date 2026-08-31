@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\RelationWriter;
 use app\services\UrlAliasRepository;
 
 use app\models\admin\FiltrsAttr;
@@ -149,6 +150,12 @@ class FiltrsController extends AppController{
     public function groupEditAction(){
         if(!empty($_POST)){
             $id = $this->getRequestID(false);
+            $existingGroup = \R::load('attribute_group', $id);
+            if (!$existingGroup->id) {
+                throw new \RuntimeException('Группа фильтров не найдена', 404);
+            }
+            $previousSef = (string)$existingGroup->url_params;
+            $previousController = $previousSef !== '' ? App::upFirstLetter($previousSef) : '';
             $group = new FiltrsGroup();
             $data = $_POST;
             $group->load($data);
@@ -185,28 +192,21 @@ class FiltrsController extends AppController{
 					$group->addClassGroup($data);
 				}
 				
-				$last = \R::findLast('attribute_group');
-				$last->url_params = $data['url_params'];
-				$last_controller = App::upFirstLetter($last->url_params);
+				$updatedGroup = \R::load('attribute_group', $id);
+				$currentSef = (string)$updatedGroup->url_params;
+				$currentController = $currentSef !== '' ? App::upFirstLetter($currentSef) : '';
 				/*Url_Alias*/
-				if($data['url_params']!=""){
-					(new UrlAliasRepository())->save((string)$last->url_params, $last_controller, 0);
-				}else{
-					(new UrlAliasRepository())->save((string)$last->url_params, $last_controller, 0);
-				}					
+				$aliasRepository = new UrlAliasRepository();
+				if ($currentSef !== '') {
+					$aliasRepository->save($currentSef, $currentController, (int)$id);
+				}
+				if ($previousSef !== '' && ($previousSef !== $currentSef || $previousController !== $currentController)) {
+					$aliasRepository->remove($previousSef, $previousController);
+				}
 				/*Url_Alias*/
 				
-				//удаление категорий групп
-				\R::exec("DELETE FROM attribute_category WHERE group_id = ?", [$id]);
-				//создание категорий групп				
-				$sql_part = '';
-				foreach($_POST['category_id'] as $cat_id){
-					$cat_id = (int)$cat_id;
-					$sql_part .= "($cat_id, $id),";
-				}
-				$sql_part = rtrim($sql_part, ',');
-				\R::exec("INSERT INTO attribute_category (category_id, group_id) VALUES $sql_part");
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','29','attribute_group','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				(new RelationWriter())->replace('attribute_category', 'group_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
+				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 29, 'attribute_group', (int)$id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
                 $_SESSION['success'] = 'Изменения сохранены';
                 redirect();
             }
@@ -230,25 +230,17 @@ class FiltrsController extends AppController{
             }
             if($id = $group->save('attribute_group')){
 				$group->addClassGroup($data);
-				$last = \R::findLast('attribute_group');
+				$createdGroup = \R::load('attribute_group', $id);
 				
 				/*Url_Alias*/
-				if($data['url_params']!=""){
-					$last->url_params = $data['url_params'];
-					$last_controller = App::upFirstLetter($last->url_params);
-					(new UrlAliasRepository())->save((string)$last->url_params, $last_controller, 0);
+				if($createdGroup->url_params != ""){
+					$createdController = App::upFirstLetter((string)$createdGroup->url_params);
+					(new UrlAliasRepository())->save((string)$createdGroup->url_params, $createdController, (int)$id);
 				}				
 				/*Url_Alias*/
 				
-				//создание категорий групп
-				$sql_part = '';
-				foreach($_POST['category_id'] as $cat_id){
-					$cat_id = (int)$cat_id;
-					$sql_part .= "(".$cat_id.", ".$last->id."),";
-				}
-				$sql_part = rtrim($sql_part, ',');
-				\R::exec("INSERT INTO attribute_category (category_id, group_id) VALUES $sql_part");
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','28','attribute_group','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				(new RelationWriter())->replace('attribute_category', 'group_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
+				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 28, 'attribute_group', (int)$id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
                 $_SESSION['success'] = 'Группа добавлена';
                 redirect();
             }
