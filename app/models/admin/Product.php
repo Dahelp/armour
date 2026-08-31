@@ -2,6 +2,8 @@
 
 namespace app\models\admin;
 
+use app\services\ImageFileStorage;
+use app\services\RemoteImageDownloader;
 use app\models\AppModel;
 
 class Product extends AppModel {
@@ -262,7 +264,8 @@ class Product extends AppModel {
 		}
     }
 
-    public function uploadImg($name, $wmax, $hmax, $wmaxmini, $hmaxmini){		
+    public function uploadImg($name, $wmax, $hmax, $wmaxmini, $hmaxmini){
+		ImageFileStorage::secureUploadField($name);
         $ext = strtolower(preg_replace("#.+\.([a-z]+)$#i", "$1", $_FILES[$name]['name'])); // расширение картинки
         $types = array("image/gif", "image/png", "image/jpeg", "image/pjpeg", "image/x-png"); // массив допустимых расширений
 		$size = \R::findOne('options', 'alt_name = ?', ['option_size_product']);
@@ -279,8 +282,8 @@ class Product extends AppModel {
             $res = array("error" => "Допустимые расширения - .gif, .jpg, .png");
             exit(json_encode($res));
         }
-        $tmp_name = md5(time()).".$ext";
-		$new_name = md5(time()).".webp";
+		$tmp_name = ImageFileStorage::randomName($ext);
+		$new_name = ImageFileStorage::randomName('webp');
 		
 		$tmpdir = WWW . '/images/product/tmp/'.$tmp_name.'';
         $basedir = WWW . '/images/product/baseimg/'.$new_name.'';
@@ -322,32 +325,23 @@ class Product extends AppModel {
     }
 
 	public function uploadImgXml($img, $name, $wmax, $hmax, $wmaxmini, $hmaxmini){		
-        $exp = explode("/", $img);
-        $file_name = end($exp); //myimage.jpg
-		$ext = substr($file_name, -3);
-        $_FILES['fileprod']['name'] = md5($name).".$ext";
-		
-		$tmpdir = WWW . '/images/product/tmp/'.$_FILES['fileprod']['name'].'';
-        $basedir = WWW . '/images/product/baseimg/'.$_FILES['fileprod']['name'].'';
-		$minidir = WWW . '/images/product/mini/'.$_FILES['fileprod']['name'].'';		
+		$download = (new RemoteImageDownloader())->download((string)$img, WWW . '/images/product/tmp');
+		$tmpdir = $download['path'];
+		$fileName = $download['name'];
+		$ext = $download['extension'];
+        $basedir = WWW . '/images/product/baseimg/'.$fileName;
+		$minidir = WWW . '/images/product/mini/'.$fileName;
 
-		$ch = curl_init($img);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		$html = curl_exec($ch);
-		curl_close($ch); 
-
-		if (file_put_contents($tmpdir, $html)) {        	
+		if (is_file($tmpdir)) {
             
-            $_SESSION['single'] = $_FILES['fileprod']['name'];
+			$_SESSION['single'] = $fileName;
             
 				self::resize($tmpdir, $basedir, $wmax, $hmax, $ext);
 				self::resize($tmpdir, $minidir, $wmaxmini, $hmaxmini, $ext);				
 				@unlink($tmpdir);
 
 		}else{
-			$_SESSION['error'] = "не удалось скопировать $file_name...\n";
+			$_SESSION['error'] = "не удалось скопировать изображение...\n";
 		}
 		
     }

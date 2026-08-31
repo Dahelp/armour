@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\ImageFileStorage;
 use app\services\AdminAuditLogger;
 use app\services\UrlAliasRepository;
 
@@ -218,12 +219,12 @@ class ContentsController extends AppController{
 	
 	public function deleteBaseimgAction(){
         $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $src = isset($_POST['src']) ? $_POST['src'] : null;
+        $src = ImageFileStorage::safeName((string)($_POST['src'] ?? ''));
         if(!$id || !$src){
             return;
         }
         if(\R::exec("UPDATE contents SET img = '' WHERE id = ? AND img = ?", [$id, $src])){
-            @unlink(WWW . "/images/contents/baseimg/$src");			
+            ImageFileStorage::delete(WWW . '/images/contents/baseimg', $src);
             exit('1');
         }
         return;

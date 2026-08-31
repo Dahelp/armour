@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\ImageFileStorage;
 use app\services\AdminAuditLogger;
 use app\models\admin\Product;
 use app\models\admin\SSP;
@@ -681,12 +682,12 @@ class ProductController extends AppController {
 
     public function deleteGalleryAction(){
         $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $src = isset($_POST['src']) ? $_POST['src'] : null;
+        $src = ImageFileStorage::safeName((string)($_POST['src'] ?? ''));
         if(!$id || !$src){
             return;
         }
         if(\R::exec("DELETE FROM gallery WHERE product_id = ? AND img = ?", [$id, $src])){
-            @unlink(WWW . "/images/product/gallery/$src");
+            ImageFileStorage::delete(WWW . '/images/product/gallery', $src);
             exit('1');
         }
         return;
@@ -694,13 +695,13 @@ class ProductController extends AppController {
 	
 	public function deleteBaseimgAction(){
         $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $src = isset($_POST['src']) ? $_POST['src'] : null;
+        $src = ImageFileStorage::safeName((string)($_POST['src'] ?? ''));
         if(!$id || !$src){
             return;
         }
         if(\R::exec("UPDATE product SET img = '' WHERE id = ? AND img = ?", [$id, $src])){
-            @unlink(WWW . "/images/product/baseimg/$src");
-			@unlink(WWW . "/images/product/mini/$src");
+            ImageFileStorage::delete(WWW . '/images/product/baseimg', $src);
+			ImageFileStorage::delete(WWW . '/images/product/mini', $src);
             exit('1');
         }
         return;
@@ -708,12 +709,12 @@ class ProductController extends AppController {
 	
 	public function deleteUnloadAction(){
         $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $src = isset($_POST['src']) ? $_POST['src'] : null;
+        $src = ImageFileStorage::safeName((string)($_POST['src'] ?? ''));
         if(!$id || !$src){
             return;
         }
         if(\R::exec("UPDATE product SET unload_img = '' WHERE id = ? AND unload_img = ?", [$id, $src])){
-            @unlink(WWW . "/images/product/unload/$src");
+            ImageFileStorage::delete(WWW . '/images/product/unload', $src);
             exit('1');
         }
         return;

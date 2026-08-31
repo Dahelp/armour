@@ -2,6 +2,8 @@
 
 namespace app\models\admin;
 
+use app\services\ImageFileStorage;
+use app\services\RemoteImageDownloader;
 use app\models\AppModel;
 
 class PlaginsTechnics extends AppModel {
@@ -35,7 +37,8 @@ class PlaginsTechnics extends AppModel {
         }
     }
 
-    public function uploadImg($name, $wmax, $hmax, $wmaxmini, $hmaxmini){		
+    public function uploadImg($name, $wmax, $hmax, $wmaxmini, $hmaxmini){
+		ImageFileStorage::secureUploadField($name);
         $ext = strtolower(preg_replace("#.+\.([a-z]+)$#i", "$1", $_FILES[$name]['name'])); // расширение картинки
         $types = array("image/gif", "image/png", "image/jpeg", "image/pjpeg", "image/x-png"); // массив допустимых расширений
 		$size = \R::findOne('options', 'alt_name = ?', ['option_size_product']);
@@ -52,7 +55,7 @@ class PlaginsTechnics extends AppModel {
             $res = array("error" => "Допустимые расширения - .gif, .jpg, .png");
             exit(json_encode($res));
         }
-        $new_name = md5(time()).".$ext";
+        $new_name = ImageFileStorage::randomName($ext);
 		
 		$tmpdir = WWW . '/images/technics/tmp/'.$new_name.'';
         $basedir = WWW . '/images/technics/baseimg/'.$new_name.'';
@@ -209,25 +212,23 @@ class PlaginsTechnics extends AppModel {
     }
 
 	public function uploadImgXml($img, $name, $wmax, $hmax, $wmaxmini, $hmaxmini){		
-        $exp = explode("/", $img);
-        $file_name = end($exp); //myimage.jpg
-		$ext = substr($file_name, -3);
-        $_FILES['fileprod']['name'] = md5($name).".$ext";
-		
-		$tmpdir = WWW . '/images/technics/tmp/'.$_FILES['fileprod']['name'].'';
-        $basedir = WWW . '/images/technics/baseimg/'.$_FILES['fileprod']['name'].'';
-		$minidir = WWW . '/images/technics/mini/'.$_FILES['fileprod']['name'].'';		
+		$download = (new RemoteImageDownloader())->download((string)$img, WWW . '/images/technics/tmp');
+		$tmpdir = $download['path'];
+		$fileName = $download['name'];
+		$ext = $download['extension'];
+        $basedir = WWW . '/images/technics/baseimg/'.$fileName;
+		$minidir = WWW . '/images/technics/mini/'.$fileName;
 
-        if (@copy($img, $tmpdir)) {		
+        if (is_file($tmpdir)) {
             
-            $_SESSION['single'] = $_FILES['fileprod']['name'];
+			$_SESSION['single'] = $fileName;
             
 				self::resize($tmpdir, $basedir, $wmax, $hmax, $ext);
 				self::resize($tmpdir, $minidir, $wmaxmini, $hmaxmini, $ext);				
 				@unlink($tmpdir);
 
 		}else{
-			$_SESSION['error'] = "не удалось скопировать $file_name...\n";
+			$_SESSION['error'] = "не удалось скопировать изображение...\n";
 		}
 		
     }

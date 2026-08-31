@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\ImageFileStorage;
 use app\services\AdminAuditLogger;
 use app\models\admin\Review;
 use app\models\AppModel;
@@ -145,13 +146,13 @@ class ReviewController extends AppController {
 	
 	public function deleteGalleryAction(){
         $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $src = isset($_POST['src']) ? $_POST['src'] : null;
+        $src = ImageFileStorage::safeName((string)($_POST['src'] ?? ''));
         if(!$id || !$src){
             return;
         }
         if(\R::exec("DELETE FROM review_gallery WHERE review_id = ? AND img = ?", [$id, $src])){
-            @unlink(WWW . "/images/review/gallery/$src");
-			@unlink(WWW . "/images/review/mini/$src");
+            ImageFileStorage::delete(WWW . '/images/review/gallery', $src);
+			ImageFileStorage::delete(WWW . '/images/review/mini', $src);
             exit('1');
         }
         return;

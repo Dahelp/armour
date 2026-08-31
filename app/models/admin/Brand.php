@@ -2,6 +2,7 @@
 
 namespace app\models\admin;
 
+use app\services\ImageFileStorage;
 use app\models\AppModel;
 
 class Brand extends AppModel {
@@ -29,6 +30,7 @@ class Brand extends AppModel {
     }
 	
 	public function uploadImg($name, $wmax, $hmax){
+		ImageFileStorage::secureUploadField($name);
         $uploaddir = WWW . '/images/brand/baseimg/';
 
         $ext = strtolower(preg_replace("#.+\.([a-z]+)$#i", "$1", $_FILES[$name]['name'])); // расширение картинки
@@ -45,7 +47,7 @@ class Brand extends AppModel {
             $res = array("error" => "Допустимые расширения - .gif, .jpg, .png");
             exit(json_encode($res));
         }
-        $new_name = md5(time()).".$ext";
+        $new_name = ImageFileStorage::randomName($ext);
         $uploadfile = $uploaddir.$new_name;
 		if($name == 'single'){
 			if(@move_uploaded_file($_FILES[$name]['tmp_name'], $uploadfile)){

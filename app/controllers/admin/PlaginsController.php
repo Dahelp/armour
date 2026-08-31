@@ -3,6 +3,7 @@
 namespace app\controllers\admin;
 
 use app\services\AdminAuditLogger;
+use app\services\ImageFileStorage;
 use app\models\AppModel;
 use app\models\admin\SSP;
 use ishop\App;
@@ -1353,14 +1354,14 @@ class PlaginsController extends AppController {
 /* IMAGES PLAGINS RAZDEL */
 	public function deleteGalleryAction(){
 		$id = (int)($_POST['id'] ?? 0);
-		$src = PluginStoragePolicy::imageName((string)($_POST['src'] ?? ''));
+		$src = ImageFileStorage::safeName(PluginStoragePolicy::imageName((string)($_POST['src'] ?? '')));
 		$plagins = strtolower((string)($_POST['plagins'] ?? ''));
         if(!$id || !$src){
             return;
         }
 		$table = PluginStoragePolicy::table($plagins, '_gallery');
 		if(\R::exec("DELETE FROM `$table` WHERE complete_id = ? AND img = ?", [$id, $src])){
-            @unlink(WWW . "/images/$plagins/gallery/$src");
+			ImageFileStorage::delete(WWW . "/images/$plagins/gallery", $src);
             exit('1');
         }
         return;
@@ -1368,15 +1369,15 @@ class PlaginsController extends AppController {
 	
 	public function DeleteBaseimgAction(){
 		$id = (int)($_POST['id'] ?? 0);
-		$src = PluginStoragePolicy::imageName((string)($_POST['src'] ?? ''));
+		$src = ImageFileStorage::safeName(PluginStoragePolicy::imageName((string)($_POST['src'] ?? '')));
 		$plagins = strtolower((string)($_POST['plagins'] ?? ''));
         if(!$id || !$src){
             return;
         }
 		$table = PluginStoragePolicy::table($plagins);
 		if(\R::exec("UPDATE `$table` SET img = '' WHERE id = ? AND img = ?", [$id, $src])){
-			@unlink(WWW . "/images/$plagins/baseimg/$src");
-			@unlink(WWW . "/images/$plagins/mini/$src");
+			ImageFileStorage::delete(WWW . "/images/$plagins/baseimg", $src);
+			ImageFileStorage::delete(WWW . "/images/$plagins/mini", $src);
 			exit('1');
 		}
         return;

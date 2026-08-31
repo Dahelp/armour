@@ -2,6 +2,7 @@
 
 namespace app\models\admin;
 
+use app\services\ImageFileStorage;
 use ishop\App;
 use app\models\AppModel;
 
@@ -72,6 +73,7 @@ class ContentsPages extends AppModel{
     }
 	
 	public function uploadImg($name, $wmax, $hmax, $wmaxmini, $hmaxmini){
+		ImageFileStorage::secureUploadField($name);
 
         $ext = strtolower(preg_replace("#.+\.([a-z]+)$#i", "$1", $_FILES[$name]['name'])); // расширение картинки
         $types = array("image/gif", "image/png", "image/jpeg", "image/pjpeg", "image/x-png"); // массив допустимых расширений
@@ -89,7 +91,7 @@ class ContentsPages extends AppModel{
             $res = array("error" => "Допустимые расширения - .gif, .jpg, .png");
             exit(json_encode($res));
         }
-        $new_name = md5(time()).".$ext";
+        $new_name = ImageFileStorage::randomName($ext);
 		
         $tmpdir = WWW . '/images/contents/tmp/'.$new_name.'';
         $basedir = WWW . '/images/contents/baseimg/'.$new_name.'';

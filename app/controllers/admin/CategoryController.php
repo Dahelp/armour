@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\ImageFileStorage;
 use app\services\UrlAliasRepository;
 
 use app\models\AppModel;
@@ -134,12 +135,12 @@ class CategoryController extends AppController {
 	
 	public function deleteBaseimgAction(){
         $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $src = isset($_POST['src']) ? $_POST['src'] : null;
+        $src = ImageFileStorage::safeName((string)($_POST['src'] ?? ''));
         if(!$id || !$src){
             return;
         }
         if(\R::exec("UPDATE category SET img = '' WHERE id = ? AND img = ?", [$id, $src])){
-            @unlink(WWW . "/images/category/baseimg/$src");			
+            ImageFileStorage::delete(WWW . '/images/category/baseimg', $src);
             exit('1');
         }
         return;
