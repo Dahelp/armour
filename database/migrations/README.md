@@ -17,6 +17,16 @@ feature in production.
 5. Test every source URL and its final canonical URL.
 6. Set `LEGACY_REDIRECTS_ENABLED=1` only after those checks pass.
 
+The HTTP audit performs step 5 automatically and writes both CSV and JSON:
+
+`php bin/audit_legacy_redirects.php path/to/legacy-urls.csv --base-url=https://techtires.ru`
+
+Run it only after the redirect table has been imported and redirects are enabled
+on staging or production. A row passes only when the old path returns one 301/308,
+the final response is 200, its URL and canonical equal `target_path`, and neither
+the HTML nor `X-Robots-Tag` contains `noindex`. The command exits with code 1 when
+at least one URL fails, making it suitable for deployment checks.
+
 Both paths are stored without a leading slash. Redirect targets must be local
 canonical paths; the application deliberately rejects empty paths, loops and
 path traversal attempts.
