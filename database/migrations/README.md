@@ -39,6 +39,17 @@ Legacy `crossing-*` paths are marked `deferred_crossing`: keep them reserved
 until cross-number data is migrated, then publish the same paths or map them to
 their exact replacements instead of redirecting them to generic categories.
 
+## Legacy articles and news
+
+Build a reviewed JSON package first. Import is dry-run by default:
+
+`php bin/import_legacy_content.php tmp/reports/legacy-content/legacy-content-ready.json`
+
+After reviewing the cleaned HTML and migrating referenced images, use `--apply`.
+Imported rows are always hidden drafts. The transaction is rolled back if any
+content or `url_alias` slug already exists; publishing remains a separate manual
+SEO/editorial decision.
+
 Both paths are stored without a leading slash. Redirect targets must be local
 canonical paths; the application deliberately rejects empty paths, loops and
 path traversal attempts.
