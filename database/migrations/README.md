@@ -6,9 +6,16 @@ feature in production.
 ## Legacy URL redirects
 
 1. Apply `20260828_001_create_legacy_url_redirect.sql`.
-2. Import the verified `source_path` to `target_path` map.
-3. Test every source URL and its final canonical URL.
-4. Set `LEGACY_REDIRECTS_ENABLED=1` only after those checks pass.
+2. Prepare a UTF-8 CSV with `source_path,target_path,status_code,is_active` columns.
+   Full source URLs are accepted only for armour-shina.ru and techtires.ru;
+   targets must be local techtires.ru canonical URLs. Query strings and fragments
+   are intentionally rejected because they are not part of the redirect key.
+3. Validate it without changing the database:
+   `php bin/import_legacy_redirects.php path/to/legacy-urls.csv`.
+4. Resolve every reported duplicate, self-redirect, chain or cycle, then import:
+   `php bin/import_legacy_redirects.php path/to/legacy-urls.csv --apply`.
+5. Test every source URL and its final canonical URL.
+6. Set `LEGACY_REDIRECTS_ENABLED=1` only after those checks pass.
 
 Both paths are stored without a leading slash. Redirect targets must be local
 canonical paths; the application deliberately rejects empty paths, loops and

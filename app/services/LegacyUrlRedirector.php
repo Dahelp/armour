@@ -54,10 +54,18 @@ final class LegacyUrlRedirector
         $path = rawurldecode($path);
         $path = trim(str_replace('\\', '/', $path), '/');
 
-        if ($path === '' || strpos($path, '..') !== false) {
+        if (
+            $path === ''
+            || strpos($path, '..') !== false
+            || preg_match('/[\x00-\x1F\x7F]/', $path)
+            || str_contains($path, '?')
+            || str_contains($path, '#')
+            || str_contains($path, '://')
+        ) {
             return '';
         }
 
-        return mb_strtolower($path, 'UTF-8');
+        $path = preg_replace('#/+#', '/', $path);
+        return mb_strtolower((string)$path, 'UTF-8');
     }
 }
