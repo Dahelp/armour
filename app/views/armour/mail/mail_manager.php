@@ -36,7 +36,7 @@
 										</tr>
 										</thead>
 										<tbody>
-										<?php foreach($order_product as $item): ?>
+										<?php $itog_qty = 0; $sum = 0; foreach((array)$order_product as $item): ?>
 											<tr>
 												<td style="padding: 8px; border: 1px solid #ddd;"><?=$item['name'] ?></td>
 												<td style="padding: 8px; border: 1px solid #ddd;"><?=$item['qty'] ?><?php $itog_qty += $item['qty']; ?></td>

@@ -11,55 +11,53 @@ use ishop\App;
 class CartController extends AppController {
 
     public function addAction(){
-        $id = !empty($_GET['id']) ? (int)$_GET['id'] : null;
-        $qty = !empty($_GET['qty']) ? (int)$_GET['qty'] : null;
-        $mod_id = !empty($_GET['mod']) ? (int)$_GET['mod'] : null;
-		$modification = !empty($_GET['modification']) ? (int)$_GET['modification'] : null;
+		$id = max(0, (int)($_GET['id'] ?? 0));
+		$qty = max(1, (int)($_GET['qty'] ?? 1));
+		$mod_id = max(0, (int)($_GET['mod'] ?? 0));
+		$modification = !empty($_GET['modification']);
         $mod = null;
-		$max = !empty($_GET['max']) ? (int)$_GET['max'] : null;
+		$max = max(0, (int)($_GET['max'] ?? 0));
+		if ($id < 1) {
+			return false;
+		}
+		$product = \R::findOne('product', 'id = ?', [$id]);
+		if (!$product) {
+			return false;
+		}
 
         $cart = new Cart();
 		
 		if($modification){
-			
-			if($id){
-				$product = \R::findOne('product', 'id = ?', [$id]);
-				if(!$product){
-					return false;
-				}
-				
-				$mods = \R::findAll('modification', 'product_id = ?', [$product->id]);
-				foreach($mods as $modi):
-					$sum_mods += $modi->quantity;
-					$modprice .= "".$modi->price.", ";
-				endforeach;
-					$max = $product->quantity + $sum_mods;								
-					$sql_modprice = "".$product->price.", ".$modprice."";
-					$sql_modprice = rtrim($sql_modprice, ', ');								
-					$maxs=[];
-					$max_price=max($maxs=explode(",", $sql_modprice));
-					
-					$mod->id = $mod_id;
-					$mod->name_modification = "unified";
-					$mod->price = $max_price;
-					$mod->article = $product->article;
-					$mod->unit = "шт";
+			$sumMods = 0;
+			$prices = [(float)$product->price];
+			$mods = \R::findAll('modification', 'product_id = ?', [$product->id]);
+			foreach ($mods as $modificationItem) {
+				$sumMods += (int)$modificationItem->quantity;
+				$prices[] = (float)$modificationItem->price;
 			}
+			$max = (int)$product->quantity + $sumMods;
+			$mod = (object)[
+				'id' => $mod_id,
+				'name_modification' => 'unified',
+				'price' => max($prices),
+				'article' => (string)$product->article,
+				'unit' => 'шт',
+				'weight' => (float)($product->weight ?? 0),
+				'volume' => (float)($product->volume ?? 0),
+				'category_id' => (int)$product->category_id,
+				'model' => (string)($product->model ?? ''),
+			];
 				
 			$cart->addToCart($product, $qty, $max, $mod);
 			
 		}else{
-			
-			if($id){
-				$product = \R::findOne('product', 'id = ?', [$id]);
-				if(!$product){
+			if($mod_id){
+				$mod = \R::findOne('modification', 'id = ? AND product_id = ?', [$mod_id, $id]);
+				if (!$mod) {
 					return false;
 				}
-				if($mod_id){
-					$mod = \R::findOne('modification', 'id = ? AND product_id = ?', [$mod_id, $id]);
-				}
 			}
-				
+			$max = $max > 0 ? $max : (int)($mod->quantity ?? $product->quantity ?? 0);
 			$cart->addToCart($product, $qty, $max, $mod);
 			
 		}
@@ -108,8 +106,8 @@ class CartController extends AppController {
 				$cart = new Cart();
 				$cart->pluscartItem($id);
 			}						
-			$qty = $_SESSION['cart'][$id]['qty'];
-			$total = $_SESSION['cart.qty'];
+			$qty = (int)($_SESSION['cart'][$id]['qty'] ?? 0);
+			$total = (int)($_SESSION['cart.qty'] ?? 0);
 			echo json_encode(array('result'=>''.$qty.'', 'result2'=>''.$total.''));		
 			die;
 		}        
@@ -125,8 +123,8 @@ class CartController extends AppController {
 				$cart = new Cart();
 				$cart->minuscartItem($id);
 			}			
-			$qty = $_SESSION['cart'][$id]['qty'];
-			$total = $_SESSION['cart.qty'];
+			$qty = (int)($_SESSION['cart'][$id]['qty'] ?? 0);
+			$total = (int)($_SESSION['cart.qty'] ?? 0);
 			echo json_encode(array('result'=>''.$qty.'', 'result2'=>''.$total.''));
 			die;
 		}

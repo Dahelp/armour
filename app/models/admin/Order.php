@@ -144,7 +144,12 @@ class Order extends AppModel {
 		$bran = \R::findOne('branch_office', 'branch_id = ?', [$order["branch_id"]]);
 		$trans = \R::findOne('transport_company', 'id = ?', [$order["transport_id"]]);
 		$cit = \R::findOne('cities', 'city_id = ?', [$order["city_id"]]);
-		if($trans["name"]) { $transport_company = "<b>Название ТК:</b> ".$trans["name"]."<br>"; }
+		$transport_company = '';
+		$address = '';
+		$vid = '';
+		$nds = '';
+		$dogovor = '';
+		if($trans["name"] ?? '') { $transport_company = "<b>Название ТК:</b> ".$trans["name"]."<br>"; }
 		if($order["address"] !="") { $address = "<br><b>Адрес:</b> ".$order["address"]."<br>"; }
 		if($user["groups"] == 3) { $vid = "<b>Вид клиента:</b> Физическое лицо<br>"; }
 		if($user["groups"] == 4) {

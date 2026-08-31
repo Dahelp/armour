@@ -11,18 +11,24 @@ use Swift_Attachment;
 class Order extends AppModel {
 
     public static function saveOrder($data){
+		$data = array_merge([
+			'user_id' => 0, 'note' => '', 'dostavka_id' => 0, 'groups' => 0,
+			'city_id' => '', 'nds' => 0, 'address' => '', 'transport_id' => '',
+			'branch_id' => '', 'comp_id' => '', 'admin_id' => 0,
+		], (array)$data);
         $order = \R::dispense('order');
-        $order->user_id = $data['user_id'];
-        $order->note = $data['note'];
-		$order->dostavka_id = $data['dostavka_id'];
+		$order->user_id = (int)($data['user_id'] ?? ($_SESSION['user']['id'] ?? 0));
+		$order->note = (string)($data['note'] ?? '');
+		$order->dostavka_id = (int)($data['dostavka_id'] ?? 0);
 		$order->status = 1;
+		$order_prefix = (string)\ishop\App::options('order_prefix');
 		$last_order = \R::findLast('order');
-		$lastorder = $last_order->id + 1;
-		if($data['groups'] == 3) { // Физлицо
+		$lastorder = (int)($last_order->id ?? 0) + 1;
+		if(($data['groups'] ?? null) == 3) { // Физлицо
 			if($data['dostavka_id'] == 2) { // если выбрана транспортная компания
 				if($data['city_id'] !=""){ // если выбран город
 					$city = \R::findOne('cities', 'city_id = ?', [$data['city_id']]); // находим его регион
-					if($city['region_id'] == 50 OR $city['region_id'] == 77) { $order_prefix = "SH"; $order->seller = "1"; } // если выбран Московский регион
+					if(($city['region_id'] ?? 0) == 50 OR ($city['region_id'] ?? 0) == 77) { $order_prefix = "SH"; $order->seller = "1"; } // если выбран Московский регион
 					else{ $order_prefix = "RO"; $order->seller = "2"; } // если выбран регион Россия без Московского региона
 				}else{
 					$order_prefix = "SH"; $order->seller = "1"; // если не выбран город, выбераем по умолчанию
@@ -31,13 +37,13 @@ class Order extends AppModel {
 				$order_prefix = "SH"; $order->seller = "1"; // если выбран курьер или самовывоз, выбераем по умолчанию
 			}			
 		}
-		if($data['groups'] == 4) { // Юрлицо
+		if(($data['groups'] ?? null) == 4) { // Юрлицо
 			if($data['nds'] == 1) { $order_prefix = "IT"; $order->seller = "3"; } // если с НДС
 			if($data['nds'] == 2) { // если без НДС
 				if($data['dostavka_id'] == 2) { // если выбрана транспортная компания
 					if($data['city_id'] !=""){ // если выбран город
 						$city = \R::findOne('cities', 'city_id = ?', [$data['city_id']]); // находим его регион
-						if($city['region_id'] == 50 OR $city['region_id'] == 77) { $order_prefix = "SH"; $order->seller = "1"; } // если выбран Московский регион
+						if(($city['region_id'] ?? 0) == 50 OR ($city['region_id'] ?? 0) == 77) { $order_prefix = "SH"; $order->seller = "1"; } // если выбран Московский регион
 						else{ $order_prefix = "RO"; $order->seller = "2"; } // если выбран регион Россия без Московского региона
 					}else{
 						$order_prefix = "SH"; $order->seller = "1"; // если не выбран город, выбераем по умолчанию
@@ -48,12 +54,12 @@ class Order extends AppModel {
 			}
 		}
 		$order->inv = \ishop\App::invoice_num($lastorder, 9, $order_prefix);
-		if($data['address'] !="") { $order->address = $data['address']; }
-		if($data['transport_id'] !="") { $order->transport_id = $data['transport_id']; }
-		if($data['city_id'] !="") { $order->city_id = $data['city_id']; }
-		if($data['branch_id'] !="") { $order->branch_id = $data['branch_id']; }
-		if($data['comp_id'] !="") { $order->comp_id = $data['comp_id']; }
-		$order->admin_id = $data['admin_id'];
+		if(($data['address'] ?? '') !="") { $order->address = $data['address']; }
+		if(($data['transport_id'] ?? '') !="") { $order->transport_id = $data['transport_id']; }
+		if(($data['city_id'] ?? '') !="") { $order->city_id = $data['city_id']; }
+		if(($data['branch_id'] ?? '') !="") { $order->branch_id = $data['branch_id']; }
+		if(($data['comp_id'] ?? '') !="") { $order->comp_id = $data['comp_id']; }
+		$order->admin_id = (int)($data['admin_id'] ?? 0);
 		$order->user_id = isset($data['user_id']) ? $data['user_id'] : $_SESSION['user']['id'];
         $order->currency = $_SESSION['cart.currency']['code'];
         $order_id = \R::store($order);
@@ -64,9 +70,9 @@ class Order extends AppModel {
 
     public static function saveOrderProduct($order_id){
         $sql_part = '';
-        foreach($_SESSION['cart'] as $product_id => $product){
+		foreach((array)($_SESSION['cart'] ?? []) as $product_id => $product){
             $product_id = (int)$product_id;
-			if($_SESSION['promocart']){
+			if(!empty($_SESSION['promocart'])){
 				$prods = \R::getRow('SELECT * FROM product WHERE id = ?', [$product_id]);
 				$promo = \R::getRow('SELECT * FROM plagins_promocode WHERE promocode = ?', [$_SESSION['promocart']]);
 				$discount = ($prods['price']/100)*$promo["value"];
@@ -109,7 +115,7 @@ class Order extends AppModel {
 		;
 		
 		
-		if($_FILES['rekvizity']['tmp_name']){
+		if(!empty($_FILES['rekvizity']['tmp_name'])){
 			$attachment = Swift_Attachment::fromPath($_FILES['rekvizity']['tmp_name']);
 			$attachment->setFilename($_FILES['rekvizity']['name']);
 			$message_admin->attach($attachment);
