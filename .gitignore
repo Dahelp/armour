@@ -4,6 +4,9 @@
 !/vendor/ishop/core/**
 /tmp/cache/
 /tmp/*.log
+/tmp/*.sql
+/tmp/reports/
+/tmp/*sitemap*.xml
 
 .env
 .env.*

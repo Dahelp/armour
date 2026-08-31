@@ -27,6 +27,18 @@ the final response is 200, its URL and canonical equal `target_path`, and neithe
 the HTML nor `X-Robots-Tag` contains `noindex`. The command exits with code 1 when
 at least one URL fails, making it suitable for deployment checks.
 
+To build a first map from an old sitemap and a database dump without executing
+the dump, run:
+
+`php bin/build_legacy_url_map.php old-sitemap.xml database.sql tmp/reports/legacy-url-map`
+
+Only public `url_alias` rows are considered. Exact paths are written to
+`legacy-urls-ready.csv`; missing and ambiguous paths go to
+`legacy-urls-review.csv` and are never activated automatically.
+Legacy `crossing-*` paths are marked `deferred_crossing`: keep them reserved
+until cross-number data is migrated, then publish the same paths or map them to
+their exact replacements instead of redirecting them to generic categories.
+
 Both paths are stored without a leading slash. Redirect targets must be local
 canonical paths; the application deliberately rejects empty paths, loops and
 path traversal attempts.
