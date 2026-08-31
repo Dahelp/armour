@@ -87,7 +87,7 @@ class PlaginsComplete extends AppModel{
 	public function uploadImg($name, $wmax, $hmax, $wmaxmini, $hmaxmini){		
         $ext = strtolower(preg_replace("#.+\.([a-z]+)$#i", "$1", $_FILES[$name]['name'])); // расширение картинки
         $types = array("image/gif", "image/png", "image/jpeg", "image/pjpeg", "image/x-png"); // массив допустимых расширений
-		$size = \R::findOne('options', 'alt_name = ?', [option_size_product]);
+		$size = \R::findOne('options', 'alt_name = ?', ['option_size_product']);
 		$size_product = $size->znachenie * 1048576;
         if($_FILES[$name]['size'] > $size_product){
             $res = array("error" => "Ошибка! Максимальный вес файла - ".$size." Мб!");

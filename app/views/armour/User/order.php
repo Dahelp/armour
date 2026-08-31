@@ -52,7 +52,7 @@
 								?>
 								<tr style="background:#fff">
 										<td colspan="2">Итого:</td>
-										<td><?=$summa[0][qty]?> шт.</td>
+										<td><?=$summa[0]['qty']?> шт.</td>
 										<td><?=$curr['symbol_left'];?> <?=$summa_sum?> <?=$curr['symbol_right'];?></td>
 								</tr>							
 							</table>

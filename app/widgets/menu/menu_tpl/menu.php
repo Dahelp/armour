@@ -1,7 +1,7 @@
 <?php 
 //debug($category);
 foreach($category['childs'] as $cat){
-	$parent = $cat[parent_id];
+	$parent = $cat['parent_id'];
 	
 } 
 

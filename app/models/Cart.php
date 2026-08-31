@@ -20,7 +20,7 @@ class Cart extends AppModel {
         ]
     ];
 
-    public function addToCart($product, $qty = 1, $max,  $mod = null){
+    public function addToCart($product, $qty, $max, $mod = null){
         if(!isset($_SESSION['cart.currency'])){
             $_SESSION['cart.currency'] = App::$app->getProperty('currency');
         }
