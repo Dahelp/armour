@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\AdminAuditLogger;
 use app\services\RelationWriter;
 use app\services\UrlAliasRepository;
 
@@ -43,7 +44,7 @@ class FiltrsController extends AppController{
         \R::exec('DELETE FROM attribute_group WHERE id = ?', [$id]);
 		\R::exec('DELETE FROM attribute_category WHERE group_id = ?', [$id]);
 		\R::exec("DELETE FROM url_alias WHERE sef = ? AND view = ?", [$group["url_params"], $group_controller]);
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','30','attribute_group','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 30, 'attribute_group', (int)$id);
         $_SESSION['success'] = 'Удалено';
         redirect();
     }
@@ -206,7 +207,7 @@ class FiltrsController extends AppController{
 				/*Url_Alias*/
 				
 				(new RelationWriter())->replace('attribute_category', 'group_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
-				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 29, 'attribute_group', (int)$id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+				AdminAuditLogger::log(2, 29, 'attribute_group', (int)$id);
                 $_SESSION['success'] = 'Изменения сохранены';
                 redirect();
             }
@@ -240,7 +241,7 @@ class FiltrsController extends AppController{
 				/*Url_Alias*/
 				
 				(new RelationWriter())->replace('attribute_category', 'group_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
-				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 28, 'attribute_group', (int)$id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+				AdminAuditLogger::log(2, 28, 'attribute_group', (int)$id);
                 $_SESSION['success'] = 'Группа добавлена';
                 redirect();
             }

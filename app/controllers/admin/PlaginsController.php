@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\AdminAuditLogger;
 use app\models\AppModel;
 use app\models\admin\SSP;
 use ishop\App;
@@ -61,7 +62,7 @@ class PlaginsController extends AppController {
             }
             if($id = $promocode->save('plagins_promocode', false)){
 				(new RelationWriter())->replace('plagins_promocode_category', 'promocode_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
-				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 28, 'plagins_promocode', (int)$id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+				AdminAuditLogger::log(2, 28, 'plagins_promocode', (int)$id);
                 
                 $_SESSION['success'] = 'Промокод добавлен';
                 redirect();
@@ -86,7 +87,7 @@ class PlaginsController extends AppController {
 			if($promocode->update('plagins_promocode', $id)){
 				
 				(new RelationWriter())->replace('plagins_promocode_category', 'promocode_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
-				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 29, 'plagins_promocode', (int)$id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+				AdminAuditLogger::log(2, 29, 'plagins_promocode', (int)$id);
                 
                 $_SESSION['success'] = 'Изменения сохранены';
                 redirect();
@@ -706,7 +707,7 @@ class PlaginsController extends AppController {
 				$technics->editSizeBackTechnics($id, $data);
 				$technics->editSizeAltTechnics($id, $data);
 				$technics->editSizeAltBackTechnics($id, $data);
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','13','technics','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 13, 'technics', (int)$id);
                 
 				// API IndexNow
 				$indexnow = new PlaginsIndexnow();
@@ -753,7 +754,7 @@ class PlaginsController extends AppController {
                 $technics = \R::load('technics', $id);
 				if($data['alias']!=""){ $technics->alias = $data['alias'];}
 				else{$technics->alias = $alias;}
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','14','technics','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 14, 'technics', (int)$id);
                 \R::store($technics);
 				
 				// API IndexNow
@@ -812,7 +813,7 @@ class PlaginsController extends AppController {
 		}
 		
 		//Запись в историю
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','15','technics','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 15, 'technics', (int)$id);
         
         // API IndexNow
 		$indexnow = new PlaginsIndexnow();
@@ -843,7 +844,7 @@ class PlaginsController extends AppController {
                 $p = \R::load('technics_type', $id);
                 $p->alias = $alias;
                 \R::store($p);
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','22','technics_type','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 22, 'technics_type', (int)$id);
                 $_SESSION['success'] = 'Категория техники добавлена';
             }
             redirect();
@@ -871,7 +872,7 @@ class PlaginsController extends AppController {
                 $types = \R::load('technics_type', $id);
 				if($data['alias']!=""){ $types->alias = $data['alias'];}
 				else{$types->alias = $alias;}
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','23','technics_type','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 23, 'technics_type', (int)$id);
                 \R::store($types);
                 $_SESSION['success'] = 'Изменения сохранены';
                 redirect();
@@ -917,9 +918,9 @@ class PlaginsController extends AppController {
 			foreach($related_size as $rel_size) {
 				\R::exec("DELETE FROM technics_tiposize WHERE id = ?", [$rel_size->id]);
 			}
-			\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','15','technics_type','".$rel->id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+			AdminAuditLogger::log(2, 15, 'technics', (int)$rel->id);
 		}
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','24','technics_type','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 24, 'technics_type', (int)$id);
         \R::trash($types);		
 		
         $_SESSION['success'] = 'Категория '.$types["name"].' удалена';
@@ -952,7 +953,7 @@ class PlaginsController extends AppController {
                 $p = \R::load('technics_manufacturer', $id);
                 $p->alias = $alias;
                 \R::store($p);
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','25','technics_manufacturer','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 25, 'technics_manufacturer', (int)$id);
                 $_SESSION['success'] = 'Производитель техники добавлен';
             }
             redirect();
@@ -980,7 +981,7 @@ class PlaginsController extends AppController {
                 $manufacturer = \R::load('technics_manufacturer', $id);
 				if($data['alias']!=""){ $manufacturer->alias = $data['alias'];}
 				else{$manufacturer->alias = $alias;}
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','26','technics_manufacturer','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 26, 'technics_manufacturer', (int)$id);
                 \R::store($manufacturer);
                 $_SESSION['success'] = 'Изменения сохранены';
                 redirect();
@@ -1018,7 +1019,7 @@ class PlaginsController extends AppController {
         $manufacturer = \R::load('technics_manufacturer', $id);
 		@unlink(WWW . "/images/technics_manufacturer/baseimg/".$manufacturer["img"]."");
 		
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','27','technics_manufacturer','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 27, 'technics_manufacturer', (int)$id);
         \R::trash($manufacturer);		
 		
         $_SESSION['success'] = 'Производитель '.$manufacturer["name"].' удален';
@@ -1079,7 +1080,7 @@ class PlaginsController extends AppController {
 						$typeId = (int)\R::store($type);
 						$type->alias = AppModel::createAlias('technics_type', 'alias', (string)$row->tip, $typeId);
 						\R::store($type);
-						\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 22, 'technics_type', $typeId, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+						AdminAuditLogger::log(2, 22, 'technics_type', (int)$typeId);
 					}
 					$technics->attributes['type_id'] = (int)$type->id;
 					$manufacturer = \R::findOne('technics_manufacturer', 'name = ?', [$manufacturer_name]);
@@ -1096,7 +1097,7 @@ class PlaginsController extends AppController {
 						$manufacturerId = (int)\R::store($manufacturer);
 						$manufacturer->alias = AppModel::createAlias('technics_manufacturer', 'alias', (string)$row->name, $manufacturerId);
 						\R::store($manufacturer);
-						\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 25, 'technics_manufacturer', $manufacturerId, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+						AdminAuditLogger::log(2, 25, 'technics_manufacturer', (int)$manufacturerId);
 					}
 					$technics->attributes['manufacturer_id'] = (int)$manufacturer->id;
 					$technics->attributes['model'] = $model;	
@@ -1126,7 +1127,7 @@ class PlaginsController extends AppController {
 							if($row->size_back !=""){ $technics->editSizeBackTechnicsImport($id, $data); }
 							if($row->size_alt !=""){ $technics->editSizeAltTechnicsImport($id, $data); }
 							if($row->size_alt_back !=""){ $technics->editSizeAltBackTechnicsImport($id, $data); }
-							\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','13','technics','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");								
+							AdminAuditLogger::log(2, 13, 'technics', (int)$id);
 						}
 					}
 					

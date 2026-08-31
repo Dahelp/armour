@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\AdminAuditLogger;
 use app\services\UrlAliasRepository;
 
 use app\models\admin\ContentsPages;
@@ -142,7 +143,7 @@ class ContentsController extends AppController{
                 \R::store($page);
 				
                 $page->editRelatedProduct($id, $data);
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','9','contents','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 9, 'contents', (int)$id);
 				
 				
 				
@@ -185,7 +186,7 @@ class ContentsController extends AppController{
 				else{$page->alias = $alias;}
 				$page->user_id = $_SESSION['user']['id'];
 				$page->date_last_modified = date('Y-m-d H:m:s');
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','10','contents','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 10, 'contents', (int)$id);
                 \R::store($page);
 				
 				$type = \R::findOne('content_type', 'id = ?', [$page->type_id]);
@@ -237,7 +238,7 @@ class ContentsController extends AppController{
 		foreach($related as $rel) {
 			\R::exec("DELETE FROM content_related WHERE content_id = ?", [$rel->content_id]);
 		}
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','11','contents','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 11, 'contents', (int)$id);
         
 		$type = \R::findOne('content_type', 'id = ?', [$page->type_id]);
 		$param_url = ucfirst($type->param_url);

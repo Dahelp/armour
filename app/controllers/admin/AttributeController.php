@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\AdminAuditLogger;
 use app\models\admin\Attribute;
 use app\services\RelationWriter;
 use ishop\App;
@@ -18,7 +19,7 @@ class AttributeController extends AppController {
         $id = $this->getRequestID();        
         $attribute = \R::load('attribute', $id);        
 		\R::exec('DELETE FROM attribute_comparison WHERE attribute_id = ?', [$id]);
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','57','attribute_comparison','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 57, 'attribute_comparison', (int)$id);
 		\R::trash($attribute);
         $_SESSION['success'] = 'Атрибут '.$attribute["attribute_name"].' удален';
         redirect();
@@ -41,7 +42,7 @@ class AttributeController extends AppController {
 				
 				//создание категорий групп
 				(new RelationWriter())->replace('attribute_comparison', 'attribute_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','55','attribute_comparison','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 55, 'attribute_comparison', (int)$id);
                 $_SESSION['success'] = 'Атрибут добавлен';
             }
             redirect();
@@ -66,7 +67,7 @@ class AttributeController extends AppController {
                 \R::store($attribute);
 				//удаление категорий групп
 				(new RelationWriter())->replace('attribute_comparison', 'attribute_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','56','attribute_comparison','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 56, 'attribute_comparison', (int)$id);
                 $_SESSION['success'] = 'Изменения сохранены';
                 redirect();
             }

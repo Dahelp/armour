@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\AdminAuditLogger;
 use app\models\admin\Product;
 use app\models\admin\SSP;
 use app\models\AppModel;
@@ -335,7 +336,7 @@ class ProductController extends AppController {
 		}
 		
 		//сохранение истории
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','12','product','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 12, 'product', (int)$id);
         
 		// API IndexNow
 		$indexnow = new PlaginsIndexnow();
@@ -404,12 +405,7 @@ class ProductController extends AppController {
 					\R::store($bean); // ← если ensure добавил суффикс и alias поменялся — сохраняем снова
 				}
 
-				\R::exec(
-					"INSERT INTO `admin_last_history`
-					(`gh_id`,`ah_id`,`name_tbl`,`id_tbl`,`date_modified`,`customer_id`)
-					VALUES (?,?,?,?,?,?)",
-					['2','5','product', $id, date('Y-m-d H:i:s'), $_SESSION['user']['id']]
-				);
+				AdminAuditLogger::log(2, 5, 'product', (int)$id);
 
 				// API IndexNow
 				$indexnow = new PlaginsIndexnow();
@@ -502,12 +498,7 @@ class ProductController extends AppController {
 					\R::store($bean); // ← если ensure добавил суффикс и alias поменялся — сохраняем снова
 				}
 
-				\R::exec(
-					"INSERT INTO `admin_last_history`
-					(`gh_id`,`ah_id`,`name_tbl`,`id_tbl`,`date_modified`,`customer_id`)
-					VALUES (?,?,?,?,?,?)",
-					['2','4','product', $id, date('Y-m-d H:i:s'), $_SESSION['user']['id']]
-				);
+				AdminAuditLogger::log(2, 4, 'product', (int)$id);
 
 				// API IndexNow
 				$indexnow = new PlaginsIndexnow();
@@ -598,12 +589,7 @@ class ProductController extends AppController {
 					\R::store($bean); // ← если ensure добавил суффикс и alias поменялся — сохраняем снова
 				}
 
-				\R::exec(
-					"INSERT INTO `admin_last_history`
-					(`gh_id`,`ah_id`,`name_tbl`,`id_tbl`,`date_modified`,`customer_id`)
-					VALUES (?,?,?,?,?,?)",
-					['2','4','product', $id, date('Y-m-d H:i:s'), $_SESSION['user']['id']]
-				);
+				AdminAuditLogger::log(2, 4, 'product', (int)$id);
 
 				// API IndexNow
 				$indexnow = new PlaginsIndexnow();

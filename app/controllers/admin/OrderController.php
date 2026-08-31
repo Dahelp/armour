@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\AdminAuditLogger;
 use app\models\admin\Order;
 use ishop\App;
 use ishop\libs\Pagination;
@@ -31,7 +32,7 @@ class OrderController extends AppController {
 			try {
 				$order->editOrder($id, $data);
 				$order->editOrderProduct($id, $data);
-				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 44, 'order', (int)$id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+				AdminAuditLogger::log(2, 44, 'order', (int)$id);
 				\R::commit();
 			} catch (\Throwable $exception) {
 				\R::rollback();
@@ -69,19 +70,19 @@ class OrderController extends AppController {
 				if (!empty($data['user_name'])) {
 					$userId = $order->addUser($data);
 					$data['user_id'] = $userId;
-					\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 36, 'user', $userId, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+					AdminAuditLogger::log(2, 36, 'user', (int)$userId);
 				}
 				if (!empty($data['comp_name'])) {
 					$data['user_id'] = $userId;
 					$companyId = $order->addCompany($data);
 					$data['comp_id'] = $companyId;
 					\R::exec('UPDATE user SET comp_id = ? WHERE id = ?', [$companyId, $userId]);
-					\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 33, 'company', $companyId, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+					AdminAuditLogger::log(2, 33, 'company', (int)$companyId);
 				}
 				$order->load($data);
 				$id = $order->addOrder($data);
 				$order->addOrderProduct($id, $data);
-				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 43, 'order', $id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+				AdminAuditLogger::log(2, 43, 'order', (int)$id);
 				\R::commit();
 			} catch (\Throwable $exception) {
 				\R::rollback();
@@ -114,7 +115,7 @@ class OrderController extends AppController {
 			$orders->changeEmail($order_id, $user, $template);
 		}
         \R::store($order);
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','46','order','".$order_id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 46, 'order', (int)$order_id);
         $_SESSION['success'] = 'Изменения сохранены - Присвоен статус '.$order_status->status_name.'';
         redirect(ADMIN . '/order/view?id='.$order_id.'');
     }
@@ -136,7 +137,7 @@ class OrderController extends AppController {
 		$orders->managerEmail($order_manager["email"], $order_id, $user);
         \R::store($order);
 		\R::store($user);
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','52','order','".$order_id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 52, 'order', (int)$order_id);
         $_SESSION['success'] = 'Изменения сохранены - Заказу привязан менеджер '.$order_manager->name.'';		
 		
         redirect(ADMIN . '/order/view?id='.$order_id.'');
@@ -159,7 +160,7 @@ class OrderController extends AppController {
         \R::store($order);
 	    \R::store($user);
 	   
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','52','order','".$order_id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 52, 'order', (int)$order_id);
         $_SESSION['success'] = 'Изменения сохранены - Заказу '.$order_id.' привязан менеджер '.$order_manager->name.'';		
 		
         redirect(ADMIN . '/order');
@@ -182,7 +183,7 @@ class OrderController extends AppController {
 		$inv = \ishop\App::invoice_num($order_id, 9, $order_prefix);
 		$order->inv = $inv;
         \R::store($order);
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','54','order','".$order_id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 54, 'order', (int)$order_id);
         $_SESSION['success'] = 'Изменения сохранены - Присвоен продавец '.$company->comp_short_name.'';
         redirect(ADMIN . '/order/view?id='.$order_id.'');
     }
@@ -191,7 +192,7 @@ class OrderController extends AppController {
         $order_id = $this->getRequestID();
         $order = \R::load('order', $order_id);
         \R::trash($order);
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','45','order','".$order_id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 45, 'order', (int)$order_id);
         $_SESSION['success'] = 'Заказ удален';
         redirect(ADMIN . '/order');
     }

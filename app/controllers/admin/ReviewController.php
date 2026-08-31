@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\AdminAuditLogger;
 use app\models\admin\Review;
 use app\models\AppModel;
 use ishop\App;
@@ -50,7 +51,7 @@ class ReviewController extends AppController {
         $del_gallery = \R::load('review_gallery', $gallery["id"]);
 		\R::trash($del_gallery);
 		
-		\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','65','review','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+		AdminAuditLogger::log(2, 65, 'review', (int)$id);
 		
 		$product = \R::findOne('product', 'id=?', [$review["product_id"]]);
 		
@@ -82,7 +83,7 @@ class ReviewController extends AppController {
 				$review->editReviewProduct($id, $data);
 				$review->saveGallery($id);
 				$r = \R::load('review', $id);
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','63','review','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 63, 'review', (int)$id);
 				
 				$product = \R::findOne('product', 'id=?', [$r["product_id"]]);
 				
@@ -116,7 +117,7 @@ class ReviewController extends AppController {
 				$review->saveGallery($id);
 				
 				$r = \R::load('review', $id);
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','64','review','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 64, 'review', (int)$id);
 				
 				$product = \R::findOne('product', 'id=?', [$r["product_id"]]);
 

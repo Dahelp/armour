@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\AdminAuditLogger;
 use app\models\admin\User;
 use app\models\admin\UserCustomer;
 use app\models\admin\UserRole;
@@ -47,7 +48,7 @@ class UserController extends AppController {
 					if($data["newsletter"] == 1) {
 						$user->editNewsletterGroup($id, $data);
 					}
-					\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','36','user','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+					AdminAuditLogger::log(2, 36, 'user', (int)$id);
                     $_SESSION['success'] = 'Пользователь зарегистрирован';
                 }else{
                     $_SESSION['error'] = 'Ошибка!';
@@ -115,7 +116,7 @@ class UserController extends AppController {
                 redirect();
             }
             if($user->update('user', $id)){
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','37','user','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 37, 'user', (int)$id);
                 $_SESSION['success'] = 'Изменения сохранены';
             }
             redirect();
@@ -204,7 +205,7 @@ class UserController extends AppController {
 		if($find->role == "admin") { $_SESSION['error'] = 'Нельзя удалить администратора';
 		}else{		
 			\R::trash($user);
-			\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','38','user','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+			AdminAuditLogger::log(2, 38, 'user', (int)$id);
 			$_SESSION['success'] = 'Клиент '.$user["email"].' удален';			
 		}
 		redirect();
@@ -249,7 +250,7 @@ class UserController extends AppController {
 					if($data["newsletter"] == 1) {
 						$user->editNewsletterGroup($id, $data);
 					}
-					\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','39','user','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+					AdminAuditLogger::log(2, 39, 'user', (int)$id);
                     $_SESSION['success'] = 'Пользователь зарегистрирован';
                 }else{
                     $_SESSION['error'] = 'Ошибка!';
@@ -284,7 +285,7 @@ class UserController extends AppController {
                 redirect();
             }
             if($user->update('user', $id)){
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','40','user','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				AdminAuditLogger::log(2, 40, 'user', (int)$id);
                 $_SESSION['success'] = 'Изменения сохранены';
             }
             redirect();
@@ -305,7 +306,7 @@ class UserController extends AppController {
 		if($find->role == "admin") { $_SESSION['error'] = 'Нельзя удалить администратора';
 		}else{		
 			\R::trash($user);
-			\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','41','user','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+			AdminAuditLogger::log(2, 41, 'user', (int)$id);
 			$_SESSION['success'] = 'Пользователь '.$user["email"].' удален';			
 		}
 		redirect();

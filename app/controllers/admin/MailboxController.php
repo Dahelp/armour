@@ -2,6 +2,7 @@
 
 namespace app\controllers\admin;
 
+use app\services\AdminAuditLogger;
 use app\models\admin\Mails;
 use app\models\admin\SSP;
 use app\models\AppModel;
@@ -141,7 +142,7 @@ class MailboxController extends AppController {
 		
 		\R::trash($mailbox);
 		
-		\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 61, 'mails_imap', $id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
+		AdminAuditLogger::log(2, 61, 'mails_imap', (int)$id);
                 
         $_SESSION['success'] = 'Письмо ID '.$id.' удалено';
         redirect();
