@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="csrf-token" content="<?=h(\app\services\CsrfProtection::token())?>">
+  <script src="/js/csrf.js" defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?=$this->getMeta();?>  

@@ -8,6 +8,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 <head>
 	<base href="<?=PATH?>/">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="csrf-token" content="<?=h(\app\services\CsrfProtection::token())?>" />
+	<script src="/js/csrf.js" defer></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
 	<?php
 	$robots = $this->meta['robots'] ?? 'noindex, nofollow';

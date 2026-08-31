@@ -11,17 +11,22 @@ use ishop\App;
 class ProductController extends AppController {
 
     public function viewAction(){
-		if($_POST["addreview"]) {
+		if(!empty($_POST['addreview']) || isset($_POST['submit'])) {
+			$reviewProduct = \R::findOne('product', 'alias = ? AND hide != ?', [(string)$this->route['alias'], 'hide']);
+			$userId = isset($_SESSION['user']['id']) ? (int)$_SESSION['user']['id'] : 0;
+			if (!$reviewProduct || $userId < 1) {
+				throw new \Exception('Для добавления отзыва необходимо войти в аккаунт', 403);
+			}
 			$review = new Review();
-			$data["product_id"] = $_POST["product_id"];
-			$data["content"] = $_POST["content"];
-			$data["point"] = $_POST["point"];
+			$data["product_id"] = (int)$reviewProduct->id;
+			$data["content"] = mb_substr(trim((string)($_POST["content"] ?? ($_POST['comment'] ?? ''))), 0, 5000);
+			$data["point"] = max(1, min(5, (int)($_POST["point"] ?? ($_POST['rating'] ?? 0))));
 			$data["date_post"] = date("Y-m-d");
 			$data["hide"] = "show";
 			$data["finger_up"] = NULL;
 			$data["finger_down"] = NULL;
-			$data["user_id"] = $_SESSION['user']['id'];
-			$user = \R::load('user', $_SESSION['user']['id']);
+			$data["user_id"] = $userId;
+			$user = \R::load('user', $userId);
 			$data["uname"] = $user["name"];
 			$review->load($data);
             if(!$review->validate($data)){
@@ -29,7 +34,8 @@ class ProductController extends AppController {
                 $_SESSION['form_data'] = $data;
                 redirect();
             }
-			if($review->save('review')){                
+			if($reviewId = $review->save('review')){
+				\R::exec('INSERT INTO review_product (review_id, product_id) VALUES (?, ?)', [(int)$reviewId, (int)$reviewProduct->id]);
                 $_SESSION['success'] = 'Отзыв добавлен';
             }
             redirect();
@@ -43,33 +49,33 @@ class ProductController extends AppController {
             throw new \Exception('Страница не найдена', 404);
         }
 		$dtmd = md5(date('Y-m-d'));
-		$fio_modal = $_POST["fio_modal"];
-		$tell_modal = $_POST["tell_modal"];
-		$email_modal = $_POST["email_modal"];
-		$prim_modal = $_POST["prim_modal"];
-		$name_tovar = $_POST["name_tovar"];
-		$product_id = $_POST["product_id"];
-		$user_id = $_SESSION['user']['id'];
+		$fio_modal = mb_substr(trim((string)($_POST["fio_modal"] ?? '')), 0, 191);
+		$tell_modal = mb_substr(trim((string)($_POST["tell_modal"] ?? '')), 0, 64);
+		$email_modal = mb_substr(trim((string)($_POST["email_modal"] ?? '')), 0, 191);
+		$prim_modal = mb_substr(trim((string)($_POST["prim_modal"] ?? '')), 0, 5000);
+		$name_tovar = (string)$product->name;
+		$product_id = (int)$product->id;
+		$user_id = isset($_SESSION['user']['id']) ? (int)$_SESSION['user']['id'] : null;
 		$data_create = date('Y-m-d H:i:s');
-		if($_POST["oneclick"] == "".$dtmd."") {
-			if($_POST["politika"] == "pk"){
+		if(($_POST["oneclick"] ?? '') === $dtmd) {
+			if(($_POST["politika"] ?? '') === "pk"){
 				$first = substr($tell_modal, "0",5);			
 				if($first != "+7 (9") { $this->errors['unique'][] = "Запрос не обработан! Вы робот? Если нет, попробуйте заполнить форму обратной связи еще раз!"; } else {				
 					Product::mailZakazClick($name_tovar, $fio_modal, $tell_modal, $email_modal, $prim_modal);
-					\R::exec("INSERT INTO mail_oneclick (`user_id`, `product_id`, `name`, `fio_click`, `tell_click`, `email_click`, `prim_click`, `data_create`, `hide_call`, `data_call`, `call_uid`, `hide_order`, `order_id`, `hide`) VALUES ('".$user_id."', '".$product_id."', '".$name_tovar."', '".$fio_modal."', '".$tell_modal."', '".$email_modal."', '".$prim_modal."', '".$data_create."', '', '', '', '', '', '0')");
-					\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('1','1','product','".$product->id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+					\R::exec('INSERT INTO mail_oneclick (user_id, product_id, name, fio_click, tell_click, email_click, prim_click, data_create, hide_call, data_call, call_uid, hide_order, order_id, hide) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$user_id, (int)$product_id, $name_tovar, $fio_modal, $tell_modal, $email_modal, $prim_modal, $data_create, '', '', '', '', '', 0]);
+					\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [1, 1, 'product', (int)$product->id, date('Y-m-d H:i:s'), $user_id]);
 					setcookie("click-mig", "1house", time()+3600);             
 				}
 			}else { $this->errors['unique'][] = "Запрос не обработан! Вы отказались принимать условия политики конфиденциальности на сайте. К сожалению, мы не сможем воспользоваться Вашими данными для ответа по запросу."; }
 			redirect();
 		}
-		if($_POST["request"] == "".$dtmd."") {			
-			if($_POST["politika"] == "pk"){
+		if(($_POST["request"] ?? '') === $dtmd) {
+			if(($_POST["politika"] ?? '') === "pk"){
 				$first = substr($tell_modal, "0",5);		
 				if($first != "+7 (9") { $this->errors['unique'][] = "Запрос не обработан! Вы робот? Если нет, попробуйте заполнить форму обратной связи еще раз!"; } else {	
 					Product::mailRequest($name_tovar, $fio_modal, $tell_modal, $email_modal, $prim_modal);
-					\R::exec("INSERT INTO `mail_request` (`user_id`, `product_id`, `name`, `fio`, `tell`, `email`, `note`, `data_create`, `hide_call`, `data_call`, `call_uid`, `hide_order`, `order_id`, `hide`) VALUES ('".$user_id."', '".$product_id."', '".$name_tovar."', '".$fio_modal."', '".$tell_modal."', '".$email_modal."', '".$prim_modal."', '".$data_create."', '', '', '', '', '', '0')");
-					\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('1','62','product','".$product->id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+					\R::exec('INSERT INTO mail_request (user_id, product_id, name, fio, tell, email, note, data_create, hide_call, data_call, call_uid, hide_order, order_id, hide) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$user_id, (int)$product_id, $name_tovar, $fio_modal, $tell_modal, $email_modal, $prim_modal, $data_create, '', '', '', '', '', 0]);
+					\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [1, 62, 'product', (int)$product->id, date('Y-m-d H:i:s'), $user_id]);
 					setcookie("request-mig", "1house", time()+3600);             
 				}
 			}else { $this->errors['unique'][] = "Запрос не обработан! Вы отказались принимать условия политики конфиденциальности на сайте. К сожалению, мы не сможем воспользоваться Вашими данными для ответа по запросу."; }

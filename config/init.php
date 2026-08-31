@@ -29,4 +29,11 @@ if ($configuredUrl !== '') {
 define("PATH", $app_path);
 define("ADMIN", PATH . '/admin');
 
+ini_set('session.use_strict_mode', '1');
+ini_set('session.cookie_httponly', '1');
+ini_set('session.cookie_samesite', 'Lax');
+if (str_starts_with($app_path, 'https://')) {
+    ini_set('session.cookie_secure', '1');
+}
+
 require_once ROOT . '/vendor/autoload.php';
