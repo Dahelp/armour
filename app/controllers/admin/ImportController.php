@@ -5,6 +5,8 @@ namespace app\controllers\admin;
 use app\models\admin\Product;
 use ishop\App;
 use app\models\AppModel;
+use app\services\RemoteXmlDownloader;
+use app\services\UrlAliasRepository;
 
 class ImportController extends AppController {
 
@@ -25,22 +27,12 @@ class ImportController extends AppController {
                    
 					ftp_pasv ($conn_id, TRUE); // в данном случае пассивный режим включен
 					
-					$fileprod = $_POST["url_file"];
-					$exp = explode("/", $fileprod);
-					$file_name = end($exp); //myimage.jpg
-					
-					$path = "xml/$file_name";
-
-					$ch = curl_init($fileprod);
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-					curl_setopt($ch, CURLOPT_HEADER, false);
-					$html = curl_exec($ch);
-					curl_close($ch); 
-
-					file_put_contents($path, $html);
-
-					$xml = simplexml_load_file("xml/$file_name");
+					$path = (new RemoteXmlDownloader())->download((string)($_POST['url_file'] ?? ''), WWW . '/xml');
+					$xml = simplexml_load_file($path, \SimpleXMLElement::class, LIBXML_NONET | LIBXML_NOCDATA);
+					@unlink($path);
+					if ($xml === false) {
+						throw new \RuntimeException('Получен некорректный XML-файл.');
+					}
 					
 					if ( $_POST['url_file'])
 					{ 
@@ -49,7 +41,7 @@ class ImportController extends AppController {
 						{
 							$product = new Product();
 						
-							$product->attributes['article'] = $row[id];
+							$product->attributes['article'] = $row['id'];
 							$product->attributes['price'] = $row->price;
 							$product->attributes['price_rrs'] = '0';
 							$product->attributes['category_id'] = $_POST["category_id"];	
@@ -81,20 +73,24 @@ class ImportController extends AppController {
 									$alias = strtolower($row->url);
 									$p = \R::load('product', $id);
 									$p->alias = $alias;
-									\R::exec("INSERT INTO `url_alias`(`sef`, `view`, `urlid`) VALUES ('".$alias."','Product', '".$id."')");
+									(new UrlAliasRepository())->save($alias, 'Product', (int)$id);
 									\R::store($p);
 									$isNonEmptyArray = $product->traverseArray($row->param);
 									if($isNonEmptyArray){ 
-										$sql_part = '';
+										$attributeRows = [];
+										$attributeBindings = [];
 										foreach ( $row->param as $params ) {							
 
 											$att = \R::findOne('attribute', 'attribute_name = ?', [$params["name"]]);
-											$sql_part .= "($id, '".$att['id']."', '".$att['attribute_group_id']."', '".$params."'),";              
+											if ($att) {
+												$attributeRows[] = '(?, ?, ?, ?)';
+												array_push($attributeBindings, (int)$id, (int)$att->id, (int)$att->attribute_group_id, (string)$params);
+											}
 											
 										}
-										$sql_part = rtrim($sql_part, ',');
-									
-									\R::exec("INSERT IGNORE INTO product_attribute (product_id, attribute_id, attribute_group_id, attribute_text) VALUES $sql_part");
+										if ($attributeRows !== []) {
+											\R::exec('INSERT IGNORE INTO product_attribute (product_id, attribute_id, attribute_group_id, attribute_text) VALUES ' . implode(',', $attributeRows), $attributeBindings);
+										}
 									}
 									$_SESSION['success'] = 'Товар добавлен';
 								}
@@ -105,7 +101,9 @@ class ImportController extends AppController {
 				else { $_SESSION['error'] = 'Пароль или логин не подошли!'; }
 			}
 			else { $_SESSION['error'] = 'Не подключились'; }
-			ftp_close($conn_id); // и закрываем коннект с FTP 
+			if ($conn_id) {
+				ftp_close($conn_id); // и закрываем коннект с FTP
+			}
 		}
 		
         $this->setMeta('Импорт товаров');

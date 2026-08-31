@@ -16,6 +16,9 @@ use app\models\admin\PlaginsTechnicsManufacturer;
 use app\models\admin\PlaginsIndexnow;
 use app\models\admin\PlaginsPromocode;
 use app\models\admin\PlaginsYandexTovars;
+use app\services\PluginStoragePolicy;
+use app\services\RelationWriter;
+use app\services\RemoteXmlDownloader;
 
 class PlaginsController extends AppController {
 
@@ -56,17 +59,9 @@ class PlaginsController extends AppController {
                 $promocode->getErrors();
                 redirect();
             }
-            if($promocode->save('plagins_promocode', false)){				
-				$last = \R::findLast('plagins_promocode');				
-				//создание категорий групп
-				$sql_part = '';
-				foreach($_POST['category_id'] as $cat_id){
-					$cat_id = (int)$cat_id;
-					$sql_part .= "(".$last->id.", ".$cat_id."),";
-				}
-				$sql_part = rtrim($sql_part, ',');
-				\R::exec("INSERT INTO plagins_promocode_category (promocode_id, category_id) VALUES $sql_part");
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','28','plagins_promocode','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+            if($id = $promocode->save('plagins_promocode', false)){
+				(new RelationWriter())->replace('plagins_promocode_category', 'promocode_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
+				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 28, 'plagins_promocode', (int)$id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
                 
                 $_SESSION['success'] = 'Промокод добавлен';
                 redirect();
@@ -90,17 +85,8 @@ class PlaginsController extends AppController {
             }
 			if($promocode->update('plagins_promocode', $id)){
 				
-				//удаление категорий групп
-				\R::exec("DELETE FROM plagins_promocode_category WHERE promocode_id = ?", [$id]);
-				//создание категорий групп				
-				$sql_part = '';
-				foreach($_POST['category_id'] as $cat_id){
-					$cat_id = (int)$cat_id;
-					$sql_part .= "($id, $cat_id),";
-				}
-				$sql_part = rtrim($sql_part, ',');
-				\R::exec("INSERT INTO plagins_promocode_category (promocode_id, category_id) VALUES $sql_part");
-				\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','29','plagins_promocode','".$id."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");
+				(new RelationWriter())->replace('plagins_promocode_category', 'promocode_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
+				\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 29, 'plagins_promocode', (int)$id, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
                 
                 $_SESSION['success'] = 'Изменения сохранены';
                 redirect();
@@ -345,8 +331,12 @@ class PlaginsController extends AppController {
 		if(!empty($_POST)){
 			
 			if($_POST["format"] == 1) {
-				$url_file = $_POST["url_file"];
-				$xml = simplexml_load_file("$url_file");
+				$path = (new RemoteXmlDownloader())->download((string)($_POST['url_file'] ?? ''), WWW . '/xml');
+				$xml = simplexml_load_file($path, \SimpleXMLElement::class, LIBXML_NONET | LIBXML_NOCDATA);
+				@unlink($path);
+				if ($xml === false) {
+					throw new \RuntimeException('Получен некорректный XML-файл.');
+				}
 				if ( $_POST['url_file'])
 				{ 
 					$cross = array();
@@ -354,7 +344,7 @@ class PlaginsController extends AppController {
 					foreach ( $xml->shop->offers->offer as $row )  
 					{
 
-						$goods_cross_id = $row[id];
+						$goods_cross_id = $row['id'];
 						$article = $row->goods;
 						$manufacturer_name = $row->manufacturer;
 						$cross_name = $row->name;
@@ -448,24 +438,29 @@ class PlaginsController extends AppController {
 	
 	public function crossImportConfirmationAction(){
 		if(!empty($_POST)){
-			
-
-			for($i = 0; $i < count($_POST['cross_id']); $i++)
+			$insertRows = [];
+			$insertBindings = [];
+			$search_engine = '';
+			$crossIds = (array)($_POST['cross_id'] ?? []);
+			for($i = 0; $i < count($crossIds); $i++)
 			{
-			
-				$cross_id = $_POST["cross_id"][$i];
-				$product_id = $_POST["product_id"][$i];
-				$cross_name = $_POST["cross_name"][$i];
-				$cross_abbreviated_name = $_POST["cross_abbreviated_name"][$i];			
-				$vendor_id = $_POST["vendor_id"][$i];
-				$tip_cross = $_POST["tip_cross"][$i]; 
-				$equipment_vendor = $_POST["equipment_vendor"][$i];
-				$crossname = \R::findOne('plagins_cross', 'cross_abbreviated_name = ?', [$_POST['cross_abbreviated_name'][$i]]);
+				$cross_id = (int)($crossIds[$i] ?? 0);
+				$product_id = (int)($_POST['product_id'][$i] ?? 0);
+				$cross_name = (string)($_POST['cross_name'][$i] ?? '');
+				$cross_abbreviated_name = trim((string)($_POST['cross_abbreviated_name'][$i] ?? ''));
+				$vendor_id = (int)($_POST['vendor_id'][$i] ?? 0);
+				$tip_cross = (int)($_POST['tip_cross'][$i] ?? 0);
+				$equipment_vendor = (int)($_POST['equipment_vendor'][$i] ?? 0);
+				if ($cross_abbreviated_name === '') {
+					continue;
+				}
+				$crossname = \R::findOne('plagins_cross', 'cross_abbreviated_name = ?', [$cross_abbreviated_name]);
 				
 				if($crossname){						
-					\R::exec("UPDATE plagins_cross SET cross_id='".$cross_id."', product_id='".$product_id."', vendor_id='".$vendor_id."', cross_name='".$cross_name."', cross_abbreviated_name='".$cross_abbreviated_name."', tip_cross='".$tip_cross."', equipment_vendor='".$equipment_vendor."' WHERE id = '".$cross_id."'");
+					\R::exec('UPDATE plagins_cross SET cross_id = ?, product_id = ?, vendor_id = ?, cross_name = ?, cross_abbreviated_name = ?, tip_cross = ?, equipment_vendor = ? WHERE id = ?', [$cross_id, $product_id, $vendor_id, $cross_name, $cross_abbreviated_name, $tip_cross, $equipment_vendor, (int)$crossname->id]);
 				}else{
-					$sql_part .= "('".$cross_id."', '".$product_id."', '".$vendor_id."', '".$cross_name."', '".$cross_abbreviated_name."', '".$tip_cross."', '".$equipment_vendor."'),";
+					$insertRows[] = '(?, ?, ?, ?, ?, ?, ?)';
+					array_push($insertBindings, $cross_id, $product_id, $vendor_id, $cross_name, $cross_abbreviated_name, $tip_cross, $equipment_vendor);
 				}
 				
 				// API IndexNow
@@ -476,9 +471,8 @@ class PlaginsController extends AppController {
 				}
 			}
 			
-			$sql_part = rtrim($sql_part, ',');
-			if($sql_part){					
-				\R::exec("INSERT IGNORE INTO plagins_cross (cross_id, product_id, vendor_id, cross_name, cross_abbreviated_name, tip_cross, equipment_vendor) VALUES $sql_part");
+			if($insertRows !== []){
+				\R::exec('INSERT IGNORE INTO plagins_cross (cross_id, product_id, vendor_id, cross_name, cross_abbreviated_name, tip_cross, equipment_vendor) VALUES ' . implode(',', $insertRows), $insertBindings);
 			}				
 						
 			$_SESSION['success'] = 'Кросс-номера импортированы';
@@ -1048,31 +1042,21 @@ class PlaginsController extends AppController {
 	
 	public function technicsImportAction(){
 		if(!empty($_POST)){	
-			$fileprod = $_POST["url_file"];
-			$exp = explode("/", $fileprod);
-			$file_name = end($exp); //myimage.jpg
-			
-			$path = "xml/$file_name";
-
-			$ch = curl_init($fileprod);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($ch, CURLOPT_HEADER, false);
-			$html = curl_exec($ch);
-			curl_close($ch); 
-
-			file_put_contents($path, $html);
-
-			$xml = simplexml_load_file("xml/$file_name");			 
+			$path = (new RemoteXmlDownloader())->download((string)($_POST['url_file'] ?? ''), WWW . '/xml');
+			$xml = simplexml_load_file($path, \SimpleXMLElement::class, LIBXML_NONET | LIBXML_NOCDATA);
+			@unlink($path);
+			if ($xml === false) {
+				throw new \RuntimeException('Получен некорректный XML-файл.');
+			}
 
 				foreach ( $xml->shop->offers->offer as $row )  
 				{
 					$technics = new PlaginsTechnics();
 					
-					$technic_id = $row[id];
-					$type_name = $row->tip;
-					$manufacturer_name = $row->name;
-					$model = $row->model;
+					$technic_id = $row['id'];
+					$type_name = (string)$row->tip;
+					$manufacturer_name = (string)$row->name;
+					$model = (string)$row->model;
 					$array_size = explode(',', $row->size);
 					$array_size_back = explode(',', $row->size_back);
 					$array_size_alt = explode(',', $row->size_alt);
@@ -1080,28 +1064,41 @@ class PlaginsController extends AppController {
 					$data = Array('size' => $array_size, 'size_back' => $array_size_back, 'size_alt' => $array_size_alt, 'size_alt_back' => $array_size_alt_back);
 					$type = \R::findOne('technics_type', 'name = ?', [$type_name]);
 					if(!$type){
-						
-						\R::exec("INSERT INTO `technics_type`(`name`, `alias`, `hide`, `title`, `description`, `keywords`, `content`, `img`, `seoname_1`, `seoname_2`, `seoname_3`) VALUES ('".$row->tip."','','show','','','','','','','','')");
-						$type["id"] = \R::findLast('technics_manufacturer');
-						$alias_type = AppModel::createAlias('technics_type', 'alias', ''.$row->tip.'', $type["id"]);
-						$t = \R::load('technics_type', $type["id"]);
-						$t->alias = $alias_type;	
-						\R::store($t);
-						\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','22','technics_type','".$type["id"]."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");												
+						$type = \R::dispense('technics_type');
+						$type->name = (string)$row->tip;
+						$type->alias = '';
+						$type->hide = 'show';
+						$type->title = '';
+						$type->description = '';
+						$type->keywords = '';
+						$type->content = '';
+						$type->img = '';
+						$type->seoname_1 = '';
+						$type->seoname_2 = '';
+						$type->seoname_3 = '';
+						$typeId = (int)\R::store($type);
+						$type->alias = AppModel::createAlias('technics_type', 'alias', (string)$row->tip, $typeId);
+						\R::store($type);
+						\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 22, 'technics_type', $typeId, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
 					}
-					$technics->attributes['type_id'] = $type["id"];
+					$technics->attributes['type_id'] = (int)$type->id;
 					$manufacturer = \R::findOne('technics_manufacturer', 'name = ?', [$manufacturer_name]);
 					if(!$manufacturer){
-						
-						\R::exec("INSERT INTO `technics_manufacturer`(`name`, `content`, `alias`, `title`, `description`, `keywords`, `hide`, `img`) VALUES ('".$row->name."','','','','','','show','')");
-						$manufacturer["id"] = \R::findLast('technics_manufacturer');
-						$alias_manufacturer = AppModel::createAlias('technics_manufacturer', 'alias', ''.$row->name.'', $manufacturer["id"]);
-						$m = \R::load('technics_manufacturer', $manufacturer["id"]);
-						$m->alias = $alias_manufacturer;	
-						\R::store($m);
-						\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','25','technics_manufacturer','".$manufacturer["id"]."','".date('Y-m-d H:i:s')."','".$_SESSION['user']['id']."')");												
+						$manufacturer = \R::dispense('technics_manufacturer');
+						$manufacturer->name = (string)$row->name;
+						$manufacturer->content = '';
+						$manufacturer->alias = '';
+						$manufacturer->title = '';
+						$manufacturer->description = '';
+						$manufacturer->keywords = '';
+						$manufacturer->hide = 'show';
+						$manufacturer->img = '';
+						$manufacturerId = (int)\R::store($manufacturer);
+						$manufacturer->alias = AppModel::createAlias('technics_manufacturer', 'alias', (string)$row->name, $manufacturerId);
+						\R::store($manufacturer);
+						\R::exec('INSERT INTO admin_last_history (gh_id, ah_id, name_tbl, id_tbl, date_modified, customer_id) VALUES (?, ?, ?, ?, ?, ?)', [2, 25, 'technics_manufacturer', $manufacturerId, date('Y-m-d H:i:s'), (int)$_SESSION['user']['id']]);
 					}
-					$technics->attributes['manufacturer_id'] = $manufacturer["id"];
+					$technics->attributes['manufacturer_id'] = (int)$manufacturer->id;
 					$technics->attributes['model'] = $model;	
 					$technics->attributes['position'] = '0';
 					$technics->attributes['hide'] = 'show';
@@ -1120,7 +1117,7 @@ class PlaginsController extends AppController {
 						$technics->uploadImgXml($row->picture, $img_name, $wmax, $hmax, $wmaxmini, $hmaxmini);
 						$technics->getImg();
 						if($id = $technics->save('technics')){
-							$name = "".$type["name"]." ".$manufacturer["name"]." ".$model."";
+							$name = "".$type->name." ".$manufacturer->name." ".$model."";
 							$alias = AppModel::createAlias('technics', 'alias', ''.$name.'', $id);
 							$p = \R::load('technics', $id);
 							$p->alias = $alias;	
@@ -1354,13 +1351,14 @@ class PlaginsController extends AppController {
 
 /* IMAGES PLAGINS RAZDEL */
 	public function deleteGalleryAction(){
-        $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $src = isset($_POST['src']) ? $_POST['src'] : null;
-		$plagins = isset($_POST['plagins']) ? $_POST['plagins'] : null;
+		$id = (int)($_POST['id'] ?? 0);
+		$src = PluginStoragePolicy::imageName((string)($_POST['src'] ?? ''));
+		$plagins = strtolower((string)($_POST['plagins'] ?? ''));
         if(!$id || !$src){
             return;
         }
-        if(\R::exec("DELETE FROM plagins_".$plagins."_gallery WHERE product_id = ? AND img = ?", [$id, $src])){
+		$table = PluginStoragePolicy::table($plagins, '_gallery');
+		if(\R::exec("DELETE FROM `$table` WHERE complete_id = ? AND img = ?", [$id, $src])){
             @unlink(WWW . "/images/$plagins/gallery/$src");
             exit('1');
         }
@@ -1368,24 +1366,17 @@ class PlaginsController extends AppController {
     }
 	
 	public function DeleteBaseimgAction(){
-        $id = isset($_POST['id']) ? $_POST['id'] : null;
-        $src = isset($_POST['src']) ? $_POST['src'] : null;
-		$plagins = isset($_POST['plagins']) ? $_POST['plagins'] : null;
+		$id = (int)($_POST['id'] ?? 0);
+		$src = PluginStoragePolicy::imageName((string)($_POST['src'] ?? ''));
+		$plagins = strtolower((string)($_POST['plagins'] ?? ''));
         if(!$id || !$src){
             return;
         }
-		if($plagins == "technics") {
-			if(\R::exec("UPDATE technics SET img = '' WHERE id = ? AND img = ?", [$id, $src])){
-				@unlink(WWW . "/images/$plagins/baseimg/$src");
-				@unlink(WWW . "/images/$plagins/mini/$src");
-				exit('1');
-			}
-		}else{
-			if(\R::exec("UPDATE plagins_".$plagins." SET img = '' WHERE id = ? AND img = ?", [$id, $src])){
-				@unlink(WWW . "/images/$plagins/baseimg/$src");
-				@unlink(WWW . "/images/$plagins/mini/$src");
-				exit('1');
-			}
+		$table = PluginStoragePolicy::table($plagins);
+		if(\R::exec("UPDATE `$table` SET img = '' WHERE id = ? AND img = ?", [$id, $src])){
+			@unlink(WWW . "/images/$plagins/baseimg/$src");
+			@unlink(WWW . "/images/$plagins/mini/$src");
+			exit('1');
 		}
         return;
     }
