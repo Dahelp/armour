@@ -5,10 +5,10 @@
 			<a href="<?= PATH ?>">Главная</a>
 			<?php if($type->hide_anons=="show") { ?>
 				<span class="breadcrumb-separator"> / </span>
-				<a href="<?=$type->param_url?>"><?=$type->name;?></a>
+				<a href="<?=PATH . '/' . h($type->param_url)?>"><?=h($type->name);?></a>
 			<?php } ?>
 			<span class="breadcrumb-separator"> / </span>
-			<?=$find->name;?>			
+			<?=h($find->name);?>
 		</nav>
 	</div>
 </div>
@@ -18,9 +18,9 @@
 			<main id="main" class="site-main">
 				<?php if(!empty($find)): 
 						if($type->hide_clicks == "show") { \R::exec("UPDATE contents SET clicks = clicks+1 WHERE id = ?", [$find->id]); } ?>
-				<article itemscope itemtype="http://schema.org/NewsArticle" id="post-<?=$find->id?>" class="post-<?=$find->id?> page type-page status-publish hentry">
+				<article itemscope itemtype="https://schema.org/NewsArticle" id="post-<?=(int)$find->id?>" class="post-<?=(int)$find->id?> page type-page status-publish hentry">
 					<header class="entry-header">
-						<h1 class="entry-title"><?=$find->name;?></h1>
+						<h1 class="entry-title"><?=h($find->name);?></h1>
 					</header>
 						<div class="entry-content">							
 							<?php if($type["hide_date_post"] == "show") { ?>
@@ -33,7 +33,7 @@
 								<?php if($find->img) { ?>
 									<?php if($find->img_hide == "show") { ?>
 										<div class="cont-img">
-											<img src="images/contents/baseimg/<?=$find->img;?>" alt="" />
+									<img src="<?=PATH?>/images/contents/baseimg/<?=h($find->img);?>" alt="<?=h($find->name);?>" loading="lazy" decoding="async" />
 										</div>
 									<?php } ?>
 								<?php } ?>

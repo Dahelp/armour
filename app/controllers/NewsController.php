@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\Breadcrumbs;
 use ishop\App;
 use ishop\libs\Pagination;
 
@@ -11,12 +10,14 @@ class NewsController extends AppController {
     public function viewAction(){
 		
 		$alias = $this->route['alias'];
-		$up_registr = App::upRegistrLetter($alias);
-		$find = \R::findOne('contents', 'alias = ?', [$alias]);
+		$find = \R::findOne('contents', 'alias = ? AND hide = ?', [$alias, 'show']);
 		if(!$find){
             throw new \Exception("Страница не найдена", 404);
         }
 		$type = \R::findOne('content_type', 'id = ?', [$find->type_id]);
+		if (!$type || strtolower((string)$type->param_url) !== 'news') {
+			throw new \Exception("Страница не найдена", 404);
+		}
 
 		// связанные товары
         $related = \R::getAll("SELECT * FROM content_related JOIN product ON product.id = content_related.related_id WHERE content_related.content_id = ?", [$find->id]);
@@ -38,11 +39,14 @@ class NewsController extends AppController {
 		$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perpage = App::$app->getProperty('pagination');
 		
-		$total = \R::count('contents', "hide = 'show' AND type_id = '$type->id'");
+		if (!$type) {
+			throw new \Exception("Раздел не найден", 404);
+		}
+		$total = \R::count('contents', 'hide = ? AND type_id = ?', ['show', (int)$type->id]);
         $pagination = new Pagination($page, $perpage, $total);
         $start = $pagination->getStart();
 		
-		$conts = \R::findAll('contents', 'type_id = ? ORDER BY date_post DESC LIMIT ?, ?', [$type->id, $start, $perpage]);
+		$conts = \R::findAll('contents', 'hide = ? AND type_id = ? ORDER BY date_post DESC LIMIT ?, ?', ['show', (int)$type->id, $start, $perpage]);
 
 		/*SEO*/
 		if($this->route["controller"]){ $path_controller = "/".mb_strtolower($this->route["controller"]).""; }else{ $path_controller = ""; }
@@ -53,4 +57,4 @@ class NewsController extends AppController {
         $this->set(compact('conts', 'type', 'pagination'));
 	}
 
-} 
+}

@@ -50,6 +50,15 @@ Imported rows are always hidden drafts. The transaction is rolled back if any
 content or `url_alias` slug already exists; publishing remains a separate manual
 SEO/editorial decision.
 
+Migrate verified legacy article images before building the final package:
+
+`php bin/migrate_legacy_content_images.php legacy-content.json legacy-content-local.json`
+
+The command accepts images only from armour-shina.ru and validates their real
+MIME type and dimensions. Merge content redirects with the product/category map:
+
+`php bin/merge_legacy_redirect_maps.php legacy-urls-final.csv legacy-urls-stage3.csv legacy-content-redirects.csv`
+
 Both paths are stored without a leading slash. Redirect targets must be local
 canonical paths; the application deliberately rejects empty paths, loops and
 path traversal attempts.

@@ -37,10 +37,13 @@ final class LegacyContentMigrationBuilder
     public function write(array $result,string $directory):array
     {
         if(!is_dir($directory)&&!mkdir($directory,0775,true)&&!is_dir($directory))throw new \RuntimeException('Не удалось создать каталог.');
-        $ready=$directory.'/legacy-content-ready.json';$review=$directory.'/legacy-content-review.json';
+        $ready=$directory.'/legacy-content-ready.json';$review=$directory.'/legacy-content-review.json';$redirects=$directory.'/legacy-content-redirects.csv';
         file_put_contents($ready,json_encode($result['ready'],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR),LOCK_EX);
         file_put_contents($review,json_encode($result['review'],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR),LOCK_EX);
-        return ['ready'=>$ready,'review'=>$review];
+        $handle=fopen($redirects,'wb');if($handle===false)throw new \RuntimeException('Не удалось создать карту контентных URL.');
+        fputcsv($handle,['source_path','target_path','status_code','is_active'],';','"','\\');
+        foreach($result['ready'] as $row)fputcsv($handle,[$row['source_path'],$row['alias'],301,1],';','"','\\');fclose($handle);
+        return ['ready'=>$ready,'review'=>$review,'redirects'=>$redirects];
     }
 
     /** @return array{string,int,int} */
@@ -57,7 +60,8 @@ final class LegacyContentMigrationBuilder
                 $external++;$parent=$link->parentNode;if($parent){while($link->firstChild)$parent->insertBefore($link->firstChild,$link);$parent->removeChild($link);}
             }
         }
-        $images=(int)($xpath->query('//img')?->length??0);$root=$document->getElementById('legacy-root');$parts=[];
+        $images=0;foreach($xpath->query('//img[@src]')?:[] as $image){if(!str_starts_with(trim($image->getAttribute('src')),'/images/contents/legacy/'))$images++;}
+        $root=$document->getElementById('legacy-root');$parts=[];
         if($root)foreach($root->childNodes as $node)$parts[]=$document->saveHTML($node);
         return [trim(implode('',$parts)),$external,$images];
     }
