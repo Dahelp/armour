@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ced1507c2befb8e676efcd3a22539047",
+    "content-hash": "f602de0dd4e026e169c3ea3690ea7016",
     "packages": [
         {
             "name": "composer/pcre",
@@ -87,12 +87,12 @@
             "version": "2.0.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/DataTables/Editor-PHP.git",
+                "url": "https://github.com/DataTables/PHP.git",
                 "reference": "59698a80646779e8780661a7651a5795529a3258"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DataTables/Editor-PHP/zipball/59698a80646779e8780661a7651a5795529a3258",
+                "url": "https://api.github.com/repos/DataTables/PHP/zipball/59698a80646779e8780661a7651a5795529a3258",
                 "reference": "59698a80646779e8780661a7651a5795529a3258",
                 "shasum": ""
             },
@@ -2912,7 +2912,15 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2"
+        "php": "^8.2",
+        "ext-curl": "*",
+        "ext-dom": "*",
+        "ext-fileinfo": "*",
+        "ext-gd": "*",
+        "ext-intl": "*",
+        "ext-mbstring": "*",
+        "ext-openssl": "*",
+        "ext-pdo_mysql": "*"
     },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"

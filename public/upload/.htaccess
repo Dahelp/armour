@@ -19,3 +19,7 @@ SetHandler default-handler
 # Remove both lines below if you want to render HTML files from the upload folder
 AddType text/plain .html
 AddType text/plain .htm
+
+<FilesMatch "\.(?:php[0-9]?|phtml|phar|cgi|pl|py|sh|inc)$">
+  Require all denied
+</FilesMatch>
