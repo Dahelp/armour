@@ -7,6 +7,7 @@
 /tmp/*.sql
 /tmp/reports/
 /tmp/*sitemap*.xml
+/tmp/mariadb-stage/
 
 .env
 .env.*

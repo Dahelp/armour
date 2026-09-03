@@ -10,7 +10,7 @@ class App{
     public static $app;
 
     public function __construct(){
-        $query = trim($_SERVER['QUERY_STRING'], '/');
+        $query = trim((string)($_SERVER['QUERY_STRING'] ?? ''), '/');
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }

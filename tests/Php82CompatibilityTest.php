@@ -20,6 +20,8 @@ assertPhp82(!$parameters[2]->isOptional(), 'Cart max quantity is required.');
 assertPhp82($parameters[3]->isOptional(), 'Cart modification must remain optional.');
 
 $root = dirname(__DIR__);
+$appSource=(string)file_get_contents($root.'/vendor/ishop/core/App.php');
+assertPhp82(str_contains($appSource,"\$_SERVER['QUERY_STRING'] ?? ''"),'Missing QUERY_STRING still triggers PHP 8.2 warnings.');
 $expectedSnippets = [
     '/app/widgets/menu/menu_tpl/menu.php' => "\$cat['parent_id']",
     '/app/views/armour/User/order.php' => "\$summa[0]['qty']",

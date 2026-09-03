@@ -14,19 +14,17 @@ final class UrlAliasRepository
             throw new \InvalidArgumentException('Некорректный SEO URL или контроллер');
         }
 
-        $conflict = \R::findOne('url_alias', 'sef = ?', [$sef]);
-        if ($conflict && ((string)$conflict->view !== $view || (int)$conflict->urlid !== $urlId)) {
+        $conflict = \R::getRow('SELECT id, view, urlid FROM url_alias WHERE sef = ? LIMIT 1', [$sef]);
+        if ($conflict && ((string)$conflict['view'] !== $view || (int)$conflict['urlid'] !== $urlId)) {
             throw new \RuntimeException('Такой SEO URL уже используется другой страницей', 409);
         }
 
-        $alias = \R::findOne('url_alias', 'view = ? AND urlid = ?', [$view, $urlId]);
-        if (!$alias) {
-            $alias = \R::dispense('url_alias');
+        $aliasId = (int)\R::getCell('SELECT id FROM url_alias WHERE view = ? AND urlid = ? LIMIT 1', [$view, $urlId]);
+        if ($aliasId > 0) {
+            \R::exec('UPDATE url_alias SET sef = ? WHERE id = ?', [$sef, $aliasId]);
+        } elseif (!$conflict) {
+            \R::exec('INSERT INTO url_alias (sef, view, urlid) VALUES (?, ?, ?)', [$sef, $view, $urlId]);
         }
-        $alias->sef = $sef;
-        $alias->view = $view;
-        $alias->urlid = $urlId;
-        \R::store($alias);
     }
 
     public function remove(string $sef, string $view): void
@@ -37,10 +35,7 @@ final class UrlAliasRepository
             return;
         }
 
-        $alias = \R::findOne('url_alias', 'sef = ? AND view = ?', [$sef, $view]);
-        if ($alias) {
-            \R::trash($alias);
-        }
+        \R::exec('DELETE FROM url_alias WHERE sef = ? AND view = ?', [$sef, $view]);
     }
 
     public static function normaliseSef(string $sef): string

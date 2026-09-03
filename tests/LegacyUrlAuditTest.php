@@ -35,6 +35,30 @@ legacyAuditAssert($report[0]['result'] === 'PASS', 'A correct one-hop redirect f
 legacyAuditAssert($report[0]['redirects'] === 1, 'Redirect count is incorrect.');
 legacyAuditAssert($report[0]['canonical'] === 'https://techtires.ru/new-product', 'Canonical URL was not extracted.');
 
+$encodedRequests = [];
+$encodedFetcher = static function (string $url) use (&$encodedRequests): array {
+    $encodedRequests[] = $url;
+    if (count($encodedRequests) === 1) {
+        return ['status' => 301, 'headers' => ['location' => '/tiposize-20.5%2070-16'], 'body' => ''];
+    }
+    return [
+        'status' => 200,
+        'headers' => [],
+        'body' => '<link rel="canonical" href="/tiposize-20.5%2070-16">',
+    ];
+};
+$encodedRows = [['source_path' => 'tiposize-20.5 70-16.html', 'target_path' => 'tiposize-20.5 70-16', 'status_code' => 301, 'is_active' => 1]];
+$encodedReport = (new \app\services\LegacyUrlAuditService($encodedFetcher))->audit($encodedRows, 'https://techtires.ru');
+legacyAuditAssert($encodedRequests[0] === 'https://techtires.ru/tiposize-20.5%2070-16.html', 'A legacy path containing spaces was not URL-encoded.');
+legacyAuditAssert($encodedReport[0]['result'] === 'PASS', 'An encoded legacy URL failed the audit: ' . $encodedReport[0]['issues']);
+
+$stagingReport = (new \app\services\LegacyUrlAuditService($fetcher))->audit(
+    $rows,
+    'http://127.0.0.1:8082',
+    'https://techtires.ru'
+);
+legacyAuditAssert(str_contains((string)$stagingReport[0]['issues'], 'request_error:Unexpected URL'), 'Staging request base was not used independently.');
+
 $responses['https://techtires.ru/new-product'] = [
     'status' => 302,
     'headers' => ['location' => '/final-product'],

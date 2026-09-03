@@ -19,15 +19,17 @@ final class LegacyUrlAuditService
      * @param list<array{source_path: string, target_path: string, status_code: int, is_active: int}> $rows
      * @return list<array<string, int|string>>
      */
-    public function audit(array $rows, string $baseUrl): array
+    public function audit(array $rows, string $baseUrl, ?string $canonicalBaseUrl = null): array
     {
         $baseUrl = $this->normaliseBaseUrl($baseUrl);
+        $canonicalBaseUrl = $this->normaliseBaseUrl($canonicalBaseUrl ?? $baseUrl);
         $allowedHost = strtolower((string)parse_url($baseUrl, PHP_URL_HOST));
         $report = [];
 
         foreach ($rows as $row) {
-            $sourceUrl = $baseUrl . '/' . $row['source_path'];
-            $expectedUrl = $baseUrl . '/' . $row['target_path'];
+            $sourceUrl = $this->pathUrl($baseUrl, $row['source_path']);
+            $expectedUrl = $this->pathUrl($baseUrl, $row['target_path']);
+            $expectedCanonicalUrl = $this->pathUrl($canonicalBaseUrl, $row['target_path']);
             if ($row['is_active'] !== 1) {
                 $report[] = [
                     'source_path' => $row['source_path'],
@@ -107,7 +109,7 @@ final class LegacyUrlAuditService
                 }
                 if ($canonical === '') {
                     $issues[] = 'canonical_missing';
-                } elseif ($this->comparableUrl($canonical) !== $this->comparableUrl($expectedUrl)) {
+                } elseif ($this->comparableUrl($canonical) !== $this->comparableUrl($expectedCanonicalUrl)) {
                     $issues[] = 'canonical_mismatch';
                 }
             } catch (\Throwable $exception) {
@@ -168,6 +170,12 @@ final class LegacyUrlAuditService
             throw new \InvalidArgumentException('base-url должен быть абсолютным HTTP(S) URL.');
         }
         return $url;
+    }
+
+    private function pathUrl(string $baseUrl, string $path): string
+    {
+        $segments = explode('/', rawurldecode(trim($path, '/')));
+        return $baseUrl . '/' . implode('/', array_map('rawurlencode', $segments));
     }
 
     private function resolveUrl(string $currentUrl, string $location): string

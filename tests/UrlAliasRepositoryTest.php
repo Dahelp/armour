@@ -13,6 +13,10 @@ function aliasAssert(bool $condition, string $message): void
 
 use app\services\UrlAliasRepository;
 
+$repositorySource = (string)file_get_contents(dirname(__DIR__) . '/app/services/UrlAliasRepository.php');
+aliasAssert(!str_contains($repositorySource, "dispense('url_alias')"), 'RedBean cannot dispense underscore table names.');
+aliasAssert(str_contains($repositorySource, 'INSERT INTO url_alias'), 'URL aliases cannot be inserted.');
+
 aliasAssert(UrlAliasRepository::normaliseSef('/Catalog-VIL/') === 'catalog-vil', 'Slug case or slashes were not normalised.');
 aliasAssert(UrlAliasRepository::normaliseSef('/old-product.html') === 'old-product.html', 'Legacy .html slug was rejected.');
 aliasAssert(UrlAliasRepository::normaliseSef('catalog//vil') === 'catalog/vil', 'Duplicate slashes were not collapsed.');

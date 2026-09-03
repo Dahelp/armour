@@ -29,13 +29,15 @@ if ($result['errors'] !== []) {
     exit(1);
 }
 
+if ($apply) {
+    require dirname(__DIR__) . '/config/init.php';
+}
 printf("Проверено строк: %d. Ошибок: 0.\n", count($result['rows']));
 if (!$apply) {
     echo "Dry-run завершён: база данных не изменена. Для импорта добавьте --apply.\n";
     exit(0);
 }
 
-require dirname(__DIR__) . '/config/init.php';
 \ishop\Db::instance();
 $count = (new LegacyUrlRedirectRepository())->upsert($result['rows']);
 printf("Импортировано или обновлено строк: %d.\n", $count);
