@@ -48,6 +48,9 @@ jobs:
               cp -p "$file" ".release/$file"
             fi
           done < <(git diff --name-only -z 24843c0c..HEAD)
+          mkdir -p .release/public
+          cp -p robots.txt .release/robots.txt
+          cp -p public/robots.txt .release/public/robots.txt
           {
             printf 'APP_ENV=production\nAPP_DEBUG=0\nAPP_URL=https://techtires.ru\n\n'
             printf 'DB_HOST=%s\nDB_PORT=3306\nDB_DATABASE=%s\nDB_USERNAME=%s\nDB_PASSWORD=%s\n\n' "$DB_HOST" "$DB_DATABASE" "$DB_USERNAME" "$DB_PASSWORD"
