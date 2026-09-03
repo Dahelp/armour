@@ -1,0 +1,78 @@
+name: Deploy production source delta
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: techtires-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Assemble changed application files
+        shell: bash
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_PROTOCOL: ${{ secrets.SMTP_PROTOCOL }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          CRON_TOKEN: ${{ secrets.CRON_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$DB_HOST"
+          test -n "$DB_DATABASE"
+          test -n "$DB_USERNAME"
+          test -n "$DB_PASSWORD"
+          mkdir -p .release
+          while IFS= read -r -d '' file; do
+            case "$file" in
+              .github/*|tests/*|docs/*|public/uploads/*) continue ;;
+            esac
+            if [ -f "$file" ]; then
+              mkdir -p ".release/$(dirname "$file")"
+              cp -p "$file" ".release/$file"
+            fi
+          done < <(git diff --name-only -z 24843c0c..HEAD)
+          {
+            printf 'APP_ENV=production\nAPP_DEBUG=0\nAPP_URL=https://techtires.ru\n\n'
+            printf 'DB_HOST=%s\nDB_PORT=3306\nDB_DATABASE=%s\nDB_USERNAME=%s\nDB_PASSWORD=%s\n\n' "$DB_HOST" "$DB_DATABASE" "$DB_USERNAME" "$DB_PASSWORD"
+            printf 'SMTP_HOST=%s\nSMTP_PORT=%s\nSMTP_PROTOCOL=%s\nSMTP_USERNAME=%s\nSMTP_PASSWORD=%s\n\n' "$SMTP_HOST" "${SMTP_PORT:-587}" "${SMTP_PROTOCOL:-tls}" "$SMTP_USERNAME" "$SMTP_PASSWORD"
+            printf 'CRON_TOKEN=%s\n\n' "$CRON_TOKEN"
+            printf 'LEGACY_REDIRECTS_ENABLED=0\nLEGACY_REDIRECT_BASE_URL=https://techtires.ru\n'
+          } > .release/.env
+          find .release -type f | wc -l
+
+      - name: Force upload changed files
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          set net:max-retries 3
+          set net:timeout 30
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          mirror --reverse --transfer-all --parallel=8 --no-perms --verbose ./.release/ /www/techtires.ru/
+          bye
+          LFTP
