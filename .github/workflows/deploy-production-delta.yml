@@ -56,7 +56,7 @@ jobs:
             printf 'DB_HOST=%s\nDB_PORT=3306\nDB_DATABASE=%s\nDB_USERNAME=%s\nDB_PASSWORD=%s\n\n' "$DB_HOST" "$DB_DATABASE" "$DB_USERNAME" "$DB_PASSWORD"
             printf 'SMTP_HOST=%s\nSMTP_PORT=%s\nSMTP_PROTOCOL=%s\nSMTP_USERNAME=%s\nSMTP_PASSWORD=%s\n\n' "$SMTP_HOST" "${SMTP_PORT:-587}" "${SMTP_PROTOCOL:-tls}" "$SMTP_USERNAME" "$SMTP_PASSWORD"
             printf 'CRON_TOKEN=%s\n\n' "$CRON_TOKEN"
-            printf 'LEGACY_REDIRECTS_ENABLED=0\nLEGACY_REDIRECT_BASE_URL=https://techtires.ru\n'
+            printf 'LEGACY_REDIRECTS_ENABLED=1\nLEGACY_REDIRECT_BASE_URL=https://techtires.ru\n'
           } > .release/.env
           find .release -type f | wc -l
 

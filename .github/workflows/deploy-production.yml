@@ -78,7 +78,7 @@ jobs:
             printf 'SMTP_USERNAME=%s\n' "$SMTP_USERNAME"
             printf 'SMTP_PASSWORD=%s\n\n' "$SMTP_PASSWORD"
             printf 'CRON_TOKEN=%s\n\n' "$CRON_TOKEN"
-            printf 'LEGACY_REDIRECTS_ENABLED=0\n'
+            printf 'LEGACY_REDIRECTS_ENABLED=1\n'
             printf 'LEGACY_REDIRECT_BASE_URL=https://techtires.ru\n'
           } > .release/.env
 
