@@ -29,7 +29,8 @@ jobs:
           header('Content-Type: application/json; charset=utf-8'); header('Cache-Control: no-store');
           if (!isset($_GET['token']) || $_GET['token'] !== '__TOKEN__') { http_response_code(404); exit; }
           try {
-            require dirname(__DIR__).'/config/init.php'; \ishop\Db::instance();
+            $root=is_file(__DIR__.'/config/init.php')?__DIR__:dirname(__DIR__);
+            require $root.'/config/init.php'; \ishop\Db::instance();
             $rows=\R::getAll("SELECT c.cross_id,p.article,cv.name AS vendor_name,c.cross_name,c.cross_abbreviated_name,c.tip_cross,c.equipment_vendor FROM plagins_cross c INNER JOIN product p ON p.id=c.product_id INNER JOIN brand b ON b.id=p.brand_id INNER JOIN plagins_cross_vendor cv ON cv.id=c.vendor_id WHERE UPPER(TRIM(b.name))='EKKA' ORDER BY c.id");
             if(!$rows) throw new Exception('No EKKA cross numbers found.');
             echo json_encode(array('ok'=>true,'rows'=>$rows));
