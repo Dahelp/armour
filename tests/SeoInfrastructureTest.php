@@ -19,9 +19,16 @@ function seoAssert(bool $condition, string $message): void
 
 $robots = file_get_contents(WWW . '/robots.txt');
 seoAssert($robots !== false, 'robots.txt is missing.');
-seoAssert(!preg_match('/^Disallow:\s*\/$/m', $robots), 'robots.txt must not block the whole site.');
-seoAssert(str_contains($robots, 'Disallow: /admin/'), 'The admin area must be blocked.');
-seoAssert(str_contains($robots, 'Sitemap: https://techtires.ru/sitemap.xml'), 'The sitemap declaration is missing.');
+$indexingBlocked = (bool)preg_match('/^Disallow:\s*\/$/m', $robots);
+if ($indexingBlocked) {
+    seoAssert(
+        trim($robots) === "User-agent: *\nDisallow: /",
+        'Pre-launch robots.txt must contain only the global crawler block.'
+    );
+} else {
+    seoAssert(str_contains($robots, 'Disallow: /admin/'), 'The admin area must be blocked.');
+    seoAssert(str_contains($robots, 'Sitemap: https://techtires.ru/sitemap.xml'), 'The sitemap declaration is missing.');
+}
 
 $publishedSitemap = file_get_contents(WWW . '/sitemap.xml');
 seoAssert($publishedSitemap !== false, 'A deployable sitemap.xml is missing.');

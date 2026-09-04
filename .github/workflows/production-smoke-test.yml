@@ -1,0 +1,76 @@
+name: Production smoke test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Regenerate sitemap from production database
+        env:
+          CRON_TOKEN: ${{ secrets.CRON_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$CRON_TOKEN"
+          result="$(curl --fail-with-body --silent --show-error --max-time 180 \
+            -H "X-Cron-Token: $CRON_TOKEN" \
+            "https://techtires.ru/cron/sitemap")"
+          printf '%s\n' "$result"
+          count="$(printf '%s' "$result" | sed -n 's/.*Sitemap generated: \([0-9][0-9]*\) URLs.*/\1/p')"
+          test -n "$count"
+          test "$count" -gt 1
+
+      - name: Verify public routes and SEO invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          trap 'rm -rf "$tmp"' EXIT
+
+          check_page() {
+            name="$1"
+            url="$2"
+            expected="$3"
+            code="$(curl --silent --show-error --max-time 60 -o "$tmp/$name.html" -w '%{http_code}' "$url")"
+            printf '%-12s HTTP %s\n' "$name" "$code"
+            test "$code" = "$expected"
+            ! grep -Eqi 'Fatal error|Uncaught (Error|Exception)|Warning:' "$tmp/$name.html"
+          }
+
+          check_page home https://techtires.ru/ 200
+          check_page catalog https://techtires.ru/catalog-vil 200
+          check_page product https://techtires.ru/200-50-10-celnolitaya-belaya-nm-ist 200
+          check_page search 'https://techtires.ru/search/?s=test' 200
+          check_page cart https://techtires.ru/cart/view 200
+          check_page missing https://techtires.ru/__smoke_missing_page__ 404
+
+          grep -Fq 'name="csrf-token"' "$tmp/catalog.html"
+          grep -Fq 'rel="canonical"' "$tmp/catalog.html"
+          grep -Fq 'rel="canonical"' "$tmp/product.html"
+          grep -Fq 'application/ld+json' "$tmp/product.html"
+          grep -Fq 'noindex, nofollow' "$tmp/search.html"
+
+          admin_location="$(curl --silent --show-error --head --max-time 30 https://techtires.ru/admin | tr -d '\r' | sed -n 's/^Location: //p')"
+          test "$admin_location" = 'https://techtires.ru/admin/user/login-admin'
+
+          legacy_location="$(curl --silent --show-error --head --max-time 30 \
+            https://techtires.ru/shiny-1800-25-belshina-vf-76bm-32pr-e3.html \
+            | tr -d '\r' | sed -n 's/^Location: //p')"
+          test "$legacy_location" = 'https://techtires.ru/shiny-1800-25-belshina-vf-76bm-32pr-e3'
+
+          robots="$(curl --fail --silent --show-error https://techtires.ru/robots.txt)"
+          test "$robots" = $'User-agent: *\nDisallow: /'
+
+          curl --fail --silent --show-error https://techtires.ru/sitemap.xml -o "$tmp/sitemap.xml"
+          grep -Fq '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' "$tmp/sitemap.xml"
+          sitemap_count="$(grep -c '<url><loc>' "$tmp/sitemap.xml")"
+          printf 'sitemap      %s URLs\n' "$sitemap_count"
+          test "$sitemap_count" -gt 1
+
+          http_location="$(curl --silent --show-error --head --max-time 30 http://techtires.ru/ | tr -d '\r' | sed -n 's/^Location: //p')"
+          test "$http_location" = 'https://techtires.ru:443/'
