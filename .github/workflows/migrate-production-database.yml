@@ -24,7 +24,7 @@ jobs:
         run: |
           set -euo pipefail
           runner="__db_migrate_$(printf '%s' "$FTP_PASSWORD:$GITHUB_RUN_ID" | sha256sum | cut -c1-24).php"
-          echo "RUNNER_NAME=$runner" >> "$GITHUB_ENV"
+          echo "MIGRATION_RUNNER_FILE=$runner" >> "$GITHUB_ENV"
           mkdir -p .migration/public .migration/app/services .migration/tmp/reports/production
           cp app/services/ProductionMigrationService.php .migration/app/services/
           cp tmp/reports/production/legacy-urls-production.csv .migration/tmp/reports/production/
@@ -35,6 +35,7 @@ jobs:
           header('Cache-Control: no-store');
           try {
               require dirname(__DIR__) . '/config/init.php';
+              require_once dirname(__DIR__) . '/app/services/ProductionMigrationService.php';
               \ishop\Db::instance();
               $result = (new \app\services\ProductionMigrationService())->run(
                   dirname(__DIR__) . '/tmp/reports/production/legacy-urls-production.csv'
@@ -68,7 +69,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          response="$(curl --fail-with-body --silent --show-error --max-time 180 "https://techtires.ru/$RUNNER_NAME")"
+          response="$(curl --fail-with-body --silent --show-error --max-time 180 "https://techtires.ru/$MIGRATION_RUNNER_FILE")"
           printf '%s\n' "$response"
           php -r '$r=json_decode($argv[1],true,512,JSON_THROW_ON_ERROR); if(($r["ok"]??false)!==true || ($r["redirects_active"]??0)!==764){exit(1);}' "$response"
 
@@ -86,6 +87,7 @@ jobs:
           set ftp:passive-mode true
           set ftp:ssl-allow false
           open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
-          rm "/public/$RUNNER_NAME"
+          rm "/public/$MIGRATION_RUNNER_FILE"
+          rm "/public/__db_migrate_e05fb5dcd67264d68ed4430d.php"
           bye
           LFTP
