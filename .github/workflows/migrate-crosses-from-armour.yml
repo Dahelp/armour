@@ -41,7 +41,7 @@ jobs:
             if($schema==='')throw new Exception('Old goods cross schema not found.');
             $sql="SELECT c.goods_cross_id AS cross_id,g.article,m.manufacturer_name AS vendor_name,c.cross_name,c.cross_abbreviated_name,c.tip_cross,c.equipment_manufacturer AS equipment_vendor FROM `{$schema}`.goods_cross c INNER JOIN `{$schema}`.goods g ON g.goods_id=c.goods_id INNER JOIN `{$schema}`.brands b ON b.brand_id=g.goods_brandid INNER JOIN `{$schema}`.manufacturer m ON m.manufacturer_id=c.manufacturer_id WHERE UPPER(TRIM(b.brand_name))='EKKA' ORDER BY c.goods_cross_id";
             $query=mysqli_query($db,$sql);if(!$query)throw new Exception('Old cross query failed.');$rows=array();while($row=mysqli_fetch_assoc($query))$rows[]=$row;
-            if(!$rows) throw new Exception('No EKKA cross numbers found.');
+            if(!$rows){$available=array();$brands=mysqli_query($db,"SELECT b.brand_name,g.vendor,COUNT(*) AS qty FROM `{$schema}`.goods_cross c INNER JOIN `{$schema}`.goods g ON g.goods_id=c.goods_id LEFT JOIN `{$schema}`.brands b ON b.brand_id=g.goods_brandid GROUP BY b.brand_name,g.vendor ORDER BY qty DESC LIMIT 30");while($brands&&$brand=mysqli_fetch_assoc($brands))$available[]=($brand['brand_name']?$brand['brand_name']:'[empty]').'|'.($brand['vendor']?$brand['vendor']:'[empty]').'='.$brand['qty'];throw new Exception('No exact EKKA brand found. Brands with crosses: '.implode('; ',$available));}
             echo json_encode(array('ok'=>true,'rows'=>$rows));
           } catch(Exception $e) { http_response_code(500); echo json_encode(array('ok'=>false,'error'=>$e->getMessage())); }
           PHP
