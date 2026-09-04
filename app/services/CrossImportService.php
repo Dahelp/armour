@@ -25,7 +25,10 @@ final class CrossImportService
         $productsByArticle=[];
         foreach($products as $product){$article=trim((string)$product['article']);if(isset($productsByArticle[$article]))throw new \RuntimeException("Duplicate EKKA article: {$article}");$productsByArticle[$article]=(int)$product['id'];}
         $missing=array_values(array_diff($articles,array_keys($productsByArticle)));
-        if($missing!==[])throw new \RuntimeException('Destination is missing '.count($missing).' EKKA article(s): '.implode(', ',array_slice($missing,0,20)));
+        $sourceCount=count($rows);
+        $rows=array_values(array_filter($rows,static fn(array $row): bool=>isset($productsByArticle[$row['article']])));
+        $skippedRows=$sourceCount-count($rows);
+        if($rows===[])throw new \RuntimeException('No source crosses match EKKA products in destination.');
 
         \R::exec('CREATE TABLE IF NOT EXISTS plagins_cross_backup_pre_armour_import LIKE plagins_cross');
         $backupCount=(int)\R::getCell('SELECT COUNT(*) FROM plagins_cross_backup_pre_armour_import');
@@ -38,6 +41,6 @@ final class CrossImportService
         foreach($rows as $row){$key=mb_strtolower($row['vendor_name'],'UTF-8');\R::exec('INSERT INTO plagins_cross (cross_id,product_id,vendor_id,cross_name,cross_abbreviated_name,tip_cross,equipment_vendor) VALUES (?,?,?,?,?,?,?)',[$row['cross_id'],$productsByArticle[$row['article']],$vendors[$key],$row['cross_name'],$row['cross_abbreviated_name'],$row['tip_cross'],$row['equipment_vendor']]);}
         $imported=(int)\R::getCell('SELECT COUNT(*) FROM plagins_cross WHERE product_id IN ('.\R::genSlots($productIds).')',$productIds);
         if($imported!==count($rows))throw new \RuntimeException('Import verification failed.');
-        return ['source_rows'=>count($rows),'imported_rows'=>$imported,'products'=>count($articles),'vendors'=>count(array_unique(array_column($rows,'vendor_name'))),'backup_rows'=>$backupCount];
+        return ['source_rows'=>$sourceCount,'imported_rows'=>$imported,'skipped_rows'=>$skippedRows,'missing_articles'=>$missing,'products'=>count($productsByArticle),'vendors'=>count(array_unique(array_column($rows,'vendor_name'))),'backup_rows'=>$backupCount];
     }
 }

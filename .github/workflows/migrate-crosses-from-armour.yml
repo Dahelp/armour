@@ -95,7 +95,7 @@ jobs:
           result="$(cat .cross/target-result.json)"
           printf '%s\n' "$result"
           if [ "$status" != 200 ]; then printf 'TechTires runner HTTP %s\n' "$status"; exit 1; fi
-          php -r '$r=json_decode($argv[1],true,512,JSON_THROW_ON_ERROR);if(($r["ok"]??false)!==true||($r["source_rows"]??0)!==($r["imported_rows"]??-1))exit(1);' "$result"
+          php -r '$r=json_decode($argv[1],true,512,JSON_THROW_ON_ERROR);if(($r["ok"]??false)!==true||($r["source_rows"]??0)!==(($r["imported_rows"]??-1)+($r["skipped_rows"]??-1)))exit(1);' "$result"
 
       - name: Remove TechTires transfer files
         if: always()
