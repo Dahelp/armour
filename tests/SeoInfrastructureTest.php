@@ -37,6 +37,12 @@ seoAssert($publishedDocument->loadXML($publishedSitemap), 'The published sitemap
 seoAssert(!str_contains($publishedSitemap, '/product/'), 'Technical product URLs must not appear in sitemap.xml.');
 seoAssert(!str_contains($publishedSitemap, '/category/'), 'Technical category URLs must not appear in sitemap.xml.');
 
+$productView = (string)file_get_contents(dirname(__DIR__) . '/app/views/armour/Product/view.php');
+seoAssert(str_contains($productView, 'application/ld+json'), 'Product JSON-LD is missing.');
+seoAssert(str_contains($productView, "'@type' => 'Product'"), 'Product schema type is missing.');
+seoAssert(str_contains($productView, "'priceCurrency' => 'RUB'"), 'Product offer currency is missing.');
+seoAssert(str_contains($productView, 'JSON_HEX_TAG'), 'Product JSON-LD must use HTML-safe JSON encoding.');
+
 $generator = new \app\services\SitemapGenerator();
 seoAssert($generator->normalisePublicPath('/product.html/') === 'product.html', 'Legacy extensions must be retained.');
 seoAssert($generator->normalisePublicPath('../admin') === null, 'Traversal paths must be rejected.');

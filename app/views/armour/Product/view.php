@@ -6,6 +6,45 @@
 	</div>
 </div>
 <?php
+$productUrl = rtrim(PATH, '/') . '/' . ltrim((string)($this->route['alias'] ?? $product->alias), '/');
+$productImage = !empty($product->img)
+	? rtrim(PATH, '/') . '/images/product/baseimg/' . rawurlencode((string)$product->img)
+	: rtrim(PATH, '/') . '/images/' . ltrim((string)\ishop\App::$app->getProperty('og_logo'), '/');
+$productSchema = [
+	'@context' => 'https://schema.org',
+	'@type' => 'Product',
+	'name' => trim(strip_tags((string)$product->name)),
+	'image' => [$productImage],
+	'description' => trim(strip_tags((string)($product->description ?? ''))),
+	'sku' => trim((string)($product->article ?? '')),
+	'url' => $productUrl,
+	'offers' => [
+		'@type' => 'Offer',
+		'url' => $productUrl,
+		'priceCurrency' => 'RUB',
+		'price' => number_format((float)$product->price, 2, '.', ''),
+		'availability' => (int)($product->quantity ?? 0) > 0
+			? 'https://schema.org/InStock'
+			: 'https://schema.org/OutOfStock',
+		'itemCondition' => 'https://schema.org/NewCondition',
+	],
+];
+if (!empty($vendor->name)) {
+	$productSchema['brand'] = ['@type' => 'Brand', 'name' => trim(strip_tags((string)$vendor->name))];
+}
+if ((int)($reviewStats['review_count'] ?? 0) > 0) {
+	$productSchema['aggregateRating'] = [
+		'@type' => 'AggregateRating',
+		'ratingValue' => (float)$reviewStats['average_rating'],
+		'reviewCount' => (int)$reviewStats['review_count'],
+	];
+}
+?>
+<script type="application/ld+json"><?=json_encode(
+	$productSchema,
+	JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR
+)?></script>
+<?php
     $curr = \ishop\App::$app->getProperty('currency');
 ?>
 <div id="content" class="site-content single-product" tabindex="-1">
