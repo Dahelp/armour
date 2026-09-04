@@ -91,8 +91,10 @@ jobs:
           set -euo pipefail
           mv .cross/target/public/runner.php ".cross/target/public/$CROSS_TARGET_FILE"
           lftp -e "set ftp:ssl-allow false; mirror --reverse --transfer-all --no-perms .cross/target/ /; bye" -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
-          result="$(curl --fail-with-body --silent --show-error --max-time 180 "https://techtires.ru/$CROSS_TARGET_FILE?token=$CROSS_TRANSFER_TOKEN")"
+          status="$(curl --silent --show-error --max-time 180 "https://techtires.ru/$CROSS_TARGET_FILE?token=$CROSS_TRANSFER_TOKEN" -o .cross/target-result.json -w '%{http_code}')"
+          result="$(cat .cross/target-result.json)"
           printf '%s\n' "$result"
+          if [ "$status" != 200 ]; then printf 'TechTires runner HTTP %s\n' "$status"; exit 1; fi
           php -r '$r=json_decode($argv[1],true,512,JSON_THROW_ON_ERROR);if(($r["ok"]??false)!==true||($r["source_rows"]??0)!==($r["imported_rows"]??-1))exit(1);' "$result"
 
       - name: Remove TechTires transfer files
