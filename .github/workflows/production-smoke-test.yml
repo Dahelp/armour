@@ -115,14 +115,17 @@ jobs:
           grep -Fq 'noindex, nofollow' "$tmp/search.html"
 
           admin_location="$(curl --silent --show-error --head --max-time 30 https://techtires.ru/admin | tr -d '\r' | sed -n 's/^Location: //p')"
+          printf 'admin        %s\n' "$admin_location"
           test "$admin_location" = 'https://techtires.ru/admin/user/login-admin'
 
           legacy_location="$(curl --silent --show-error --head --max-time 30 \
             https://techtires.ru/shiny-1800-25-belshina-vf-76bm-32pr-e3.html \
             | tr -d '\r' | sed -n 's/^Location: //p')"
+          printf 'legacy       %s\n' "$legacy_location"
           test "$legacy_location" = 'https://techtires.ru/shiny-1800-25-belshina-vf-76bm-32pr-e3'
 
           robots="$(curl --fail --silent --show-error https://techtires.ru/robots.txt)"
+          printf 'robots       %q\n' "$robots"
           test "$robots" = $'User-agent: *\nDisallow: /'
 
           curl --fail --silent --show-error https://techtires.ru/sitemap.xml -o "$tmp/sitemap.xml"
@@ -132,4 +135,5 @@ jobs:
           test "$sitemap_count" -gt 1
 
           http_location="$(curl --silent --show-error --head --max-time 30 http://techtires.ru/ | tr -d '\r' | sed -n 's/^Location: //p')"
-          test "$http_location" = 'https://techtires.ru:443/'
+          printf 'http         %s\n' "$http_location"
+          test "$http_location" = 'https://techtires.ru:443/' || test "$http_location" = 'https://techtires.ru/'
