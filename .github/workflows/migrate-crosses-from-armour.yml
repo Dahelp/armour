@@ -55,7 +55,13 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           mv .cross/source/public/runner.php ".cross/source/public/$CROSS_SOURCE_FILE"
           lftp -e "set ftp:ssl-allow false; put .cross/source/public/$CROSS_SOURCE_FILE -o /$CROSS_SOURCE_FILE; bye" -u "$FTP_USERNAME_ARMOUR","$FTP_PASSWORD_ARMOUR" ftp://grass.gohost.ru:21
-          curl --fail-with-body --silent --show-error --max-time 180 "https://armour-shina.ru/$CROSS_SOURCE_FILE?token=$CROSS_TRANSFER_TOKEN" -o ".cross/target/tmp/$CROSS_DATA_FILE"
+          status="$(curl --silent --show-error --max-time 180 "https://armour-shina.ru/$CROSS_SOURCE_FILE?token=$CROSS_TRANSFER_TOKEN" -o ".cross/target/tmp/$CROSS_DATA_FILE" -w '%{http_code}')"
+          if [ "$status" != 200 ]; then
+            printf 'Old-site runner HTTP %s: ' "$status"
+            php -r '$p=json_decode(file_get_contents($argv[1]),true);echo is_array($p)?($p["error"]??"unknown JSON error"):"non-JSON error";' ".cross/target/tmp/$CROSS_DATA_FILE"
+            printf '\n'
+            exit 1
+          fi
           php -r '$p=json_decode(file_get_contents($argv[1]),true,512,JSON_THROW_ON_ERROR);if(($p["ok"]??false)!==true||count($p["rows"]??[])<1)exit(1);printf("Exported rows: %d\n",count($p["rows"]));' ".cross/target/tmp/$CROSS_DATA_FILE"
 
       - name: Remove old-site runner
