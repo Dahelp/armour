@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Install in the document root of armour-shina.ru only after the final
+# TechTires production check. The original path and query string are retained.
+RewriteCond %{HTTP_HOST} ^(?:www\.)?armour-shina\.ru$ [NC]
+RewriteRule ^ https://techtires.ru%{REQUEST_URI} [R=301,L,NE]

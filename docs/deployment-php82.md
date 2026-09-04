@@ -43,4 +43,6 @@ Before switching traffic:
 3. Run `composer install --no-dev --classmap-authoritative` on PHP 8.2 or newer.
 4. Keep `APP_DEBUG=0` in production.
 5. Apply database migrations on staging first.
-6. Leave `LEGACY_REDIRECTS_ENABLED=0` until the redirect map is verified.
+6. Leave `LEGACY_REDIRECTS_ENABLED=0` until the redirect map is verified. The
+   production map was verified and enabled on 2026-09-04; do not disable it
+   while legacy URLs or the old domain remain indexed.

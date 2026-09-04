@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /comparison/
+Disallow: /cron/
+Disallow: /search/
+Disallow: /user/
+
+Sitemap: https://techtires.ru/sitemap.xml
