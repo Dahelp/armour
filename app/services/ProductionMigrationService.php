@@ -69,6 +69,7 @@ final class ProductionMigrationService
             ['gallery', 'idx_gallery_product', 'ALTER TABLE gallery ADD INDEX idx_gallery_product (product_id)'],
             ['modification', 'idx_modification_product', 'ALTER TABLE modification ADD INDEX idx_modification_product (product_id)'],
             ['plagins_inseo', 'idx_inseo_lookup', 'ALTER TABLE plagins_inseo ADD INDEX idx_inseo_lookup (tip, category_id, hide)'],
+            ['plagins_cross', 'idx_cross_public_alias', 'ALTER TABLE plagins_cross ADD INDEX idx_cross_public_alias (cross_abbreviated_name(191), product_id)'],
         ];
 
         $added = 0;

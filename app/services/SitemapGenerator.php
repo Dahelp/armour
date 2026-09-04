@@ -62,6 +62,16 @@ final class SitemapGenerator
             $paths[] = (string)$row['sef'];
         }
 
+        foreach (\R::getAll(
+            "SELECT DISTINCT c.cross_abbreviated_name
+             FROM plagins_cross c
+             INNER JOIN product p ON p.id = c.product_id
+             WHERE p.hide != 'hide' AND c.cross_abbreviated_name != ''"
+        ) as $row) {
+            $path=CrossUrl::canonicalPath((string)$row['cross_abbreviated_name']);
+            if($path!=='')$paths[]=$path;
+        }
+
         $attributeUrls = \R::getAll(
             "SELECT ag.url_params, av.value
              FROM attribute_group ag

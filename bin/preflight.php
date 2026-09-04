@@ -7,7 +7,7 @@ if(PHP_VERSION_ID<80200)$errors[]='Требуется PHP 8.2 или новее;
 foreach(['curl','dom','fileinfo','gd','intl','mbstring','openssl','pdo_mysql'] as $extension)if(!extension_loaded($extension))$errors[]='Не установлено расширение PHP: '.$extension;
 foreach(['DB_HOST','DB_DATABASE','DB_USERNAME','DB_PASSWORD'] as $key){$value=trim((string)config_env($key,''));if($value===''||str_contains($value,'change-me')||str_contains($value,'адрес_'))$errors[]='Не настроено окружение: '.$key;}
 foreach([ROOT.'/tmp',ROOT.'/tmp/cache',WWW.'/images'] as $directory){if(!is_dir($directory))$errors[]='Отсутствует каталог: '.$directory;elseif(!is_writable($directory))$errors[]='Каталог недоступен для записи: '.$directory;}
-$migrations=['20260828_001_create_legacy_url_redirect.sql','20260828_002_add_url_alias_sef_index.sql','20260828_003_add_catalog_performance_indexes.sql','20260831_004_fix_attribute_group_url_alias_ids.sql'];
+$migrations=['20260828_001_create_legacy_url_redirect.sql','20260828_002_add_url_alias_sef_index.sql','20260828_003_add_catalog_performance_indexes.sql','20260831_004_fix_attribute_group_url_alias_ids.sql','20260904_005_add_cross_page_index.sql'];
 foreach($migrations as $migration)if(!is_file(ROOT.'/database/migrations/'.$migration))$errors[]='Отсутствует миграция: '.$migration;
 if($production){
     if(APP_ENV!=='production')$errors[]='APP_ENV должен быть production.';

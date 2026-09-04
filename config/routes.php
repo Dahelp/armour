@@ -2,6 +2,7 @@
 use ishop\App;
 use ishop\Router;
 use app\models\AppModel;
+use app\services\LegacyCrossRedirector;
 use app\services\LegacyUrlRedirector;
 
 $urli = $_SERVER['REQUEST_URI'];
@@ -9,6 +10,7 @@ $urli = $_SERVER['REQUEST_URI'];
 $baseUrl = strtok($urli, '?');
 $urli = trim($baseUrl, '/');
 $urls = new AppModel();
+LegacyCrossRedirector::redirectIfNeeded($urli);
 LegacyUrlRedirector::redirectIfNeeded($urli);
 //debug($urli); exit();
 $urlalias = $urli !== '' ? $urls->urlalias($urli) : false;
@@ -22,7 +24,7 @@ if($urlalias){
 //Router::add('^category/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Category', 'action' => 'view']);
 //Router::add('^podbor/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Podbor', 'action' => 'index']);
 //Router::add('^size/(?P<alias>[a-z0-9-./\s]+)/?$', ['controller' => 'Size', 'action' => 'view']);
-//Router::add('^cross/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Cross', 'action' => 'view']);
+Router::add('^cross/(?P<alias>[^/?#]+)/?$', ['controller' => 'Cross', 'action' => 'view']);
 //Router::add('^technics/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Technics', 'action' => 'view']);
 //Router::add('^technics/type/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Technics', 'action' => 'type']);
 //Router::add('^technics/(?P<type>[a-z0-9-]+)/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Technics', 'action' => 'manufacturer']);
