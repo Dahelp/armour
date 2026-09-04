@@ -41,6 +41,7 @@ coreAssert(
 );
 
 coreAssert(\ishop\ErrorHandler::normaliseStatusCode(404) === 404, 'HTTP 404 must be preserved.');
+coreAssert(\ishop\ErrorHandler::normaliseStatusCode(419) === 419, 'HTTP 419 must be preserved.');
 coreAssert(\ishop\ErrorHandler::normaliseStatusCode(0) === 500, 'Missing exception codes must become 500.');
 coreAssert(\ishop\ErrorHandler::normaliseStatusCode(700) === 500, 'Invalid HTTP codes must become 500.');
 

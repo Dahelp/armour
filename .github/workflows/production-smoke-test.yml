@@ -108,6 +108,12 @@ jobs:
           check_page cart https://techtires.ru/cart/view 200
           check_page missing https://techtires.ru/__smoke_missing_page__ 404
 
+          for endpoint in user/login cart/checkout callback/view; do
+            code="$(curl --silent --show-error --max-time 30 -o /dev/null -w '%{http_code}' -X POST "https://techtires.ru/$endpoint")"
+            printf '%-12s HTTP %s\n' "csrf:$endpoint" "$code"
+            test "$code" = 419
+          done
+
           grep -Fq 'name="csrf-token"' "$tmp/catalog.html"
           grep -Fq 'rel="canonical"' "$tmp/catalog.html"
           grep -Fq 'rel="canonical"' "$tmp/product.html"

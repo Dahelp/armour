@@ -25,7 +25,7 @@ class ErrorHandler{
 
     protected function displayError($errno, $errstr, $errfile, $errline, $response = 500){
         $response = self::normaliseStatusCode((int)$response);
-        http_response_code($response);
+        self::sendStatusCode($response);
         if (!headers_sent()) {
             header('Content-Type: text/html; charset=UTF-8');
             header('Cache-Control: no-store, max-age=0');
@@ -45,6 +45,17 @@ class ErrorHandler{
     public static function normaliseStatusCode(int $statusCode): int
     {
         return $statusCode >= 400 && $statusCode <= 599 ? $statusCode : 500;
+    }
+
+    public static function sendStatusCode(int $statusCode): void
+    {
+        $statusCode = self::normaliseStatusCode($statusCode);
+        if ($statusCode === 419) {
+            header('HTTP/1.1 419 Page Expired', true, 419);
+            return;
+        }
+
+        http_response_code($statusCode);
     }
 
 }
