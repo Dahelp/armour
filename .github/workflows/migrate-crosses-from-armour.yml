@@ -53,7 +53,7 @@ jobs:
           set -euo pipefail
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           mv .cross/source/public/runner.php ".cross/source/public/$CROSS_SOURCE_FILE"
-          lftp -e "set ftp:ssl-allow false; put .cross/source/public/$CROSS_SOURCE_FILE -o /public/$CROSS_SOURCE_FILE; bye" -u "$FTP_USERNAME_ARMOUR","$FTP_PASSWORD_ARMOUR" ftp://grass.gohost.ru:21
+          lftp -e "set ftp:ssl-allow false; put .cross/source/public/$CROSS_SOURCE_FILE -o /$CROSS_SOURCE_FILE; bye" -u "$FTP_USERNAME_ARMOUR","$FTP_PASSWORD_ARMOUR" ftp://grass.gohost.ru:21
           curl --fail-with-body --silent --show-error --max-time 180 "https://armour-shina.ru/$CROSS_SOURCE_FILE?token=$CROSS_TRANSFER_TOKEN" -o ".cross/target/tmp/$CROSS_DATA_FILE"
           php -r '$p=json_decode(file_get_contents($argv[1]),true,512,JSON_THROW_ON_ERROR);if(($p["ok"]??false)!==true||count($p["rows"]??[])<1)exit(1);printf("Exported rows: %d\n",count($p["rows"]));' ".cross/target/tmp/$CROSS_DATA_FILE"
 
@@ -62,7 +62,7 @@ jobs:
         env:
           FTP_USERNAME_ARMOUR: ${{ secrets.FTP_USERNAME_ARMOUR }}
           FTP_PASSWORD_ARMOUR: ${{ secrets.FTP_PASSWORD_ARMOUR }}
-        run: lftp -e "set cmd:fail-exit false; set ftp:ssl-allow false; rm /public/$CROSS_SOURCE_FILE; bye" -u "$FTP_USERNAME_ARMOUR","$FTP_PASSWORD_ARMOUR" ftp://grass.gohost.ru:21
+        run: lftp -e "set cmd:fail-exit false; set ftp:ssl-allow false; rm -f /$CROSS_SOURCE_FILE; bye" -u "$FTP_USERNAME_ARMOUR","$FTP_PASSWORD_ARMOUR" ftp://grass.gohost.ru:21
 
       - name: Import on TechTires
         env:
@@ -81,4 +81,4 @@ jobs:
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        run: lftp -e "set cmd:fail-exit false; set ftp:ssl-allow false; rm /public/$CROSS_TARGET_FILE; rm /tmp/$CROSS_DATA_FILE; bye" -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+        run: lftp -e "set cmd:fail-exit false; set ftp:ssl-allow false; rm -f /public/$CROSS_TARGET_FILE; rm -f /tmp/$CROSS_DATA_FILE; bye" -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
