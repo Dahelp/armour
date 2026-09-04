@@ -1,14 +1,7 @@
 name: Migrate EKKA crosses from armour-shina
-
-on:
-  workflow_dispatch:
-
-concurrency:
-  group: techtires-production
-  cancel-in-progress: false
-
-permissions:
-  contents: read
+on: { workflow_dispatch: {} }
+concurrency: { group: techtires-production, cancel-in-progress: false }
+permissions: { contents: read }
 
 jobs:
   migrate:
@@ -16,24 +9,76 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v4
-
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: mbstring, pdo_mysql
-          coverage: none
-
-      - name: Validate and migrate EKKA cross numbers
+      - name: Build protected transfer files
+        shell: bash
         env:
-          DB_HOST_ARMOUR: ${{ secrets.DB_HOST_ARMOUR }}
-          DB_DATABASE_ARMOUR: ${{ secrets.DB_DATABASE_ARMOUR }}
-          DB_USERNAME_ARMOUR: ${{ secrets.DB_USERNAME_ARMOUR }}
-          DB_PASSWORD_ARMOUR: ${{ secrets.DB_PASSWORD_ARMOUR }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          FTP_PASSWORD_ARMOUR: ${{ secrets.FTP_PASSWORD_ARMOUR }}
         run: |
           set -euo pipefail
-          php bin/migrate_crosses_from_armour.php --dry-run
-          php bin/migrate_crosses_from_armour.php
+          token="$(printf '%s' "$FTP_PASSWORD_ARMOUR:$GITHUB_RUN_ID" | sha256sum | cut -c1-40)"
+          source_file="__cross_export_$(printf '%s' "$token:source" | sha256sum | cut -c1-20).php"
+          target_file="__cross_import_$(printf '%s' "$token:target" | sha256sum | cut -c1-20).php"
+          data_file="__cross_data_$(printf '%s' "$token:data" | sha256sum | cut -c1-20).json"
+          echo "CROSS_TRANSFER_TOKEN=$token" >> "$GITHUB_ENV"
+          echo "CROSS_SOURCE_FILE=$source_file" >> "$GITHUB_ENV"
+          echo "CROSS_TARGET_FILE=$target_file" >> "$GITHUB_ENV"
+          echo "CROSS_DATA_FILE=$data_file" >> "$GITHUB_ENV"
+          mkdir -p .cross/source/public .cross/target/public .cross/target/app/services .cross/target/tmp
+          cat > .cross/source/public/runner.php <<'PHP'
+          <?php
+          header('Content-Type: application/json; charset=utf-8'); header('Cache-Control: no-store');
+          if (!isset($_GET['token']) || $_GET['token'] !== '__TOKEN__') { http_response_code(404); exit; }
+          try {
+            require dirname(__DIR__).'/config/init.php'; \ishop\Db::instance();
+            $rows=\R::getAll("SELECT c.cross_id,p.article,cv.name AS vendor_name,c.cross_name,c.cross_abbreviated_name,c.tip_cross,c.equipment_vendor FROM plagins_cross c INNER JOIN product p ON p.id=c.product_id INNER JOIN brand b ON b.id=p.brand_id INNER JOIN plagins_cross_vendor cv ON cv.id=c.vendor_id WHERE UPPER(TRIM(b.name))='EKKA' ORDER BY c.id");
+            if(!$rows) throw new Exception('No EKKA cross numbers found.');
+            echo json_encode(array('ok'=>true,'rows'=>$rows));
+          } catch(Exception $e) { http_response_code(500); echo json_encode(array('ok'=>false,'error'=>$e->getMessage())); }
+          PHP
+          sed -i "s/__TOKEN__/$token/" .cross/source/public/runner.php
+          cp app/services/CrossImportService.php .cross/target/app/services/
+          cat > .cross/target/public/runner.php <<'PHP'
+          <?php
+          declare(strict_types=1); header('Content-Type: application/json; charset=utf-8'); header('Cache-Control: no-store');
+          if(($_GET['token']??'')!=='__TOKEN__'){http_response_code(404);exit;}
+          try{require dirname(__DIR__).'/config/init.php';require_once dirname(__DIR__).'/app/services/CrossImportService.php';\ishop\Db::instance();$p=json_decode((string)file_get_contents(dirname(__DIR__).'/tmp/__DATA__'),true,512,JSON_THROW_ON_ERROR);if(($p['ok']??false)!==true||!is_array($p['rows']??null))throw new RuntimeException('Invalid source export.');$r=(new \app\services\CrossImportService())->importEkka($p['rows']);echo json_encode(['ok'=>true]+$r,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR);}catch(Throwable $e){http_response_code(500);echo json_encode(['ok'=>false,'error'=>$e->getMessage()],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);}
+          PHP
+          sed -i "s/__TOKEN__/$token/;s/__DATA__/$data_file/" .cross/target/public/runner.php
+
+      - name: Export from old site
+        env:
+          FTP_USERNAME_ARMOUR: ${{ secrets.FTP_USERNAME_ARMOUR }}
+          FTP_PASSWORD_ARMOUR: ${{ secrets.FTP_PASSWORD_ARMOUR }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          mv .cross/source/public/runner.php ".cross/source/public/$CROSS_SOURCE_FILE"
+          lftp -e "set ftp:ssl-allow false; put .cross/source/public/$CROSS_SOURCE_FILE -o /public/$CROSS_SOURCE_FILE; bye" -u "$FTP_USERNAME_ARMOUR","$FTP_PASSWORD_ARMOUR" ftp://grass.gohost.ru:21
+          curl --fail-with-body --silent --show-error --max-time 180 "https://armour-shina.ru/$CROSS_SOURCE_FILE?token=$CROSS_TRANSFER_TOKEN" -o ".cross/target/tmp/$CROSS_DATA_FILE"
+          php -r '$p=json_decode(file_get_contents($argv[1]),true,512,JSON_THROW_ON_ERROR);if(($p["ok"]??false)!==true||count($p["rows"]??[])<1)exit(1);printf("Exported rows: %d\n",count($p["rows"]));' ".cross/target/tmp/$CROSS_DATA_FILE"
+
+      - name: Remove old-site runner
+        if: always()
+        env:
+          FTP_USERNAME_ARMOUR: ${{ secrets.FTP_USERNAME_ARMOUR }}
+          FTP_PASSWORD_ARMOUR: ${{ secrets.FTP_PASSWORD_ARMOUR }}
+        run: lftp -e "set cmd:fail-exit false; set ftp:ssl-allow false; rm /public/$CROSS_SOURCE_FILE; bye" -u "$FTP_USERNAME_ARMOUR","$FTP_PASSWORD_ARMOUR" ftp://grass.gohost.ru:21
+
+      - name: Import on TechTires
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          mv .cross/target/public/runner.php ".cross/target/public/$CROSS_TARGET_FILE"
+          lftp -e "set ftp:ssl-allow false; mirror --reverse --transfer-all --no-perms .cross/target/ /; bye" -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          result="$(curl --fail-with-body --silent --show-error --max-time 180 "https://techtires.ru/$CROSS_TARGET_FILE?token=$CROSS_TRANSFER_TOKEN")"
+          printf '%s\n' "$result"
+          php -r '$r=json_decode($argv[1],true,512,JSON_THROW_ON_ERROR);if(($r["ok"]??false)!==true||($r["source_rows"]??0)!==($r["imported_rows"]??-1))exit(1);' "$result"
+
+      - name: Remove TechTires transfer files
+        if: always()
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: lftp -e "set cmd:fail-exit false; set ftp:ssl-allow false; rm /public/$CROSS_TARGET_FILE; rm /tmp/$CROSS_DATA_FILE; bye" -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
