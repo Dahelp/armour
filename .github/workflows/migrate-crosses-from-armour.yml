@@ -1,0 +1,39 @@
+name: Migrate EKKA crosses from armour-shina
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: techtires-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_mysql
+          coverage: none
+
+      - name: Validate and migrate EKKA cross numbers
+        env:
+          DB_HOST_ARMOUR: ${{ secrets.DB_HOST_ARMOUR }}
+          DB_DATABASE_ARMOUR: ${{ secrets.DB_DATABASE_ARMOUR }}
+          DB_USERNAME_ARMOUR: ${{ secrets.DB_USERNAME_ARMOUR }}
+          DB_PASSWORD_ARMOUR: ${{ secrets.DB_PASSWORD_ARMOUR }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          set -euo pipefail
+          php bin/migrate_crosses_from_armour.php --dry-run
+          php bin/migrate_crosses_from_armour.php
