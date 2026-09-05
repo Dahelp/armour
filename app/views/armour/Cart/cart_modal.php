@@ -16,8 +16,8 @@
                     <td><a href="/<?=$item['alias'];?>"><img src="images/product/mini/<?=$item['img'];?>" alt=""></a></td>
                     <td><a href="/<?=$item['alias'];?>"><?=$item['name'];?></td>
                     <td style="text-align:center;width:72px">
-						<?php if($item['qty'] > 1) { ?><span data-id="<?=$id;?>" class="my-minus-<?=$id;?> my-minus"><i class="fa fa-minus" aria-hidden="true"></i></span><?php } ?>
-						<span class="qty-item"><?=$item['qty'];?></span>
+						<span data-id="<?=$id;?>" class="my-minus-<?=$id;?> my-minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
+						<span class="qty-item qty-item-<?=$id;?>"><?=$item['qty'];?></span>
 						<?php if($item['qty'] < $item['max']) { ?><span data-id="<?=$id;?>" class="my-plus-<?=$id;?> my-plus"><i class="fa fa-plus" aria-hidden="true"></i></span><?php } ?>
 					</td>
                     <td><?=$item['price'];?></td>

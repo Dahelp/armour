@@ -16,7 +16,7 @@ class CartController extends AppController {
 		$mod_id = max(0, (int)($_GET['mod'] ?? 0));
 		$modification = !empty($_GET['modification']);
         $mod = null;
-		$max = max(0, (int)($_GET['max'] ?? 0));
+		$max = 0;
 		if ($id < 1) {
 			return false;
 		}
@@ -57,9 +57,15 @@ class CartController extends AppController {
 					return false;
 				}
 			}
-			$max = $max > 0 ? $max : (int)($mod->quantity ?? $product->quantity ?? 0);
+			$max = (int)($mod->quantity ?? $product->quantity ?? 0);
 			$cart->addToCart($product, $qty, $max, $mod);
 			
+		}
+		if($this->isAjax() && ($_GET['format'] ?? '') === 'json'){
+			$key=$mod ? "{$product->id}-{$mod->id}" : (string)$product->id;
+			header('Content-Type: application/json; charset=utf-8');
+			echo json_encode(['result'=>(int)($_SESSION['cart'][$key]['qty']??0),'result2'=>(int)($_SESSION['cart.qty']??0)],JSON_THROW_ON_ERROR);
+			die;
 		}
 		if($this->isAjax()){
             $this->loadView('cart_modal');
@@ -108,7 +114,8 @@ class CartController extends AppController {
 			}						
 			$qty = (int)($_SESSION['cart'][$id]['qty'] ?? 0);
 			$total = (int)($_SESSION['cart.qty'] ?? 0);
-			echo json_encode(array('result'=>''.$qty.'', 'result2'=>''.$total.''));		
+			header('Content-Type: application/json; charset=utf-8');
+			echo json_encode(['result'=>$qty,'result2'=>$total],JSON_THROW_ON_ERROR);
 			die;
 		}        
     }
@@ -125,7 +132,8 @@ class CartController extends AppController {
 			}			
 			$qty = (int)($_SESSION['cart'][$id]['qty'] ?? 0);
 			$total = (int)($_SESSION['cart.qty'] ?? 0);
-			echo json_encode(array('result'=>''.$qty.'', 'result2'=>''.$total.''));
+			header('Content-Type: application/json; charset=utf-8');
+			echo json_encode(['result'=>$qty,'result2'=>$total],JSON_THROW_ON_ERROR);
 			die;
 		}
     }

@@ -26,6 +26,7 @@ class Cart extends AppModel {
         }
 		$qty = max(1, (int)$qty);
 		$max = max(0, (int)$max);
+		if($max<1)return;
 		$currencyValue = (float)($_SESSION['cart.currency']['value'] ?? 1);
         if($mod){
             $ID = "{$product->id}-{$mod->id}";
@@ -49,9 +50,7 @@ class Cart extends AppModel {
 			$model = (string)($product->model ?? '');
         }
 		$currentQuantity = (int)($_SESSION['cart'][$ID]['qty'] ?? 0);
-		if ($max > 0) {
-			$qty = min($qty, max(0, $max - $currentQuantity));
-		}
+		$qty = min($qty, max(0, $max - $currentQuantity));
 		if ($qty < 1) {
 			return;
 		}

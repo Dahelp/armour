@@ -20,6 +20,7 @@ $categorySource = (string)file_get_contents(dirname(__DIR__) . '/app/controllers
 sqlAssert(!str_contains($categorySource, 'attr_id IN ($filter)'), 'Filter IDs must not be interpolated into SQL.');
 sqlAssert(!str_contains($categorySource, 'category_id IN ($ids)'), 'Category IDs must not be interpolated into SQL.');
 sqlAssert(str_contains($categorySource, '\\R::genSlots($filterIds)'), 'Filter placeholders are missing.');
+sqlAssert(str_contains($categorySource, 'COUNT(DISTINCT av.attr_group_id)'), 'Multiple values in one group must use OR semantics.');
 
 $filterSource = (string)file_get_contents(dirname(__DIR__) . '/app/widgets/filter/Filter.php');
 sqlAssert(!str_contains($filterSource, '.$ids.'), 'Filter widget IDs must not be interpolated into SQL.');

@@ -44,6 +44,8 @@ $cart->deleteItem(42);
 assertCartRuntime(!isset($_SESSION['cart'][42]), 'Deleted item remains in cart.');
 assertCartRuntime($_SESSION['cart.qty'] === 0, 'Delete action did not subtract the full quantity.');
 assertCartRuntime($_SESSION['cart.weight'] === 0.0, 'Delete action did not subtract quantity-adjusted weight.');
+$cart->addToCart($product,1,0);
+assertCartRuntime(!isset($_SESSION['cart'][42]),'Out-of-stock product must not be added.');
 
 $root = dirname(__DIR__);
 $controller = file_get_contents($root . '/app/controllers/CartController.php');
@@ -52,6 +54,12 @@ $managerMail = file_get_contents($root . '/app/views/armour/mail/mail_manager.ph
 
 assertCartRuntime(str_contains($controller, '$mod = (object)['), 'Unified modification must be initialized before property assignment.');
 assertCartRuntime(str_contains($controller, "\$_SESSION['cart'][\$id]['qty'] ?? 0"), 'Removed cart items must have a safe JSON response.');
+assertCartRuntime(str_contains($controller, "(\$_GET['format'] ?? '') === 'json'"), 'AJAX add must return authoritative cart quantities.');
+assertCartRuntime(!str_contains($controller, "\$_GET['max']"), 'Available stock must never be trusted from the browser.');
+$mainJs = file_get_contents($root . '/public/js/main.js');
+assertCartRuntime(str_contains($mainJs, 'setProductCartQuantity(id, res.result)'), 'Cart controls must use the server quantity.');
+$layout = file_get_contents($root . '/app/views/armour/layouts/watches.php');
+assertCartRuntime(str_contains($layout,"filemtime(WWW.'/js/main.js')"),'Cart JavaScript must be cache-busted after deployment.');
 assertCartRuntime(str_contains($order, "(array)(\$_SESSION['cart'] ?? [])"), 'Order creation must tolerate an absent cart session.');
 assertCartRuntime(str_contains($managerMail, '$itog_qty = 0; $sum = 0;'), 'Mail totals must be initialized under PHP 8.2.');
 

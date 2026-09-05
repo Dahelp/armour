@@ -731,7 +731,7 @@ requiredFields.forEach(field => {
 <script src="js/slider.js"></script>
 <script defer src="js/jquery.flexslider.js"></script>
 <script src="js/swiper-bundle.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/main.js?v=<?=filemtime(WWW.'/js/main.js')?>"></script>
 
 
 <!-- IMask -->

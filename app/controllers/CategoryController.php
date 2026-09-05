@@ -43,9 +43,9 @@ class CategoryController extends AppController {
 				$filterIds = array_values(array_unique(array_filter(array_map('intval', explode(',', $filter)))));
 				$cnt = Filter::getCountGroups($filter); //без перезагрузки
                 if ($filterIds !== [] && $cnt > 0) {
-					$sql_part = 'AND product.id IN (SELECT product_id FROM attribute_product WHERE attr_id IN ('
+					$sql_part = 'AND product.id IN (SELECT ap.product_id FROM attribute_product ap INNER JOIN attribute_value av ON av.id=ap.attr_id WHERE ap.attr_id IN ('
 						. \R::genSlots($filterIds)
-						. ') GROUP BY product_id HAVING COUNT(DISTINCT attr_id) = ' . (int)$cnt . ')';
+						. ') GROUP BY ap.product_id HAVING COUNT(DISTINCT av.attr_group_id) = ' . (int)$cnt . ')';
 					$queryBindings = array_merge($queryBindings, $filterIds);
 				}
             }

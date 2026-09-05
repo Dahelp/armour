@@ -74,15 +74,15 @@
 										}
 									?>									
 									<?php if($quantity[$product["id"]] > 0) { ?>
+									<?php $cartQty=(int)($_SESSION['cart'][$product['id']]['qty']??0); ?>
 									<div class="product-btn">
-										<div class="product-floating-btn">										
-											<?php if($_SESSION['cart'][$product["id"]]) { ?>
-												<a data-id="<?=$product["id"];?>" class="btn btn-danger btn-shadow btn-cart add-to-cart-link korzina-<?=$product["id"];?> clear-korzina" style="display:none;" href="cart/add?id=<?=$product["id"];?>" data-max="<?=$quantity[$product["id"]]?>" data-toggle="modal" data-target="#exampleModalLive"><i class="fas fa-cart-plus fs-base"></i> Купить</a>
-												<button class="btn btn-success btn-shadow btn-cart vkorzine-<?=$product["id"]?> clear-vkorzine" style="padding: 4px 10px 4px 10px;">В корзине</button>
-											<?php }else{ ?>
-												<a data-id="<?=$product["id"];?>" class="btn btn-danger btn-shadow btn-cart add-to-cart-link korzina-<?=$product["id"];?> clear-korzina" href="cart/add?id=<?=$product["id"];?>" data-max="<?=$quantity[$product["id"]]?>" data-toggle="modal" data-target="#exampleModalLive"><i class="fas fa-cart-plus fs-base"></i> Купить</a>
-												<button class="btn btn-success btn-shadow btn-cart vkorzine-<?=$product["id"]?> clear-vkorzine" style="display:none; padding: 4px 10px 4px 10px;">В корзине</button>
-											<?php } ?>
+										<div class="product-floating-btn">
+											<div class="quantity-block my_quant-<?=$product['id']?>" style="display:<?=$cartQty>0?'inline-flex':'none'?>">
+												<button type="button" data-id="<?=$product['id']?>" data-qty="<?=$cartQty?>" class="my-minus-<?=$product['id']?> my-minus quantity-arrow-minus">−</button>
+												<input data-id="<?=$product['id']?>" type="text" class="text-center input-number qty-item-<?=$product['id']?> input-text qty text" value="<?=$cartQty?:1?>" min="1" max="<?=$quantity[$product['id']]?>" inputmode="numeric">
+												<button type="button" data-id="<?=$product['id']?>" data-qty="<?=$cartQty?>" class="my-plus-<?=$product['id']?> my-plus quantity-arrow-plus">+</button>
+											</div>
+											<a data-id="<?=$product['id']?>" class="btn btn-danger btn-shadow btn-cart add-to-cart-link korzina-<?=$product['id']?> clear-korzina" style="<?=$cartQty>0?'display:none;':''?>" href="cart/add?id=<?=$product['id']?>" data-max="<?=$quantity[$product['id']]?>"><i class="fas fa-cart-plus fs-base"></i> Купить</a>
 										</div>
 									</div>
 									<div class="product-nalichie">
