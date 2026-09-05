@@ -28,7 +28,9 @@
 											<?php foreach($subcategories as $podcat) { ?>
 												<li class="product-category">
 													<a href="<?=$podcat["alias"]?>">
-														<img src="images/category/baseimg/<?=$podcat["img"]?>" alt="категория <?=mb_strtolower($podcat["name"]);?>">
+												<?php if (!empty($podcat['img'])): ?>
+													<img src="/images/category/baseimg/<?=htmlspecialchars($podcat['img'], ENT_QUOTES, 'UTF-8')?>" alt="категория <?=htmlspecialchars(mb_strtolower($podcat['name']), ENT_QUOTES, 'UTF-8')?>">
+												<?php endif; ?>
 														<h2 class="woocommerce-loop-category__title"><?=$podcat["name"]?></h2>
 													</a>
 												</li>

@@ -83,6 +83,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel='stylesheet' id='apphlp-css' href='css/armour/apphlp.css' media='all' />
 <link rel='stylesheet' id='libs-style-css' href='css/armour/libs.min.css' media='all' />
 <link rel='stylesheet' id='app-style-css' href='css/armour/style.min.css' media='all' />
+<link rel='stylesheet' id='mobile-fixes-css' href='/css/armour/mobile-fixes.css?v=<?=filemtime(WWW.'/css/armour/mobile-fixes.css')?>' media='all' />
 <link rel="stylesheet" href="public/adminlte/plugins/select2/css/select2.min.css" />
 <link rel="stylesheet" href="public/adminlte/plugins/select2-bootstrap5-theme/select2-bootstrap-5-theme.min.css" />
 
@@ -134,7 +135,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 		<header id="masthead" class="site-header prochie-tovary" role="banner" style="">
 			<div class="col-full flex">
 				<div class="site-branding">
-					<a href="/" class="custom-logo-link" rel="home"><img src="https://armour-shina.ru/views/bypshop/images/logo_armour.png" class="custom-logo" alt="Шины для спецтехники" data-no-lazy="1" decoding="async" /></a>
+					<a href="/" class="custom-logo-link" rel="home"><img src="/images/logo_armour.png" class="custom-logo" alt="Шины для спецтехники" data-no-lazy="1" decoding="async" /></a>
 				</div>
 				<div class="site-search">
 					<div class="dgwt-wcas-search-wrapp dgwt-wcas-has-submit woocommerce dgwt-wcas-style-solaris js-dgwt-wcas-layout-classic dgwt-wcas-layout-classic js-dgwt-wcas-mobile-overlay-enabled dgwt-wcas-active" style="position: relative;">
@@ -171,11 +172,11 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 						</div>
 						<div class="grid mobile all-page">
 							<div class="position-relative site-phone__number">
-								<p><a href="#" class="btn btn-call show_form" rel="form2"><i class="icon-phone"></i></a></p>
-								<p><a href="#" class="btn btn-send show_form" rel="form3"><i class="icon-mail"></i></a></p>
-								<p class="font-14"><img src="/wp-content/themes/advanta/img/phonelink-ring-mob-v.gif" alt="" class="img-show-phone"/><i class="icon icon-arrow-down"></i></p>
+								<p><a href="#" class="btn btn-call show_form" rel="form2" aria-label="Заказать обратный звонок"><i class="fas fa-phone-alt" aria-hidden="true"></i></a></p>
+								<p><a href="#" class="btn btn-send show_form" rel="form3" aria-label="Написать сообщение"><i class="fas fa-envelope" aria-hidden="true"></i></a></p>
+								<p class="font-14"><button type="button" class="mobile-phone-toggle" aria-label="Показать номер телефона" aria-expanded="false"><i class="fas fa-chevron-down" aria-hidden="true"></i></button></p>
 								<div class="hide-phone">
-									<p class="font-14"><i class="icon icon-telephone"></i><a href="tel:+73432883773">+7(925) <span>070 77 07</span><br><i>многоканальный</i></a></p>
+									<p class="font-14"><i class="fas fa-phone-alt" aria-hidden="true"></i><a href="tel:+79250707707">+7(925) <span>070 77 07</span><br><i>многоканальный</i></a></p>
 								</div>
 							</div>
 						</div>
@@ -261,7 +262,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <li id="menu-item-5895" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5895 menu-item"><a href="/contacts">Контакты</a></li>
 </ul></nav>    <div class="menu-block menu-block--empty"></div>
 </div>
-<div class="header-menu-mobile icon-menu-mobile"></div>
+<button type="button" class="header-menu-mobile" aria-label="Открыть каталог" aria-controls="mobile-site-menu" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
 
 
 <!--<div class="menu-wrapper">

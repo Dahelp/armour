@@ -655,3 +655,31 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const menuButton = document.querySelector('.header-menu-mobile');
+    const menu = document.querySelector('.menu-wrapper');
+
+    if (menuButton && menu) {
+        menu.id = menu.id || 'mobile-site-menu';
+        menuButton.addEventListener('click', function () {
+            const isOpen = menu.classList.toggle('mobile-menu-open');
+            menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            menuButton.setAttribute('aria-label', isOpen ? 'Закрыть каталог' : 'Открыть каталог');
+            const icon = menuButton.querySelector('.fas');
+            if (icon) {
+                icon.classList.toggle('fa-bars', !isOpen);
+                icon.classList.toggle('fa-times', isOpen);
+            }
+        });
+    }
+
+    const phoneButton = document.querySelector('.mobile-phone-toggle');
+    const phonePanel = document.querySelector('.mobile .hide-phone');
+    if (phoneButton && phonePanel) {
+        phoneButton.addEventListener('click', function () {
+            const isOpen = phonePanel.classList.toggle('mobile-phone-open');
+            phoneButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            phonePanel.style.display = isOpen ? 'block' : '';
+        });
+    }
+});

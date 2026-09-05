@@ -1,0 +1,170 @@
+/* Isolated responsive fixes for the legacy Armour theme. */
+.header-menu-mobile,
+.mobile-phone-toggle {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: #111;
+    cursor: pointer;
+    padding: 0;
+}
+
+@media (max-width: 767px) {
+    header.site-header {
+        height: 70px !important;
+        min-height: 70px;
+        padding: 0 !important;
+    }
+
+    .site-header > .col-full.flex {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        height: 70px;
+        justify-content: space-between;
+        padding: 8px 64px 8px 10px;
+        z-index: 1002;
+    }
+
+    body.woocommerce-active .site-header .site-branding {
+        flex: 0 1 155px;
+        height: 54px;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: static !important;
+        width: 155px !important;
+    }
+
+    .site-branding .custom-logo-link,
+    .site-branding .custom-logo {
+        display: block;
+        height: 100%;
+        margin: 0;
+        max-height: 54px;
+        max-width: 155px;
+        object-fit: contain;
+        object-position: left center;
+        width: 100%;
+    }
+
+    .site-header .site-phone {
+        margin-left: auto;
+    }
+
+    .mobile .site-phone__number {
+        display: flex;
+        gap: 4px;
+        left: auto !important;
+        position: static !important;
+    }
+
+    .mobile .site-phone__number > p {
+        align-items: center;
+        display: flex;
+        margin: 0 !important;
+    }
+
+    .site-phone .mobile .site-phone__number a,
+    .mobile-phone-toggle {
+        align-items: center;
+        border: 0;
+        box-sizing: border-box;
+        display: flex;
+        height: 40px;
+        justify-content: center;
+        min-width: 36px;
+        padding: 0 7px;
+    }
+
+    .site-phone .mobile .site-phone__number .fas {
+        color: #111;
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    div.storefront-primary-navigation {
+        height: 70px;
+        pointer-events: none;
+        width: 54px;
+        z-index: 1003;
+    }
+
+    .header-menu-mobile {
+        align-items: center;
+        display: flex;
+        font-size: 26px;
+        height: 48px;
+        justify-content: center;
+        pointer-events: auto;
+        position: fixed;
+        right: 6px;
+        top: 11px;
+        width: 48px;
+        z-index: 1004;
+    }
+
+    .header-menu-mobile::before {
+        content: none !important;
+    }
+
+    .menu-wrapper.mobile-menu-open {
+        background: #fff;
+        box-shadow: 0 12px 20px rgba(0, 0, 0, .16);
+        display: block !important;
+        left: 0;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+        pointer-events: auto;
+        position: fixed;
+        right: 0;
+        top: 70px;
+        width: 100%;
+        z-index: 1001;
+    }
+
+    .storefront-breadcrumb {
+        margin-top: 0;
+        padding-top: 14px;
+    }
+
+    .sub-category .product-category img[src$="/baseimg/"] {
+        display: none;
+    }
+
+    .table_wrap,
+    .casters-block {
+        max-width: 100%;
+        overflow-x: auto !important;
+        overscroll-behavior-inline: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table_wrap table {
+        min-width: 780px;
+    }
+
+    .table_wrap::before {
+        color: #666;
+        content: "Проведите таблицу влево, чтобы увидеть цену и кнопку покупки";
+        display: block;
+        font-size: 12px;
+        line-height: 1.35;
+        margin: 0 0 8px;
+    }
+
+    .filters select,
+    .filters input,
+    .filters button,
+    .filters .select2-container {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .table_wrap,
+    .casters-block {
+        max-width: 100%;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+}
