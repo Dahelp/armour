@@ -40,12 +40,14 @@ jobs:
           if [ "$status" != 200 ]; then exit 1; fi
           sample="$(php -r '$r=json_decode(file_get_contents($argv[1]),true,512,JSON_THROW_ON_ERROR);if(($r["ok"]??false)!==true)exit(1);echo $r["sample_path"];' .cross-activate-result.json)"
           page="$(curl --fail --silent --show-error --max-time 60 "https://techtires.ru/$sample")"
-          printf '%s' "$page" | grep -Fq "<link rel=\"canonical\" href=\"https://techtires.ru/$sample\""
+          grep -Fq "<link rel=\"canonical\" href=\"https://techtires.ru/$sample\"" <<< "$page"
           legacy="crossing-${sample#cross/}.html"
           headers="$(curl --silent --show-error --max-time 60 --head "https://techtires.ru/$legacy")"
-          printf '%s' "$headers" | grep -Eq '^HTTP/[^ ]+ 301'
-          printf '%s' "$headers" | tr -d '\r' | grep -Fiq "location: https://techtires.ru/$sample"
-          grep -Fq "<loc>https://techtires.ru/$sample</loc>" <(curl --fail --silent --show-error --max-time 60 https://techtires.ru/sitemap.xml)
+          grep -Eq '^HTTP/[^ ]+ 301' <<< "$headers"
+          clean_headers="${headers//$'\r'/}"
+          grep -Fiq "location: https://techtires.ru/$sample" <<< "$clean_headers"
+          curl --fail --silent --show-error --max-time 60 https://techtires.ru/sitemap.xml -o .cross-sitemap.xml
+          grep -Fq "<loc>https://techtires.ru/$sample</loc>" .cross-sitemap.xml
       - name: Remove activation runner
         if: always()
         env:
