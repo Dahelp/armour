@@ -14,6 +14,11 @@ productionAssert(!preg_match('/\beach\s*\(/',$kcfinder),'KCFinder still uses rem
 $legacyRedirect=(string)file_get_contents(dirname(__DIR__).'/ops/armour-shina-redirect/.htaccess');
 productionAssert(str_contains($legacyRedirect,'https://techtires.ru%{REQUEST_URI}'),'Old-domain redirect must preserve the request path.');
 productionAssert(str_contains($legacyRedirect,'[R=301,L,NE]'),'Old-domain redirect must be permanent.');
+$cutoverWorkflow=(string)file_get_contents(dirname(__DIR__).'/.github/workflows/activate-armour-domain-redirect.yml');
+productionAssert(str_contains($cutoverWorkflow,'ACTIVATE-ARMOUR-REDIRECT'),'Old-domain cutover must require explicit confirmation.');
+productionAssert(str_contains($cutoverWorkflow,'FTP_USERNAME_ARMOUR'),'Old-domain cutover must use the dedicated FTP account.');
+productionAssert(str_contains($cutoverWorkflow,'.htaccess.before-techtires-'),'Old-domain cutover must retain a rollback copy.');
+productionAssert(str_contains($cutoverWorkflow,'.htaccess.techtires-upload'),'Old-domain cutover must upload through a temporary file.');
 $openRobots=(string)file_get_contents(dirname(__DIR__).'/ops/production/robots.open.txt');
 productionAssert(!preg_match('/^Disallow:\s*\/$/m',$openRobots),'Open-indexing robots template blocks the whole site.');
 productionAssert(str_contains($openRobots,'Sitemap: https://techtires.ru/sitemap.xml'),'Open-indexing robots template has no sitemap.');

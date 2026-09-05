@@ -3,11 +3,15 @@
 ## Current verified state
 
 - TechTires runs on PHP 8.2 and HTTPS.
-- The production sitemap contains 978 canonical URLs.
-- The imported map contains 764 active permanent redirects.
-- The complete live audit passed 763 redirects on the first run; the remaining
-  URL had a transient SSL timeout and passed the immediate manual retry with
-  `301 → 200`, matching canonical and a sitemap entry.
+- The production sitemap contains 8,159 canonical URLs, including 7,181 unique
+  cross-number paths.
+- The imported legacy page map contains 764 active permanent redirects.
+- The cross audit found 7,150 old `crossing-*.html` URLs that are safe for
+  cutover. All 7,150 rows passed structural validation and a distributed live
+  sample passed `301 → 200` with matching canonicals.
+- Another 1,320 crossing URLs remain deferred: 1,286 are not present on
+  TechTires, 26 require a web-server rule because the old path contains spaces,
+  seven contain unsupported route aliases and one alias is invalid.
 - Product pages expose Product/Offer JSON-LD.
 - TechTires remains intentionally closed in `robots.txt` until cutover.
 - armour-shina.ru still returns its own pages with HTTP 200 and therefore does
@@ -20,9 +24,12 @@
    verify the order in admin and receipt of both SMTP messages, then mark or
    remove the test order. Automated smoke tests deliberately do not create a
    production order.
-3. Put `ops/armour-shina-redirect/.htaccess` in the document root of the old
-   site, or configure an equivalent domain-wide redirect in the hosting panel.
-   The redirect must preserve the complete request path and query string.
+3. Run the manual workflow `Activate armour-shina.ru domain redirect`, enter
+   `ACTIVATE-ARMOUR-REDIRECT` and select the verified FTP document root. The
+   workflow backs up the current `.htaccess`, installs
+   `ops/armour-shina-redirect/.htaccess` and verifies representative redirects.
+   An equivalent hosting-panel rule may be used instead, but it must preserve
+   the complete request path and query string.
 4. Verify the old-domain homepage and at least 20 old URLs. Each must produce
    exactly one permanent redirect to the same path on techtires.ru; the
    TechTires legacy layer may then make one additional `.html` → canonical

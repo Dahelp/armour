@@ -1,0 +1,106 @@
+name: Activate armour-shina.ru domain redirect
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Type ACTIVATE-ARMOUR-REDIRECT to continue
+        required: true
+        type: string
+      remote_directory:
+        description: FTP document root of armour-shina.ru
+        required: true
+        default: /www/armour-shina.ru/
+        type: choice
+        options:
+          - /www/armour-shina.ru/
+          - /
+
+concurrency:
+  group: armour-domain-redirect
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  activate:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Require explicit cutover confirmation
+        env:
+          CONFIRMATION: ${{ inputs.confirmation }}
+        run: test "$CONFIRMATION" = "ACTIVATE-ARMOUR-REDIRECT"
+
+      - name: Verify TechTires before cutover
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' https://techtires.ru/)" = "200"
+          test "$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' https://techtires.ru/sitemap.xml)" = "200"
+          test "$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' https://techtires.ru/cross/33628)" = "200"
+          location="$(curl --silent --show-error --head https://techtires.ru/crossing-33628.html | tr -d '\r' | awk 'tolower($1)=="location:" {print $2}')"
+          test "$location" = "https://techtires.ru/cross/33628"
+
+      - name: Install FTP client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+
+      - name: Back up and atomically install redirect
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME_ARMOUR }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD_ARMOUR }}
+          REMOTE_DIRECTORY: ${{ inputs.remote_directory }}
+        run: |
+          set -euo pipefail
+          test -n "$FTP_USERNAME"
+          test -n "$FTP_PASSWORD"
+          case "$REMOTE_DIRECTORY" in
+            /|/www/armour-shina.ru/) ;;
+            *) exit 2 ;;
+          esac
+          backup=".htaccess.before-techtires-${GITHUB_RUN_ID}"
+          mkdir -p armour-redirect-backup
+          lftp <<LFTP
+          set cmd:fail-exit false
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          set net:max-retries 3
+          set net:timeout 30
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          cd "$REMOTE_DIRECTORY"
+          get .htaccess -o "armour-redirect-backup/.htaccess"
+          mv .htaccess "$backup"
+          set cmd:fail-exit true
+          put ops/armour-shina-redirect/.htaccess -o .htaccess.techtires-upload
+          mv .htaccess.techtires-upload .htaccess
+          bye
+          LFTP
+          printf '%s\n' "$REMOTE_DIRECTORY$backup" > armour-redirect-backup/remote-backup-path.txt
+
+      - name: Preserve rollback information
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: armour-redirect-backup-${{ github.run_id }}
+          path: armour-redirect-backup/
+          if-no-files-found: warn
+          retention-days: 90
+
+      - name: Verify old-domain redirects
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in / /crossing-33628.html /catalog-vil; do
+            headers="$(curl --silent --show-error --head "https://armour-shina.ru${path}")"
+            status="$(printf '%s' "$headers" | awk 'NR==1 {print $2}')"
+            location="$(printf '%s' "$headers" | tr -d '\r' | awk 'tolower($1)=="location:" {print $2}')"
+            test "$status" = "301"
+            test "$location" = "https://techtires.ru${path}"
+          done
+          test "$(curl --silent --show-error --location --output /dev/null --write-out '%{http_code}' --max-redirs 3 https://armour-shina.ru/crossing-33628.html)" = "200"
