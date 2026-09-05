@@ -258,7 +258,13 @@ function setProductCartQuantity(id, qty) {
 
 function refreshCartSurfaces() {
 	if ($('.product-cart').length) {
-		$.get('/cart/deletecart', {id: 0}, function (html) { $('.product-cart').html(html); });
+		$.get('/cart/deletecart', {id: 0}, function (html) {
+			if ($(html).filter('.cart-empty-state').length || $(html).find('.cart-empty-state').length) {
+				window.location.reload();
+				return;
+			}
+			$('.product-cart').html(html);
+		});
 	}
 	if ($('#exampleModalLive .modal-body').length && $('#exampleModalLive').hasClass('show')) {
 		$.get('/cart/show', function (html) { $('#exampleModalLive .modal-body').html(html); });

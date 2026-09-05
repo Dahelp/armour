@@ -60,6 +60,8 @@ $mainJs = file_get_contents($root . '/public/js/main.js');
 assertCartRuntime(str_contains($mainJs, 'setProductCartQuantity(id, res.result)'), 'Cart controls must use the server quantity.');
 $layout = file_get_contents($root . '/app/views/armour/layouts/watches.php');
 assertCartRuntime(str_contains($layout,"filemtime(WWW.'/js/main.js')"),'Cart JavaScript must be cache-busted after deployment.');
+$cartTable = file_get_contents($root . '/app/views/armour/Cart/cart_table.php');
+assertCartRuntime(str_contains($cartTable,'cart-empty-state'),'Cart page must render an explicit empty state after removing its last item.');
 assertCartRuntime(str_contains($order, "(array)(\$_SESSION['cart'] ?? [])"), 'Order creation must tolerate an absent cart session.');
 assertCartRuntime(str_contains($managerMail, '$itog_qty = 0; $sum = 0;'), 'Mail totals must be initialized under PHP 8.2.');
 

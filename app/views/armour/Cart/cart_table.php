@@ -1,4 +1,5 @@
-<div class="prdt-top">			
+<?php if(!empty($_SESSION['cart'])): ?>
+<div class="prdt-top">
             <div class="col-md-12">
                 <div class="bg-light rounded-3 py-5 px-4 px-xxl-5">
                     <div class="register-top heading">
@@ -55,3 +56,6 @@
 				</div>
             </div>
 		</div>
+<?php else: ?>
+<h3 class="cart-empty-state">Корзина пуста</h3>
+<?php endif; ?>
