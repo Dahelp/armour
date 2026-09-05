@@ -24,7 +24,7 @@ if($urlalias){
 //Router::add('^category/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Category', 'action' => 'view']);
 //Router::add('^podbor/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Podbor', 'action' => 'index']);
 //Router::add('^size/(?P<alias>[a-z0-9-./\s]+)/?$', ['controller' => 'Size', 'action' => 'view']);
-Router::add('^cross/(?P<alias>[^/?#]+)/?$', ['controller' => 'Cross', 'action' => 'view']);
+Router::add('^cross/(?P<alias>[a-z0-9._~%+-]+)/?$', ['controller' => 'Cross', 'action' => 'view']);
 //Router::add('^technics/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Technics', 'action' => 'view']);
 //Router::add('^technics/type/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Technics', 'action' => 'type']);
 //Router::add('^technics/(?P<type>[a-z0-9-]+)/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Technics', 'action' => 'manufacturer']);
