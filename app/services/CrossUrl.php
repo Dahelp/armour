@@ -15,7 +15,13 @@ final class CrossUrl
     public static function canonicalPath(string $alias): string
     {
         $alias=self::normaliseAlias($alias);
-        return $alias===''?'':'cross/'.rawurlencode($alias);
+        return self::isRoutableAlias($alias)?'cross/'.rawurlencode($alias):'';
+    }
+
+    public static function isRoutableAlias(string $alias): bool
+    {
+        $alias=self::normaliseAlias($alias);
+        return $alias!==''&&preg_match('/^[a-z0-9._~+-]+$/D',$alias)===1;
     }
 
     public static function legacyAlias(string $path): string

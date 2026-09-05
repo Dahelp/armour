@@ -25,9 +25,9 @@ final class CrossRedirectMapBuilder
             $target=$alias===''?'':CrossUrl::canonicalPath($alias);
             $row=['source_path'=>$sourcePath,'target_path'=>$target,'status_code'=>301,'is_active'=>0];
             $reason=match(true){
-                $target==='' => 'invalid_legacy_cross_alias',
+                $alias==='' => 'invalid_legacy_cross_alias',
                 preg_match('/\s/u',$sourcePath)===1 => 'legacy_path_requires_web_server_rule',
-                preg_match('/^[a-z0-9._~+-]+$/D',$alias)!==1 => 'unsupported_cross_route_alias',
+                !CrossUrl::isRoutableAlias($alias) => 'unsupported_cross_route_alias',
                 !isset($active[$target]) => 'cross_not_present_on_techtires',
                 default => '',
             };
