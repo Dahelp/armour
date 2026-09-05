@@ -15,9 +15,9 @@ final class CrossController extends AppController
         $cross=\R::getRow(
             "SELECT c.*,cv.name AS cross_vendor,p.id AS product_id,p.name AS product_name,p.article,p.alias AS product_alias,p.img,p.price,p.quantity,p.description AS product_description,b.name AS brand_name
              FROM plagins_cross c
-             INNER JOIN plagins_cross_vendor cv ON cv.id=c.vendor_id
+             LEFT JOIN plagins_cross_vendor cv ON cv.id=c.vendor_id
              INNER JOIN product p ON p.id=c.product_id
-             INNER JOIN brand b ON b.id=p.brand_id
+             LEFT JOIN brand b ON b.id=p.brand_id
              WHERE c.cross_abbreviated_name=? AND p.hide!='hide'
              ORDER BY c.id LIMIT 1",
             [$alias]
