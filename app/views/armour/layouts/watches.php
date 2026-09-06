@@ -135,11 +135,11 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 		<header id="masthead" class="site-header prochie-tovary" role="banner" style="">
 			<div class="col-full flex">
 				<div class="site-branding">
-					<a href="/" class="custom-logo-link" rel="home" aria-label="ТехШина — шины и запчасти для спецтехники">
-						<svg class="custom-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 112" role="img" aria-labelledby="techtires-logo-title">
+					<a href="/" class="custom-logo-link" rel="home" aria-label="ТехШина — промышленные шины">
+						<svg class="custom-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" role="img" aria-labelledby="techtires-logo-title">
 							<title id="techtires-logo-title">ТехШина</title>
-							<g transform="translate(8 4)"><circle cx="52" cy="52" r="43" fill="#102f4a"/><g fill="#55b947"><path d="M17 12l15-7 7 14-15 8z"/><path d="M49 7h16l-2 16H48z"/><path d="M76 14l13 9-10 13-13-9z"/><path d="M90 42l5 15-16 4-5-15z"/><path d="M82 72l-10 13-12-11 9-12z"/><path d="M49 81l-16-2 3-16 15 2z"/><path d="M21 70L11 57l14-9 9 13z"/><path d="M10 39l6-15 14 7-6 14z"/></g><circle cx="52" cy="52" r="30" fill="#fff"/><circle cx="52" cy="52" r="21" fill="#e9f0f4" stroke="#102f4a" stroke-width="5"/><circle cx="52" cy="52" r="7" fill="#55b947"/><path d="M33 38h38v9H57v27H47V47H33z" fill="#102f4a"/></g>
-							<text x="119" y="66" fill="#102f4a" font-family="Arial,Helvetica,sans-serif" font-size="50" font-weight="800" letter-spacing="-1.5">Тех</text><text x="207" y="66" fill="#35414b" font-family="Arial,Helvetica,sans-serif" font-size="50" font-weight="800" letter-spacing="-1.5">Шина</text><path d="M121 78h242" stroke="#55b947" stroke-width="6" stroke-linecap="round"/><text x="120" y="99" fill="#61717d" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" letter-spacing="2.1">ДЛЯ СПЕЦТЕХНИКИ</text>
+							<g transform="translate(4 2)"><circle cx="48" cy="48" r="39" fill="none" stroke="#102f4a" stroke-width="14" stroke-dasharray="18 5"/><circle cx="48" cy="48" r="25" fill="#fff" stroke="#55b947" stroke-width="7"/><circle cx="48" cy="48" r="10" fill="#102f4a"/><path d="M42 42h12v12H42z" fill="#fff" transform="rotate(45 48 48)"/></g>
+							<text x="104" y="59" fill="#102f4a" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="800" letter-spacing="-1">ТЕХ</text><text x="199" y="59" fill="#35414b" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="800" letter-spacing="-1">ШИНА</text><path d="M106 70h230" stroke="#55b947" stroke-width="5" stroke-linecap="round"/><text x="106" y="89" fill="#61717d" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" letter-spacing="2.4">ПРОМЫШЛЕННЫЕ ШИНЫ</text>
 						</svg>
 					</a>
 				</div>
