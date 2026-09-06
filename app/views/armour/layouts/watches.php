@@ -135,7 +135,13 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 		<header id="masthead" class="site-header prochie-tovary" role="banner" style="">
 			<div class="col-full flex">
 				<div class="site-branding">
-					<a href="/" class="custom-logo-link" rel="home"><img src="/images/logo-techtires.svg?v=<?=filemtime(WWW.'/images/logo-techtires.svg')?>" class="custom-logo" alt="TechTires — шины и запчасти для спецтехники" data-no-lazy="1" decoding="async" /></a>
+					<a href="/" class="custom-logo-link" rel="home" aria-label="TechTires — шины и запчасти для спецтехники">
+						<svg class="custom-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" role="img" aria-labelledby="techtires-logo-title">
+							<title id="techtires-logo-title">TechTires</title>
+							<g transform="translate(4 4)"><circle cx="44" cy="44" r="36" fill="#092f53"/><circle cx="44" cy="44" r="25" fill="none" stroke="#fff" stroke-width="8"/><path d="M18 17l9 13m43-13-9 13M9 41l17 3m53-3-17 3M18 71l11-13m41 13L59 58" fill="none" stroke="#55b947" stroke-width="5" stroke-linecap="round"/><path d="M29 28h30v8H49v27H39V36H29z" fill="#fff"/></g>
+							<text x="99" y="61" fill="#092f53" font-family="Arial,Helvetica,sans-serif" font-size="48" font-weight="700" letter-spacing="-2">Tech</text><text x="204" y="61" fill="#343b43" font-family="Arial,Helvetica,sans-serif" font-size="48" font-weight="700" letter-spacing="-2">Tires</text><rect x="101" y="70" width="205" height="5" rx="2.5" fill="#55b947"/>
+						</svg>
+					</a>
 				</div>
 				<div class="site-search">
 					<div class="dgwt-wcas-search-wrapp dgwt-wcas-has-submit woocommerce dgwt-wcas-style-solaris js-dgwt-wcas-layout-classic dgwt-wcas-layout-classic js-dgwt-wcas-mobile-overlay-enabled dgwt-wcas-active" style="position: relative;">

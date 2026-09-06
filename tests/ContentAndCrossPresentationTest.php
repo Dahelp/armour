@@ -21,6 +21,7 @@ presentationAssert(str_contains($mainView, 'href="/articles"') && str_contains($
 presentationAssert(str_contains($productController, 'equipment_vendor') && str_contains($productController, 'oemCrosses'), 'Product crosses are not classified.');
 presentationAssert(str_contains($productView, 'id="tab-analogs"') && str_contains($productView, 'id="tab-oem"'), 'Product cross tabs are absent.');
 presentationAssert(str_contains($searchController, 'plagins_cross_vendor.name'), 'Cross-number search does not include vendor and number fields.');
-presentationAssert(str_contains($layout, 'logo-techtires.svg?v='), 'TechTires logo does not use cache invalidation.');
+presentationAssert(str_contains($layout, '<svg class="custom-logo"'), 'TechTires logo is not embedded in the header.');
+presentationAssert(str_contains($layout, 'techtires-logo-title'), 'Embedded TechTires logo has no accessible title.');
 
 echo "Content and cross presentation checks passed.\n";

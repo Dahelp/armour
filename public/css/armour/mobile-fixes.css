@@ -34,6 +34,19 @@
     font-size: 12px;
 }
 
+.site-branding .custom-logo-link {
+    display: block;
+    max-width: 210px;
+    width: 100%;
+}
+
+.site-branding svg.custom-logo {
+    display: block;
+    height: auto;
+    overflow: visible;
+    width: 100%;
+}
+
 .header-menu-mobile:hover,
 .header-menu-mobile:focus,
 .header-menu-mobile:active,
