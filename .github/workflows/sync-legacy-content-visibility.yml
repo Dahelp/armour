@@ -18,18 +18,74 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: pdo_mysql
-      - name: Compare and restore statuses
+
+      - name: Build protected local runner
+        shell: bash
         env:
-          DB_HOST_ARMOUR: ${{ secrets.DB_HOST_ARMOUR }}
-          DB_DATABASE_ARMOUR: ${{ secrets.DB_DATABASE_ARMOUR }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           DB_USERNAME_ARMOUR: ${{ secrets.DB_USERNAME_ARMOUR }}
           DB_PASSWORD_ARMOUR: ${{ secrets.DB_PASSWORD_ARMOUR }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        run: php bin/sync_legacy_content_visibility.php ${{ inputs.apply && '--apply' || '' }}
+          DB_DATABASE_ARMOUR: ${{ secrets.DB_DATABASE_ARMOUR }}
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          token="$(printf '%s' "$FTP_PASSWORD:$GITHUB_RUN_ID" | sha256sum | cut -c1-32)"
+          file="__visibility_sync_${token}.php"
+          echo "RUNNER_TOKEN=$token" >> "$GITHUB_ENV"
+          echo "RUNNER_FILE=$file" >> "$GITHUB_ENV"
+          user64="$(printf '%s' "$DB_USERNAME_ARMOUR" | base64 -w0)"
+          pass64="$(printf '%s' "$DB_PASSWORD_ARMOUR" | base64 -w0)"
+          db64="$(printf '%s' "$DB_DATABASE_ARMOUR" | base64 -w0)"
+          apply_arg=""
+          if [ "$APPLY" = "true" ]; then apply_arg="--apply"; fi
+          mkdir -p .runner
+          cat > ".runner/$file" <<PHP
+          <?php
+          declare(strict_types=1);
+          header('Content-Type: application/json; charset=utf-8');
+          header('Cache-Control: no-store');
+          if (!hash_equals('$token', (string) (\$_GET['token'] ?? ''))) { http_response_code(403); exit; }
+          putenv('DB_HOST_ARMOUR=127.0.0.1');
+          putenv('DB_USERNAME_ARMOUR=' . base64_decode('$user64'));
+          putenv('DB_PASSWORD_ARMOUR=' . base64_decode('$pass64'));
+          putenv('DB_DATABASE_ARMOUR=' . base64_decode('$db64'));
+          \$argv = [__FILE__, '$apply_arg'];
+          require dirname(__DIR__) . '/bin/sync_legacy_content_visibility.php';
+          PHP
+
+      - name: Upload runner
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          put ".runner/$RUNNER_FILE" -o "/public/$RUNNER_FILE"
+          bye
+          LFTP
+
+      - name: Restore statuses inside hosting
+        run: curl --fail-with-body --silent --show-error --max-time 180 "https://techtires.ru/$RUNNER_FILE?token=$RUNNER_TOKEN"
+
+      - name: Remove runner
+        if: always()
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit false
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          rm "/public/$RUNNER_FILE"
+          bye
+          LFTP
