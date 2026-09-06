@@ -16,7 +16,7 @@ final class LegacyContentRepository
                 }
                 $content=\R::dispense('contents');
                 $content->type_id=(int)$row['type_id'];$content->name=(string)$row['name'];$content->anons='';
-                $content->content=(string)$row['content'];$content->date_post=date('Y-m-d H:i:s');$content->date_last_modified=date('Y-m-d H:i:s');
+                $content->content=(string)$row['content'];$date=(string)($row['date_post']??'');$content->date_post=preg_match('/^\d{4}-\d{2}-\d{2}/',$date)?substr($date,0,10).' 00:00:00':date('Y-m-d H:i:s');$content->date_last_modified=date('Y-m-d H:i:s');
                 $content->alias=$alias;$content->hide='hide';$content->title=(string)$row['title'];$content->description=(string)$row['description'];
                 $content->keywords='';$content->img='';$content->user_id=0;$content->clicks=0;$content->img_hide='hide';
                 $id=(int)\R::store($content);

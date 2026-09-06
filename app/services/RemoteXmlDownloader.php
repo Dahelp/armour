@@ -6,7 +6,7 @@ namespace app\services;
 
 final class RemoteXmlDownloader
 {
-    public function download(string $url, string $directory, int $maxBytes = 20971520): string
+    public function download(string $url, string $directory, int $maxBytes = 20971520, ?string $referer = null): string
     {
         $url = trim($url);
         $parts = parse_url($url);
@@ -39,7 +39,11 @@ final class RemoteXmlDownloader
             CURLOPT_SSL_VERIFYHOST => 2,
             CURLOPT_FAILONERROR => true,
             CURLOPT_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS,
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; TechTiresMigration/1.0)',
 		];
+		if ($referer !== null && $referer !== '') {
+			$options[CURLOPT_REFERER] = $referer;
+		}
 		if (!filter_var($host, FILTER_VALIDATE_IP)) {
 			$port = (int)($parts['port'] ?? (strtolower((string)$parts['scheme']) === 'https' ? 443 : 80));
 			$options[CURLOPT_RESOLVE] = ["$host:$port:$resolvedIp"];

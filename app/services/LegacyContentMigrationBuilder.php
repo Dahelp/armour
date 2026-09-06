@@ -26,7 +26,7 @@ final class LegacyContentMigrationBuilder
                 'name'=>trim((string)$item['h1']),
                 'title'=>mb_substr(trim((string)$item['title']),0,255),
                 'description'=>mb_substr(trim((string)$item['description']),0,500),
-                'content'=>$html,'hide'=>'hide','external_links_removed'=>$external,
+                'content'=>$html,'date_post'=>(string)($item['date_post']??date('Y-m-d')),'hide'=>'hide','external_links_removed'=>$external,
                 'review_reasons'=>implode('|',$reasons),
             ];
             if($reasons===[])$ready[]=$row;else$review[]=$row;
@@ -58,6 +58,10 @@ final class LegacyContentMigrationBuilder
             $href=trim($link->getAttribute('href'));$host=strtolower((string)parse_url($href,PHP_URL_HOST));
             if($host!==''&&!in_array($host,['armour-shina.ru','www.armour-shina.ru','techtires.ru','www.techtires.ru'],true)){
                 $external++;$parent=$link->parentNode;if($parent){while($link->firstChild)$parent->insertBefore($link->firstChild,$link);$parent->removeChild($link);}
+            }elseif(in_array($host,['armour-shina.ru','www.armour-shina.ru'],true)){
+                $path=(string)parse_url($href,PHP_URL_PATH);$query=(string)parse_url($href,PHP_URL_QUERY);
+                $path=preg_replace('/\.html$/i','',$path)??$path;
+                $link->setAttribute('href',$path.($query!==''?'?'.$query:''));
             }
         }
         $images=0;foreach($xpath->query('//img[@src]')?:[] as $image){if(!str_starts_with(trim($image->getAttribute('src')),'/images/contents/legacy/'))$images++;}

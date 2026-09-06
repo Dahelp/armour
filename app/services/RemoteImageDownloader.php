@@ -6,9 +6,9 @@ namespace app\services;
 
 final class RemoteImageDownloader
 {
-    public function download(string $url, string $directory, int $maxBytes = 20971520): array
+    public function download(string $url, string $directory, int $maxBytes = 20971520, ?string $referer = null): array
     {
-        $temporaryPath = (new RemoteXmlDownloader())->download($url, $directory, $maxBytes);
+        $temporaryPath = (new RemoteXmlDownloader())->download($url, $directory, $maxBytes, $referer);
         $field = '__remote_image_' . bin2hex(random_bytes(6));
         try {
             $_FILES[$field] = [

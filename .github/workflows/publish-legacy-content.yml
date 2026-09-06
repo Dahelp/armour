@@ -53,13 +53,30 @@ jobs:
               $where = "type_id IN (" . \R::genSlots($ids) . ") AND hide = 'hide' AND user_id = 0 AND (alias LIKE 'articles-%' OR alias LIKE 'news-%')";
               $eligible = (int)\R::getCell("SELECT COUNT(*) FROM contents WHERE $where", $ids);
               $visible = \R::getAll("SELECT ct.param_url, COUNT(*) qty FROM contents c JOIN content_type ct ON ct.id=c.type_id WHERE c.hide='show' AND LOWER(ct.param_url) IN ('articles','news') GROUP BY ct.param_url");
+              $packagePath = dirname(__DIR__) . '/database/legacy-content/legacy-content-ready.json';
+              $package = is_file($packagePath) ? json_decode((string)file_get_contents($packagePath), true, 512, JSON_THROW_ON_ERROR) : [];
+              $imported = 0;
+              if (($_GET['apply'] ?? '') === '1' && $package !== []) {
+                  $missing = [];
+                  foreach ($package as $row) {
+                      $alias = (string)($row['alias'] ?? '');
+                      if (!\R::findOne('contents', 'alias = ?', [$alias])) {
+                          $row['type_id'] = str_starts_with($alias, 'news-') ? (int)$types['news'] : (int)$types['articles'];
+                          $missing[] = $row;
+                      }
+                  }
+                  if ($missing !== []) {
+                      $imported = (new \app\services\LegacyContentRepository())->insertDrafts($missing);
+                      $eligible = (int)\R::getCell("SELECT COUNT(*) FROM contents WHERE $where", $ids);
+                  }
+              }
               $published = 0;
               if (($_GET['apply'] ?? '') === '1' && $eligible > 0) {
                   \R::exec('CREATE TABLE IF NOT EXISTS contents_backup_pre_legacy_publish LIKE contents');
                   \R::exec("INSERT INTO contents_backup_pre_legacy_publish SELECT * FROM contents WHERE $where", $ids);
                   $published = \R::exec("UPDATE contents SET hide='show', date_last_modified=NOW() WHERE $where", $ids);
               }
-              echo json_encode(['types'=>$types,'eligible_drafts'=>$eligible,'published'=>$published,'visible_before'=>$visible], JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+              echo json_encode(['types'=>$types,'package_count'=>count($package),'eligible_drafts'=>$eligible,'imported'=>$imported,'published'=>$published,'visible_before'=>$visible], JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
           } catch (Throwable $exception) {
               http_response_code(500);
               echo json_encode(['error'=>$exception->getMessage()], JSON_UNESCAPED_UNICODE);
