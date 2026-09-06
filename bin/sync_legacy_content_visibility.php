@@ -31,11 +31,11 @@ function databaseConnection(string $suffix, bool $databaseRequired = true): PDO
     );
 }
 
-function discoverContentDatabase(PDO $connection): string
+function discoverContentDatabase(PDO $connection): array
 {
     $configured = trim((string) getenv('DB_DATABASE_ARMOUR'));
     if ($configured !== '') {
-        return $configured;
+        return [$configured, 'auto'];
     }
     $fallbackDatabase = '';
     foreach ($connection->query('SHOW DATABASES')->fetchAll(PDO::FETCH_COLUMN) as $database) {
@@ -48,7 +48,7 @@ function discoverContentDatabase(PDO $connection): string
         }
         try {
             $connection->query("SELECT alias, hide FROM {$quoted}.contents LIMIT 1");
-            return (string) $database;
+            return [(string) $database, 'contents'];
         } catch (Throwable) {
             try {
                 $connection->query("SELECT 1 FROM {$quoted}.product LIMIT 1");
@@ -61,9 +61,7 @@ function discoverContentDatabase(PDO $connection): string
         $quoted = '`' . str_replace('`', '``', $fallbackDatabase) . '`';
         $tables = $connection->query("SHOW TABLES FROM {$quoted}")->fetchAll(PDO::FETCH_COLUMN);
         if (in_array('articles', $tables, true) && in_array('news', $tables, true)) {
-            $articleColumns = $connection->query("SHOW COLUMNS FROM {$quoted}.articles")->fetchAll(PDO::FETCH_COLUMN);
-            $newsColumns = $connection->query("SHOW COLUMNS FROM {$quoted}.news")->fetchAll(PDO::FETCH_COLUMN);
-            throw new RuntimeException('Legacy columns; articles: ' . implode(', ', $articleColumns) . '; news: ' . implode(', ', $newsColumns));
+            return [$fallbackDatabase, 'legacy'];
         }
         throw new RuntimeException('Legacy schema tables: ' . implode(', ', $tables));
     }
@@ -72,12 +70,24 @@ function discoverContentDatabase(PDO $connection): string
 
 try {
     $source = databaseConnection('_ARMOUR', false);
-    $sourceDatabase = discoverContentDatabase($source);
-    $sourceTable = '`' . str_replace('`', '``', $sourceDatabase) . '`.contents';
+    [$sourceDatabase, $sourceKind] = discoverContentDatabase($source);
+    $sourceSchema = '`' . str_replace('`', '``', $sourceDatabase) . '`';
     $destination = databaseConnection('');
-    $rows = $source->query(
-        "SELECT alias, hide FROM {$sourceTable} WHERE alias LIKE 'articles-%' OR alias LIKE 'news-%'"
-    )->fetchAll();
+    if ($sourceKind === 'contents') {
+        $rows = $source->query(
+            "SELECT alias, hide FROM {$sourceSchema}.contents WHERE alias LIKE 'articles-%' OR alias LIKE 'news-%'"
+        )->fetchAll();
+    } else {
+        $rows = $source->query(
+            "SELECT url_alt AS alias, hide FROM {$sourceSchema}.articles
+             UNION ALL
+             SELECT url_alt AS alias, hide FROM {$sourceSchema}.news"
+        )->fetchAll();
+        foreach ($rows as &$row) {
+            $row['alias'] = preg_replace('~\.html$~i', '', basename((string) $row['alias']));
+        }
+        unset($row);
+    }
     if ($rows === []) {
         throw new RuntimeException('No legacy articles or news were found.');
     }
@@ -87,12 +97,15 @@ try {
     )->fetchAll();
     $existingByAlias = array_column($existing, 'hide', 'alias');
     $changes = [];
+    $sourceStatuses = [];
     foreach ($rows as $row) {
         $alias = (string) $row['alias'];
         if (!array_key_exists($alias, $existingByAlias)) {
             continue;
         }
-        $target = strtolower(trim((string) $row['hide'])) === 'show' ? 'show' : 'direct';
+        $sourceStatus = strtolower(trim((string) $row['hide']));
+        $sourceStatuses[$sourceStatus] = ($sourceStatuses[$sourceStatus] ?? 0) + 1;
+        $target = in_array($sourceStatus, ['show', '0', 'visible'], true) ? 'show' : 'direct';
         if ((string) $existingByAlias[$alias] !== $target) {
             $changes[$alias] = $target;
         }
@@ -114,6 +127,7 @@ try {
     echo json_encode([
         'ok' => true,
         'source_rows' => count($rows),
+        'source_statuses' => $sourceStatuses,
         'destination_rows' => count($existing),
         'changed' => count($changes),
         'direct_only' => count(array_filter($changes, static fn(string $value): bool => $value === 'direct')),
