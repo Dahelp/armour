@@ -18,10 +18,21 @@
 					<div class="articles-grid">
 						<?php foreach($conts as $item) { ?>
 							<article class="article-card">
-								<?php $articleImage = basename((string) $item['img']); ?>
+								<?php
+								$articleImage = basename((string) $item['img']);
+								$articleImageUrl = '';
+								if ($articleImage !== '' && is_file(WWW . '/images/contents/mini/' . $articleImage)) {
+									$articleImageUrl = PATH . '/images/contents/mini/' . rawurlencode($articleImage);
+								} elseif (preg_match('~<img[^>]+src=["\']([^"\']+)["\']~i', (string) $item['content'], $imageMatch)) {
+									$imagePath = (string) parse_url(html_entity_decode($imageMatch[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'), PHP_URL_PATH);
+									if (str_starts_with($imagePath, '/images/contents/legacy/') && is_file(WWW . $imagePath)) {
+										$articleImageUrl = PATH . $imagePath;
+									}
+								}
+								?>
 								<a class="article-card__image" href="<?=htmlspecialchars($type->param_url . '/' . $item['alias'], ENT_QUOTES, 'UTF-8');?>" tabindex="-1" aria-hidden="true">
-										<?php if($articleImage !== '' && is_file(WWW . '/images/contents/mini/' . $articleImage)) { ?>
-											<img src="<?=PATH;?>/images/contents/mini/<?=htmlspecialchars($item['img'], ENT_QUOTES, 'UTF-8');?>" alt="<?=htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8');?>" loading="lazy" />
+										<?php if($articleImageUrl !== '') { ?>
+											<img src="<?=htmlspecialchars($articleImageUrl, ENT_QUOTES, 'UTF-8');?>" alt="<?=htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8');?>" loading="lazy" />
 										<?php } else { ?>
 											<span class="article-card__placeholder"><span class="article-card__wheel" aria-hidden="true"></span><strong>ТЕХШИНА</strong></span>
 										<?php } ?>

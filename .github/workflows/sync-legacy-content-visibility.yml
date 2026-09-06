@@ -1,0 +1,35 @@
+name: Sync legacy content visibility
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: Apply old visibility states
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo_mysql
+      - name: Compare and restore statuses
+        env:
+          DB_HOST_ARMOUR: ${{ secrets.DB_HOST_ARMOUR }}
+          DB_DATABASE_ARMOUR: ${{ secrets.DB_DATABASE_ARMOUR }}
+          DB_USERNAME_ARMOUR: ${{ secrets.DB_USERNAME_ARMOUR }}
+          DB_PASSWORD_ARMOUR: ${{ secrets.DB_PASSWORD_ARMOUR }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: php bin/sync_legacy_content_visibility.php ${{ inputs.apply && '--apply' || '' }}
