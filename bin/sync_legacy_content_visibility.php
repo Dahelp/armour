@@ -105,6 +105,12 @@ try {
     if (isset($destination) && $destination instanceof PDO && $destination->inTransaction()) {
         $destination->rollBack();
     }
-    fwrite(STDERR, json_encode(['ok' => false, 'error' => $exception->getMessage()], JSON_UNESCAPED_UNICODE) . PHP_EOL);
+    $error = json_encode(['ok' => false, 'error' => $exception->getMessage()], JSON_UNESCAPED_UNICODE) . PHP_EOL;
+    if (PHP_SAPI === 'cli') {
+        fwrite(STDERR, $error);
+    } else {
+        http_response_code(500);
+        echo $error;
+    }
     exit(1);
 }
