@@ -32,6 +32,7 @@ jobs:
           set net:timeout 30
           open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
           cd /
+          cls -la /
           mirror --parallel=8 --no-perms --verbose public/images/contents/mini content-images/mini
           mirror --parallel=8 --no-perms --verbose public/images/contents/baseimg content-images/baseimg
           bye
