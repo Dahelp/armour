@@ -207,87 +207,34 @@
 <div class="home-news">
     <div class="col-full">
         <div class="grid">
-                                        <div class="width-1-2">
-                    <div class="home-news__heading"><a href="/blog">Новости</a></div>
-                                            <div class="home-news__block">
-                            <div class="home-news__date">19 июня 2024</div>
-                            <div class="home-news__caption">
-                                <a href="https://advanta-ekb.ru/novosti/novoe-postuplenie-na-sklad-stroitelnye-podemniki-spf-brenda-skyer"
-                                    rel="bookmark">Новое поступление на склад! Строительные подъемники SPF бренда SKYER!</a>
-                            </div>
-                        </div>
-                                            <div class="home-news__block">
-                            <div class="home-news__date">27 марта 2024</div>
-                            <div class="home-news__caption">
-                                <a href="https://advanta-ekb.ru/novosti/bolshaja-rasprodazha-skladskoj-tehniki"
-                                    rel="bookmark">Большая распродажа складской техники!</a>
-                            </div>
-                        </div>
-                                    </div>
-            
-                                        <div class="width-1-2">
-                    <div class="home-news__heading"><a href="/blog">Статьи</a>
-</div>
-                                            <div class="home-news__block">
-                            <div class="home-news__date">24 февраля 2023</div>
-                            <div class="home-news__caption">
-                                <a href="https://advanta-ekb.ru/blog/pnevmaticheskie-penopoliuretanovye-ili-litye-rezinovye-obzor-koles-dlja-sadovyh-i-stroitelnyh-tachek"
-                                    rel="bookmark">Пневматические, пенополиуретановые или литые резиновые — обзор колес для садовых и строительных тачек</a>
-                            </div>
-                        </div>
-                                            <div class="home-news__block">
-                            <div class="home-news__date">23 июня 2022</div>
-                            <div class="home-news__caption">
-                                <a href="https://advanta-ekb.ru/blog/kak-vybrat-shtabeler"
-                                    rel="bookmark">Как выбрать штабелер</a>
-                            </div>
-                        </div>
-                                    </div>
-                    </div>
+			<div class="width-1-2">
+				<div class="home-news__heading"><a href="/news">Новости</a></div>
+				<?php foreach ($news as $item): ?>
+					<div class="home-news__block">
+						<div class="home-news__date"><?=\ishop\App::contdate((string)$item['date_post'])?></div>
+						<div class="home-news__caption">
+							<a href="/news/<?=rawurlencode((string)$item['alias'])?>" rel="bookmark"><?=h($item['name'])?></a>
+						</div>
+					</div>
+				<?php endforeach; ?>
+				<?php if (!$news): ?><p>Новости скоро появятся.</p><?php endif; ?>
+			</div>
+
+			<div class="width-1-2">
+				<div class="home-news__heading"><a href="/articles">Статьи</a></div>
+				<?php foreach ($articles as $item): ?>
+					<div class="home-news__block">
+						<div class="home-news__date"><?=\ishop\App::contdate((string)$item['date_post'])?></div>
+						<div class="home-news__caption">
+							<a href="/articles/<?=rawurlencode((string)$item['alias'])?>" rel="bookmark"><?=h($item['name'])?></a>
+						</div>
+					</div>
+				<?php endforeach; ?>
+				<?php if (!$articles): ?><p>Статьи скоро появятся.</p><?php endif; ?>
+			</div>
+		</div>
     </div>
 </div>
-    <div class="home-videoobzory">
-        <div class="col-full">
-            <h2 class="new-caption home-videoobzory__title"><a href="/videoobzory">Видеообзоры</a>
-</h2>
-
-            <div class="flex home-videoobzory__wrp">
-                
-                    <div class="home-videoobzory__item">
-                        <a href="https://advanta-ekb.ru/videoobzory/obzory-teleskopicheskih-podemnikov-skyer-gtwy" rel="" class="home-videoobzory__link">
-                            <div class="home-videoobzory__img">
-                                <picture><source media="(max-width: 767px)" srcset="https://advanta-ekb.ru/wp-content/uploads/media_cache/post/GTWY-video.jpg.jpeg.webp" type="image/webp"><source media="(min-width: 768px)" srcset="https://advanta-ekb.ru/wp-content/uploads/media_cache/post/GTWY-video.jpg.jpeg" type="image/jpeg"><img width="800" height="320" src="https://advanta-ekb.ru/wp-content/uploads/media_cache/post/GTWY-video.jpg.jpeg" class="attachment-full size-full" alt="" decoding="async" loading="lazy" /></picture>                            </div>
-                            <div class="home-videoobzory__body">
-                                <p class="home-videoobzory__post-title">Обзоры телескопических подъемников SKYER GTWY</p>
-                            </div>
-                        </a>
-                    </div>
-
-                
-                    <div class="home-videoobzory__item">
-                        <a href="https://advanta-ekb.ru/videoobzory/obzor-nesamohodnyh-nozhnichnyh-podemnikov-pf" rel="" class="home-videoobzory__link">
-                            <div class="home-videoobzory__img">
-                                <picture><source media="(max-width: 767px)" srcset="https://advanta-ekb.ru/wp-content/uploads/media_cache/post/PF-video.jpg.jpeg.webp" type="image/webp"><source media="(min-width: 768px)" srcset="https://advanta-ekb.ru/wp-content/uploads/media_cache/post/PF-video.jpg.jpeg" type="image/jpeg"><img width="800" height="320" src="https://advanta-ekb.ru/wp-content/uploads/media_cache/post/PF-video.jpg.jpeg" class="attachment-full size-full" alt="" decoding="async" loading="lazy" /></picture>                            </div>
-                            <div class="home-videoobzory__body">
-                                <p class="home-videoobzory__post-title">Обзор несамоходных ножничных подъемников PF</p>
-                            </div>
-                        </a>
-                    </div>
-
-                
-                    <div class="home-videoobzory__item">
-                        <a href="https://advanta-ekb.ru/videoobzory/obzor-samohodnyh-nozhnichnyh-podemnikov-skyer-pl" rel="" class="home-videoobzory__link">
-                            <div class="home-videoobzory__img">
-                                <picture><source media="(max-width: 767px)" srcset="https://advanta-ekb.ru/wp-content/uploads/media_cache/post/PL-video.jpg.jpeg.webp" type="image/webp"><source media="(min-width: 768px)" srcset="https://advanta-ekb.ru/wp-content/uploads/media_cache/post/PL-video.jpg.jpeg" type="image/jpeg"><img width="800" height="320" src="https://advanta-ekb.ru/wp-content/uploads/media_cache/post/PL-video.jpg.jpeg" class="attachment-full size-full" alt="" decoding="async" loading="lazy" /></picture>                            </div>
-                            <div class="home-videoobzory__body">
-                                <p class="home-videoobzory__post-title">Обзор самоходных ножничных подъемников SKYER PL</p>
-                            </div>
-                        </a>
-                    </div>
-
-                            </div>
-        </div>
-    </div>
 	<div class="col-full">
     
 	<div class="entry-content">

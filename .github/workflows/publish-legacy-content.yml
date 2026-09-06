@@ -1,0 +1,111 @@
+name: Publish migrated legacy content
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: Publish eligible migrated drafts
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Build one-time content runner
+        shell: bash
+        env:
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          token="$(printf '%s' "$FTP_PASSWORD:$GITHUB_RUN_ID" | sha256sum | cut -c1-32)"
+          file="__content_publish_${token}.php"
+          echo "RUNNER_TOKEN=$token" >> "$GITHUB_ENV"
+          echo "RUNNER_FILE=$file" >> "$GITHUB_ENV"
+          echo "APPLY_MODE=$APPLY" >> "$GITHUB_ENV"
+          mkdir -p .runner
+          cat > ".runner/$file" <<'PHP'
+          <?php
+          declare(strict_types=1);
+          header('Content-Type: application/json; charset=utf-8');
+          header('Cache-Control: no-store');
+          $expected = basename(__FILE__, '.php');
+          $expected = substr($expected, strlen('__content_publish_'));
+          if (!hash_equals($expected, (string)($_GET['token'] ?? ''))) {
+              http_response_code(403);
+              echo json_encode(['error' => 'forbidden']);
+              exit;
+          }
+          try {
+              require dirname(__DIR__) . '/config/init.php';
+              \ishop\Db::instance();
+              $types = \R::getAssoc("SELECT LOWER(param_url), id FROM content_type WHERE LOWER(param_url) IN ('articles','news')");
+              $ids = array_values(array_map('intval', $types));
+              if (count($ids) !== 2) {
+                  throw new RuntimeException('Content types articles/news are not configured.');
+              }
+              $where = "type_id IN (" . \R::genSlots($ids) . ") AND hide = 'hide' AND user_id = 0 AND (alias LIKE 'articles-%' OR alias LIKE 'news-%')";
+              $eligible = (int)\R::getCell("SELECT COUNT(*) FROM contents WHERE $where", $ids);
+              $visible = \R::getAll("SELECT ct.param_url, COUNT(*) qty FROM contents c JOIN content_type ct ON ct.id=c.type_id WHERE c.hide='show' AND LOWER(ct.param_url) IN ('articles','news') GROUP BY ct.param_url");
+              $published = 0;
+              if (($_GET['apply'] ?? '') === '1' && $eligible > 0) {
+                  \R::exec('CREATE TABLE IF NOT EXISTS contents_backup_pre_legacy_publish LIKE contents');
+                  \R::exec("INSERT INTO contents_backup_pre_legacy_publish SELECT * FROM contents WHERE $where", $ids);
+                  $published = \R::exec("UPDATE contents SET hide='show', date_last_modified=NOW() WHERE $where", $ids);
+              }
+              echo json_encode(['types'=>$types,'eligible_drafts'=>$eligible,'published'=>$published,'visible_before'=>$visible], JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+          } catch (Throwable $exception) {
+              http_response_code(500);
+              echo json_encode(['error'=>$exception->getMessage()], JSON_UNESCAPED_UNICODE);
+          }
+          PHP
+
+      - name: Upload one-time content runner
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          put ".runner/$RUNNER_FILE" -o "/public/$RUNNER_FILE"
+          bye
+          LFTP
+
+      - name: Audit or publish content
+        shell: bash
+        run: |
+          set -euo pipefail
+          apply=0
+          if [ "$APPLY_MODE" = "true" ]; then apply=1; fi
+          curl --fail-with-body --silent --show-error --max-time 180 \
+            "https://techtires.ru/$RUNNER_FILE?token=$RUNNER_TOKEN&apply=$apply"
+
+      - name: Remove one-time content runner
+        if: always()
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit false
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          rm "/public/$RUNNER_FILE"
+          bye
+          LFTP

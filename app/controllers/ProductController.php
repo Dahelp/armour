@@ -162,6 +162,23 @@ class ProductController extends AppController {
 			 GROUP BY ag.id, ag.title, ag.url_params, av.value, av.alias',
 			[$product->id]
 		);
+		$crossRows = \R::getAll(
+			'SELECT c.cross_name, c.cross_abbreviated_name, c.equipment_vendor, cv.name AS vendor_name
+			 FROM plagins_cross c
+			 LEFT JOIN plagins_cross_vendor cv ON cv.id = c.vendor_id
+			 WHERE c.product_id = ?
+			 ORDER BY cv.name, c.cross_name',
+			[(int)$product->id]
+		);
+		$oemCrosses = [];
+		$analogCrosses = [];
+		foreach ($crossRows as $crossRow) {
+			if ((int)$crossRow['equipment_vendor'] === 1) {
+				$oemCrosses[] = $crossRow;
+			} else {
+				$analogCrosses[] = $crossRow;
+			}
+		}
 		
         // запись в куки запрошенного товара
         $p_model = new Product();
@@ -232,6 +249,8 @@ class ProductController extends AppController {
 			'reviewStats',
 			'productFilters',
 			'productAttributesByGroup',
+			'oemCrosses',
+			'analogCrosses',
 			'recommendationAttributes',
 			'recommendationBrands',
 			'recommendationCategories'

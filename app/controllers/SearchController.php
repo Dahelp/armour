@@ -21,7 +21,8 @@ class SearchController extends AppController{
                         SELECT product.id, product.name, product.img, product.price, product.alias
                         FROM product
                         JOIN plagins_cross ON product.id = plagins_cross.product_id
-                        WHERE concat(plagins_cross.cross_name, plagins_cross.cross_abbreviated_name) LIKE ?
+                        LEFT JOIN plagins_cross_vendor ON plagins_cross_vendor.id = plagins_cross.vendor_id
+                        WHERE CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name) LIKE ?
                     ) product LIMIT 15",
                     [$like, $like]
                 );
@@ -52,7 +53,8 @@ class SearchController extends AppController{
                 UNION
                 SELECT product.id FROM product
                 JOIN plagins_cross ON product.id = plagins_cross.product_id
-                WHERE concat(plagins_cross.cross_name, plagins_cross.cross_abbreviated_name) LIKE ?
+                LEFT JOIN plagins_cross_vendor ON plagins_cross_vendor.id = plagins_cross.vendor_id
+                WHERE CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name) LIKE ?
             ) product",
             [$like, $like]
         );
@@ -70,7 +72,8 @@ class SearchController extends AppController{
                            product.sale, product.img, product.category_id, product.article, product.quantity, product.stock_status_id
                     FROM product
                     JOIN plagins_cross ON product.id = plagins_cross.product_id
-                    WHERE concat(plagins_cross.cross_name, plagins_cross.cross_abbreviated_name) LIKE ?
+                    LEFT JOIN plagins_cross_vendor ON plagins_cross_vendor.id = plagins_cross.vendor_id
+                    WHERE CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name) LIKE ?
                 ) product
                 ORDER BY FIELD(`stock_status_id`, 1, 3, 2, 0), name ASC
                 LIMIT {$start}, {$perpage}",

@@ -9,6 +9,31 @@
     padding: 0;
 }
 
+.product-crosses__grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.product-crosses__item {
+    background: #f4f8fb;
+    border: 1px solid #dbe5ec;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 12px 14px;
+}
+
+.product-crosses__item a {
+    color: #092f53;
+}
+
+.product-crosses__item span {
+    color: #66717b;
+    font-size: 12px;
+}
+
 .header-menu-mobile:hover,
 .header-menu-mobile:focus,
 .header-menu-mobile:active,

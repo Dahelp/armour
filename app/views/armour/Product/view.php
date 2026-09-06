@@ -204,7 +204,12 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 					<a href="#tab-additional_information">Технические характеристики</a>
 				</li>
 			<?php endif; ?>
-                <!--  3  -->
+            <li>
+                <a href="#tab-analogs">Аналоги <span class="reviews-count"><?=count($analogCrosses)?></span></a>
+            </li>
+            <li>
+                <a href="#tab-oem">OEM номера <span class="reviews-count"><?=count($oemCrosses)?></span></a>
+            </li>
             <li>
                 <a href="#tab-description">Описание</a>
             </li>
@@ -247,6 +252,43 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 				</table>
 			</div>
 		<?php endif; ?>
+	<div id="tab-analogs" class="product-crosses">
+		<h3 class="tab-caption">Аналоги</h3>
+		<?php if ($analogCrosses): ?>
+			<div class="product-crosses__grid">
+				<?php foreach ($analogCrosses as $cross): ?>
+					<?php $crossPath = \app\services\CrossUrl::canonicalPath((string)$cross['cross_abbreviated_name']); ?>
+					<div class="product-crosses__item">
+						<?php if ($crossPath !== ''): ?><a href="/<?=h($crossPath)?>"><?php endif; ?>
+						<strong><?=h($cross['cross_name'])?></strong>
+						<?php if ($crossPath !== ''): ?></a><?php endif; ?>
+						<?php if (!empty($cross['vendor_name'])): ?><span><?=h($cross['vendor_name'])?></span><?php endif; ?>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		<?php else: ?>
+			<p>Для этого товара аналоги пока не указаны.</p>
+		<?php endif; ?>
+	</div>
+
+	<div id="tab-oem" class="product-crosses">
+		<h3 class="tab-caption">OEM номера</h3>
+		<?php if ($oemCrosses): ?>
+			<div class="product-crosses__grid">
+				<?php foreach ($oemCrosses as $cross): ?>
+					<?php $crossPath = \app\services\CrossUrl::canonicalPath((string)$cross['cross_abbreviated_name']); ?>
+					<div class="product-crosses__item">
+						<?php if ($crossPath !== ''): ?><a href="/<?=h($crossPath)?>"><?php endif; ?>
+						<strong><?=h($cross['cross_name'])?></strong>
+						<?php if ($crossPath !== ''): ?></a><?php endif; ?>
+						<?php if (!empty($cross['vendor_name'])): ?><span><?=h($cross['vendor_name'])?></span><?php endif; ?>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		<?php else: ?>
+			<p>Для этого товара OEM номера пока не указаны.</p>
+		<?php endif; ?>
+	</div>
 	<div id="tab-description">
 		<h3 class="tab-caption">Описание</h3>
 		<div class="description_box">

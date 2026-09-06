@@ -24,7 +24,7 @@ class NewsController extends AppController {
 		
 		/*SEO*/
 		if($this->route["controller"]){ $path_controller = "/".mb_strtolower($this->route["controller"]).""; }else{ $path_controller = ""; }
-		if($this->route["alias"]){ $path_alias = "/".$this->route["alias"].""; }else{ $path_alias = ""; }
+		if(isset($this->route["alias"]) && $this->route["alias"] !== ''){ $path_alias = "/".$this->route["alias"].""; }else{ $path_alias = ""; }
 		if($find->img){$find_img = "".PATH."/images/contents/baseimg/".$find->img.""; }else{ $find_img = "".PATH."/images/".App::$app->getProperty('og_logo').""; }
 		$this->setMeta($find->title, $find->description, $find->keywords, '' . App::$app->getProperty('shop_name') . '', ''.$find_img.'', ''.PATH.''.$path_controller.''.$path_alias.'');
 		/*SEO*/
@@ -32,9 +32,7 @@ class NewsController extends AppController {
         $this->set(compact('find', 'type', 'related'));
     }
 	public function indexAction(){
-		$alias = strtok($_SERVER["REQUEST_URI"],'?');
-		$alias = str_replace('/', '', $alias);
-		$type = \R::findOne('content_type', 'param_url = ?', [$alias]);
+		$type = \R::findOne('content_type', 'LOWER(param_url) = ?', ['news']);
 		
 		$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perpage = App::$app->getProperty('pagination');
