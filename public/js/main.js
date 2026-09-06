@@ -665,11 +665,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const isOpen = menu.classList.toggle('mobile-menu-open');
             menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             menuButton.setAttribute('aria-label', isOpen ? 'Закрыть каталог' : 'Открыть каталог');
-            const icon = menuButton.querySelector('.fas');
-            if (icon) {
-                icon.classList.toggle('fa-bars', !isOpen);
-                icon.classList.toggle('fa-times', isOpen);
-            }
         });
     }
 
