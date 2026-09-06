@@ -60,6 +60,11 @@ function discoverContentDatabase(PDO $connection): string
     if ($fallbackDatabase !== '') {
         $quoted = '`' . str_replace('`', '``', $fallbackDatabase) . '`';
         $tables = $connection->query("SHOW TABLES FROM {$quoted}")->fetchAll(PDO::FETCH_COLUMN);
+        if (in_array('articles', $tables, true) && in_array('news', $tables, true)) {
+            $articleColumns = $connection->query("SHOW COLUMNS FROM {$quoted}.articles")->fetchAll(PDO::FETCH_COLUMN);
+            $newsColumns = $connection->query("SHOW COLUMNS FROM {$quoted}.news")->fetchAll(PDO::FETCH_COLUMN);
+            throw new RuntimeException('Legacy columns; articles: ' . implode(', ', $articleColumns) . '; news: ' . implode(', ', $newsColumns));
+        }
         throw new RuntimeException('Legacy schema tables: ' . implode(', ', $tables));
     }
     throw new RuntimeException('Unable to discover the legacy database.');
