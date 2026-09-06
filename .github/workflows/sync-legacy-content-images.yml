@@ -1,0 +1,73 @@
+name: Sync legacy content images
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Install FTP client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+
+      - name: Download article images from armour-shina.ru
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME_ARMOUR }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD_ARMOUR }}
+        run: |
+          set -euo pipefail
+          mkdir -p content-images/mini content-images/baseimg
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          set net:max-retries 3
+          set net:timeout 30
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          cd /www/armour-shina.ru
+          mirror --parallel=8 --no-perms --verbose images/contents/mini content-images/mini
+          mirror --parallel=8 --no-perms --verbose images/contents/baseimg content-images/baseimg
+          bye
+          LFTP
+          mini_count="$(find content-images/mini -type f | wc -l)"
+          base_count="$(find content-images/baseimg -type f | wc -l)"
+          printf 'Downloaded mini: %s; baseimg: %s\n' "$mini_count" "$base_count"
+          test "$mini_count" -gt 0
+          test "$base_count" -gt 0
+
+      - name: Upload article images to techtires.ru
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          set net:max-retries 3
+          set net:timeout 30
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          mkdir -p /images/contents/mini
+          mkdir -p /images/contents/baseimg
+          mirror --reverse --parallel=8 --no-perms --verbose content-images/mini/ /images/contents/mini/
+          mirror --reverse --parallel=8 --no-perms --verbose content-images/baseimg/ /images/contents/baseimg/
+          bye
+          LFTP
+
+      - name: Verify public article image
+        shell: bash
+        run: |
+          set -euo pipefail
+          image_url="$(curl --fail-with-body --silent --show-error https://techtires.ru/articles | grep -oE '/images/contents/mini/[^"?]+' | head -n 1)"
+          test -n "$image_url"
+          test "$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' "https://techtires.ru$image_url")" = "200"
+          printf 'Verified %s\n' "$image_url"
