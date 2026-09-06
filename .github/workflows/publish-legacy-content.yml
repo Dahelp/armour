@@ -54,8 +54,11 @@ jobs:
               $eligible = (int)\R::getCell("SELECT COUNT(*) FROM contents WHERE $where", $ids);
               $visible = \R::getAll("SELECT ct.param_url, COUNT(*) qty FROM contents c JOIN content_type ct ON ct.id=c.type_id WHERE c.hide='show' AND LOWER(ct.param_url) IN ('articles','news') GROUP BY ct.param_url");
               $packagePath = dirname(__DIR__) . '/database/legacy-content/legacy-content-ready.json';
+              $redirectPath = dirname(__DIR__) . '/database/legacy-content/legacy-content-redirects.csv';
               $package = is_file($packagePath) ? json_decode((string)file_get_contents($packagePath), true, 512, JSON_THROW_ON_ERROR) : [];
               $imported = 0;
+              $updated = 0;
+              $redirects = 0;
               if (($_GET['apply'] ?? '') === '1' && $package !== []) {
                   $missing = [];
                   foreach ($package as $row) {
@@ -63,6 +66,9 @@ jobs:
                       if (!\R::findOne('contents', 'alias = ?', [$alias])) {
                           $row['type_id'] = str_starts_with($alias, 'news-') ? (int)$types['news'] : (int)$types['articles'];
                           $missing[] = $row;
+                      } else {
+                          $date = preg_match('/^\d{4}-\d{2}-\d{2}/', (string)($row['date_post'] ?? '')) ? substr((string)$row['date_post'], 0, 10) . ' 00:00:00' : date('Y-m-d H:i:s');
+                          $updated += \R::exec('UPDATE contents SET name=?, content=?, title=?, description=?, date_post=?, date_last_modified=NOW() WHERE alias=? AND user_id=0', [(string)$row['name'], (string)$row['content'], (string)$row['title'], (string)$row['description'], $date, $alias]);
                       }
                   }
                   if ($missing !== []) {
@@ -70,13 +76,20 @@ jobs:
                       $eligible = (int)\R::getCell("SELECT COUNT(*) FROM contents WHERE $where", $ids);
                   }
               }
+              if (($_GET['apply'] ?? '') === '1' && is_file($redirectPath)) {
+                  $validated = (new \app\services\LegacyUrlMapValidator())->validateCsv($redirectPath);
+                  if ($validated['errors'] !== []) {
+                      throw new RuntimeException('Content redirect map is invalid: ' . implode('; ', $validated['errors']));
+                  }
+                  $redirects = (new \app\services\LegacyUrlRedirectRepository())->upsert($validated['rows']);
+              }
               $published = 0;
               if (($_GET['apply'] ?? '') === '1' && $eligible > 0) {
                   \R::exec('CREATE TABLE IF NOT EXISTS contents_backup_pre_legacy_publish LIKE contents');
                   \R::exec("INSERT INTO contents_backup_pre_legacy_publish SELECT * FROM contents WHERE $where", $ids);
                   $published = \R::exec("UPDATE contents SET hide='show', date_last_modified=NOW() WHERE $where", $ids);
               }
-              echo json_encode(['types'=>$types,'package_count'=>count($package),'eligible_drafts'=>$eligible,'imported'=>$imported,'published'=>$published,'visible_before'=>$visible], JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+              echo json_encode(['types'=>$types,'package_count'=>count($package),'eligible_drafts'=>$eligible,'imported'=>$imported,'updated'=>$updated,'published'=>$published,'redirects'=>$redirects,'visible_before'=>$visible], JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
           } catch (Throwable $exception) {
               http_response_code(500);
               echo json_encode(['error'=>$exception->getMessage()], JSON_UNESCAPED_UNICODE);

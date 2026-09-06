@@ -42,7 +42,7 @@ final class LegacyContentMigrationBuilder
         file_put_contents($review,json_encode($result['review'],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR),LOCK_EX);
         $handle=fopen($redirects,'wb');if($handle===false)throw new \RuntimeException('Не удалось создать карту контентных URL.');
         fputcsv($handle,['source_path','target_path','status_code','is_active'],';','"','\\');
-        foreach($result['ready'] as $row)fputcsv($handle,[$row['source_path'],$row['alias'],301,1],';','"','\\');fclose($handle);
+        foreach($result['ready'] as $row){$prefix=(int)$row['type_id']===3?'news/':'articles/';fputcsv($handle,[$row['source_path'],$prefix.$row['alias'],301,1],';','"','\\');}fclose($handle);
         return ['ready'=>$ready,'review'=>$review,'redirects'=>$redirects];
     }
 
@@ -61,6 +61,9 @@ final class LegacyContentMigrationBuilder
             }elseif(in_array($host,['armour-shina.ru','www.armour-shina.ru'],true)){
                 $path=(string)parse_url($href,PHP_URL_PATH);$query=(string)parse_url($href,PHP_URL_QUERY);
                 $path=preg_replace('/\.html$/i','',$path)??$path;
+                $trimmed=ltrim($path,'/');
+                if(str_starts_with($trimmed,'articles-'))$path='/articles/'.$trimmed;
+                elseif(str_starts_with($trimmed,'news-'))$path='/news/'.$trimmed;
                 $link->setAttribute('href',$path.($query!==''?'?'.$query:''));
             }
         }
