@@ -10,7 +10,7 @@ class NewsController extends AppController {
     public function viewAction(){
 		
 		$alias = $this->route['alias'];
-		$find = \R::findOne('contents', 'alias = ? AND hide = ?', [$alias, 'show']);
+		$find = \R::findOne('contents', 'alias = ? AND hide IN (?, ?)', [$alias, 'show', 'direct']);
 		if(!$find){
             throw new \Exception("Страница не найдена", 404);
         }

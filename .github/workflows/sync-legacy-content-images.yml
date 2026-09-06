@@ -32,8 +32,8 @@ jobs:
           set net:timeout 30
           open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
           cd /
-          mirror --parallel=8 --no-perms --verbose images/contents/mini content-images/mini
-          mirror --parallel=8 --no-perms --verbose images/contents/baseimg content-images/baseimg
+          mirror --parallel=8 --no-perms --verbose public/images/contents/mini content-images/mini
+          mirror --parallel=8 --no-perms --verbose public/images/contents/baseimg content-images/baseimg
           bye
           LFTP
           mini_count="$(find content-images/mini -type f | wc -l)"
@@ -71,3 +71,19 @@ jobs:
           test -n "$image_url"
           test "$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' "https://techtires.ru$image_url")" = "200"
           printf 'Verified %s\n' "$image_url"
+
+      - name: Checkout visibility synchronizer
+        uses: actions/checkout@v4
+
+      - name: Restore legacy article visibility
+        shell: bash
+        env:
+          DB_HOST_ARMOUR: ${{ secrets.DB_HOST_ARMOUR }}
+          DB_DATABASE_ARMOUR: ${{ secrets.DB_DATABASE_ARMOUR }}
+          DB_USERNAME_ARMOUR: ${{ secrets.DB_USERNAME_ARMOUR }}
+          DB_PASSWORD_ARMOUR: ${{ secrets.DB_PASSWORD_ARMOUR }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: php bin/sync_legacy_content_visibility.php --apply
