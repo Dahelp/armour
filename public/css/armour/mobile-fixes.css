@@ -31,15 +31,18 @@
         height: 54px;
         margin: 0 !important;
         padding: 0 !important;
-        position: static !important;
+        left: 10px;
+        position: fixed !important;
+        top: 8px;
         width: 155px !important;
+        z-index: 1004;
     }
 
     .site-branding .custom-logo-link,
     .site-branding .custom-logo {
         display: block;
-        height: 100%;
-        margin: 0;
+        height: 54px !important;
+        margin: 0 !important;
         max-height: 54px;
         max-width: 155px;
         object-fit: contain;
@@ -48,7 +51,11 @@
     }
 
     .site-header .site-phone {
-        margin-left: auto;
+        margin: 0 !important;
+        position: fixed;
+        right: 56px;
+        top: 8px;
+        z-index: 1004;
     }
 
     .mobile .site-phone__number {
