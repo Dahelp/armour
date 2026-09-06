@@ -43,6 +43,9 @@ function discoverContentDatabase(PDO $connection): string
             continue;
         }
         $quoted = '`' . str_replace('`', '``', (string) $database) . '`';
+        if ($fallbackDatabase === '') {
+            $fallbackDatabase = (string) $database;
+        }
         try {
             $connection->query("SELECT alias, hide FROM {$quoted}.contents LIMIT 1");
             return (string) $database;
