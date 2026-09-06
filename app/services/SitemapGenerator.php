@@ -52,7 +52,7 @@ final class SitemapGenerator
         }
 
         $contents = \R::getAll(
-            "SELECT ua.sef
+            "SELECT CONCAT(LOWER(ct.param_url), '/', ua.sef) AS sef
              FROM contents c
              INNER JOIN content_type ct ON ct.id = c.type_id
              INNER JOIN url_alias ua ON ua.urlid = c.id AND ua.view = ct.param_url
