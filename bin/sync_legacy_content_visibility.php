@@ -119,8 +119,8 @@ try {
     }
 
     if (in_array('--apply', $argv, true) && $changes !== []) {
-        $destination->beginTransaction();
         $destination->exec('CREATE TABLE IF NOT EXISTS contents_backup_pre_visibility_sync LIKE contents');
+        $destination->beginTransaction();
         if ((int) $destination->query('SELECT COUNT(*) FROM contents_backup_pre_visibility_sync')->fetchColumn() === 0) {
             $destination->exec("INSERT INTO contents_backup_pre_visibility_sync SELECT * FROM contents WHERE alias LIKE 'articles-%' OR alias LIKE 'news-%'");
         }
