@@ -49,6 +49,7 @@ jobs:
           putenv('DB_USERNAME_ARMOUR=' . base64_decode('$user64'));
           putenv('DB_PASSWORD_ARMOUR=' . base64_decode('$pass64'));
           putenv('DB_DATABASE_ARMOUR=' . base64_decode('$db64'));
+          require dirname(__DIR__) . '/config/init.php';
           \$argv = [__FILE__, '$apply_arg'];
           require dirname(__DIR__) . '/bin/sync_legacy_content_visibility.php';
           PHP

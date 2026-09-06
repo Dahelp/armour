@@ -105,7 +105,7 @@ try {
         }
         $sourceStatus = strtolower(trim((string) $row['hide']));
         $sourceStatuses[$sourceStatus] = ($sourceStatuses[$sourceStatus] ?? 0) + 1;
-        $target = in_array($sourceStatus, ['show', '0', 'visible'], true) ? 'show' : 'direct';
+        $target = in_array($sourceStatus, ['show', '0', 'visible'], true) ? 'show' : 'lock';
         if ((string) $existingByAlias[$alias] !== $target) {
             $changes[$alias] = $target;
         }
@@ -130,7 +130,7 @@ try {
         'source_statuses' => $sourceStatuses,
         'destination_rows' => count($existing),
         'changed' => count($changes),
-        'direct_only' => count(array_filter($changes, static fn(string $value): bool => $value === 'direct')),
+        'direct_only' => count(array_filter($changes, static fn(string $value): bool => $value === 'lock')),
         'applied' => in_array('--apply', $argv, true),
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR) . PHP_EOL;
 } catch (Throwable $exception) {
