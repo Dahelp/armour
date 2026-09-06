@@ -11,7 +11,7 @@ function requiredEnv(string $name): string
     return $value;
 }
 
-function databaseConnection(string $suffix): PDO
+function databaseConnection(string $suffix, bool $databaseRequired = true): PDO
 {
     $host = requiredEnv('DB_HOST' . $suffix);
     $port = 3306;
@@ -19,19 +19,46 @@ function databaseConnection(string $suffix): PDO
         $host = $matches[1];
         $port = (int) $matches[2];
     }
+    $database = trim((string) getenv('DB_DATABASE' . $suffix));
+    if ($databaseRequired && $database === '') {
+        throw new RuntimeException('Missing environment variable: DB_DATABASE' . $suffix);
+    }
     return new PDO(
-        sprintf('mysql:host=%s;port=%d;dbname=%s;charset=utf8mb4', $host, $port, requiredEnv('DB_DATABASE' . $suffix)),
+        sprintf('mysql:host=%s;port=%d;%scharset=utf8mb4', $host, $port, $database !== '' ? 'dbname=' . $database . ';' : ''),
         requiredEnv('DB_USERNAME' . $suffix),
         requiredEnv('DB_PASSWORD' . $suffix),
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]
     );
 }
 
+function discoverContentDatabase(PDO $connection): string
+{
+    $configured = trim((string) getenv('DB_DATABASE_ARMOUR'));
+    if ($configured !== '') {
+        return $configured;
+    }
+    foreach ($connection->query('SHOW DATABASES')->fetchAll(PDO::FETCH_COLUMN) as $database) {
+        if (in_array($database, ['information_schema', 'mysql', 'performance_schema', 'sys'], true)) {
+            continue;
+        }
+        $quoted = '`' . str_replace('`', '``', (string) $database) . '`';
+        try {
+            $connection->query("SELECT alias, hide FROM {$quoted}.contents LIMIT 1");
+            return (string) $database;
+        } catch (Throwable) {
+            continue;
+        }
+    }
+    throw new RuntimeException('Unable to discover the legacy database containing contents.');
+}
+
 try {
-    $source = databaseConnection('_ARMOUR');
+    $source = databaseConnection('_ARMOUR', false);
+    $sourceDatabase = discoverContentDatabase($source);
+    $sourceTable = '`' . str_replace('`', '``', $sourceDatabase) . '`.contents';
     $destination = databaseConnection('');
     $rows = $source->query(
-        "SELECT alias, hide FROM contents WHERE alias LIKE 'articles-%' OR alias LIKE 'news-%'"
+        "SELECT alias, hide FROM {$sourceTable} WHERE alias LIKE 'articles-%' OR alias LIKE 'news-%'"
     )->fetchAll();
     if ($rows === []) {
         throw new RuntimeException('No legacy articles or news were found.');
