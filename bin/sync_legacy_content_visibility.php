@@ -5,6 +5,9 @@ declare(strict_types=1);
 function requiredEnv(string $name): string
 {
     $value = trim((string) getenv($name));
+    if ($value === '' && function_exists('config_env')) {
+        $value = trim((string) config_env($name, ''));
+    }
     if ($value === '') {
         throw new RuntimeException("Missing environment variable: {$name}");
     }
@@ -19,7 +22,11 @@ function databaseConnection(string $suffix, bool $databaseRequired = true): PDO
         $host = $matches[1];
         $port = (int) $matches[2];
     }
-    $database = trim((string) getenv('DB_DATABASE' . $suffix));
+    $databaseKey = 'DB_DATABASE' . $suffix;
+    $database = trim((string) getenv($databaseKey));
+    if ($database === '' && function_exists('config_env')) {
+        $database = trim((string) config_env($databaseKey, ''));
+    }
     if ($databaseRequired && $database === '') {
         throw new RuntimeException('Missing environment variable: DB_DATABASE' . $suffix);
     }
