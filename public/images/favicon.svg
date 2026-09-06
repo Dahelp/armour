@@ -1,22 +1,7 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="16.000000pt" height="16.000000pt" viewBox="0 0 16.000000 16.000000"
- preserveAspectRatio="xMidYMid meet">
-
-<g transform="translate(0.000000,16.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M60 135 c-7 -8 -23 -15 -36 -15 -13 0 -24 -4 -24 -10 0 -20 24 -60
-36 -60 6 0 14 -7 18 -15 7 -19 45 -19 52 0 4 8 12 15 18 15 12 0 36 40 36 60
-0 6 -11 10 -24 10 -13 0 -29 7 -36 15 -7 8 -16 15 -20 15 -4 0 -13 -7 -20 -15z
-m38 -46 c2 -26 0 -30 -8 -19 -9 13 -11 13 -20 0 -7 -12 -10 -8 -10 16 0 56 33
-59 38 3z m-55 14 c-7 -2 -19 -2 -25 0 -7 3 -2 5 12 5 14 0 19 -2 13 -5z m100
-0 c-7 -2 -19 -2 -25 0 -7 3 -2 5 12 5 14 0 19 -2 13 -5z m-96 -19 c-3 -3 -12
--4 -19 -1 -8 3 -5 6 6 6 11 1 17 -2 13 -5z m90 0 c-3 -3 -12 -4 -19 -1 -8 3
--5 6 6 6 11 1 17 -2 13 -5z m-47 -48 c-7 -7 -13 -7 -20 0 -6 6 -3 10 10 10 13
-0 16 -4 10 -10z"/>
-<path d="M70 105 c0 -8 5 -15 10 -15 6 0 10 7 10 15 0 8 -4 15 -10 15 -5 0
--10 -7 -10 -15z"/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">TechTires</title>
+  <rect width="64" height="64" rx="14" fill="#092f53"/>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="#ffffff" stroke-width="7"/>
+  <path d="M17 16l5 8m25-8-5 8M12 30l10 2m30-2-10 2M17 48l7-8m23 8-7-8" fill="none" stroke="#55b947" stroke-width="4" stroke-linecap="round"/>
+  <path d="M21 23h22v7h-7v17h-8V30h-7z" fill="#ffffff"/>
 </svg>

@@ -19,8 +19,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 	?>
 	<meta name="robots" content="<?=h($robots)?>" />
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
-	<link rel="icon" href="images/favicon.svg" type="image/svg" />
-    <link rel="shortcut icon" href="images/favicon.svg" type="image/svg" />
+	<link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="shortcut icon" href="/images/favicon.svg" type="image/svg+xml" />
     <?=$this->getMeta(); ?>	
 
 
@@ -135,7 +135,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 		<header id="masthead" class="site-header prochie-tovary" role="banner" style="">
 			<div class="col-full flex">
 				<div class="site-branding">
-					<a href="/" class="custom-logo-link" rel="home"><img src="/images/logo_armour.png" class="custom-logo" alt="Шины для спецтехники" data-no-lazy="1" decoding="async" /></a>
+					<a href="/" class="custom-logo-link" rel="home"><img src="/images/logo-techtires.svg" class="custom-logo" alt="TechTires — шины и запчасти для спецтехники" data-no-lazy="1" decoding="async" /></a>
 				</div>
 				<div class="site-search">
 					<div class="dgwt-wcas-search-wrapp dgwt-wcas-has-submit woocommerce dgwt-wcas-style-solaris js-dgwt-wcas-layout-classic dgwt-wcas-layout-classic js-dgwt-wcas-mobile-overlay-enabled dgwt-wcas-active" style="position: relative;">
