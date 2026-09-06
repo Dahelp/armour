@@ -37,6 +37,7 @@ function discoverContentDatabase(PDO $connection): string
     if ($configured !== '') {
         return $configured;
     }
+    $fallbackDatabase = '';
     foreach ($connection->query('SHOW DATABASES')->fetchAll(PDO::FETCH_COLUMN) as $database) {
         if (in_array($database, ['information_schema', 'mysql', 'performance_schema', 'sys'], true)) {
             continue;
@@ -46,10 +47,19 @@ function discoverContentDatabase(PDO $connection): string
             $connection->query("SELECT alias, hide FROM {$quoted}.contents LIMIT 1");
             return (string) $database;
         } catch (Throwable) {
-            continue;
+            try {
+                $connection->query("SELECT 1 FROM {$quoted}.product LIMIT 1");
+                $fallbackDatabase = (string) $database;
+            } catch (Throwable) {
+            }
         }
     }
-    throw new RuntimeException('Unable to discover the legacy database containing contents.');
+    if ($fallbackDatabase !== '') {
+        $quoted = '`' . str_replace('`', '``', $fallbackDatabase) . '`';
+        $tables = $connection->query("SHOW TABLES FROM {$quoted}")->fetchAll(PDO::FETCH_COLUMN);
+        throw new RuntimeException('Legacy schema tables: ' . implode(', ', $tables));
+    }
+    throw new RuntimeException('Unable to discover the legacy database.');
 }
 
 try {
