@@ -87,7 +87,6 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel="stylesheet" href="public/adminlte/plugins/select2/css/select2.min.css" />
 <link rel="stylesheet" href="public/adminlte/plugins/select2-bootstrap5-theme/select2-bootstrap-5-theme.min.css" />
 
-<meta name="generator" content="armour-shina.ru">
 <style>
                 .lmp_load_more_button.br_lmp_button_settings .lmp_button:hover {
                     background-color: #ffffff!important;

@@ -43,6 +43,14 @@ seoAssert(str_contains($productView, "'@type' => 'Product'"), 'Product schema ty
 seoAssert(str_contains($productView, "'priceCurrency' => 'RUB'"), 'Product offer currency is missing.');
 seoAssert(str_contains($productView, 'JSON_HEX_TAG'), 'Product JSON-LD must use HTML-safe JSON encoding.');
 
+$mainController = (string)file_get_contents(dirname(__DIR__) . '/app/controllers/MainController.php');
+$mainView = (string)file_get_contents(dirname(__DIR__) . '/app/views/armour/Main/index.php');
+$layout = (string)file_get_contents(dirname(__DIR__) . '/app/views/armour/layouts/watches.php');
+seoAssert(str_contains($mainController, 'Промышленные шины для погрузчиков и спецтехники — ТехШина'), 'Homepage SEO title is missing.');
+seoAssert(str_contains($mainView, '<h1>Промышленные шины для погрузчиков и спецтехники</h1>'), 'Homepage H1 is missing.');
+seoAssert(!str_contains($mainView, 'шиной Armour'), 'Legacy Armour copy remains on the homepage.');
+seoAssert(!str_contains($layout, 'generator" content="armour-shina.ru'), 'Legacy generator metadata remains in the layout.');
+
 $generator = new \app\services\SitemapGenerator();
 seoAssert($generator->normalisePublicPath('/product.html/') === 'product.html', 'Legacy extensions must be retained.');
 seoAssert($generator->normalisePublicPath('../admin') === null, 'Traversal paths must be rejected.');

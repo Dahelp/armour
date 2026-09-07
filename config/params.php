@@ -2,9 +2,9 @@
 
 return [
     'admin_email' => 'info@techtires.ru',
-    'shop_name' => 'Armour-shina',
-	'shop_description' => 'Шины для спецтехники и минипогрузчиков, диски, фильтры',
-	'og_logo' => 'Logo_round_1200.jpg',
+    'shop_name' => 'ТехШина',
+	'shop_description' => 'Промышленные шины для погрузчиков и спецтехники, диски и фильтры',
+	'og_logo' => 'banners/banner-1.jpg',
     'pagination' => 20,
     'smtp_host' => config_env('SMTP_HOST', ''),
     'smtp_port' => config_env('SMTP_PORT', '587'),
