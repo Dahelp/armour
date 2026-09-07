@@ -64,12 +64,12 @@ class SearchController extends AppController{
         if($query){
 			$products = \R::getAll(
                 "SELECT * FROM (
-                    SELECT id, name, price, alias, hit, new_product, sale, img, category_id, article, quantity, stock_status_id
+                    SELECT id, name, price, alias, hit, new_product, sale, img, category_id, article, quantity, stock_status_id, brand_id
                     FROM product
                     WHERE hide = 'show' AND concat(name, article) LIKE ?
                     UNION
                     SELECT product.id, product.name, product.price, product.alias, product.hit, product.new_product,
-                           product.sale, product.img, product.category_id, product.article, product.quantity, product.stock_status_id
+                           product.sale, product.img, product.category_id, product.article, product.quantity, product.stock_status_id, product.brand_id
                     FROM product
                     JOIN plagins_cross ON product.id = plagins_cross.product_id
                     LEFT JOIN plagins_cross_vendor ON plagins_cross_vendor.id = plagins_cross.vendor_id

@@ -228,6 +228,225 @@
     .home-hero__lead { max-width: 320px; }
 }
 
+/* Unified product card used by catalog, search and homepage product sections. */
+ul.products { align-items: stretch; }
+
+.site-main ul.products li.product.product-card-unified,
+.home ul.products li.product.product-card-unified {
+    background: #fff;
+    border: 1px solid #dfe6eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(9, 47, 83, .06);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0 !important;
+    overflow: hidden;
+    padding: 0 !important;
+    text-align: left;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.site-main ul.products li.product.product-card-unified:hover,
+.home ul.products li.product.product-card-unified:hover {
+    border-color: #c9d7e1;
+    box-shadow: 0 10px 28px rgba(9, 47, 83, .13);
+    transform: translateY(-3px);
+}
+
+.product-card-unified__media {
+    aspect-ratio: 1 / 1;
+    background: #f7f9fa;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-card-unified__image-link,
+.product-card-unified__image-link img {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+ul.products li.product.product-card-unified .product-card-unified__image-link img {
+    margin: 0;
+    object-fit: contain;
+    padding: 10px;
+    transition: transform .25s ease;
+}
+
+.product-card-unified:hover .product-card-unified__image-link img { transform: scale(1.025); }
+
+.product-card-unified__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    left: 12px;
+    position: absolute;
+    top: 12px;
+    z-index: 2;
+}
+
+.product-card-unified__badge {
+    border-radius: 4px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 6px 8px;
+    text-transform: uppercase;
+}
+
+.product-card-unified__badge--hit { background: #e89216; }
+.product-card-unified__badge--new { background: #238b45; }
+.product-card-unified__badge--sale { background: #d33b35; }
+
+.product-card-unified__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 3;
+}
+
+.product-card-unified__actions .br_compare_button,
+.product-card-unified__actions .product-wish {
+    align-items: center;
+    background: rgba(255, 255, 255, .96) !important;
+    border: 1px solid #dce4e9;
+    border-radius: 50%;
+    color: #173650;
+    cursor: pointer;
+    display: flex;
+    height: 38px;
+    justify-content: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static;
+    width: 38px;
+}
+
+.product-card-unified__actions .br_compare_button::before { content: none !important; }
+.product-card-unified__actions .br_compare_button i { display: block; font-size: 15px; }
+.product-card-unified__actions .product-wish .icon-wish { margin: 0; }
+
+.product-card-unified__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 16px 17px 18px;
+}
+
+ul.products li.product.product-card-unified .product-card-unified__title {
+    display: -webkit-box;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0;
+    min-height: 41px;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+ul.products li.product.product-card-unified .product-card-unified__title a { color: #0a4f8a; }
+ul.products li.product.product-card-unified .product-card-unified__title a:hover { color: #08732c; }
+
+.product.type-product .product-card-unified__sku {
+    color: #71808b;
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 8px 0 0;
+}
+
+.product.type-product .product-card-unified__stock {
+    align-items: center;
+    display: flex;
+    font-size: 12px;
+    gap: 6px;
+    margin: 14px 0 0;
+}
+
+.product-card-unified__stock.is-available { color: #23783a; }
+.product-card-unified__stock.is-unavailable { color: #9a3d39; }
+
+.product-card-unified__footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    padding-top: 14px;
+}
+
+.product.type-product .product-card-unified__price,
+ul.products li.product .box-price-btn .product-card-unified__price {
+    align-items: flex-end;
+    border-top: 1px solid #edf1f3;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding-top: 13px;
+}
+
+.product-card-unified__price .price_prefix { color: #71808b; font-size: 12px; }
+.product-card-unified__price .price_html { color: #132d43; margin-left: 8px; }
+.product-card-unified__price .woocommerce-Price-amount { font-size: 23px; font-weight: 800; line-height: 1; }
+
+.product.type-product .product-card-unified__buy {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin: 14px 0 0;
+    min-height: 40px;
+}
+
+.product-card-unified__buy .my_btn { flex: 1 1 auto; }
+.product-card-unified__buy .button {
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 700;
+    justify-content: center;
+    min-height: 40px;
+    padding: 10px 16px;
+    width: 100%;
+}
+
+.product-card-unified__buy .quantity-block {
+    border: 1px solid #d8e1e7;
+    border-radius: 5px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.product-card-unified__buy .quantity-block button,
+.product-card-unified__buy .quantity-block input {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    height: 38px;
+    min-width: 34px;
+    padding: 0;
+    width: 34px;
+}
+
+.product-card-unified__buy .quantity-block button { background: #f2f5f7; color: #173650; font-size: 18px; }
+.product-card-unified__buy .quantity-block input { background: #fff; font-size: 13px; text-align: center; }
+.product-card-unified__details { background: #edf3f6 !important; color: #173650 !important; }
+
+@media (max-width: 767px) {
+    .product-card-unified__body { padding: 13px 13px 15px; }
+    ul.products li.product.product-card-unified .product-card-unified__title { font-size: 14px; }
+    .product-card-unified__price .woocommerce-Price-amount { font-size: 20px; }
+    .product-card-unified__actions { right: 8px; top: 8px; }
+    .product-card-unified__actions .br_compare_button,
+    .product-card-unified__actions .product-wish { height: 34px; width: 34px; }
+}
+
 @media (min-width: 1101px) and (max-width: 1250px) {
     .site-header > .col-full.flex { gap: 16px; }
     body.woocommerce-active .site-header .site-branding { flex-basis: 205px; width: 205px !important; }

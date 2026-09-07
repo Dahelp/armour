@@ -13,8 +13,14 @@ class Product{
 	public $brand;
 	
     public function __construct($product, $curr, $attribute = '', $brand = '', $tpl = ''){
-
-		$this->tpl = $tpl ?: __DIR__ . '/product_tpl.php';
+		if (is_string($attribute) && str_ends_with($attribute, '.php') && $brand === '' && $tpl === '') {
+			$tpl = $attribute;
+			$attribute = [];
+		}
+		$this->tpl = $tpl ?: 'product_tpl.php';
+		if (!str_contains($this->tpl, DIRECTORY_SEPARATOR) && !str_contains($this->tpl, '/')) {
+			$this->tpl = __DIR__ . DIRECTORY_SEPARATOR . $this->tpl;
+		}
         $this->run($product, $curr, $attribute, $brand);
 		
     }
