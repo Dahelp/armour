@@ -194,6 +194,7 @@
                                     <label class="form-label" for="note">Комментарий</label>
                                     <textarea name="note" class="form-control"></textarea>
                                 </div>
+								<?php $consentId = 'checkout-privacy-accept'; require APP . '/views/' . TEMPLATE . '/partials/privacy-consent.php'; ?>
 								<div class="pt-2">
 									<button class="btn btn-primary d-block w-100" type="submit">Оформить заказ</button>
 								</div>

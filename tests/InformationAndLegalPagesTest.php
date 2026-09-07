@@ -27,9 +27,9 @@ foreach (['delivery', 'company', 'contacts', 'privacy', 'consent', 'cookies', 't
 informationAssert(!str_contains($layout, 'href="/actions"'), 'Actions page is still linked from the layout.');
 informationAssert(!str_contains($layout, 'href="/info"'), 'Empty information landing page is still linked from the menu.');
 informationAssert(str_contains($layout, 'favicon-techtires.svg'), 'New favicon is not connected.');
-informationAssert(substr_count($layout, 'name="privacy_accept"') === 2, 'Consent must be present in callback and message forms.');
-informationAssert(str_contains($callback, "\$_POST['privacy_accept']"), 'Callback consent is not validated server-side.');
-informationAssert(str_contains($sendmail, "\$_POST['privacy_accept']"), 'Message consent is not validated server-side.');
+informationAssert(substr_count($layout, 'name="privacy_accept"') === 4, 'Consent must be present in all public modal forms.');
+informationAssert(str_contains($callback, 'PersonalDataConsent::accepted'), 'Callback consent is not validated server-side.');
+informationAssert(str_contains($sendmail, 'PersonalDataConsent::accepted'), 'Message consent is not validated server-side.');
 informationAssert(!str_contains($layout, 'info@armour-shina.ru'), 'Old Armour email remains in the public layout.');
 
 echo "Information and legal page checks passed.\n";

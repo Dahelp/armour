@@ -33,7 +33,8 @@
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <div class="help-block with-errors"></div>
                                 </div>                                                                
-                                <button type="submit" class="btn btn-primary mb-3">Зарегистрировать</button>
+								<?php $consentId = 'signup-privacy-accept'; require APP . '/views/' . TEMPLATE . '/partials/privacy-consent.php'; ?>
+								<button type="submit" class="btn btn-primary mb-3">Зарегистрировать</button>
                             </form>
                             <?php if(isset($_SESSION['form_data'])) unset($_SESSION['form_data']); ?>
                         </div>

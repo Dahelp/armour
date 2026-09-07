@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\services\PersonalDataConsent;
+
 use app\models\admin\Company;
 use app\models\Cart;
 use app\models\Order;
@@ -159,6 +161,11 @@ class CartController extends AppController {
 	
     public function checkoutAction(){
         if(!empty($_POST)){
+			if (!PersonalDataConsent::accepted($_POST)) {
+				PersonalDataConsent::reject($_POST);
+				redirect('/cart');
+				return;
+			}
 			$usok = \R::findOne('user', 'email = ?', [$_POST['email']]);			
 				if($usok["id"]) {
 					$user_id = $usok["id"];

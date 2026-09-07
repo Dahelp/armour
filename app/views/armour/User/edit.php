@@ -59,6 +59,7 @@
 							</div>
 						</div>
 						<div class="box-footer">
+							<?php $consentId = 'profile-privacy-accept'; require APP . '/views/' . TEMPLATE . '/partials/privacy-consent.php'; ?>
 							<button type="submit" class="btn btn-primary">Сохранить</button>
 						</div>
 					</form>

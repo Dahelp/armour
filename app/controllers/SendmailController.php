@@ -3,14 +3,15 @@
 namespace app\controllers;
 
 use app\models\Sendmail;
+use app\services\PersonalDataConsent;
 use ishop\App;
 
 class SendmailController extends AppController {	
 	
 	public function viewAction(){
 		if($_POST){
-			if (($_POST['privacy_accept'] ?? '') !== '1') {
-				$_SESSION['error'] = 'Подтвердите согласие на обработку персональных данных.';
+			if (!PersonalDataConsent::accepted($_POST)) {
+				PersonalDataConsent::reject($_POST);
 				redirect();
 				return;
 			}

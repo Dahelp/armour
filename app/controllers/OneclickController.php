@@ -3,12 +3,18 @@
 namespace app\controllers;
 
 use app\models\Oneclick;
+use app\services\PersonalDataConsent;
 use ishop\App;
 
 class OneclickController extends AppController {	
 	
 	public function viewAction(){
 		if($_POST){
+			if (!PersonalDataConsent::accepted($_POST)) {
+				PersonalDataConsent::reject($_POST);
+				redirect();
+				return;
+			}
 			$fio_modal = $_POST["fio_modal"];
 			$tell_modal = $_POST["tell_modal"];
 			$name_tovar = $_POST["name_tovar"];

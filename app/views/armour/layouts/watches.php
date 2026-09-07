@@ -438,6 +438,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 							<a href="/soglasie-na-obrabotku-personalnyh-dannyh">Согласие на обработку ПД</a>
 							<a href="/politika-fajlov-cookie">Политика файлов cookie</a>
 							<a href="/polzovatelskoe-soglashenie">Пользовательское соглашение</a>
+							<button type="button" class="cookie-settings-button" data-cookie-settings>Настройки cookie</button>
 						</div>
 					</div>
 				</div>
@@ -566,8 +567,8 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 						<span class="wpcf7-form-control wpcf7-acceptance">
 							<span class="wpcf7-list-item">
 								<label>
-									<input type="checkbox" name="accept-this-3" value="1" class="check-val">
-									<span class="wpcf7-list-item-label">Вы соглашаетесь на обработку персональных данных</span>
+									<input type="checkbox" name="privacy_accept" value="1" class="check-val" required aria-required="true">
+									<span class="wpcf7-list-item-label">Я принимаю <a href="/politika-konfidencialnosti" target="_blank">Политику конфиденциальности</a> и даю <a href="/soglasie-na-obrabotku-personalnyh-dannyh" target="_blank">согласие на обработку персональных данных</a></span>
 								</label>
 							</span>
 						</span>
@@ -660,8 +661,8 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 						<span class="wpcf7-form-control wpcf7-acceptance">
 							<span class="wpcf7-list-item">
 								<label>
-									<input type="checkbox" name="accept-this-3" value="1" class="check-val">
-									<span class="wpcf7-list-item-label">Вы соглашаетесь на обработку персональных данных</span>
+									<input type="checkbox" name="privacy_accept" value="1" class="check-val" required aria-required="true">
+									<span class="wpcf7-list-item-label">Я принимаю <a href="/politika-konfidencialnosti" target="_blank">Политику конфиденциальности</a> и даю <a href="/soglasie-na-obrabotku-personalnyh-dannyh" target="_blank">согласие на обработку персональных данных</a></span>
 								</label>
 							</span>
 						</span>
@@ -672,6 +673,17 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 		</div>
 	</div>
 </div>
+<aside id="cookie-consent" class="cookie-consent" aria-label="Настройки файлов cookie" role="dialog" aria-live="polite" hidden>
+	<div class="cookie-consent__text">
+		<strong>Файлы cookie</strong>
+		<span>Используем необходимые cookie для работы корзины, форм и личного кабинета. Подробнее — в <a href="/politika-fajlov-cookie">Политике файлов cookie</a>.</span>
+	</div>
+	<div class="cookie-consent__actions">
+		<button type="button" class="cookie-consent__secondary" data-cookie-preference="necessary">Только необходимые</button>
+		<button type="button" class="cookie-consent__primary" data-cookie-preference="all">Принять все</button>
+	</div>
+</aside>
+<script src="/js/cookie-consent.js?v=<?=filemtime(WWW.'/js/cookie-consent.js')?>" defer></script>
 <script>
 // Получаем все чекбоксы и кнопки
 const checkboxes = document.querySelectorAll('input.check-val[type="checkbox"]');

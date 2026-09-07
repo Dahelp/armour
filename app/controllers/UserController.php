@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\services\PersonalDataConsent;
+
 use app\models\User;
 use app\widgets\cabinet\Cabinet;
 use ishop\App;
@@ -84,6 +86,11 @@ class UserController extends AppController {
 	
     public function signupAction(){
         if(!empty($_POST)){
+			if (!PersonalDataConsent::accepted($_POST)) {
+				PersonalDataConsent::reject($_POST);
+				redirect();
+				return;
+			}
             $user = new User();
             $data = $_POST;			
             $user->load($data);
@@ -347,6 +354,11 @@ class UserController extends AppController {
     public function editAction(){
         if(!User::checkAuth()) redirect('');
         if(!empty($_POST)){
+			if (!PersonalDataConsent::accepted($_POST)) {
+				PersonalDataConsent::reject();
+				redirect();
+				return;
+			}
             $user = new \app\models\admin\User();
             $data = $_POST;
             $data['id'] = $_SESSION['user']['id'];
@@ -375,6 +387,11 @@ class UserController extends AppController {
 	public function companyAction(){
         if(!User::checkAuth()) redirect('');
         if(!empty($_POST)){
+			if (!PersonalDataConsent::accepted($_POST)) {
+				PersonalDataConsent::reject();
+				redirect();
+				return;
+			}
             $company = new \app\models\admin\Company();
             $data = $_POST;
             $data['user_id'] = $_SESSION['user']['id'];
