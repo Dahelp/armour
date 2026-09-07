@@ -133,6 +133,11 @@
         padding-right: 26px;
         width: 100%;
     }
+    .site-header > .col-full.flex::before,
+    .site-header > .col-full.flex::after {
+        content: none;
+        display: none;
+    }
     body.woocommerce-active .site-header .site-branding { flex: 0 0 220px; float: none; margin: 0 !important; padding: 0 !important; text-align: left !important; width: 220px !important; }
     .site-header .site-search { flex: 1 1 400px; float: none; margin: 0 !important; min-width: 0; width: auto !important; }
     .site-header .site-phone { flex: 0 0 285px; float: none; margin: 0 !important; width: 285px !important; }
