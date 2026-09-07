@@ -8,6 +8,29 @@ use ishop\libs\Pagination;
 
 class PagesController extends AppController {
 
+	private const INFORMATION_PAGES = [
+		'delivery' => ['title' => 'Доставка и оплата', 'description' => 'Способы оплаты и доставки шин, дисков и фильтров для спецтехники по России.', 'canonical' => '/dostavka'],
+		'company' => ['title' => 'О компании «ТехШина»', 'description' => 'ТехШина — поставщик промышленных шин, дисков и фильтров для специальной техники.', 'canonical' => '/comp'],
+		'contacts' => ['title' => 'Контакты', 'description' => 'Телефоны, электронная почта, адрес склада и реквизиты компании «ТехШина».', 'canonical' => '/contacts'],
+		'privacy' => ['title' => 'Политика конфиденциальности', 'description' => 'Политика обработки и защиты персональных данных пользователей сайта techtires.ru.', 'canonical' => '/politika-konfidencialnosti'],
+		'consent' => ['title' => 'Согласие на обработку персональных данных', 'description' => 'Согласие пользователя сайта techtires.ru на обработку персональных данных.', 'canonical' => '/soglasie-na-obrabotku-personalnyh-dannyh'],
+		'cookies' => ['title' => 'Политика использования файлов cookie', 'description' => 'Информация об использовании файлов cookie на сайте techtires.ru.', 'canonical' => '/politika-fajlov-cookie'],
+		'terms' => ['title' => 'Пользовательское соглашение', 'description' => 'Правила использования сайта techtires.ru и размещённой на нём информации.', 'canonical' => '/polzovatelskoe-soglashenie'],
+	];
+
+	public function informationAction(): void
+	{
+		$key = (string)($this->route['document'] ?? '');
+		if (!isset(self::INFORMATION_PAGES[$key])) {
+			throw new \Exception('Страница не найдена', 404);
+		}
+
+		$page = self::INFORMATION_PAGES[$key];
+		$this->view = 'information';
+		$this->setMeta($page['title'], $page['description'], '', 'ТехШина', PATH . '/images/logo-techtires.svg', PATH . $page['canonical']);
+		$this->set(compact('page', 'key'));
+	}
+
     public function viewAction(){
 		
 		$alias = $this->route['alias'];
@@ -53,4 +76,4 @@ class PagesController extends AppController {
         $this->set(compact('conts', 'type', 'pagination'));
 	}
 
-} 
+}

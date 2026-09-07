@@ -7,14 +7,14 @@ use app\services\LegacyUrlRedirector;
 
 // Stable service and legal pages. These routes deliberately precede database
 // aliases so the pages remain available after content imports.
-Router::add('^dostavka/?$', ['controller' => 'Information', 'action' => 'delivery']);
-Router::add('^comp/?$', ['controller' => 'Information', 'action' => 'company']);
-Router::add('^contacts/?$', ['controller' => 'Information', 'action' => 'contacts']);
-Router::add('^politika-konfidencialnosti/?$', ['controller' => 'Information', 'action' => 'privacy']);
-Router::add('^o-kompanii/politika-konfidentsialnosti/?$', ['controller' => 'Information', 'action' => 'privacy']);
-Router::add('^soglasie-na-obrabotku-personalnyh-dannyh/?$', ['controller' => 'Information', 'action' => 'consent']);
-Router::add('^politika-fajlov-cookie/?$', ['controller' => 'Information', 'action' => 'cookies']);
-Router::add('^polzovatelskoe-soglashenie/?$', ['controller' => 'Information', 'action' => 'terms']);
+Router::add('^dostavka/?$', ['controller' => 'Pages', 'action' => 'information', 'document' => 'delivery']);
+Router::add('^comp/?$', ['controller' => 'Pages', 'action' => 'information', 'document' => 'company']);
+Router::add('^contacts/?$', ['controller' => 'Pages', 'action' => 'information', 'document' => 'contacts']);
+Router::add('^politika-konfidencialnosti/?$', ['controller' => 'Pages', 'action' => 'information', 'document' => 'privacy']);
+Router::add('^o-kompanii/politika-konfidentsialnosti/?$', ['controller' => 'Pages', 'action' => 'information', 'document' => 'privacy']);
+Router::add('^soglasie-na-obrabotku-personalnyh-dannyh/?$', ['controller' => 'Pages', 'action' => 'information', 'document' => 'consent']);
+Router::add('^politika-fajlov-cookie/?$', ['controller' => 'Pages', 'action' => 'information', 'document' => 'cookies']);
+Router::add('^polzovatelskoe-soglashenie/?$', ['controller' => 'Pages', 'action' => 'information', 'document' => 'terms']);
 
 $urli = $_SERVER['REQUEST_URI'];
 //$urli = urldecode($urli);

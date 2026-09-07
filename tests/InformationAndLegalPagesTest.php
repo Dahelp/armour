@@ -10,7 +10,7 @@ function informationAssert(bool $condition, string $message): void
 
 $root = dirname(__DIR__);
 $routes = (string)file_get_contents($root . '/config/routes.php');
-$controller = (string)file_get_contents($root . '/app/controllers/InformationController.php');
+$controller = (string)file_get_contents($root . '/app/controllers/PagesController.php');
 $layout = (string)file_get_contents($root . '/app/views/armour/layouts/watches.php');
 $callback = (string)file_get_contents($root . '/app/controllers/CallbackController.php');
 $sendmail = (string)file_get_contents($root . '/app/controllers/SendmailController.php');

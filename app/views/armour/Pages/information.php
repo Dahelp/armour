@@ -12,7 +12,7 @@
     <div class="col-full">
         <article class="information-page__card">
             <h1><?= h($page['title']) ?></h1>
-            <?php require __DIR__ . '/_' . $key . '.php'; ?>
+            <?php require APP . '/views/' . TEMPLATE . '/Information/_' . $key . '.php'; ?>
         </article>
     </div>
 </main>
