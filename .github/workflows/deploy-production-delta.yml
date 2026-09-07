@@ -77,5 +77,8 @@ jobs:
           set net:timeout 30
           open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
           mirror --reverse --transfer-all --parallel=8 --no-perms --verbose ./.release/ /
+          rm -f /app/controllers/ComparisonController.php
+          rm -f /app/views/armour/Comparison/index.php
+          rm -f /app/views/armour/User/bookmarks.php
           bye
           LFTP
