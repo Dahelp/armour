@@ -48,6 +48,8 @@ $mainView = (string)file_get_contents(dirname(__DIR__) . '/app/views/armour/Main
 $layout = (string)file_get_contents(dirname(__DIR__) . '/app/views/armour/layouts/watches.php');
 seoAssert(str_contains($mainController, 'Промышленные шины для погрузчиков и спецтехники — ТехШина'), 'Homepage SEO title is missing.');
 seoAssert(str_contains($mainView, '<h1>Промышленные шины для погрузчиков и спецтехники</h1>'), 'Homepage H1 is missing.');
+seoAssert(str_contains($mainView, 'hero-industrial-tires-v2.webp'), 'Homepage hero image is missing.');
+seoAssert(str_contains($mainView, 'home-hero__button'), 'Homepage hero call to action is missing.');
 seoAssert(!str_contains($mainView, 'шиной Armour'), 'Legacy Armour copy remains on the homepage.');
 seoAssert(!str_contains($layout, 'generator" content="armour-shina.ru'), 'Legacy generator metadata remains in the layout.');
 

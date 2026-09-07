@@ -1,13 +1,15 @@
-<div class="slider_home_wrap adv_cat_banner_home">
-    <div class="slider_home_lazy">
-        <picture><img width="1920" height="450" src="<?=PATH?>/images/banners/banner-1.jpg" class="attachment-full size-full" style= "margin: 0 auto;" alt="" decoding="async" fetchpriority="high" /></picture>    </div>
-
-    <div class="slider_home_cont">
-        <div class="slider_home">
-			
-		</div>
+<section class="home-hero" aria-label="Промышленные шины для спецтехники">
+    <div class="home-hero__image" aria-hidden="true">
+        <picture>
+            <img width="1600" height="500" src="<?=PATH?>/images/banners/hero-industrial-tires-v2.webp" alt="" decoding="async" fetchpriority="high" />
+        </picture>
     </div>
-</div>
+    <div class="home-hero__content col-full">
+        <p class="home-hero__title">Промышленные шины для спецтехники</p>
+        <p class="home-hero__lead">Подбор шин по типоразмеру, артикулу и модели техники. Доставка по России.</p>
+        <a class="home-hero__button" href="/industrialnye-shiny">Перейти в каталог</a>
+    </div>
+</section>
 		<div class="header-widget-region" role="complementary">
 			<div class="col-full">
 				<div id="berocket_compare_products_widget-2" class="widget widget_berocket_compare_products_widget"><div class="berocket_compare_widget_start berocket_compare_widget_toolbar_block">
