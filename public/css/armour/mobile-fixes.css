@@ -480,12 +480,17 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .product-card-unified__body { padding: 13px 13px 15px; }
     ul.products li.product.product-card-unified .product-card-unified__title { font-size: 14px; }
     .product-card-unified__price .woocommerce-Price-amount { font-size: 20px; }
-    .product-card-unified__actions { gap: 6px; }
+    .product-card-unified__actions {
+        flex-direction: column;
+        gap: 6px;
+    }
     .product-card-unified__actions .br_compare_button,
     .product-card-unified__actions .product-wish {
+        flex-basis: auto;
+        width: 100%;
         min-width: 0;
         padding: 7px 4px !important;
-        font-size: 11px !important;
+        font-size: 12px !important;
     }
 }
 
