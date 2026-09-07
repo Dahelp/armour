@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var storageKey = 'techtires_cookie_preference';
+    var storageKey = 'techtires_cookie_notice_acknowledged';
 
     function getPreference() {
         try {
@@ -11,14 +11,12 @@
         }
     }
 
-    function savePreference(value) {
+    function acknowledgeNotice() {
         try {
-            window.localStorage.setItem(storageKey, value);
+            window.localStorage.setItem(storageKey, '1');
         } catch (error) {
             // The site remains usable when browser storage is unavailable.
         }
-
-        window.dispatchEvent(new CustomEvent('techtires:cookie-preference', {detail: {preference: value}}));
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -34,13 +32,13 @@
         document.querySelectorAll('[data-cookie-settings]').forEach(function (button) {
             button.addEventListener('click', function () {
                 notice.hidden = false;
-                notice.querySelector('button[data-cookie-preference]')?.focus();
+                notice.querySelector('button[data-cookie-acknowledge]')?.focus();
             });
         });
 
-        notice.querySelectorAll('[data-cookie-preference]').forEach(function (button) {
+        notice.querySelectorAll('[data-cookie-acknowledge]').forEach(function (button) {
             button.addEventListener('click', function () {
-                savePreference(button.getAttribute('data-cookie-preference') || 'necessary');
+                acknowledgeNotice();
                 notice.hidden = true;
             });
         });

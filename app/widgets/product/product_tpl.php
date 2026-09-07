@@ -21,14 +21,6 @@ $hasCartItem = $cartQty > 0;
             <?php if (!empty($product['new_product'])): ?><span class="product-card-unified__badge product-card-unified__badge--new">Новинка</span><?php endif; ?>
             <?php if (!empty($product['sale'])): ?><span class="product-card-unified__badge product-card-unified__badge--sale">Акция</span><?php endif; ?>
         </div>
-        <div class="product-card-unified__actions">
-            <a class="br_compare_button br_product_<?=$productId?> br_compare_button_inited" data-id="<?=$productId?>" href="/comparison" title="Добавить в сравнение" aria-label="Добавить в сравнение">
-                <i class="fas fa-balance-scale" aria-hidden="true"></i><span class="br_compare_button_text" data-added="В сравнении" data-not_added="В сравнение">В сравнение</span>
-            </a>
-            <a class="product-card__cw-wish product-wish card-button-wish off hlp-inited" data-product-id="<?=$productId?>" role="button" tabindex="0" title="Добавить в избранное" aria-label="Добавить в избранное">
-                <span class="icon-wish" aria-hidden="true"></span><span class="wish-tooltip">В избранное</span>
-            </a>
-        </div>
     </div>
     <div class="product-card-unified__body">
         <p class="woocommerce-loop-product__title product-card-unified__title">
@@ -57,6 +49,14 @@ $hasCartItem = $cartQty > 0;
                         <a href="/cart" class="button btn-green-back vkorzine-<?=$productId?> clear-vkorzine"<?=$hasCartItem ? '' : ' style="display:none"'?>>В корзине</a>
                     </div>
                 <?php else: ?><a href="<?=h($alias)?>" class="button product-card-unified__details">Подробнее</a><?php endif; ?>
+            </div>
+            <div class="product-card-unified__actions" aria-label="Дополнительные действия с товаром">
+                <a class="br_compare_button br_product_<?=$productId?> br_compare_button_inited" data-id="<?=$productId?>" href="/comparison" title="Добавить в сравнение" aria-label="Добавить в сравнение">
+                    <i class="fas fa-balance-scale" aria-hidden="true"></i><span class="br_compare_button_text" data-added="В сравнении" data-not_added="В сравнение">В сравнение</span>
+                </a>
+                <a class="product-card__cw-wish product-wish card-button-wish off hlp-inited" data-product-id="<?=$productId?>" role="button" tabindex="0" title="Добавить в избранное" aria-label="Добавить в избранное">
+                    <span class="icon-wish" aria-hidden="true"></span><span class="wish-tooltip">В избранное</span>
+                </a>
             </div>
         </div>
     </div>

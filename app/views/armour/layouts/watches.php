@@ -676,11 +676,10 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <aside id="cookie-consent" class="cookie-consent" aria-label="Настройки файлов cookie" role="dialog" aria-live="polite" hidden>
 	<div class="cookie-consent__text">
 		<strong>Файлы cookie</strong>
-		<span>Используем необходимые cookie для работы корзины, форм и личного кабинета. Подробнее — в <a href="/politika-fajlov-cookie">Политике файлов cookie</a>.</span>
+		<span>Сайт использует только необходимые cookie для работы корзины, форм и личного кабинета. Аналитические и рекламные cookie сейчас не подключены. Подробнее — в <a href="/politika-fajlov-cookie">Политике файлов cookie</a>.</span>
 	</div>
 	<div class="cookie-consent__actions">
-		<button type="button" class="cookie-consent__secondary" data-cookie-preference="necessary">Только необходимые</button>
-		<button type="button" class="cookie-consent__primary" data-cookie-preference="all">Принять все</button>
+		<button type="button" class="cookie-consent__primary" data-cookie-acknowledge>Понятно</button>
 	</div>
 </aside>
 <script src="/js/cookie-consent.js?v=<?=filemtime(WWW.'/js/cookie-consent.js')?>" defer></script>

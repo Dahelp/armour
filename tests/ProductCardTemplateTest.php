@@ -16,6 +16,7 @@ $homepage = (string)file_get_contents($root . '/app/views/armour/Main/index.php'
 $search = (string)file_get_contents($root . '/app/views/armour/Search/index.php');
 
 productCardAssert(str_contains($template, 'product-card-unified'), 'Unified product card class is missing.');
+productCardAssert(strpos($template, 'product-card-unified__actions') > strpos($template, 'product-card-unified__buy'), 'Compare and wishlist actions must be below the buy controls.');
 productCardAssert(!str_contains($template, '13164'), 'A hard-coded product id remains in the card.');
 productCardAssert(!str_contains($template, 'advanta-ekb.ru'), 'A legacy external comparison URL remains in the card.');
 productCardAssert(!str_contains($template, '\\R::'), 'Product cards must not execute per-card database queries.');
