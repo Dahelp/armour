@@ -318,14 +318,15 @@ ul.products li.product.product-card-unified .product-card-unified__image-link im
     border-radius: 5px;
     color: #173650;
     cursor: pointer;
-    display: flex;
+    display: flex !important;
     flex: 1 1 50%;
     gap: 7px;
     height: 36px;
     justify-content: center;
     margin: 0 !important;
     padding: 7px 9px !important;
-    position: static;
+    position: static !important;
+    inset: auto !important;
     width: auto;
     font-size: 12px;
     line-height: 1;
@@ -336,10 +337,27 @@ ul.products li.product.product-card-unified .product-card-unified__image-link im
 .product-card-unified__actions .product-wish .icon-wish { margin: 0; }
 .product-card-unified__actions .br_compare_button_text,
 .product-card-unified__actions .wish-tooltip {
-    display: inline !important;
+    display: inline-block !important;
+    width: auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
     opacity: 1 !important;
     position: static !important;
+    transform: none !important;
     visibility: visible !important;
+}
+
+ul.products li.product.product-card-unified .product-card-unified__actions a.product-wish {
+    position: static !important;
+    inset: auto !important;
+    max-width: none !important;
 }
 
 .product-card-unified__actions .br_compare_button:hover,
