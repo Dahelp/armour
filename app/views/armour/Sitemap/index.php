@@ -19,17 +19,18 @@
 					<div class="cont-inner">
 						<div class="cont-desc">
 							<ul>
-								<li><a href="pages/kak-kupit" title="Как купить">Как купить</a></li>
-								<li><a href="pages/sotrudnichestvo" title="Сотрудничество">Сотрудничество</a></li>
-								<li><a href="services" title="Услуги">Услуги</a></li>
-								<li><a href="services/dostavka" title="Доставка">Доставка</a></li>
+								<li><a href="/dostavka" title="Доставка и оплата">Доставка и оплата</a></li>
+								<li><a href="/comp" title="О компании">О компании</a></li>
+								<li><a href="/contacts" title="Контакты">Контакты</a></li>
+								<li><a href="/articles" title="Статьи">Статьи</a></li>
 
 							</ul>
 							<ul>
-								<li><a href="pages/about-us" title="О компании">О компании</a></li>
-								<li><a href="news" title="Новости">Новости</a></li>
-								<li><a href="pages/privacy" title="Политика конфиденциальности">Политика конфиденциальности</a></li>
-								<li><a href="pages/contacts" title="Контакты">Контакты</a></li>								
+								<li><a href="/news" title="Новости">Новости</a></li>
+								<li><a href="/politika-konfidencialnosti">Политика конфиденциальности</a></li>
+								<li><a href="/soglasie-na-obrabotku-personalnyh-dannyh">Согласие на обработку ПД</a></li>
+								<li><a href="/politika-fajlov-cookie">Политика файлов cookie</a></li>
+								<li><a href="/polzovatelskoe-soglashenie">Пользовательское соглашение</a></li>
 							</ul>
 							<?php if($sm_category){ ?>
 								<ul>

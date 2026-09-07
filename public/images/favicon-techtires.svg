@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">ТехШина</title>
+  <circle cx="32" cy="32" r="30" fill="#102f4a"/>
+  <g fill="#55b947">
+    <path d="M12 8l10-5 4 10-10 5zM28 2h10l-1 12H27zM45 7l9 6-7 10-9-7zM55 24l4 10-11 3-4-11zM52 44l-7 9-9-8 7-9zM28 51l-11-2 2-11 11 2zM10 43l-7-9 10-6 6 9zM3 22l4-10 10 5-5 10z"/>
+  </g>
+  <circle cx="32" cy="32" r="18" fill="#fff"/>
+  <circle cx="32" cy="32" r="11" fill="#e9f0f4" stroke="#102f4a" stroke-width="4"/>
+  <circle cx="32" cy="32" r="4" fill="#55b947"/>
+</svg>

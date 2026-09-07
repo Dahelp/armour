@@ -19,8 +19,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 	?>
 	<meta name="robots" content="<?=h($robots)?>" />
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
-	<link rel="icon" href="/images/favicon.svg?v=<?=filemtime(WWW.'/images/favicon.svg')?>" type="image/svg+xml" />
-    <link rel="shortcut icon" href="/images/favicon.svg?v=<?=filemtime(WWW.'/images/favicon.svg')?>" type="image/svg+xml" />
+	<link rel="icon" href="/images/favicon-techtires.svg?v=<?=filemtime(WWW.'/images/favicon-techtires.svg')?>" type="image/svg+xml" sizes="any" />
+    <link rel="shortcut icon" href="/images/favicon-techtires.svg?v=<?=filemtime(WWW.'/images/favicon-techtires.svg')?>" type="image/svg+xml" />
     <?=$this->getMeta(); ?>	
 
 
@@ -255,10 +255,9 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 	</li>
 </ul>
 </li>
-</ul></nav>    <nav class="menu-primary"><ul id="primary-menu" class="menu-list"><li id="menu-item-5891" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5891 menu-item"><a href="/actions">Акции</a></li>
-<li id="menu-item-5892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5892 menu-item"><a href="/dostavka">Доставка и оплата</a></li>
+</ul></nav>    <nav class="menu-primary"><ul id="primary-menu" class="menu-list"><li id="menu-item-5892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5892 menu-item"><a href="/dostavka">Доставка и оплата</a></li>
 <li id="menu-item-9353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9353 menu-item"><a href="/comp">О компании</a></li>
-<li id="menu-item-14813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-14813 menu-item"><a href="/info">Полезная информация</a>
+<li id="menu-item-14813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-14813 menu-item"><span class="menu-parent-label">Полезная информация</span>
 <ul class="sub-menu sub-menu--level_0">
 	<li id="menu-item-14857" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14857 menu-item"><a href="/articles">Каталог статей</a></li>
 	<li id="menu-item-21999" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-21999 menu-item"><a href="/news">Новости</a></li>
@@ -370,7 +369,6 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 				<div class="width-1-4">
                     <p class="text-bold font-15 footer-caption">Покупателям</p>
 					<div>
-						<a class="contact-link" href="/actions">Акции и скидки</a><br />
 						<a class="contact-link" href="/dostavka">Доставка</a><br />
 						<a class="contact-link" href="/comp">О компании</a><br />
 						<a class="contact-link" href="/news">Новости</a><br />
@@ -423,7 +421,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 				<div class="widget_text widget widget_custom_html">
 					<p class="text-bold font-15 footer-caption">Остались вопросы?</p>
 					<div>
-						<i class="icon icon-mail-white"></i><a href="mailto:info@armour-shina.ru">info@armour-shina.ru</a>
+						<i class="icon icon-mail-white"></i><a href="mailto:info@techtires.ru">info@techtires.ru</a>
 					</div>
 					<div class="text-center">
 						<a href="#" class="text-uppercase font-14 btn btn-border btn-border-white btn-send show_form" rel="form3">Задать вопрос</a>
@@ -433,9 +431,14 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 			<div class="block footer-widget-4 col-3">
 				<div class="widget_text widget widget_custom_html">
 					<div class="textwidget custom-html-widget">
-						<p>© ООО "ИТС-Центр" г. Подольск<br>2010-2024 г.</p>
-						<p>ОГРН 1105074000096</p>
-						<p><a href="/o-kompanii/politika-konfidentsialnosti">Политика конфиденциальности</a></p>
+						<p>© ООО «ИТС-Центр», г. Подольск<br>2010–<?=date('Y')?> гг.</p>
+						<p>ИНН 5036103305 · ОГРН 1105074000096</p>
+						<div class="footer-legal-links">
+							<a href="/politika-konfidencialnosti">Политика конфиденциальности</a>
+							<a href="/soglasie-na-obrabotku-personalnyh-dannyh">Согласие на обработку ПД</a>
+							<a href="/politika-fajlov-cookie">Политика файлов cookie</a>
+							<a href="/polzovatelskoe-soglashenie">Пользовательское соглашение</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -463,8 +466,8 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 						<span class="wpcf7-form-control wpcf7-acceptance">
 							<span class="wpcf7-list-item">
 								<label>
-									<input type="checkbox" name="accept-this-3" value="1" class="check-val">
-									<span class="wpcf7-list-item-label">Вы соглашаетесь на обработку персональных данных</span>
+									<input type="checkbox" name="privacy_accept" value="1" class="check-val" required aria-required="true">
+									<span class="wpcf7-list-item-label">Я принимаю <a href="/politika-konfidencialnosti" target="_blank">Политику конфиденциальности</a> и даю <a href="/soglasie-na-obrabotku-personalnyh-dannyh" target="_blank">согласие на обработку персональных данных</a></span>
 								</label>
 							</span>
 						</span>
@@ -509,8 +512,8 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 						<span class="wpcf7-form-control wpcf7-acceptance">
 							<span class="wpcf7-list-item">
 								<label>
-									<input type="checkbox" name="accept-this-3" value="1" class="check-val" />
-									<span class="wpcf7-list-item-label">Вы соглашаетесь на обработку персональных данных</span>
+									<input type="checkbox" name="privacy_accept" value="1" class="check-val" required aria-required="true" />
+									<span class="wpcf7-list-item-label">Я принимаю <a href="/politika-konfidencialnosti" target="_blank">Политику конфиденциальности</a> и даю <a href="/soglasie-na-obrabotku-personalnyh-dannyh" target="_blank">согласие на обработку персональных данных</a></span>
 								</label>
 							</span>
 						</span>
