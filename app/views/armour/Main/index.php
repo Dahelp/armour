@@ -224,7 +224,7 @@
 		</div>
     </div>
 </div>
-	<div class="col-full">
+	<div class="col-full home-seo">
     
 	<div class="entry-content">
 			<div class="flex info-box">

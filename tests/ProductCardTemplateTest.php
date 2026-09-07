@@ -16,6 +16,7 @@ $homepage = (string)file_get_contents($root . '/app/views/armour/Main/index.php'
 $search = (string)file_get_contents($root . '/app/views/armour/Search/index.php');
 $layout = (string)file_get_contents($root . '/app/views/armour/layouts/watches.php');
 $cabinet = (string)file_get_contents($root . '/app/widgets/cabinet/cabinet_tpl.php');
+$responsiveCss = (string)file_get_contents($root . '/public/css/armour/mobile-fixes.css');
 
 productCardAssert(str_contains($template, 'product-card-unified'), 'Unified product card class is missing.');
 productCardAssert(!str_contains($template, 'comparison'), 'Comparison controls remain in the product card.');
@@ -34,5 +35,10 @@ productCardAssert(str_contains($template, 'data-id="<?=$productId?>"'), 'Dynamic
 productCardAssert(str_contains($widget, "str_ends_with(\$attribute, '.php')"), 'Legacy widget template argument compatibility is missing.');
 productCardAssert(str_contains($homepage, 'new \\app\\widgets\\product\\Product'), 'Homepage does not use the shared card widget.');
 productCardAssert(str_contains($search, 'new \\app\\widgets\\product\\Product'), 'Search does not use the shared card widget.');
+productCardAssert(str_contains($responsiveCss, 'text-indent: 0 !important'), 'Legacy sprite CSS still hides quantity signs.');
+productCardAssert(str_contains($responsiveCss, 'background-image: none !important'), 'Quantity controls still depend on the missing legacy sprite.');
+productCardAssert(str_contains($homepage, 'col-full home-seo'), 'Homepage SEO content wrapper is missing.');
+productCardAssert(str_contains($layout, 'class="footer-brand" href="/"'), 'Clickable footer logo is missing.');
+productCardAssert(str_contains($layout, 'footer-home-link" href="/">Главная'), 'Footer homepage link is missing.');
 
 echo "Product card template checks passed.\n";

@@ -350,6 +350,10 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
         <div class="textwidget custom-html-widget">
             <div class="grid grid-small">
                 <div class="width-1-4">
+                    <a class="footer-brand" href="/" aria-label="ТехШина — перейти на главную страницу">
+                        <img src="/images/logo-techtires.svg" width="210" height="50" alt="ТехШина">
+                    </a>
+                    <a class="contact-link footer-home-link" href="/">Главная</a>
                     <p class="text-bold font-15 footer-caption">Каталог продукции</p>
 					<div>
 						<a class="contact-link" href="/industrialnye-shiny">Индустриальные шины</a><br />

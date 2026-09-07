@@ -387,9 +387,10 @@ ul.products li.product .box-price-btn .product-card-unified__price {
 
 .product-card-unified__buy .quantity-block {
     border: 1px solid #d8e1e7;
-    border-radius: 5px;
+    border-radius: 50px;
     height: 40px;
     overflow: hidden;
+    padding: 0;
 }
 
 .product-card-unified__buy .quantity-block button,
@@ -403,14 +404,67 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     width: 34px;
 }
 
-.product-card-unified__buy .quantity-block button { background: #f2f5f7; color: #173650; font-size: 18px; }
+.product-card-unified__buy .quantity-block button {
+    align-items: center;
+    background: #f2f5f7 !important;
+    background-image: none !important;
+    color: #173650;
+    display: inline-flex;
+    font-size: 20px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1;
+    text-indent: 0 !important;
+}
+.product-card-unified__buy .quantity-block .quantity-arrow-minus { border-radius: 50px 0 0 50px; }
+.product-card-unified__buy .quantity-block .quantity-arrow-plus { border-radius: 0 50px 50px 0; }
+.product-card-unified__buy .quantity-block button:hover,
+.product-card-unified__buy .quantity-block button:focus { background: #e4edf2 !important; color: #075596; }
 .product-card-unified__buy .quantity-block input { background: #fff; font-size: 13px; text-align: center; }
 .product-card-unified__details { background: #edf3f6 !important; color: #173650 !important; }
+
+.home-seo {
+    box-sizing: border-box;
+    padding-bottom: 34px;
+    padding-top: 34px;
+}
+
+.home-seo .entry-content {
+    margin: 0;
+    padding: 0 20px;
+}
+
+.home-seo h1:first-child { margin-top: 0; }
+.home-seo p:last-child { margin-bottom: 0; }
+
+.footer-brand {
+    align-items: center;
+    background: #fff;
+    border-radius: 6px;
+    display: inline-flex;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+}
+
+.footer-brand img {
+    display: block;
+    height: auto;
+    max-width: 190px;
+    width: 100%;
+}
+
+.footer-home-link {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
 
 @media (max-width: 767px) {
     .product-card-unified__body { padding: 13px 13px 15px; }
     ul.products li.product.product-card-unified .product-card-unified__title { font-size: 14px; }
     .product-card-unified__price .woocommerce-Price-amount { font-size: 20px; }
+    .home-seo { padding-bottom: 24px; padding-top: 24px; }
+    .home-seo .entry-content { padding: 0 15px; }
 }
 
 @media (min-width: 1101px) and (max-width: 1250px) {
