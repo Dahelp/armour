@@ -118,7 +118,21 @@
 
 @media (min-width: 1101px) {
     header.site-header { padding-bottom: 0 !important; padding-top: 0 !important; }
-    .site-header > .col-full.flex { align-items: center !important; display: flex !important; flex-wrap: nowrap !important; gap: 22px; justify-content: space-between; min-height: 92px; }
+    .site-header > .col-full.flex {
+        align-items: center !important;
+        box-sizing: border-box;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 22px;
+        justify-content: space-between;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: none;
+        min-height: 92px;
+        padding-left: 26px;
+        padding-right: 26px;
+        width: 100%;
+    }
     body.woocommerce-active .site-header .site-branding { flex: 0 0 220px; float: none; margin: 0 !important; padding: 0 !important; text-align: left !important; width: 220px !important; }
     .site-header .site-search { flex: 1 1 400px; float: none; margin: 0 !important; min-width: 0; width: auto !important; }
     .site-header .site-phone { flex: 0 0 285px; float: none; margin: 0 !important; width: 285px !important; }
