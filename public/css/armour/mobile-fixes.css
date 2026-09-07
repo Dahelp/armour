@@ -31,7 +31,7 @@
 
 .product-crosses__item span {
     color: #66717b;
-    font-size: 12px;
+    font-size: 12px !important;
 }
 
 .site-branding .custom-logo-link {
@@ -334,7 +334,11 @@ ul.products li.product.product-card-unified .product-card-unified__image-link im
 
 .product-card-unified__actions .br_compare_button::before { content: none !important; }
 .product-card-unified__actions .br_compare_button i { display: block; font-size: 15px; }
-.product-card-unified__actions .product-wish .icon-wish { margin: 0; }
+.product-card-unified__actions .product-wish .icon-wish {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 0;
+}
 .product-card-unified__actions .br_compare_button_text,
 .product-card-unified__actions .wish-tooltip {
     display: inline-block !important;
@@ -478,7 +482,11 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .product-card-unified__price .woocommerce-Price-amount { font-size: 20px; }
     .product-card-unified__actions { gap: 6px; }
     .product-card-unified__actions .br_compare_button,
-    .product-card-unified__actions .product-wish { min-width: 0; padding: 7px 5px !important; }
+    .product-card-unified__actions .product-wish {
+        min-width: 0;
+        padding: 7px 4px !important;
+        font-size: 11px !important;
+    }
 }
 
 @media (min-width: 1101px) and (max-width: 1250px) {
