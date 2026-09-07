@@ -257,17 +257,6 @@ class ProductController extends AppController {
 		));
     }
 	
-	public function comparisonAction(){
-		if($_GET) {
-			$product_id = $_GET["product_id"];
-			
-			$_SESSION['comparison'][$product_id] = $product_id;			
-		}
-        
-		$this->setMeta('Сравнение товаров');
-
-	}
-	
 	public function addReviewAction(){
 		
 	}

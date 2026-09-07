@@ -432,23 +432,6 @@ class UserController extends AppController {
         $this->set(compact('order', 'order_info', 'status'));
     }
 	
-	public function bookmarksAction(){
-		if(!User::checkAuth()) redirect('');
-		if($_GET) {
-			$user_id = $_GET["user_id"];
-			$product_id = $_GET["product_id"];
-			
-			$bookmarks = \R::count('product_bookmarks', 'product_id = ? AND user_id = ?', [$product_id, $user_id]);		
-			if($bookmarks==0){
-				$reg = \R::exec("INSERT INTO `product_bookmarks`(`product_id`, `user_id`) VALUES ('".$product_id."', '".$user_id."')");
-			}			
-		}
-		$bookmarks = \R::getAll("SELECT product_bookmarks.product_id, product.img, product.article, product.name, product.alias, product.price, product.opt_price, product.category_id, product.quantity, product.stock_status_id, product_bookmarks.id FROM `product`, `product_bookmarks` WHERE product.id = product_bookmarks.product_id AND product_bookmarks.user_id = ?", [$_SESSION['user']['id']]);
-        
-		$this->setMeta('Закладки');
-		$this->set(compact('bookmarks'));
-	}
-	
 	public function pricelistAction(){
 		if(!User::checkAuth()) redirect('');
 		if(!empty($_POST)){
@@ -503,14 +486,6 @@ class UserController extends AppController {
 		if(!User::checkAuth()) redirect('');
 		$this->setMeta('Договор');
 	}
-	
-	public function bookmarksDeleteAction(){
-        $id = $_GET["id"];        
-        $bookmarks = \R::load('product_bookmarks', $id);
-        \R::trash($bookmarks);
-        $_SESSION['success'] = 'Закладка удалена';
-        redirect('bookmarks');
-    }
 	
 	public function recoverAction(){
 	if($_POST){

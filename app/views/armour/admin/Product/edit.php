@@ -27,7 +27,6 @@
 				<a href="<?=ADMIN;?>/product/category?id=<?=$product->category_id?>" class="btn btn-primary"><i class="fal fa-reply-all"></i></a>
 				<a target="_blank" href="<?=ADMIN;?>/review/product?id=<?=$product["id"]?>" class="btn btn-secondary"><i class="fas fa-star-half-alt"></i> Всего отзывов: <?=$count_review?></a>
 				<a target="_blank" href="<?=ADMIN;?>/order/stat_product?id=<?=$product["id"]?>" class="btn btn-purple"><i class="fad fa-cart-plus"></i> Покупок было: <?=$count_order?></a>
-				<a target="_blank" href="<?=ADMIN;?>/bookmarks/product?id=<?=$product["id"]?>" class="btn btn-cyan"><i class="fad fa-bookmark"></i> В закладках: <?=$count_bookmarks?></a>
 				<a target="_blank" href="<?=ADMIN;?>/product/copy?id=<?=$product["id"]?>" class="btn btn-success"><i class="fas fa-copy"></i> Скопировать</a>
 
 				<?php 

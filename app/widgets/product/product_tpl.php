@@ -50,14 +50,6 @@ $hasCartItem = $cartQty > 0;
                     </div>
                 <?php else: ?><a href="<?=h($alias)?>" class="button product-card-unified__details">Подробнее</a><?php endif; ?>
             </div>
-            <div class="product-card-unified__actions" aria-label="Дополнительные действия с товаром">
-                <a class="br_compare_button br_product_<?=$productId?> br_compare_button_inited" data-id="<?=$productId?>" href="/comparison" title="Добавить в сравнение" aria-label="Добавить в сравнение">
-                    <i class="fas fa-balance-scale" aria-hidden="true"></i><span class="br_compare_button_text" data-added="В сравнении" data-not_added="В сравнение">В сравнение</span>
-                </a>
-                <a class="product-card__cw-wish product-wish card-button-wish off hlp-inited" data-product-id="<?=$productId?>" role="button" tabindex="0" title="Добавить в избранное" aria-label="Добавить в избранное">
-                    <span class="icon-wish" aria-hidden="true"></span><span class="wish-tooltip">В избранное</span>
-                </a>
-            </div>
         </div>
     </div>
 </li>

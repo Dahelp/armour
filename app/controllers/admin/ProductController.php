@@ -44,13 +44,11 @@ class ProductController extends AppController {
 					$product = \R::findOne('product', 'name=?', [$d]);
 					$count_review = \R::count('review_product', "product_id = ?", [$product["id"]]);
 					$count_order = \R::count('order_product', "product_id = ?", [$product["id"]]);
-					$count_bookmarks = \R::count('product_bookmarks', "product_id = ?", [$product["id"]]);
 					
 					return '<div class="table_product_name">'.$product["name"].'</div>
 							<div class="table_product_count_info">
 								<a target="_blank" href="'.ADMIN.'/review/product?id='.$product["id"].'" class="btn btn-secondary" title="Всего отзывов: '.$count_review.'"><i class="fas fa-star-half-alt"></i> '.$count_review.'</a>
 								<a target="_blank" href="'.ADMIN.'/order/stat_product?id='.$product["id"].'" class="btn btn-purple" title="Покупок было: '.$count_order.'"><i class="fad fa-cart-plus"></i> '.$count_order.'</a>
-								<a target="_blank" href="'.ADMIN.'/bookmarks/product?id='.$product["id"].'" class="btn btn-cyan" title="В закладках: '.$count_bookmarks.'"><i class="fad fa-bookmark"></i> '.$count_bookmarks.'</a>
 							</div>';
 				} ),
 			array( 'db' => 'name',  'dt' => 4	),
@@ -254,13 +252,6 @@ class ProductController extends AppController {
 				\R::trash($delete_tags);
 			}
 		}
-		$find_bookmarks = \R::findAll('product_bookmarks', 'product_id = ?', [$id]);
-		if($find_bookmarks){
-			foreach($find_bookmarks as $bookmarks) {
-				$delete_bookmarks = \R::load('product_bookmarks', $bookmarks->id);
-				\R::trash($delete_bookmarks);
-			}
-		}
 		$find_content = \R::findAll('content_related', 'related_id = ?', [$id]);
 		if($find_content){
 			foreach($find_content as $content) {
@@ -437,10 +428,9 @@ class ProductController extends AppController {
 		$mods            = \R::getAll('SELECT * FROM modification WHERE product_id = ?', [$id]);
 		$count_review    = \R::count('review_product', "product_id = ?", [$id]);
 		$count_order     = \R::count('order_product', "product_id = ?", [$id]);
-		$count_bookmarks = \R::count('product_bookmarks', "product_id = ?", [$id]);
 
 		$this->setMeta("Редактирование товара {$product->name}");
-		$this->set(compact('product', 'filter', 'related_product', 'similar_product', 'service_product', 'gallery', 'att_product', 'tags_product', 'attrs', 'groups', 'mods', 'count_review', 'count_order', 'count_bookmarks'));
+		$this->set(compact('product', 'filter', 'related_product', 'similar_product', 'service_product', 'gallery', 'att_product', 'tags_product', 'attrs', 'groups', 'mods', 'count_review', 'count_order'));
 	}
 	
 	public function copyAction(){

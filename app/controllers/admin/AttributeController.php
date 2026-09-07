@@ -4,7 +4,6 @@ namespace app\controllers\admin;
 
 use app\services\AdminAuditLogger;
 use app\models\admin\Attribute;
-use app\services\RelationWriter;
 use ishop\App;
 
 class AttributeController extends AppController {
@@ -18,8 +17,6 @@ class AttributeController extends AppController {
 	public function deleteAction(){
         $id = $this->getRequestID();        
         $attribute = \R::load('attribute', $id);        
-		\R::exec('DELETE FROM attribute_comparison WHERE attribute_id = ?', [$id]);
-		AdminAuditLogger::log(2, 57, 'attribute_comparison', (int)$id);
 		\R::trash($attribute);
         $_SESSION['success'] = 'Атрибут '.$attribute["attribute_name"].' удален';
         redirect();
@@ -40,16 +37,11 @@ class AttributeController extends AppController {
                 $p = \R::load('attribute', $id);             
                 \R::store($p);
 				
-				//создание категорий групп
-				(new RelationWriter())->replace('attribute_comparison', 'attribute_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
-				AdminAuditLogger::log(2, 55, 'attribute_comparison', (int)$id);
                 $_SESSION['success'] = 'Атрибут добавлен';
             }
             redirect();
         }
-		$category = \R::findAll('category');
         $this->setMeta('Новый атрибут');
-		$this->set(compact('category'));
     }
 
     public function editAction(){
@@ -65,9 +57,6 @@ class AttributeController extends AppController {
             if($attribute->update('attribute', $id)){
                 $attribute = \R::load('attribute', $id);               
                 \R::store($attribute);
-				//удаление категорий групп
-				(new RelationWriter())->replace('attribute_comparison', 'attribute_id', (int)$id, 'category_id', (array)($_POST['category_id'] ?? []));
-				AdminAuditLogger::log(2, 56, 'attribute_comparison', (int)$id);
                 $_SESSION['success'] = 'Изменения сохранены';
                 redirect();
             }
@@ -75,10 +64,9 @@ class AttributeController extends AppController {
 
         $id = $this->getRequestID();
         $attribute = \R::load('attribute', $id);
-		$category = \R::findAll('category');
         App::$app->setProperty('attribute_group_id', $attribute->id);        		
         $this->setMeta("Редактирование атрибута {$attribute->attribute_name}");
-        $this->set(compact('attribute', 'category'));
+        $this->set(compact('attribute'));
     }
 	
 	public function importAction(){

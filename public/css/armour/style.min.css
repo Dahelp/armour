@@ -331,7 +331,7 @@ a.icon-wish:hover{color:#fff}
   gap: 15px;
   color: #fff;
 }
-.home-hit .box-price-btn{padding:20px}
+.home-hit .box-price-btn{padding:0}
 .home-hit .btn-green-back {padding: 8px 15px 8px;font-size: 12px;}
 .home-hit .block-btn .quantity-block {height: 38px;width: 110px;}
 .home-hit .box-price-btn .quantity-block button {padding: 6px 18px;}

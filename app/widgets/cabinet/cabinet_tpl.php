@@ -35,18 +35,6 @@
 				</a>
 			</li>
 			<li class="aiz-side-nav-item">
-				<a class="aiz-side-nav-link" href="user/bookmarks">
-					<i class="far fa-heart aiz-side-nav-icon"></i>
-					<span class="aiz-side-nav-text">Закладки</span>
-				</a>
-			</li>
-			<li class="aiz-side-nav-item">
-				<a class="aiz-side-nav-link" href="comparison">
-					<i class="far fa-tasks aiz-side-nav-icon"></i>
-					<span class="aiz-side-nav-text">Сравнения</span>
-				</a>
-			</li>
-			<li class="aiz-side-nav-item">
 				<a class="aiz-side-nav-link" href="user/pricelist">
 					<i class="far fa-file-pdf aiz-side-nav-icon"></i>
 					<span class="aiz-side-nav-text">Прайс-лист</span>

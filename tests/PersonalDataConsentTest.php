@@ -35,7 +35,7 @@ foreach ($controllers as $controller) {
 $layout = (string)file_get_contents($root . '/app/views/armour/layouts/watches.php');
 consentAssert(substr_count($layout, 'name="privacy_accept"') === 4, 'All four public modal forms must use the unified consent field.');
 consentAssert(str_contains($layout, 'data-cookie-acknowledge'), 'Cookie notice acknowledgement is missing.');
-consentAssert(str_contains($layout, 'Аналитические и рекламные cookie сейчас не подключены'), 'Cookie notice must describe the actual cookie usage.');
+consentAssert(str_contains($layout, '>Принимаю</button>'), 'Cookie notice acceptance label is incorrect.');
 consentAssert(!str_contains($layout, 'data-cookie-preference'), 'Misleading cookie preference controls remain in the layout.');
 consentAssert(str_contains($layout, 'data-cookie-settings'), 'Cookie settings control is missing.');
 

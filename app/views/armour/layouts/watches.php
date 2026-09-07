@@ -272,13 +272,6 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <!--<div class="menu-wrapper">
     </div>-->
 	<div class="right-panel flex flex-align-center">
-		<a href="/comparison" class="compare-link font-14">
-			<span class="count flex-align-center flex-center">0</span> <span class="header-compare-word">Сравнение</span>
-		</a>
-		<a href="user/bookmarks" class="icon-wish menu-buttons__link menu-buttons__link-wish wish-btn-menu off" title="Избранное">
-			<span class="menu-buttons__count menu-buttons__wish-count wish-btn__count">0</span>
-			<span class="menu-buttons__wish-title">Избранное</span>
-		</a>
 		<ul id="site-header-cart" class="site-header-cart menu font-14 flex flex-align-center flex-center site-header-cart--small-count">
 			<li class="">
 				<a class="cart-contents" href="cart" title="Просмотрите свою корзину покупок">
@@ -676,10 +669,10 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <aside id="cookie-consent" class="cookie-consent" aria-label="Настройки файлов cookie" role="dialog" aria-live="polite" hidden>
 	<div class="cookie-consent__text">
 		<strong>Файлы cookie</strong>
-		<span>Сайт использует только необходимые cookie для работы корзины, форм и личного кабинета. Аналитические и рекламные cookie сейчас не подключены. Подробнее — в <a href="/politika-fajlov-cookie">Политике файлов cookie</a>.</span>
+		<span>Сайт использует файлы cookie для корректной работы корзины, форм и личного кабинета. Подробнее — в <a href="/politika-fajlov-cookie">Политике файлов cookie</a>.</span>
 	</div>
 	<div class="cookie-consent__actions">
-		<button type="button" class="cookie-consent__primary" data-cookie-acknowledge>Понятно</button>
+		<button type="button" class="cookie-consent__primary" data-cookie-acknowledge>Принимаю</button>
 	</div>
 </aside>
 <script src="/js/cookie-consent.js?v=<?=filemtime(WWW.'/js/cookie-consent.js')?>" defer></script>

@@ -84,17 +84,6 @@
 									<input type="text" name="url_params" class="form-control" id="url_params" placeholder="Системное URL" value="<?php isset($_SESSION['form_data']['url_params']) ? h($_SESSION['form_data']['url_params']) : null; ?>">											
 								</div>                                        
                         </div>
-						<div class="form-group row">
-							<label class="col-sm-3 col-form-label" for="category_id">Показывать в сравнениях</label>
-							<div class="col-sm-9">
-								<?php foreach($category as $cat): ?>
-									<div class="custom-control custom-checkbox">											
-										<input class="custom-control-input" type="checkbox" id="customCheckbox<?=$cat->id;?>" value="<?=$cat->id;?>" name="category_id[]">
-										<label style="font-weight:400" for="customCheckbox<?=$cat->id;?>" class="custom-control-label"><?=$cat->name;?></label>
-									</div>
-								<?php endforeach; ?>
-							</div>
-						</div>
 					</div> 
 				
               </div><!-- /.card-body -->			  

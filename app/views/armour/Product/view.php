@@ -97,17 +97,6 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 													</a>
 												</div>
 											</div>
-											<div class="width-1-3 pt-2">
-												<a class="add_to_cart_button button br_compare_button br_product_8632 br_compare_button_inited br_compare_added" data-id="8632" href="/comparison">
-													<i class="fa fa-square-o"></i>
-													<i class="fa fa-check-square-o"></i>
-													<span class="br_compare_button_text" data-added="В сравнении" data-not_added="В сравнение">В сравнении</span>
-												</a>
-												<a class="product-card__cw-wish product-wish single-product-wish hlp-inited on" data-tooltip="В избранное" data-tooltip-added="В избранном" data-product-id="8632">
-													<span class="icon-wish"></span>
-													<div class="wish-tooltip">В избранном</div>
-												</a>
-											</div>
 											<div class="brand_and_top_box"><a href="#tab-additional_information">Все характеристики</a></div>
 										</div>                                        
 										

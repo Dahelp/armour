@@ -10,19 +10,6 @@
         <a class="home-hero__button" href="/industrialnye-shiny">Перейти в каталог</a>
     </div>
 </section>
-		<div class="header-widget-region" role="complementary">
-			<div class="col-full">
-				<div id="berocket_compare_products_widget-2" class="widget widget_berocket_compare_products_widget"><div class="berocket_compare_widget_start berocket_compare_widget_toolbar_block">
-<a class="berocket_show_compare_toolbar" href="#toolbar" style="display:none;">Товары для сравнения<i class="fa fa-angle-up"></i></a>
-    <div class="berocket_compare_widget_toolbar">
-    <a class="berocket_hide_compare_toolbar" href="#close-toolbar"><i class="fa fa-angle-down"></i></a><div class="berocket_compare_widget berocket_compare_widget_image" data-type="image" data-fast_compare="1">
-    <ul>
-        </ul>
-    </div>
-</div>
-</div></div>			</div>
-		</div>
-			
     <div id="content" class="site-content" tabindex="-1">
         <div class="col-full">
 
