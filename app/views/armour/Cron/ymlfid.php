@@ -8,8 +8,8 @@ $fd = fopen("cron/".$viewcrons["url_download"]."", 'w+') or die("не удало
     $text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
               <yml_catalog date=\"".$date_update."\">
               <shop>
-                <name>ИТС-Центр</name>
-                <company>ООО ИТС-Центр</company>
+                <name>ТехШина</name>
+                <company>ООО Еккатрейд</company>
                 <url>".PATH."</url>
                 <currencies>
                   <currency id=\"RUR\" rate=\"1\"/>
@@ -33,7 +33,7 @@ $fd = fopen("cron/".$viewcrons["url_download"]."", 'w+') or die("не удало
 		else { $available = "true"; }
 		if($offer["img"] != "") { $img = "".PATH."/images/product/baseimg/".$offer["img"].""; }
         else { $img = ""; }
-		$desc = "Компания ИТС-Центр является официальным поставщиком продукции ".$offer["vendor"]." и предлагает купить ".$offer["name"]." по низким ценам. Доставка по всей России транспортными компаниями. До транспортной компании довозим бесплатно, вам останеться только получить заказ в своём городе.";
+		$desc = "Интернет-магазин ТехШина предлагает купить ".$offer["name"]." производителя ".$offer["vendor"].". Доставка по всей России транспортными компаниями. Условия отправки уточняйте у менеджера.";
 		  
 			$text.= "<offer id=\"".$offer["article"]."\" available=\"".$available."\">
                       <url>".PATH."/product/".$offer["alias"]."</url>

@@ -8,8 +8,8 @@ $fd = fopen("cron/".$viewcrons["url_download"]."", 'w+') or die("не удало
     $text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
               <yml_catalog date=\"".$date_update."\">
               <shop>
-                <name>ИТС-Центр</name>
-                <company>ООО ИТС-Центр</company>
+                <name>ТехШина</name>
+                <company>ООО Еккатрейд</company>
                 <url>".PATH."</url>
                 <currencies>
                   <currency id=\"RUR\" rate=\"1\"/>
@@ -44,7 +44,7 @@ $fd = fopen("cron/".$viewcrons["url_download"]."", 'w+') or die("не удало
 		if($offer['category_name']=="Фильтры осушители") { $brand = "фильтр осушитель"; $brandname2 = "Фильтра осушитель"; }
 		$vendor=str_replace("&","",$offer["vendor"]);
 		
-		$desc = "Компания ИТС-Центр предлагает купить аналог фильтра ".$vendor." ".$offer["cross_name"]." по низким ценам. Наименование аналога: ".$brand." ".$offer["model"]." ".$offer["brand_name"].". Доставка по всей России транспортными компаниями. До транспортной компании довозим бесплатно, вам останеться только получить заказ в своём городе.";
+		$desc = "Интернет-магазин ТехШина предлагает купить аналог фильтра ".$vendor." ".$offer["cross_name"].". Наименование аналога: ".$brand." ".$offer["model"]." ".$offer["brand_name"].". Доставка по всей России транспортными компаниями. Условия отправки уточняйте у менеджера.";
 		  
 			$text.= "<offer id=\"".$offer["article"]."\" available=\"".$available."\">
                       <url>".PATH."/cross/".$offer["cross_abbreviated_name"]."</url>

@@ -339,7 +339,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <div id="footer_site_map" class="widget_text site-map position-relative">
     <div class="textwidget custom-html-widget">
                 <div class="site-map__block font-14 hidden-phone fadeout">
-            <p class="text-uppercase text-bold font-14">ООО «ИТС-Центр»</p>
+            <p class="text-uppercase text-bold font-14">ООО «Еккатрейд»</p>
             <p>Московская область, г.Подольск, микрорайон Климовск, Коммунальная улица, 26</p>
                     <div class="grid site-map__phone">
                                                             <div class="width-1-2">
@@ -431,8 +431,8 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 			<div class="block footer-widget-4 col-3">
 				<div class="widget_text widget widget_custom_html">
 					<div class="textwidget custom-html-widget">
-						<p>© ООО «ИТС-Центр», г. Подольск<br>2010–<?=date('Y')?> гг.</p>
-						<p>ИНН 5036103305 · ОГРН 1105074000096</p>
+						<p>© ООО «Еккатрейд», г. Подольск<br>2023–<?=date('Y')?> гг.</p>
+						<p>ИНН 5074079702 · ОГРН 1235000003259</p>
 						<div class="footer-legal-links">
 							<a href="/politika-konfidencialnosti">Политика конфиденциальности</a>
 							<a href="/soglasie-na-obrabotku-personalnyh-dannyh">Согласие на обработку ПД</a>

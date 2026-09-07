@@ -8,8 +8,8 @@ $fd = fopen("cron/".$viewcrons["url_download"]."", 'w+') or die("не удало
     $text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
               <yml_catalog date=\"".$date_update."\">
               <shop>
-                <name>ИТС-Центр</name>
-                <company>ООО ИТС-Центр</company>
+                <name>ТехШина</name>
+                <company>ООО Еккатрейд</company>
                 <url>".PATH."</url>
                 <currencies>
                   <currency id=\"RUR\" rate=\"1\"/>

@@ -32,7 +32,7 @@ class CatalogController extends AppController {
 			if($this->route["controller"] == "category"){
 				$title = $cats->title;
 			}else{
-				$title = "Каталог ".\ishop\App::downFirstLetter($cats->name)." в интернет-магазине ИТС-Центр";
+				$title = "Каталог ".\ishop\App::downFirstLetter($cats->name)." в интернет-магазине ТехШина";
 			}
 		}
 		if(!empty($inseo->description)) {
@@ -41,7 +41,7 @@ class CatalogController extends AppController {
 			if($this->route["controller"] == "category"){
 				$description = $cats->description;
 			}else{
-				$description = "В каталоге ".\ishop\App::downFirstLetter($cats->name)." в интернет магазине ИТС-Центр можно подобрать и купить товары с доставкой до транспортной компании.";
+				$description = "В каталоге ".\ishop\App::downFirstLetter($cats->name)." интернет-магазина ТехШина можно подобрать и купить товары с доставкой до транспортной компании.";
 			}
 		}
 		if(!empty($inseo->keywords)) {

@@ -22,7 +22,7 @@ class TechnicsController extends AppController {
         $perpage = App::$app->getProperty('pagination');
 				
 		$title = "Шины на ".$type->name." ".$manufacturer->name." ".$technics->model."";
-		$description = "Компания «ИТС-Центр» предлагает купить новую высококачественную и надежную резину на спецтехнику по выгодным ценам. ".$type->name." ".$manufacturer->name." ".$technics->model." отличается удобным управлением, простотой обслуживания и долговечностью.";
+		$description = "Интернет-магазин «ТехШина» предлагает купить новую высококачественную и надежную резину на спецтехнику по выгодным ценам. ".$type->name." ".$manufacturer->name." ".$technics->model." отличается удобным управлением, простотой обслуживания и долговечностью.";
 		$keywords = "купить шины, на ".$type->name.", ".$manufacturer->name." ".$technics->model."";
 		
 		/*SEO*/
@@ -40,7 +40,7 @@ class TechnicsController extends AppController {
 		$technics = \R::getAll("SELECT * FROM technics_type WHERE hide = 'show'");
 		
 		$title = "Подбор шин по типу техники";
-		$description = "Компания «ИТС-Центр» предлагает возпользоваться подбором шин по типу техники. Найти и купить шины можно у нас, большой ассортимент шин на различную технику.";
+		$description = "Интернет-магазин «ТехШина» предлагает воспользоваться подбором шин по типу техники. В каталоге представлен большой ассортимент шин для различной техники.";
 		$keywords = "Подбор шин, найти шины по типу техники, каталог техники";
 		
 		/*SEO*/
@@ -58,7 +58,7 @@ class TechnicsController extends AppController {
 		$manufacturers = \R::getAll("SELECT technics_manufacturer.name, technics_manufacturer.img, technics_manufacturer.alias FROM technics, technics_manufacturer, technics_type WHERE technics_type.id = technics.type_id AND technics_manufacturer.id = technics.manufacturer_id AND technics.type_id = '".$type["id"]."' GROUP BY technics_manufacturer.name ORDER BY technics_manufacturer.name");
 		
 		$title = "Подбор шин для ".$type["seoname_2"]." по модели и производителю техники";
-		$description = "Подобрать шины для ".$type["seoname_2"]." по производителю техники, модели. Купить шины в ИТС-Центр с доставкой по всей России";
+		$description = "Подобрать шины для ".$type["seoname_2"]." по производителю и модели техники. Купить шины в интернет-магазине ТехШина с доставкой по всей России";
 		$keywords = "Подбор шин, шины по производителю, каталог производителей техники";
 		
 		/*SEO*/
@@ -88,7 +88,7 @@ class TechnicsController extends AppController {
 		$technics = \R::getAll("SELECT technics.model, technics.img, technics.alias FROM technics, technics_manufacturer, technics_type WHERE technics_type.id = technics.type_id AND technics_manufacturer.id = technics.manufacturer_id AND technics.manufacturer_id = '".$manufacturer["id"]."' AND technics_type.alias = '".$type_alias."' ORDER BY technics.model ASC LIMIT $start, $perpage");
 		
 		$title = "Подбор шин на ".$type["seoname_3"]." ".$manufacturer["name"]."";
-		$description = "Компания «ИТС-Центр» предлагает возпользоваться подбором шин по марке техники. Найти и купить шины на ".$type["seoname_3"]." ".$manufacturer["name"]." можно у нас, большой ассортимент шин на различную технику.";
+		$description = "Интернет-магазин «ТехШина» предлагает воспользоваться подбором шин по марке техники. Найти и купить шины на ".$type["seoname_3"]." ".$manufacturer["name"]." можно в нашем каталоге.";
 		$keywords = "Подбор шин, найти шины по технике, каталог техники, шины на ".$type["seoname_3"]." ".$manufacturer["name"]."";
 		
 		/*SEO*/
@@ -101,4 +101,4 @@ class TechnicsController extends AppController {
 		$this->set(compact('manufacturer', 'technics', 'type', 'pagination', 'total'));
 	}
 
-} 
+}
