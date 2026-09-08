@@ -342,11 +342,11 @@ ul.products li.product.product-card-unified .product-card-unified__title a:hover
 .product-card-unified__stock.is-available { color: #23783a; }
 .product-card-unified__stock.is-unavailable { color: #9a3d39; }
 
-.product-card-unified__footer {
+ul.products li.product.product-card-unified .product-card-unified__footer {
     display: flex;
     flex-direction: column;
     margin-top: auto;
-    padding-top: 14px;
+    padding: 14px 0 0;
 }
 
 .product.type-product .product-card-unified__price,

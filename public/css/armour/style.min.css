@@ -331,12 +331,4 @@ a.icon-wish:hover{color:#fff}
   gap: 15px;
   color: #fff;
 }
-.home-hit .box-price-btn{padding:0}
-.home-hit .btn-green-back {padding: 8px 15px 8px;font-size: 12px;}
-.home-hit .block-btn .quantity-block {height: 38px;width: 110px;}
-.home-hit .box-price-btn .quantity-block button {padding: 6px 18px;}
-.home-hit .block-btn .quantity-block button.quantity-arrow-minus {background-position: 2px -473px;}
-.home-hit .block-btn .quantity-block button.quantity-arrow-minus:hover {background-position: 2px -560px;}
-.home-hit .block-btn .quantity-block button.quantity-arrow-plus {background-position: 3px -502px;}
-.home-hit .block-btn .quantity-block button.quantity-arrow-plus:hover {background-position: 3px -560px;}
-.sale_slider picture, .sale_slider .box-price-btn{padding:20px}
+.sale_slider picture{padding:20px}
