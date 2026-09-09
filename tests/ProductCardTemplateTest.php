@@ -47,6 +47,10 @@ productCardAssert(
     str_contains($layout, 'class="mobile-menu-shortcuts" aria-label="Навигация для мобильных устройств" style="display: none;"'),
     'Mobile menu shortcuts need an inline desktop fallback while the versioned stylesheet is being refreshed.'
 );
+productCardAssert(
+    preg_match('/\.menu-wrapper\.mobile-menu-open\s+\.mobile-menu-shortcuts\s*\{\s*display:\s*flex\s*!important;/', $responsiveCss) === 1,
+    'Opening the mobile menu must override the default hidden state.'
+);
 productCardAssert(str_contains($homepage, 'col-full home-seo'), 'Homepage SEO content wrapper is missing.');
 productCardAssert(str_contains($layout, 'class="footer-brand" href="/"'), 'Clickable footer logo is missing.');
 productCardAssert(str_contains($layout, 'footer-home-link" href="/">Главная'), 'Footer homepage link is missing.');

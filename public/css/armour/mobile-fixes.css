@@ -1176,7 +1176,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
 
     .mobile-menu-shortcuts { display: none; }
     .menu-wrapper.mobile-menu-open .mobile-menu-shortcuts {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         gap: 10px;
         padding: 6px 4px 24px;
