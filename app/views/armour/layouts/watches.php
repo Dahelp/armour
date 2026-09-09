@@ -143,6 +143,9 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 						</svg>
 					</a>
 				</div>
+				<div class="mobile-header-details">
+					<a href="tel:+79250707707"><strong>+7 (925) 070-77-07</strong><span>Пн–Пт · 09:00–17:00</span></a>
+				</div>
 				<div class="site-search">
 					<div class="dgwt-wcas-search-wrapp dgwt-wcas-has-submit woocommerce dgwt-wcas-style-solaris js-dgwt-wcas-layout-classic dgwt-wcas-layout-classic js-dgwt-wcas-mobile-overlay-enabled dgwt-wcas-active" style="position: relative;">
 						<form class="dgwt-wcas-search-form searchform" role="search" method="get"  action="search" >

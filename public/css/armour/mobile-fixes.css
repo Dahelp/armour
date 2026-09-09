@@ -228,6 +228,114 @@
     .home-hero__lead { max-width: 320px; }
 }
 
+/* A compact but complete mobile header: contacts, search and catalogue are always available. */
+.mobile-header-details { display: none; }
+
+@media (max-width: 767px) {
+    header.site-header {
+        height: 166px !important;
+        min-height: 166px;
+    }
+
+    .site-header > .col-full.flex {
+        height: 122px;
+        padding: 0;
+    }
+
+    body.woocommerce-active .site-header .site-branding {
+        height: 48px;
+        left: 16px;
+        position: fixed !important;
+        top: 8px;
+        width: 136px !important;
+    }
+
+    .site-branding .custom-logo-link,
+    .site-branding .custom-logo {
+        height: 48px !important;
+        max-height: 48px;
+        max-width: 136px;
+    }
+
+    .mobile-header-details {
+        display: block;
+        position: fixed;
+        right: 16px;
+        text-align: right;
+        top: 12px;
+        z-index: 1004;
+    }
+
+    .mobile-header-details a { color: #102f4a; display: block; text-decoration: none; }
+    .mobile-header-details strong { display: block; font-size: 14px; line-height: 1.3; white-space: nowrap; }
+    .mobile-header-details span { color: #64727e; display: block; font-size: 10px; line-height: 1.3; white-space: nowrap; }
+
+    .site-header .site-phone { display: none !important; }
+
+    .site-header .site-search {
+        display: block !important;
+        left: 16px;
+        margin: 0 !important;
+        position: fixed;
+        right: 16px;
+        top: 65px;
+        width: auto !important;
+        z-index: 1004;
+    }
+
+    .site-header .site-search .dgwt-wcas-sf-wrapp { height: 40px; }
+    .site-header .site-search input[type="search"] {
+        border: 1px solid #b9c7d1;
+        border-radius: 5px;
+        font-size: 13px;
+        height: 40px;
+        padding: 0 45px 0 13px;
+    }
+    .site-header .site-search .dgwt-wcas-search-submit {
+        display: flex !important;
+        height: 40px;
+        right: 0;
+        width: 42px;
+    }
+
+    div.storefront-primary-navigation {
+        background: #00579e;
+        height: 44px;
+        left: 0;
+        pointer-events: auto;
+        position: fixed;
+        top: 122px;
+        width: 100%;
+        z-index: 1003;
+    }
+
+    .header-menu-mobile {
+        color: #fff !important;
+        font-size: 19px;
+        height: 44px;
+        justify-content: flex-start;
+        left: 0;
+        padding-left: 20px;
+        right: auto;
+        top: 122px;
+        width: 150px;
+    }
+
+    .header-menu-mobile::after {
+        content: "Каталог";
+        font-family: Verdana, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+
+    .menu-wrapper.mobile-menu-open {
+        height: calc(100vh - 166px) !important;
+        max-height: calc(100vh - 166px) !important;
+        top: 166px;
+    }
+}
+
 /* Unified product card used by catalog, search and homepage product sections. */
 ul.products { align-items: stretch; }
 
@@ -1038,4 +1146,22 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     footer.site-footer .footer-widgets .footer-widget-4 p {
         margin-bottom: 12px;
     }
+}
+
+/* Keep the mobile header rules after legacy overrides in this stylesheet. */
+@media (max-width: 767px) {
+    header.site-header { height: 166px !important; min-height: 166px; }
+    .site-header > .col-full.flex { height: 122px; padding: 0; }
+    body.woocommerce-active .site-header .site-branding { height: 48px; left: 16px; position: fixed !important; top: 8px; width: 136px !important; }
+    .site-branding .custom-logo-link, .site-branding .custom-logo { height: 48px !important; max-height: 48px; max-width: 136px; }
+    .mobile-header-details { display: block; position: fixed; right: 16px; text-align: right; top: 12px; z-index: 1004; }
+    .site-header .site-phone { display: none !important; }
+    .site-header .site-search { display: block !important; left: 16px; margin: 0 !important; position: fixed; right: 16px; top: 65px; width: auto !important; z-index: 1004; }
+    .site-header .site-search .dgwt-wcas-sf-wrapp { height: 40px; }
+    .site-header .site-search input[type="search"] { border: 1px solid #b9c7d1; border-radius: 5px; font-size: 13px; height: 40px; padding: 0 45px 0 13px; }
+    .site-header .site-search .dgwt-wcas-search-submit { display: flex !important; height: 40px; right: 0; width: 42px; }
+    div.storefront-primary-navigation { background: #00579e; height: 44px; left: 0; pointer-events: auto; position: fixed; top: 122px; width: 100%; z-index: 1003; }
+    .header-menu-mobile { color: #fff !important; font-size: 19px; height: 44px; justify-content: flex-start; left: 0; padding-left: 20px; right: auto; top: 122px; width: 150px; }
+    .header-menu-mobile::after { content: "Каталог"; font-family: Verdana, Arial, sans-serif; font-size: 14px; font-weight: 600; margin-left: 10px; }
+    .menu-wrapper.mobile-menu-open { height: calc(100vh - 166px) !important; max-height: calc(100vh - 166px) !important; top: 166px; }
 }
