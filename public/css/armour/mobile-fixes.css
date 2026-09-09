@@ -472,6 +472,12 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .home-seo .entry-content { padding: 0 15px; }
 
     /* Keep the footer identity visible before the navigation links on phones. */
+    #footer_site_map {
+        display: block !important;
+        height: auto !important;
+        overflow: visible !important;
+        padding: 24px 20px !important;
+    }
     #footer_site_map .grid-small {
         display: block;
         margin-left: 0;
