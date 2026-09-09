@@ -29,7 +29,7 @@ $hasCartItem = $cartQty > 0;
         <?php if ($article !== ''): ?><p class="product-sku product-card-unified__sku" itemprop="sku" content="<?=h($article)?>">Артикул: <?=h($article)?></p><?php endif; ?>
         <div class="stock product-card-unified__stock <?=$quantity > 0 ? 'is-available' : 'is-unavailable'?>">
             <i class="fas <?=$quantity > 0 ? 'fa-check-circle' : 'fa-times-circle'?>" aria-hidden="true"></i>
-            <?php if ($quantity === 0): ?>Нет в наличии<?php elseif ($quantity <= 10): ?>В наличии: <?=$quantity?> шт.<?php else: ?>В наличии<?php endif; ?>
+            <?php if ($quantity === 0): ?>Нет в наличии<?php else: ?>В наличии: <?=$quantity?> шт.<?php endif; ?>
         </div>
         <div class="box-price-btn product-card-unified__footer">
             <div class="price product-card-unified__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
