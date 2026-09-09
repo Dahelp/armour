@@ -337,6 +337,7 @@ ul.products li.product.product-card-unified .product-card-unified__title a:hover
     font-size: 12px;
     gap: 6px;
     margin: 14px 0 0;
+    padding: 0;
 }
 
 .product-card-unified__stock.is-available { color: #23783a; }
@@ -434,7 +435,12 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     padding: 0 20px;
 }
 
+.home-seo__content { display: block; }
 .home-seo h1:first-child { margin-top: 0; }
+.home-seo__equipment { margin: 28px 0; }
+.home-seo__equipment h2 { margin: 0 0 14px; }
+.home-seo__equipment ul { margin: 0; padding-left: 22px; }
+.home-seo__equipment li { margin: 4px 0; }
 .home-seo p:last-child { margin-bottom: 0; }
 
 .footer-brand {
