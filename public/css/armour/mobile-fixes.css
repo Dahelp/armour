@@ -9,6 +9,11 @@
     padding: 0;
 }
 
+/* Mobile-only navigation must stay hidden outside the mobile breakpoint. */
+.mobile-menu-shortcuts {
+    display: none;
+}
+
 .product-crosses__grid {
     display: grid;
     gap: 10px;

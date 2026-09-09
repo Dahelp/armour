@@ -39,6 +39,10 @@ productCardAssert(str_contains($homepage, 'new \\app\\widgets\\product\\Product'
 productCardAssert(str_contains($search, 'new \\app\\widgets\\product\\Product'), 'Search does not use the shared card widget.');
 productCardAssert(str_contains($responsiveCss, 'text-indent: 0 !important'), 'Legacy sprite CSS still hides quantity signs.');
 productCardAssert(str_contains($responsiveCss, 'background-image: none !important'), 'Quantity controls still depend on the missing legacy sprite.');
+productCardAssert(
+    preg_match('/\.mobile-menu-shortcuts\s*\{\s*display:\s*none;\s*\}/', $responsiveCss) === 1,
+    'Mobile menu shortcuts must be hidden by default on desktop.'
+);
 productCardAssert(str_contains($homepage, 'col-full home-seo'), 'Homepage SEO content wrapper is missing.');
 productCardAssert(str_contains($layout, 'class="footer-brand" href="/"'), 'Clickable footer logo is missing.');
 productCardAssert(str_contains($layout, 'footer-home-link" href="/">Главная'), 'Footer homepage link is missing.');
