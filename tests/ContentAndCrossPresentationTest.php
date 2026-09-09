@@ -14,10 +14,12 @@ $productView = (string)file_get_contents($root.'/app/views/armour/Product/view.p
 $searchController = (string)file_get_contents($root.'/app/controllers/SearchController.php');
 $layout = (string)file_get_contents($root.'/app/views/armour/layouts/watches.php');
 
-presentationAssert(str_contains($mainController, "['articles']") && str_contains($mainController, "['news']"), 'Homepage content is not loaded by public content type.');
+presentationAssert(str_contains($mainController, "'articles'") && str_contains($mainController, "'news'"), 'Homepage content is not loaded by public content type.');
+presentationAssert(str_contains($mainController, "\$homepageContentDate = '2024-01-01 00:00:00'"), 'Homepage does not exclude stale legacy content.');
 presentationAssert(!str_contains($mainView, 'advanta-ekb.ru'), 'Homepage retains links to the obsolete template site.');
 presentationAssert(!str_contains($mainView, 'home-videoobzory'), 'Undeveloped video section is still rendered.');
 presentationAssert(str_contains($mainView, 'href="/articles"') && str_contains($mainView, 'href="/news"'), 'Homepage content links are not local.');
+presentationAssert(str_contains($mainView, '<?php if ($news || $articles): ?>'), 'Homepage renders an empty stale-content block.');
 presentationAssert(str_contains($productController, 'equipment_vendor') && str_contains($productController, 'oemCrosses'), 'Product crosses are not classified.');
 presentationAssert(str_contains($productView, 'id="tab-analogs"') && str_contains($productView, 'id="tab-oem"'), 'Product cross tabs are absent.');
 presentationAssert(str_contains($searchController, 'plagins_cross_vendor.name'), 'Cross-number search does not include vendor and number fields.');

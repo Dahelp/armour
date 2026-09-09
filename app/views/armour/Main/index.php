@@ -193,10 +193,13 @@
 
 </div><!-- #content -->
 
+<?php if ($news || $articles): ?>
 <div class="home-news">
     <div class="col-full">
         <div class="grid">
-			<div class="width-1-2">
+			<?php $homeContentWidth = $news && $articles ? 'width-1-2' : 'width-1-1'; ?>
+			<?php if ($news): ?>
+			<div class="<?=$homeContentWidth?>">
 				<div class="home-news__heading"><a href="/news">Новости</a></div>
 				<?php foreach ($news as $item): ?>
 					<div class="home-news__block">
@@ -206,10 +209,11 @@
 						</div>
 					</div>
 				<?php endforeach; ?>
-				<?php if (!$news): ?><p>Новости скоро появятся.</p><?php endif; ?>
 			</div>
+			<?php endif; ?>
 
-			<div class="width-1-2">
+			<?php if ($articles): ?>
+			<div class="<?=$homeContentWidth?>">
 				<div class="home-news__heading"><a href="/articles">Статьи</a></div>
 				<?php foreach ($articles as $item): ?>
 					<div class="home-news__block">
@@ -219,11 +223,12 @@
 						</div>
 					</div>
 				<?php endforeach; ?>
-				<?php if (!$articles): ?><p>Статьи скоро появятся.</p><?php endif; ?>
 			</div>
+			<?php endif; ?>
 		</div>
     </div>
 </div>
+<?php endif; ?>
 	<div class="col-full home-seo">
     
 	<div class="entry-content">
