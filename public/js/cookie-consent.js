@@ -29,13 +29,6 @@
             notice.hidden = false;
         }
 
-        document.querySelectorAll('[data-cookie-settings]').forEach(function (button) {
-            button.addEventListener('click', function () {
-                notice.hidden = false;
-                notice.querySelector('button[data-cookie-acknowledge]')?.focus();
-            });
-        });
-
         notice.querySelectorAll('[data-cookie-acknowledge]').forEach(function (button) {
             button.addEventListener('click', function () {
                 acknowledgeNotice();

@@ -440,7 +440,6 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 							<a href="/soglasie-na-obrabotku-personalnyh-dannyh">Согласие на обработку ПД</a>
 							<a href="/politika-fajlov-cookie">Политика файлов cookie</a>
 							<a href="/polzovatelskoe-soglashenie">Пользовательское соглашение</a>
-							<button type="button" class="cookie-settings-button" data-cookie-settings>Настройки cookie</button>
 						</div>
 					</div>
 				</div>
