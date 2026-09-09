@@ -1003,3 +1003,39 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         white-space: normal;
     }
 }
+
+/* Home catalogue and footer: one predictable mobile layout. */
+@media (max-width: 767px) {
+    .category-box .category-box__block .menu__title .menu__title-link {
+        align-items: center;
+        display: flex;
+        font-size: 18px !important;
+        justify-content: center;
+        line-height: 1.12 !important;
+        min-height: 58px;
+        text-align: center;
+    }
+
+    footer.site-footer .footer-widgets {
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        margin: 0;
+        padding: 0 20px 28px;
+    }
+
+    footer.site-footer .footer-widgets .block {
+        float: none !important;
+        margin: 0 !important;
+        padding: 0;
+        width: 100% !important;
+    }
+
+    footer.site-footer .footer-widgets .footer-widget-3 .text-center {
+        text-align: left;
+    }
+
+    footer.site-footer .footer-widgets .footer-widget-4 p {
+        margin-bottom: 12px;
+    }
+}
