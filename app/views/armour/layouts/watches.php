@@ -19,9 +19,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 	?>
 	<meta name="robots" content="<?=h($robots)?>" />
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
-	<link rel="icon" href="/images/favicon-techtires.png?v=<?=filemtime(WWW.'/images/favicon-techtires.png')?>" type="image/png" sizes="64x64" />
 	<link rel="icon" href="/images/favicon-techtires.svg?v=<?=filemtime(WWW.'/images/favicon-techtires.svg')?>" type="image/svg+xml" sizes="any" />
-    <link rel="shortcut icon" href="/images/favicon-techtires.png?v=<?=filemtime(WWW.'/images/favicon-techtires.png')?>" type="image/png" />
+	<link rel="icon" href="/images/favicon-techtires.png?v=<?=filemtime(WWW.'/images/favicon-techtires.png')?>" type="image/png" sizes="64x64" />
+    <link rel="shortcut icon" href="/images/favicon-techtires.svg?v=<?=filemtime(WWW.'/images/favicon-techtires.svg')?>" type="image/svg+xml" />
     <?=$this->getMeta(); ?>	
 
 
