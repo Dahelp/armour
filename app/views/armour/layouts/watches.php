@@ -269,7 +269,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 </li>
 <li id="menu-item-5895" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5895 menu-item"><a href="/contacts">Контакты</a></li>
 </ul></nav>    <div class="menu-block menu-block--empty"></div>
-<nav class="mobile-menu-shortcuts" aria-label="Навигация для мобильных устройств">
+<nav class="mobile-menu-shortcuts" aria-label="Навигация для мобильных устройств" style="display: none;">
     <span class="mobile-menu-shortcuts__heading">Каталог продукции</span>
     <a class="mobile-menu-shortcuts__category" href="/industrialnye-shiny">Индустриальные шины <span>→</span></a>
     <a class="mobile-menu-shortcuts__category" href="/filtra">Фильтры для погрузчиков <span>→</span></a>

@@ -11,7 +11,7 @@
 
 /* Mobile-only navigation must stay hidden outside the mobile breakpoint. */
 .mobile-menu-shortcuts {
-    display: none;
+    display: none !important;
 }
 
 .product-crosses__grid {
