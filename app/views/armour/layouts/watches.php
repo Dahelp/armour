@@ -269,6 +269,19 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 </li>
 <li id="menu-item-5895" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5895 menu-item"><a href="/contacts">Контакты</a></li>
 </ul></nav>    <div class="menu-block menu-block--empty"></div>
+<nav class="mobile-menu-shortcuts" aria-label="Навигация для мобильных устройств">
+    <span class="mobile-menu-shortcuts__heading">Каталог продукции</span>
+    <a class="mobile-menu-shortcuts__category" href="/industrialnye-shiny">Индустриальные шины <span>→</span></a>
+    <a class="mobile-menu-shortcuts__category" href="/filtra">Фильтры для погрузчиков <span>→</span></a>
+    <a class="mobile-menu-shortcuts__category" href="/catalog-disk">Диски для погрузчиков <span>→</span></a>
+    <a class="mobile-menu-shortcuts__category" href="/kamery-dlya-spectehniki">Камеры и ободные ленты <span>→</span></a>
+    <div class="mobile-menu-shortcuts__links">
+        <a href="/dostavka">Доставка и оплата</a>
+        <a href="/comp">О компании</a>
+        <a href="/articles">Статьи</a>
+        <a href="/contacts">Контакты</a>
+    </div>
+</nav>
 </div>
 <button type="button" class="header-menu-mobile" aria-label="Открыть каталог" aria-controls="mobile-site-menu" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
 
