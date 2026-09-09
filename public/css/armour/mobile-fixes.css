@@ -471,24 +471,6 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .home-seo { padding-bottom: 24px; padding-top: 24px; }
     .home-seo .entry-content { padding: 0 15px; }
 
-    /* Keep the footer identity visible before the navigation links on phones. */
-    #footer_site_map {
-        display: block !important;
-        height: auto !important;
-        overflow: visible !important;
-        padding: 24px 20px !important;
-    }
-    #footer_site_map .grid-small {
-        display: block;
-        margin-left: 0;
-    }
-    #footer_site_map .grid-small > .width-1-4 {
-        padding-left: 0;
-        width: 100%;
-    }
-    #footer_site_map .footer-brand {
-        margin: 0 0 16px;
-    }
 }
 
 @media (min-width: 1101px) and (max-width: 1250px) {
