@@ -352,7 +352,11 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
             <div class="grid grid-small">
                 <div class="width-1-4">
                     <a class="footer-brand" href="/" aria-label="ТехШина — перейти на главную страницу">
-                        <img src="/images/logo-techtires.svg" width="210" height="50" alt="ТехШина">
+                        <svg class="footer-brand__logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" role="img" aria-labelledby="footer-techtires-logo-title">
+                            <title id="footer-techtires-logo-title">ТехШина</title>
+                            <g transform="translate(4 2)"><circle cx="48" cy="48" r="39" fill="none" stroke="#102f4a" stroke-width="14" stroke-dasharray="18 5"/><circle cx="48" cy="48" r="25" fill="#fff" stroke="#55b947" stroke-width="7"/><circle cx="48" cy="48" r="10" fill="#102f4a"/><path d="M42 42h12v12H42z" fill="#fff" transform="rotate(45 48 48)"/></g>
+                            <text x="104" y="59" fill="#102f4a" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="800" letter-spacing="-1">ТЕХ</text><text x="199" y="59" fill="#35414b" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="800" letter-spacing="-1">ШИНА</text><path d="M106 70h230" stroke="#55b947" stroke-width="5" stroke-linecap="round"/><text x="106" y="89" fill="#61717d" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" letter-spacing="2.4">ПРОМЫШЛЕННЫЕ ШИНЫ</text>
+                        </svg>
                     </a>
                     <a class="contact-link footer-home-link" href="/">Главная</a>
                     <p class="text-bold font-15 footer-caption">Каталог продукции</p>

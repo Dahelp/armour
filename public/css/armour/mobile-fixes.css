@@ -452,11 +452,10 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     padding: 8px 12px;
 }
 
-.footer-brand img {
+.footer-brand__logo {
     display: block;
-    height: auto;
-    max-width: 190px;
-    width: 100%;
+    height: 50px;
+    width: 210px;
 }
 
 .footer-home-link {
