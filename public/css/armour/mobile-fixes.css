@@ -1161,7 +1161,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .site-header .site-search input[type="search"] { border: 1px solid #b9c7d1; border-radius: 5px; font-size: 13px; height: 40px; padding: 0 45px 0 13px; }
     .site-header .site-search .dgwt-wcas-search-submit { display: flex !important; height: 40px; right: 0; width: 42px; }
     div.storefront-primary-navigation { background: #00579e; height: 44px; left: 0; pointer-events: auto; position: fixed; top: 122px; width: 100%; z-index: 1003; }
-    .header-menu-mobile { color: #fff !important; font-size: 19px; height: 44px; justify-content: flex-start; left: 0; padding-left: 20px; right: auto; top: 122px; width: 150px; }
-    .header-menu-mobile::after { content: "Каталог"; font-family: Verdana, Arial, sans-serif; font-size: 14px; font-weight: 600; margin-left: 10px; }
+    .header-menu-mobile { color: #fff !important; font-size: 19px; height: 44px; justify-content: flex-start; left: 0; margin: 0 !important; padding-left: 20px; right: auto; top: 122px; width: 150px; }
+    .header-menu-mobile::after { color: #fff; content: "Каталог"; display: block !important; font-family: Verdana, Arial, sans-serif; font-size: 14px; font-weight: 600; margin-left: 10px; }
     .menu-wrapper.mobile-menu-open { height: calc(100vh - 166px) !important; max-height: calc(100vh - 166px) !important; top: 166px; }
 }
