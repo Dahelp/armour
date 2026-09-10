@@ -537,6 +537,50 @@ ul.products li.product .box-price-btn .product-card-unified__price {
 .product-card-unified__buy .quantity-block input { background: #fff; font-size: 13px; text-align: center; }
 .product-card-unified__details { background: #edf3f6 !important; color: #173650 !important; }
 
+/* The home-page card has less horizontal space than the catalogue table.
+   Keep the quantity selector as one compact, balanced control beside the
+   cart action instead of allowing inherited styles to split its buttons. */
+.product.type-product .product-card-unified__buy {
+    gap: 12px;
+}
+
+.product-card-unified__buy .quantity-block {
+    align-items: stretch;
+    display: inline-flex;
+    flex: 0 0 108px;
+    height: 42px;
+    justify-content: stretch;
+}
+
+.product-card-unified__buy .quantity-block button,
+.product-card-unified__buy .quantity-block input {
+    height: 40px;
+    min-width: 35px;
+    width: 35px;
+}
+
+.product-card-unified__buy .quantity-block .qty-item {
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 36px;
+}
+
+.product-card-unified__buy .quantity-block input {
+    min-width: 100%;
+    width: 100%;
+}
+
+.product-card-unified__buy .my_btn {
+    display: flex;
+    min-width: 0;
+}
+
+.product-card-unified__buy .my_btn .button {
+    align-items: center;
+    border-radius: 7px;
+}
+
 .home-seo {
     box-sizing: border-box;
     padding-bottom: 34px;
