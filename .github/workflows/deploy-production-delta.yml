@@ -47,7 +47,10 @@ jobs:
               mkdir -p ".release/$(dirname "$file")"
               cp -p "$file" ".release/$file"
             fi
-          done < <(git diff --name-only -z 24843c0c..HEAD)
+          # a3eb3d4b is the last commit confirmed by a successful production run.
+          # Deploy only what changed after that point; re-uploading the whole
+          # migration history can stall the FTP server.
+          done < <(git diff --name-only -z a3eb3d4b..HEAD)
           mkdir -p .release/public
           cp -p robots.txt .release/robots.txt
           cp -p public/robots.txt .release/public/robots.txt
