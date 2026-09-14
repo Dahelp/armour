@@ -13,6 +13,7 @@ $productController = (string)file_get_contents($root.'/app/controllers/ProductCo
 $productView = (string)file_get_contents($root.'/app/views/armour/Product/view.php');
 $searchController = (string)file_get_contents($root.'/app/controllers/SearchController.php');
 $layout = (string)file_get_contents($root.'/app/views/armour/layouts/watches.php');
+$productTabsCss = (string)file_get_contents($root.'/public/css/armour/product-tabs.css');
 
 presentationAssert(str_contains($mainController, "'articles'") && str_contains($mainController, "'news'"), 'Homepage content is not loaded by public content type.');
 presentationAssert(str_contains($mainController, "\$homepageContentDate = '2024-01-01 00:00:00'"), 'Homepage does not exclude stale legacy content.');
@@ -24,6 +25,9 @@ presentationAssert(str_contains($productController, 'equipment_vendor') && str_c
 presentationAssert(str_contains($productView, '<?php if ($analogCrosses): ?>') && str_contains($productView, 'id="tab-analogs"'), 'Analog tab is not conditional.');
 presentationAssert(str_contains($productView, '<?php if ($oemCrosses): ?>') && str_contains($productView, 'id="tab-oem"'), 'OEM tab is not conditional.');
 presentationAssert(!str_contains($productView, 'Для этого товара аналоги пока не указаны.') && !str_contains($productView, 'Для этого товара OEM номера пока не указаны.'), 'Empty cross tabs are still rendered.');
+presentationAssert(str_contains($layout, "/css/armour/product-tabs.css?v=<?=filemtime(WWW.'/css/armour/product-tabs.css')?>"), 'Product tab counter styles are not loaded with cache busting.');
+presentationAssert(str_contains($productTabsCss, 'position: static;') && str_contains($productTabsCss, 'margin-left: 6px;'), 'Product tab counters can overlap their labels.');
+presentationAssert(str_contains($productTabsCss, 'background-color: #eef7ff;') && str_contains($productTabsCss, 'border-radius: 10px;'), 'Product tab counters are not visually distinguished.');
 presentationAssert(str_contains($searchController, 'plagins_cross_vendor.name'), 'Cross-number search does not include vendor and number fields.');
 presentationAssert(str_contains($layout, '<svg class="custom-logo"'), 'TechTires logo is not embedded in the header.');
 presentationAssert(str_contains($layout, 'techtires-logo-title'), 'Embedded TechTires logo has no accessible title.');

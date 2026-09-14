@@ -1,0 +1,17 @@
+.tab-list .reviews-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    margin-left: 6px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background-color: #eef7ff;
+    color: #004a8e;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 20px;
+    position: static;
+    vertical-align: 1px;
+}

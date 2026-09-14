@@ -4493,12 +4493,20 @@ tr .one-click {
 }
 
 .reviews-count {
-    font-size: 10px;
-    line-height: 23px;
-    color: #6a6a6a;
-    position: absolute;
-    top: -5px;
-    right: -7px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    margin-left: 6px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background-color: #eef7ff;
+    color: #004a8e;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 20px;
+    vertical-align: 1px;
 }
 
 .tab-caption {
