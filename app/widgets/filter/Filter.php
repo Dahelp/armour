@@ -112,23 +112,17 @@ class Filter{
     }
 
     public static function getCountGroups($filter){
-        $filters = explode(',', $filter);
-        $cache = Cache::instance();
-        $attrs = $cache->get('filter_attrs:all');
-        if(!$attrs){
-            $attrs = self::getAttrs();
-			$cache->set('filter_attrs:all', $attrs, 3600);
-        }
-        $data = [];
-        foreach($attrs as $key => $item){
-            foreach($item as $k => $v){
-                if(in_array($k, $filters)){
-                    $data[] = $key;
-                    break;
-                }
-            }
-        }
-        return count($data);
+		$filterIds = self::normaliseIds($filter);
+		if ($filterIds === []) {
+			return 0;
+		}
+
+		return (int)\R::getCell(
+			'SELECT COUNT(DISTINCT attr_group_id) FROM attribute_value WHERE id IN ('
+			. \R::genSlots($filterIds)
+			. ')',
+			$filterIds
+		);
     }
 
 }

@@ -21,9 +21,12 @@ sqlAssert(!str_contains($categorySource, 'attr_id IN ($filter)'), 'Filter IDs mu
 sqlAssert(!str_contains($categorySource, 'category_id IN ($ids)'), 'Category IDs must not be interpolated into SQL.');
 sqlAssert(str_contains($categorySource, '\\R::genSlots($filterIds)'), 'Filter placeholders are missing.');
 sqlAssert(str_contains($categorySource, 'COUNT(DISTINCT av.attr_group_id)'), 'Multiple values in one group must use OR semantics.');
+sqlAssert(str_contains($categorySource, "'AND 1 = 0'"), 'Unknown filter values must never fall back to the full catalog.');
 
 $filterSource = (string)file_get_contents(dirname(__DIR__) . '/app/widgets/filter/Filter.php');
 sqlAssert(!str_contains($filterSource, '.$ids.'), 'Filter widget IDs must not be interpolated into SQL.');
+sqlAssert(!str_contains($filterSource, "get('filter_attrs:all')"), 'Selected filter groups must not depend on the stale global attribute cache.');
+sqlAssert(str_contains($filterSource, 'SELECT COUNT(DISTINCT attr_group_id)'), 'Selected filter groups must be resolved from current attribute data.');
 
 \ishop\App::$app = \ishop\Registry::instance();
 \ishop\App::$app->setProperty('cats', [
