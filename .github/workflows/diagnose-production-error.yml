@@ -26,5 +26,6 @@ jobs:
           cls -la
           cls -la logs
           cls -la public
+          cls -la public/errors
           bye
           LFTP
