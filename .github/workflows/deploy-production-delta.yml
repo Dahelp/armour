@@ -51,6 +51,13 @@ jobs:
           # Deploy only what changed after that point; re-uploading the whole
           # migration history can stall the FTP server.
           done < <(git diff --name-only -z a3eb3d4b..HEAD)
+          # The original FTP tree predates the PHP 8.2 core layout. Always ship
+          # the framework base classes required by the Composer PSR-4 mapping,
+          # even when they were not changed in the current delta.
+          mkdir -p .release/vendor/ishop
+          cp -pR vendor/ishop/core .release/vendor/ishop/core
+          mkdir -p .release/app/services
+          cp -p app/services/PersonalDataConsent.php .release/app/services/PersonalDataConsent.php
           mkdir -p .release/public
           cp -p robots.txt .release/robots.txt
           cp -p public/robots.txt .release/public/robots.txt
@@ -83,5 +90,6 @@ jobs:
           rm -f /app/controllers/ComparisonController.php
           rm -f /app/views/armour/Comparison/index.php
           rm -f /app/views/armour/User/bookmarks.php
+          rm -f /public/_health_db.php
           bye
           LFTP
