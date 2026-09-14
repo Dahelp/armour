@@ -29,6 +29,10 @@
     border-radius: 0;
 }
 
+#form-reviews #review_form #respond {
+    padding: 0;
+}
+
 #form-reviews .comment-form {
     gap: 0;
     padding: 0;
@@ -76,10 +80,14 @@
 
 #form-reviews .comment-form-author {
     order: 2;
+    width: calc(50% - 10px);
+    margin-right: 20px;
 }
 
 #form-reviews .comment-form-email {
     order: 3;
+    width: calc(50% - 10px);
+    margin-right: 0;
 }
 
 #form-reviews .comment-form-comment {
@@ -114,5 +122,11 @@
         width: calc(100% - 24px);
         margin-bottom: 20px;
         padding: 42px 24px 24px;
+    }
+
+    #form-reviews .comment-form-author,
+    #form-reviews .comment-form-email {
+        width: 100%;
+        margin-right: 0;
     }
 }

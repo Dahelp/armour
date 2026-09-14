@@ -34,6 +34,8 @@ presentationAssert(str_contains($productView, "\$consentId = 'review-privacy-acc
 presentationAssert(str_contains($mainJs, "document.querySelectorAll('.big_box_close')") && str_contains($mainJs, "event.key !== 'Escape'"), 'Standard modal dismissal controls are incomplete.');
 presentationAssert(str_contains($mainJs, "document.querySelectorAll('#form-reviews p.stars a')") && str_contains($mainJs, "ratingSelect.dispatchEvent(new Event('input'"), 'Review rating control is not interactive.');
 presentationAssert(str_contains($productTabsCss, 'content: "★";') && str_contains($productTabsCss, 'a.is-selected::before'), 'Review rating stars are not rendered locally.');
+presentationAssert(str_contains($productTabsCss, '#form-reviews #review_form #respond') && str_contains($productTabsCss, 'padding: 0;'), 'Review modal retains nested WooCommerce padding.');
+presentationAssert(substr_count($productTabsCss, 'width: calc(50% - 10px);') === 2 && str_contains($productTabsCss, 'margin-right: 20px;'), 'Review identity fields do not match the standard modal grid.');
 presentationAssert(str_contains($searchController, 'plagins_cross_vendor.name'), 'Cross-number search does not include vendor and number fields.');
 presentationAssert(str_contains($layout, '<svg class="custom-logo"'), 'TechTires logo is not embedded in the header.');
 presentationAssert(str_contains($layout, 'techtires-logo-title'), 'Embedded TechTires logo has no accessible title.');
