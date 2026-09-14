@@ -349,30 +349,28 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 
 							</div>
 
-				<div id="form-reviews" rel="form-reviews" class="black">
+				<div id="form-reviews" rel="form-reviews" class="black modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
 				<div class="big_box_close"></div>
 				<div class="form_box">
-					<a class="a_close_box">x</a>
-					<div class="form_title">
+					<a href="#" class="a_close_box" rel="form-reviews" aria-label="Закрыть">x</a>
+					<div class="form_title" id="review-modal-title">
 						Оставьте отзыв
 					</div>
-						<p class="form_text">
-
-						</p>
 					<div class="form_form">
 						<div id="review_form_wrapper">
 							<div id="review_form">
-									<div id="respond" class="comment-respond">
-			<span id="reply-title" class="comment-reply-title">Добавить отзыв</span><form action="" method="post" id="commentform" class="comment-form wpcf7lazy" novalidate="" style="padding-bottom: 40px;"><p class="comment-notes"><span id="email-notes">Ваш адрес email не будет опубликован.</span> <span class="required-field-message">Обязательные поля помечены <span class="required">*</span></span></p><div class="comment-form-rating"><label for="rating">Ваша оценка <span class="required">*</span></label><p class="stars">						<span>							<a class="star-1" href="#">1</a>							<a class="star-2" href="#">2</a>							<a class="star-3" href="#">3</a>							<a class="star-4" href="#">4</a>							<a class="star-5" href="#">5</a>						</span>					</p><select name="rating" id="rating" required="" style="display: none;">
+								<div id="respond" class="comment-respond">
+			<form action="" method="post" id="commentform" class="comment-form wpcf7-form init" novalidate="novalidate"><p class="comment-notes"><span class="required-field-message">Обязательные поля помечены <span class="required">*</span></span></p><div class="comment-form-rating"><label for="rating">Ваша оценка <span class="required">*</span></label><p class="stars">						<span>							<a class="star-1" href="#">1</a>							<a class="star-2" href="#">2</a>							<a class="star-3" href="#">3</a>							<a class="star-4" href="#">4</a>							<a class="star-5" href="#">5</a>						</span>					</p><select name="rating" id="rating" required aria-required="true" style="display: none;">
 							<option value="">Оценка…</option>
 							<option value="5">Отлично</option>
 							<option value="4">Хорошо</option>
 							<option value="3">Средне</option>
 							<option value="2">Неплохо</option>
 							<option value="1">Очень плохо</option>
-						</select></div><input type="hidden" class="form-captcha-input" name="form-captcha" value=""><p class="form-captcha-position comment-form-comment"><label for="comment">Ваш отзыв&nbsp;</label><textarea id="comment" name="comment" cols="45" rows="8" placeholder="Здесь вы можете написать свой отзыв о товаре."></textarea></p><p class="comment-form-author"><label for="author">Имя&nbsp;<span class="required">*</span></label><input id="author" name="author" type="text" value="" size="30" required="" placeholder="Иван Иванович"></p>
+						</select></div><input type="hidden" class="form-captcha-input" name="form-captcha" value=""><p class="form-captcha-position comment-form-comment"><label for="comment">Ваш отзыв</label><textarea id="comment" name="comment" cols="45" rows="6" placeholder="Здесь вы можете написать свой отзыв о товаре."></textarea></p><p class="comment-form-author"><label for="author">Имя <span class="required">*</span></label><input id="author" name="author" type="text" value="" size="30" required aria-required="true" placeholder="Иван Иванович"></p>
 	<p class="comment-form-email"><label for="email">Email</label><input id="email" name="email" type="email" value="" size="30" placeholder="mail@gmail.com"></p>
-	<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Отправить"> <input type="hidden" name="comment_post_ID" value="8632" id="comment_post_ID">
+	<?php $consentId = 'review-privacy-accept'; $consentClass = 'check-val'; require APP . '/views/' . TEMPLATE . '/partials/privacy-consent.php'; ?>
+	<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit btn-send" value="Отправить" disabled> <input type="hidden" name="comment_post_ID" value="<?=$product->id?>" id="comment_post_ID">
 	<input type="hidden" name="comment_parent" id="comment_parent" value="0">
 	</p></form>	</div><!-- #respond -->
 								</div>

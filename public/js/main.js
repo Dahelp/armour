@@ -206,6 +206,20 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   });
+
+  document.querySelectorAll('.big_box_close').forEach(backdrop => {
+    backdrop.addEventListener('click', function() {
+      const modal = this.closest('.black');
+      if (modal) modal.style.display = 'none';
+    });
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll('.black[style*="display: block"]').forEach(modal => {
+      modal.style.display = 'none';
+    });
+  });
 });
 
 

@@ -15,3 +15,76 @@
     position: static;
     vertical-align: 1px;
 }
+
+#form-reviews .form_box {
+    top: 40px;
+    max-width: 600px;
+    margin-bottom: 40px;
+    padding: 50px 50px 30px;
+}
+
+#form-reviews #review_form,
+#form-reviews #review_form #respond {
+    background: #fff;
+    border-radius: 0;
+}
+
+#form-reviews .comment-form {
+    gap: 0;
+    padding: 0;
+}
+
+#form-reviews .comment-notes {
+    order: 0;
+    width: 100%;
+    margin: 0 0 20px;
+    color: #6a6a6a;
+    font-size: 12px;
+}
+
+#form-reviews .comment-form-rating {
+    order: 1;
+}
+
+#form-reviews .comment-form-author {
+    order: 2;
+}
+
+#form-reviews .comment-form-email {
+    order: 3;
+}
+
+#form-reviews .comment-form-comment {
+    order: 4;
+}
+
+#form-reviews .privacy-consent {
+    order: 5;
+    width: 100%;
+}
+
+#form-reviews .form-submit {
+    order: 6;
+    width: auto;
+    margin: 5px auto 0;
+}
+
+#form-reviews .form-submit .btn-send {
+    margin: 0;
+}
+
+#form-reviews .form-submit .btn-send:disabled {
+    border-color: #c4c4c4;
+    background: #c4c4c4;
+    cursor: not-allowed;
+}
+
+@media (max-width: 767px) {
+    #form-reviews .form_box {
+        top: 20px;
+        min-width: 0;
+        width: calc(100% - 24px);
+        margin-bottom: 20px;
+        padding: 42px 24px 24px;
+    }
+}

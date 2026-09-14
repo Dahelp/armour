@@ -6,12 +6,18 @@ use app\models\admin\Review;
 use app\models\Breadcrumbs;
 use app\models\Product;
 use app\services\CatalogListingLoader;
+use app\services\PersonalDataConsent;
 use ishop\App;
 
 class ProductController extends AppController {
 
-    public function viewAction(){
+	public function viewAction(){
 		if(!empty($_POST['addreview']) || isset($_POST['submit'])) {
+			if (!PersonalDataConsent::accepted($_POST)) {
+				PersonalDataConsent::reject($_POST);
+				redirect();
+				return;
+			}
 			$reviewProduct = \R::findOne('product', 'alias = ? AND hide != ?', [(string)$this->route['alias'], 'hide']);
 			$userId = isset($_SESSION['user']['id']) ? (int)$_SESSION['user']['id'] : 0;
 			if (!$reviewProduct || $userId < 1) {
