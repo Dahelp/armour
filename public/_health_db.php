@@ -32,4 +32,6 @@ try {
 } catch (Throwable $exception) {
     echo "bootstrap: failed\n";
     echo 'error: ' . get_class($exception) . "\n";
+    echo 'message: ' . $exception->getMessage() . "\n";
+    echo 'source: ' . basename($exception->getFile()) . ':' . $exception->getLine() . "\n";
 }
