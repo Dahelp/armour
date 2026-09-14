@@ -32,6 +32,8 @@ presentationAssert(str_contains($productTabsCss, 'background-color: #eef7ff;') &
 presentationAssert(str_contains($productView, 'class="black modal"') && str_contains($productView, 'class="a_close_box" rel="form-reviews"'), 'Review form does not use the standard closable modal structure.');
 presentationAssert(str_contains($productView, "\$consentId = 'review-privacy-accept'") && str_contains($productView, "\$consentClass = 'check-val'"), 'Review form consent is missing.');
 presentationAssert(str_contains($mainJs, "document.querySelectorAll('.big_box_close')") && str_contains($mainJs, "event.key !== 'Escape'"), 'Standard modal dismissal controls are incomplete.');
+presentationAssert(str_contains($mainJs, "document.querySelectorAll('#form-reviews p.stars a')") && str_contains($mainJs, "ratingSelect.dispatchEvent(new Event('input'"), 'Review rating control is not interactive.');
+presentationAssert(str_contains($productTabsCss, 'content: "★";') && str_contains($productTabsCss, 'a.is-selected::before'), 'Review rating stars are not rendered locally.');
 presentationAssert(str_contains($searchController, 'plagins_cross_vendor.name'), 'Cross-number search does not include vendor and number fields.');
 presentationAssert(str_contains($layout, '<svg class="custom-logo"'), 'TechTires logo is not embedded in the header.');
 presentationAssert(str_contains($layout, 'techtires-logo-title'), 'Embedded TechTires logo has no accessible title.');

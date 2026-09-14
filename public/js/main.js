@@ -220,6 +220,22 @@ document.addEventListener("DOMContentLoaded", function() {
       modal.style.display = 'none';
     });
   });
+
+  document.querySelectorAll('#form-reviews p.stars a').forEach(star => {
+    star.addEventListener('click', function(event) {
+      event.preventDefault();
+      const rating = Number(this.textContent.trim());
+      const modal = this.closest('#form-reviews');
+      const ratingSelect = modal ? modal.querySelector('#rating') : null;
+      if (!ratingSelect || rating < 1 || rating > 5) return;
+
+      ratingSelect.value = String(rating);
+      modal.querySelectorAll('p.stars a').forEach((item, index) => {
+        item.classList.toggle('is-selected', index < rating);
+      });
+      ratingSelect.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+  });
 });
 
 

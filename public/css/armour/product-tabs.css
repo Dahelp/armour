@@ -46,6 +46,34 @@
     order: 1;
 }
 
+#form-reviews p.stars span {
+    display: inline-flex;
+    gap: 5px;
+}
+
+#form-reviews p.stars a {
+    width: 24px;
+    height: 24px;
+    color: transparent;
+    font-size: 0;
+    line-height: 24px;
+    text-align: center;
+}
+
+#form-reviews p.stars a::before {
+    content: "★";
+    display: block;
+    color: #c4c4c4;
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    line-height: 24px;
+}
+
+#form-reviews p.stars a.is-selected::before,
+#form-reviews p.stars a:hover::before {
+    color: #f9b71d;
+}
+
 #form-reviews .comment-form-author {
     order: 2;
 }
