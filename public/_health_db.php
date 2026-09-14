@@ -19,4 +19,17 @@ try {
 } catch (Throwable $exception) {
     echo "database: failed\n";
     echo 'error: ' . get_class($exception) . "\n";
+    exit;
+}
+
+try {
+    require dirname(__DIR__) . '/config/init.php';
+    echo "bootstrap-init: ok\n";
+    require_once LIBS . '/functions.php';
+    echo "bootstrap-functions: ok\n";
+    require CONF . '/routes.php';
+    echo "bootstrap-routes: ok\n";
+} catch (Throwable $exception) {
+    echo "bootstrap: failed\n";
+    echo 'error: ' . get_class($exception) . "\n";
 }
