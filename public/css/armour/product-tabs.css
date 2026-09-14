@@ -78,15 +78,17 @@
     color: #f9b71d;
 }
 
-#form-reviews .comment-form-author {
+#form-reviews #respond .comment-form .comment-form-author {
     order: 2;
     width: calc(50% - 10px);
+    flex: 0 0 calc(50% - 10px);
     margin-right: 20px;
 }
 
-#form-reviews .comment-form-email {
+#form-reviews #respond .comment-form .comment-form-email {
     order: 3;
     width: calc(50% - 10px);
+    flex: 0 0 calc(50% - 10px);
     margin-right: 0;
 }
 
@@ -124,9 +126,10 @@
         padding: 42px 24px 24px;
     }
 
-    #form-reviews .comment-form-author,
-    #form-reviews .comment-form-email {
+    #form-reviews #respond .comment-form .comment-form-author,
+    #form-reviews #respond .comment-form .comment-form-email {
         width: 100%;
+        flex-basis: 100%;
         margin-right: 0;
     }
 }
