@@ -21,7 +21,9 @@ presentationAssert(!str_contains($mainView, 'home-videoobzory'), 'Undeveloped vi
 presentationAssert(str_contains($mainView, 'href="/articles"') && str_contains($mainView, 'href="/news"'), 'Homepage content links are not local.');
 presentationAssert(str_contains($mainView, '<?php if ($news || $articles): ?>'), 'Homepage renders an empty stale-content block.');
 presentationAssert(str_contains($productController, 'equipment_vendor') && str_contains($productController, 'oemCrosses'), 'Product crosses are not classified.');
-presentationAssert(str_contains($productView, 'id="tab-analogs"') && str_contains($productView, 'id="tab-oem"'), 'Product cross tabs are absent.');
+presentationAssert(str_contains($productView, '<?php if ($analogCrosses): ?>') && str_contains($productView, 'id="tab-analogs"'), 'Analog tab is not conditional.');
+presentationAssert(str_contains($productView, '<?php if ($oemCrosses): ?>') && str_contains($productView, 'id="tab-oem"'), 'OEM tab is not conditional.');
+presentationAssert(!str_contains($productView, 'Для этого товара аналоги пока не указаны.') && !str_contains($productView, 'Для этого товара OEM номера пока не указаны.'), 'Empty cross tabs are still rendered.');
 presentationAssert(str_contains($searchController, 'plagins_cross_vendor.name'), 'Cross-number search does not include vendor and number fields.');
 presentationAssert(str_contains($layout, '<svg class="custom-logo"'), 'TechTires logo is not embedded in the header.');
 presentationAssert(str_contains($layout, 'techtires-logo-title'), 'Embedded TechTires logo has no accessible title.');
