@@ -16,6 +16,10 @@ $normaliseIds = $filterReflection->getMethod('normaliseIds');
 $normalised = $normaliseIds->invoke(null, '7,2,7,invalid,-4,0,11');
 sqlAssert($normalised === [2, 7, 11], 'Category IDs must be unique positive integers in stable order.');
 
+$_GET['filter'] = '49%2C246';
+sqlAssert(\app\widgets\filter\Filter::getFilter() === '49,246', 'URL-encoded multiple filter values must be decoded before validation.');
+unset($_GET['filter']);
+
 $categorySource = (string)file_get_contents(dirname(__DIR__) . '/app/controllers/CategoryController.php');
 sqlAssert(!str_contains($categorySource, 'attr_id IN ($filter)'), 'Filter IDs must not be interpolated into SQL.');
 sqlAssert(!str_contains($categorySource, 'category_id IN ($ids)'), 'Category IDs must not be interpolated into SQL.');

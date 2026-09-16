@@ -103,9 +103,7 @@ class Filter{
     public static function getFilter(){
         $filter = null;
         if(!empty($_GET['filter'])){
-            $filter = preg_replace("#[^\d,]+#", '', $_GET['filter']);
-			//$filter=str_replace("%2c",",",$_GET['filter']);
-			//$filter = rawurldecode($filter);
+			$filter = preg_replace('#[^\d,]+#', '', rawurldecode((string)$_GET['filter']));
             $filter = trim($filter, ',');
         }
         return $filter;
