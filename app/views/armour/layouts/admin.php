@@ -62,13 +62,8 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
+<body class="sidebar-mini layout-fixed sidebar-collapse">
 <div class="wrapper">
-
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="Logo_round.png" alt="<?=$shop_name?>" height="60" width="60">
-  </div>
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -194,9 +189,13 @@
             <span class="float-right text-muted text-sm">
 				<?php
 					$past_date = \R::getCell('SELECT `date` FROM `order` WHERE `status` = ? ORDER BY `date` DESC LIMIT 1', [1]);					
-					list($pastdate, $pastoclock) = explode(' ', $past_date);					
-					$today = date("Y-m-d");					
-					echo \ishop\App::getPeriod($pastdate,$today);
+					if ($past_date) {
+						$pastdate = explode(' ', (string)$past_date, 2)[0];
+						$today = date("Y-m-d");
+						echo \ishop\App::getPeriod($pastdate, $today);
+					} else {
+						echo 'нет новых';
+					}
 				?></span>
           </a>
           <div class="dropdown-divider"></div>
