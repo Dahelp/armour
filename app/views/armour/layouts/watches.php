@@ -86,6 +86,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel='stylesheet' id='app-style-css' href='css/armour/style.min.css' media='all' />
 <link rel='stylesheet' id='product-tabs-style-css' href='/css/armour/product-tabs.css?v=<?=filemtime(WWW.'/css/armour/product-tabs.css')?>' media='all' />
 <link rel='stylesheet' id='mobile-fixes-css' href='/css/armour/mobile-fixes.css?v=<?=filemtime(WWW.'/css/armour/mobile-fixes.css')?>' media='all' />
+<link rel='stylesheet' id='cart-style-css' href='/css/armour/cart.css?v=<?=filemtime(WWW.'/css/armour/cart.css')?>' media='all' />
 <link rel="stylesheet" href="public/adminlte/plugins/select2/css/select2.min.css" />
 <link rel="stylesheet" href="public/adminlte/plugins/select2-bootstrap5-theme/select2-bootstrap-5-theme.min.css" />
 

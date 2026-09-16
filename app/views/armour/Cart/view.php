@@ -4,7 +4,7 @@
     <div class="container">
 		<?php if(!empty($_SESSION['cart'])):?>
 			<form method="post" action="cart/checkout" role="form" aria-hidden="true" data-toggle="validator" enctype="multipart/form-data">
-			<div class="product-cart">
+			<div class="product-cart cart-page-card">
 			<div class="prdt-top">			
             <div class="col-md-12">
                 <div class="bg-light rounded-3 py-5 px-4 px-xxl-5">

@@ -1,0 +1,17 @@
+/* Checkout follows the green/blue visual language of the storefront. */
+.cart-page-card .bg-light { background: #fff !important; border: 1px solid #e0e8ed; border-radius: 8px !important; box-shadow: 0 5px 18px rgba(27, 58, 78, .07); }
+.cart-page-card .register-top.heading h2 { color: #174f7a; font-weight: 600; font-size: 28px; margin-bottom: 24px; }
+.cart-page-card .table { margin-bottom: 0; border-collapse: collapse; }
+.cart-page-card .table thead th { background: #f2f7fa; border: 0; color: #527084; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+.cart-page-card .table td { border-color: #e4edf2; vertical-align: middle; }
+.cart-page-card .table img { width: 78px; height: 78px; object-fit: contain; }
+.cart-page-card .table a { color: #174f7a; font-weight: 600; }
+.cart-page-card .cart-quantity-control { display: inline-flex; align-items: center; gap: 8px; padding: 3px; border: 1px solid #cbdce5; border-radius: 5px; }
+.cart-page-card .cart-quantity-control button { display: inline-grid; place-items: center; width: 30px; height: 30px; min-width: 30px; padding: 0; border: 0; border-radius: 4px; background: #eaf3f7; color: #174f7a; line-height: 1; }
+.cart-page-card .cart-quantity-control button:hover { background: #0a8a43; color: #fff; }
+.cart-page-card .cart-remove-button { display: inline-grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #b33a3a; }
+.cart-page-card .cart-remove-button:hover { background: #fff1f1; }
+.cart-page-card .product-info { margin-top: 20px; }
+.cart-page-card #prodinfo { padding: 16px 20px; border-left: 3px solid #0a8a43; background: #f7fbf8; }
+.cart-page-card #prodinfo h2 { font-size: 19px; margin-bottom: 8px; }
+@media (max-width: 767px) { .cart-page-card .bg-light { padding: 22px 14px !important; } .cart-page-card .register-top.heading h2 { font-size: 24px; } .cart-page-card .table th, .cart-page-card .table td { padding: 9px 6px; } .cart-page-card .table img { width: 52px; height: 52px; } }
