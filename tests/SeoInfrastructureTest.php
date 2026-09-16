@@ -89,8 +89,15 @@ $controller = $controllerReflection->newInstanceWithoutConstructor();
 $baseConstructor = new ReflectionMethod(\ishop\base\Controller::class, '__construct');
 $baseConstructor->invoke($controller, ['controller' => 'Catalog', 'action' => 'index', 'prefix' => '']);
 $controller->setMeta('Каталог');
-seoAssert($controller->meta['shop_url'] === 'https://techtires.ru/catalog', 'Fallback canonical must exclude query parameters.');
-seoAssert(str_starts_with($controller->meta['robots'], 'index, follow'), 'Catalog pages must be indexable.');
+seoAssert($controller->meta['shop_url'] === 'https://techtires.ru/catalog?page=2', 'Paginated catalog canonical must retain its page number.');
+seoAssert($controller->meta['robots'] === 'noindex, follow', 'Paginated catalog pages must not be indexed.');
+
+$_SERVER['REQUEST_URI'] = '/catalog?filter=49,246';
+$filteredController = $controllerReflection->newInstanceWithoutConstructor();
+$baseConstructor->invoke($filteredController, ['controller' => 'Catalog', 'action' => 'index', 'prefix' => '']);
+$filteredController->setMeta('Каталог');
+seoAssert($filteredController->meta['robots'] === 'noindex, follow', 'Filtered catalog pages must not be indexed.');
+seoAssert($filteredController->meta['shop_url'] === 'https://techtires.ru/catalog', 'Filtered catalog canonical must exclude query parameters.');
 
 $searchController = (new ReflectionClass(\app\controllers\SearchController::class))->newInstanceWithoutConstructor();
 $baseConstructor->invoke($searchController, ['controller' => 'Search', 'action' => 'index', 'prefix' => '']);

@@ -38,9 +38,19 @@ abstract class Controller{
 		$this->meta['shop_name'] = h($shop_name);
 		$this->meta['shop_img'] = h($shop_img);
 		$canonicalUrl = $this->route['canonical_url'] ?? $shop_url;
-		if ($canonicalUrl === '' && $this->meta['robots'] === 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1') {
-			$requestPath = (string)(parse_url((string)($_SERVER['REQUEST_URI'] ?? '/'), PHP_URL_PATH) ?: '/');
-			$requestPath = '/' . ltrim($requestPath, '/');
+		$requestUri = (string)($_SERVER['REQUEST_URI'] ?? '/');
+		$requestPath = (string)(parse_url($requestUri, PHP_URL_PATH) ?: '/');
+		$requestPath = '/' . ltrim($requestPath, '/');
+		$requestQuery = [];
+		parse_str((string)(parse_url($requestUri, PHP_URL_QUERY) ?: ''), $requestQuery);
+		if (
+			$this->meta['robots'] === 'noindex, follow'
+			&& isset($requestQuery['page'])
+			&& !isset($requestQuery['filter'], $requestQuery['sort'])
+		) {
+			$canonicalUrl = rtrim(PATH, '/') . $requestPath . '?page=' . max(1, (int)$requestQuery['page']);
+		}
+		if ($canonicalUrl === '' && $this->meta['robots'] !== 'noindex, nofollow') {
 			$canonicalUrl = rtrim(PATH, '/') . ($requestPath === '/' ? '/' : rtrim($requestPath, '/'));
 		}
 		$this->meta['shop_url'] = h($canonicalUrl);
@@ -55,6 +65,12 @@ abstract class Controller{
         $noIndexControllers = ['Cart', 'Comparison', 'Complete', 'Cron', 'Search', 'User'];
         if (in_array($this->controller, $noIndexControllers, true)) {
             return 'noindex, nofollow';
+        }
+
+$query = [];
+parse_str((string)(parse_url((string)($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_QUERY) ?: ''), $query);
+        if (array_intersect(array_keys($query), ['filter', 'page', 'sort']) !== []) {
+            return 'noindex, follow';
         }
 
         return 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';

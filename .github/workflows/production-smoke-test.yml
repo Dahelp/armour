@@ -132,7 +132,8 @@ jobs:
 
           robots="$(curl --fail --silent --show-error https://techtires.ru/robots.txt)"
           printf 'robots       %q\n' "$robots"
-          test "$robots" = $'User-agent: *\nDisallow: /'
+          printf '%s\n' "$robots" | grep -Fqx 'Disallow: /admin/'
+          printf '%s\n' "$robots" | grep -Fqx 'Sitemap: https://techtires.ru/sitemap.xml'
 
           curl --fail --silent --show-error https://techtires.ru/sitemap.xml -o "$tmp/sitemap.xml"
           grep -Fq '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' "$tmp/sitemap.xml"
