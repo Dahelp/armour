@@ -35,13 +35,20 @@
 					</div>
 				<?php } ?>
 				<?php if($ids) { ?>
+					<?php
+						ob_start();
+						new \app\widgets\filter\Filter($ids);
+						$filtersHtml = trim((string) ob_get_clean());
+					?>
+					<?php if($filtersHtml !== '') { ?>
 					<div class="filters">
 						<section class="d-md-flex justify-content-between align-items-center pb-4">
 							<div class="w_sidebar col-md-12 fltr">
-									<?php new \app\widgets\filter\Filter($ids);	?>
+									<?=$filtersHtml?>
 							</div>            
 						</section>
 					</div>
+					<?php } ?>
 				<?php } ?>
 				<div class="table_wrap facetwp-template" style="display: block;">
 					<div class="casters-block product-one">

@@ -1,4 +1,5 @@
 <?php foreach($this->groups as $group_id => $group_item):?>
+	<?php if(!empty($this->attrs[$group_id])): ?>
 	
     <section class="sky-form col-md-3">
         <div class="row1">
@@ -15,4 +16,5 @@
             </div>
         </div>
     </section>
+	<?php endif; ?>
 <?php endforeach; ?>
