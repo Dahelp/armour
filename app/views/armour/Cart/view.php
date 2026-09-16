@@ -29,12 +29,14 @@
                                         <td><a href="/<?=$item['alias'] ?>"><img src="images/product/mini/<?= $item['img'] ?>" alt="<?=$item['name'] ?>"></a></td>
                                         <td><a href="/<?=$item['alias'] ?>"><?=$item['name'] ?></a></td>
                                         <td style="text-align:center">
-											<span data-id="<?=$id;?>" class="my-minus-<?=$id;?> my-minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
+											<div class="cart-quantity-control">
+												<button type="button" data-id="<?=$id;?>" class="my-minus-<?=$id;?> my-minus" aria-label="Уменьшить количество"><i class="fas fa-minus" aria-hidden="true"></i></button>
 												<span class="qty-item qty-item-<?=$id;?>"><?=$item['qty'];?></span>
-											<?php if($item['qty'] < $item['max']) { ?><span data-id="<?=$id;?>" class="my-plus-<?=$id;?> my-plus"><i class="fa fa-plus" aria-hidden="true"></i></span><?php } ?>
+												<?php if($item['qty'] < $item['max']) { ?><button type="button" data-id="<?=$id;?>" class="my-plus-<?=$id;?> my-plus" aria-label="Увеличить количество"><i class="fas fa-plus" aria-hidden="true"></i></button><?php } ?>
+											</div>
 										</td>
                                         <td><?=$item['price'] ?></td>
-                                        <td><span data-id="<?=$id;?>" class="glyphicon glyphicon-remove text-danger del-items" aria-hidden="true"><i class="fas fa-times"></i></span></td>
+                                        <td><button type="button" data-id="<?=$id;?>" class="del-items cart-remove-button" aria-label="Удалить товар"><i class="fas fa-times" aria-hidden="true"></i></button></td>
                                     </tr>
                                 <?php endforeach;?>
                                 <tr>
@@ -55,8 +57,8 @@
 								<h2>Габаритные размеры</h2>
 							</div>
 							<ul class="list-unstyled fs-sm pt-4 pb-2 border-bottom">
-								<li class="d-flex justify-content-between align-items-center"><span class="me-2">Вес, кг:</span><span class="text-end fw-medium simpleCart_weight"><?=$_SESSION['cart.weight']?></span></li>
-								<li class="d-flex justify-content-between align-items-center"><span class="me-2">Объем, м3:</span><span class="text-end fw-medium simpleCart_volume"><?=$_SESSION['cart.volume']?></span></li>
+								<?php if ((float)($_SESSION['cart.weight'] ?? 0) > 0): ?><li class="d-flex justify-content-between align-items-center"><span class="me-2">Вес, кг:</span><span class="text-end fw-medium simpleCart_weight"><?=$_SESSION['cart.weight']?></span></li><?php endif; ?>
+								<?php if ((float)($_SESSION['cart.volume'] ?? 0) > 0): ?><li class="d-flex justify-content-between align-items-center"><span class="me-2">Объём, м³:</span><span class="text-end fw-medium simpleCart_volume"><?=$_SESSION['cart.volume']?></span></li><?php endif; ?>
 							</ul>                            
 						</div>
 				</div>
@@ -125,7 +127,7 @@
 					
 					<div class="row gx-4 gy-3">	
 						<?php 
-							$compusers = \R::findOne('company', 'user_id = ?', [$_SESSION['user']['id']]);
+							$compusers = !empty($_SESSION['user']['id']) ? \R::findOne('company', 'user_id = ?', [$_SESSION['user']['id']]) : null;
 							if(!$compusers) { ?>
 							<div class="col-sm-6">
 								<label class="form-label" for="name">Вид <span class="text-danger">*</span></label>

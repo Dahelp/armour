@@ -1,5 +1,5 @@
 <?php if(!empty($_SESSION['cart'])): ?>
-<div class="prdt-top">
+<div class="prdt-top cart-page-card">
             <div class="col-md-12">
                 <div class="bg-light rounded-3 py-5 px-4 px-xxl-5">
                     <div class="register-top heading">
@@ -7,14 +7,14 @@
                     </div> 
 					
                     <div id="prodcart" class="table-responsive">
-                            <table class="table table-hover table-striped">
+                            <table class="table table-hover cart-items-table">
                                 <thead>
                                 <tr>
                                     <th>Фото</th>
                                     <th>Наименование</th>
                                     <th>Кол-во</th>
                                     <th>Цена</th>
-                                    <th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
+                                    <th><span class="visually-hidden">Удалить</span></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -23,12 +23,14 @@
                                         <td><a href="/<?=$item['alias'] ?>"><img src="images/product/mini/<?= $item['img'] ?>" alt="<?=$item['name'] ?>"></a></td>
                                         <td><a href="/<?=$item['alias'] ?>"><?=$item['name'] ?></a></td>
                                         <td style="text-align:center">
-											<span data-id="<?=$id;?>" class="my-minus-<?=$id;?> my-minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
+											<div class="cart-quantity-control">
+												<button type="button" data-id="<?=$id;?>" class="my-minus-<?=$id;?> my-minus" aria-label="Уменьшить количество"><i class="fas fa-minus" aria-hidden="true"></i></button>
 												<span class="qty-item qty-item-<?=$id;?>"><?=$item['qty'];?></span>
-											<?php if($item['qty'] < $item['max']) { ?><span data-id="<?=$id;?>" class="my-plus-<?=$id;?> my-plus"><i class="fa fa-plus" aria-hidden="true"></i></span><?php } ?>
+												<?php if($item['qty'] < $item['max']) { ?><button type="button" data-id="<?=$id;?>" class="my-plus-<?=$id;?> my-plus" aria-label="Увеличить количество"><i class="fas fa-plus" aria-hidden="true"></i></button><?php } ?>
+											</div>
 										</td>
                                         <td><?=$item['price'] ?></td>
-                                        <td><span data-id="<?=$id;?>" class="glyphicon glyphicon-remove text-danger del-items" aria-hidden="true"><i class="fas fa-times"></i></span></td>
+                                        <td><button type="button" data-id="<?=$id;?>" class="del-items cart-remove-button" aria-label="Удалить товар"><i class="fas fa-times" aria-hidden="true"></i></button></td>
                                     </tr>
                                 <?php endforeach;?>
                                 <tr>
@@ -43,14 +45,14 @@
                             </table>
 						</div>
                     </div>                                            
-				<div class="product-info">
+						<div class="product-info cart-dimensions">
 						<div class="col-md-6 bg-light px-xxl-5" id="prodinfo">
 							<div class="register-top heading">
 								<h2>Габаритные размеры</h2>
 							</div>
 							<ul class="list-unstyled fs-sm pt-4 pb-2 border-bottom">
-								<li class="d-flex justify-content-between align-items-center"><span class="me-2">Вес, кг:</span><span class="text-end fw-medium simpleCart_weight"><?=$_SESSION['cart.weight']?></span></li>
-								<li class="d-flex justify-content-between align-items-center"><span class="me-2">Объем, м3:</span><span class="text-end fw-medium simpleCart_volume"><?=$_SESSION['cart.volume']?></span></li>
+								<?php if ((float)($_SESSION['cart.weight'] ?? 0) > 0): ?><li class="d-flex justify-content-between align-items-center"><span class="me-2">Вес, кг:</span><span class="text-end fw-medium simpleCart_weight"><?=$_SESSION['cart.weight']?></span></li><?php endif; ?>
+								<?php if ((float)($_SESSION['cart.volume'] ?? 0) > 0): ?><li class="d-flex justify-content-between align-items-center"><span class="me-2">Объём, м³:</span><span class="text-end fw-medium simpleCart_volume"><?=$_SESSION['cart.volume']?></span></li><?php endif; ?>
 							</ul>                            
 						</div>
 				</div>

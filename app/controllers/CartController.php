@@ -161,12 +161,18 @@ class CartController extends AppController {
 	
     public function checkoutAction(){
         if(!empty($_POST)){
+			if (empty($_SESSION['cart'])) {
+				$_SESSION['error'] = 'Корзина пуста.';
+				redirect('/cart');
+				return;
+			}
 			if (!PersonalDataConsent::accepted($_POST)) {
 				PersonalDataConsent::reject($_POST);
 				redirect('/cart');
 				return;
 			}
-			$usok = \R::findOne('user', 'email = ?', [$_POST['email']]);			
+			$email = trim((string)($_POST['email'] ?? ($_SESSION['user']['email'] ?? '')));
+			$usok = $email !== '' ? \R::findOne('user', 'email = ?', [$email]) : null;
 				if($usok["id"]) {
 					$user_id = $usok["id"];
 					$comp_id = $usok["comp_id"];
@@ -221,20 +227,20 @@ class CartController extends AppController {
 				}		
 				// сохранение заказа
 				$data['user_id'] = isset($user_id) ? $user_id : $_SESSION['user']['id'];
-				$data['comp_id'] = !empty($comp_id) ? $comp_id : $id;
+				$data['comp_id'] = !empty($comp_id) ? $comp_id : ($id ?? '');
 				$data['comp_short_name'] = !empty($_POST['comp_short_name']) ? $_POST['comp_short_name'] : '';
 				$data['inn'] = !empty($_POST['inn']) ? $_POST['inn'] : '';
 				$data['note'] = !empty($_POST['note']) ? $_POST['note'] : '';
 				$data['dostavka_id'] = !empty($_POST['dostavka_id']) ? $_POST['dostavka_id'] : '';
 				$data['address'] = !empty($_POST['address']) ? $_POST['address'] : '';
 				$data['transport_id'] = !empty($_POST['transport_id']) ? $_POST['transport_id'] : '';
-				$city_name = !empty($_POST['city_name']) ? $_POST['city_name'] : '';
-				$cit = \R::findOne('cities', 'city_name = ?', [$city_name]);
-				$data['city_id'] = !empty($cit['city_id']) ? $cit['city_id'] : '';
+				$data['city_id'] = max(0, (int)($_POST['city_id'] ?? 0));
+				$cit = $data['city_id'] ? \R::findOne('cities', 'city_id = ?', [$data['city_id']]) : null;
+				$city_name = (string)($cit['city_name'] ?? '');
 				$data['branch_id'] = !empty($_POST['branch_id']) ? $_POST['branch_id'] : '';
 				$data['groups'] = !empty($_SESSION['user']['groups']) ? $_SESSION['user']['groups'] : $_POST['groups'];
 				$user_email = isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : $_POST['email'];
-				if($_FILES['rekvizity']) { $rekvizity = '1'; }else{ $rekvizity = '0'; }
+				$rekvizity = !empty($_FILES['rekvizity']['tmp_name']) ? '1' : '0';
 				$usm = \R::findOne('user', 'email = ?', [$user_email]);
 				if($data['groups'] == 4){
 					$comp = \R::findOne('company', 'user_id = ?', [$data['user_id']]);

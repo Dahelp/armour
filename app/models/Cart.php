@@ -72,10 +72,7 @@ class Cart extends AppModel {
 				'model' => $model,
             ];
         }
-        $_SESSION['cart.qty'] = isset($_SESSION['cart.qty']) ? $_SESSION['cart.qty'] + $qty : $qty;
-		$_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] + $qty * ($price * $currencyValue) : $qty * ($price * $currencyValue);
-		$_SESSION['cart.weight'] = isset($_SESSION['cart.weight']) ? $_SESSION['cart.weight'] + $qty * $weight : $qty * $weight;
-		$_SESSION['cart.volume'] = isset($_SESSION['cart.volume']) ? $_SESSION['cart.volume'] + $qty * $volume : $qty * $volume;
+        self::recalculateTotals();
     }
 	
 /*	public function addToCartInput($product, $qty, $max,  $mod = null){
@@ -127,15 +124,8 @@ class Cart extends AppModel {
     }*/
 
     public function deleteItem($id){
-        $qtyMinus = $_SESSION['cart'][$id]['qty'];
-		$sumWeight = $qtyMinus * (float)$_SESSION['cart'][$id]['weight'];
-		$sumVolume = $qtyMinus * (float)$_SESSION['cart'][$id]['volume'];
-        $sumMinus = $_SESSION['cart'][$id]['qty'] * $_SESSION['cart'][$id]['price'];
-        $_SESSION['cart.qty'] -= $qtyMinus;
-        $_SESSION['cart.sum'] -= $sumMinus;
-		$_SESSION['cart.weight'] -= $sumWeight;
-		$_SESSION['cart.volume'] -= $sumVolume;		
         unset($_SESSION['cart'][$id]);
+        self::recalculateTotals();
     }
 	
 	public function pluscartItem($id){
@@ -144,34 +134,35 @@ class Cart extends AppModel {
 		if ($max > 0 && $qtyPlus >= $max) {
 			return;
 		}
-        $sumPlus = $_SESSION['cart'][$id]['price'];
-		$weightPlus = $_SESSION['cart'][$id]['weight'];
-		$volumePlus = $_SESSION['cart'][$id]['volume'];
-        $_SESSION['cart.qty'] = $_SESSION['cart.qty'] + 1;
-        $_SESSION['cart.sum'] += $sumPlus;
-		$_SESSION['cart.weight'] += $weightPlus;
-		$_SESSION['cart.volume'] += $volumePlus;
 		$_SESSION['cart'][$id]['qty'] = $_SESSION['cart'][$id]['qty'] + 1;
-		
+        self::recalculateTotals();
     }
 	
 	public function minuscartItem($id){
-        $qtyMinus = $_SESSION['cart'][$id]['qty'];
-        $sumMinus = $_SESSION['cart'][$id]['price'];
-		$weightMinus = $_SESSION['cart'][$id]['weight'];
-		$volumeMinus = $_SESSION['cart'][$id]['volume'];
-        $_SESSION['cart.qty'] = $_SESSION['cart.qty'] - 1;
-        $_SESSION['cart.sum'] -= $sumMinus;
-		$_SESSION['cart.weight'] -= $weightMinus;
-		$_SESSION['cart.volume'] -= $volumeMinus;
 		$_SESSION['cart'][$id]['qty'] = $_SESSION['cart'][$id]['qty'] - 1;
 		if($_SESSION['cart'][$id]['qty'] <= 0){
 			unset($_SESSION['cart'][$id]);
 		}
-		$_SESSION['cart.qty'] = max(0, (int)$_SESSION['cart.qty']);
-		$_SESSION['cart.sum'] = max(0, (float)$_SESSION['cart.sum']);
-		$_SESSION['cart.weight'] = max(0, (float)$_SESSION['cart.weight']);
-		$_SESSION['cart.volume'] = max(0, (float)$_SESSION['cart.volume']);
+        self::recalculateTotals();
+    }
+
+    /** Keep all derived values authoritative even after a partial/legacy session. */
+    public static function recalculateTotals(): void {
+        $qty = 0;
+        $sum = 0.0;
+        $weight = 0.0;
+        $volume = 0.0;
+        foreach ((array)($_SESSION['cart'] ?? []) as $item) {
+            $itemQty = max(0, (int)($item['qty'] ?? 0));
+            $qty += $itemQty;
+            $sum += $itemQty * (float)($item['price'] ?? 0);
+            $weight += $itemQty * (float)($item['weight'] ?? 0);
+            $volume += $itemQty * (float)($item['volume'] ?? 0);
+        }
+        $_SESSION['cart.qty'] = $qty;
+        $_SESSION['cart.sum'] = round($sum, 2);
+        $_SESSION['cart.weight'] = round($weight, 3);
+        $_SESSION['cart.volume'] = round($volume, 3);
     }
 
     public static function recalc($curr){
@@ -191,6 +182,7 @@ class Cart extends AppModel {
             foreach($curr as $k => $v){
                 $_SESSION['cart.currency'][$k] = $v;
             }
+            self::recalculateTotals();
         }
     }
 

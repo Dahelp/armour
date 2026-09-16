@@ -691,3 +691,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+/* Checkout delivery fields: show only controls required by the chosen method. */
+$(document).on('change', '#dostavka_id', function () {
+	var deliveryId = Number($(this).val()) || 0;
+	$('#another_sklad').toggle(deliveryId === 1);
+	$('#another_transport').toggle(deliveryId === 2);
+	$('#another_city').toggle(deliveryId === 2 || deliveryId === 3);
+	$('#another_adress').toggle(deliveryId === 3);
+});

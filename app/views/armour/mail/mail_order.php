@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Заказ №<?=$order_prefix?>на сайте <?=$namecomp?></title>
+    <title>Заказ №<?=htmlspecialchars((string)($ord['inv'] ?? $order_id), ENT_QUOTES, 'UTF-8')?> на сайте <?=htmlspecialchars($namecomp, ENT_QUOTES, 'UTF-8')?></title>
 </head>
 <body>
 <table style="width:740px;background-color:#f4f6f9;font-family:Tahoma, Helvetica, sans-serif;color:#212529;font-size:13px;border:1px solid #eee">
@@ -21,10 +21,10 @@
 						<table cellspacing="0" cellpadding="0" style="width:660px;padding:20px;font-family:Tahoma, Helvetica, sans-serif;color:#212529;font-size:13px" align="center">
 							<tr>
 								<td colspan="4" style="padding:20px 0 20px 0">
-									<p>Здравствуйте <?=$uname?>.<br><br>
+									<p>Здравствуйте <?=htmlspecialchars((string)$uname, ENT_QUOTES, 'UTF-8')?>.<br><br>
 										Благодарим Вас за заказ!<br>
 										Ваш заказ на сайте <?=$namecomp?> оформлен. В ближайшее время с вами свяжутся для подтверждения заказа по email.<br><br>
-										<strong>Ваш заказ: № <?=$order_prefix?><?=$order_id?> от <?=$date?>
+										<strong>Ваш заказ: № <?=htmlspecialchars((string)($ord['inv'] ?? $order_id), ENT_QUOTES, 'UTF-8')?> от <?=htmlspecialchars((string)$date, ENT_QUOTES, 'UTF-8')?></strong>
 									</p>
 									<table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%;">
 										<thead>
@@ -38,10 +38,10 @@
 										<tbody>
 										<?php foreach((array)($_SESSION['cart'] ?? []) as $item): ?>
 											<tr>
-												<td style="padding: 8px; border: 1px solid #ddd;"><?=$item['name'] ?></td>
+												<td style="padding: 8px; border: 1px solid #ddd;"><?=htmlspecialchars((string)$item['name'], ENT_QUOTES, 'UTF-8') ?></td>
 												<td style="padding: 8px; border: 1px solid #ddd;"><?=$item['qty'] ?></td>
-												<td style="padding: 8px; border: 1px solid #ddd;"><?=$item['price'] ?></td>
-												<td style="padding: 8px; border: 1px solid #ddd;"><?=$item['price'] * $item['qty'] ?></td>
+												<td style="padding: 8px; border: 1px solid #ddd;"><?=number_format((float)$item['price'], 2, ',', ' ') ?></td>
+												<td style="padding: 8px; border: 1px solid #ddd;"><?=number_format((float)$item['price'] * (int)$item['qty'], 2, ',', ' ') ?></td>
 											</tr>
 										<?php endforeach;?>
 										<tr>
@@ -50,7 +50,7 @@
 										</tr>
 										<tr>
 											<td colspan="3" style="padding: 8px; border: 1px solid #ddd;">На сумму:</td>
-											<td style="padding: 8px; border: 1px solid #ddd;"><?= $_SESSION['cart.currency']['symbol_left'] . $_SESSION['cart.sum'] . " {$_SESSION['cart.currency']['symbol_right']}" ?></td>
+											<td style="padding: 8px; border: 1px solid #ddd;"><?=htmlspecialchars((string)($_SESSION['cart.currency']['symbol_left'] ?? '') . number_format((float)($_SESSION['cart.sum'] ?? 0), 2, ',', ' ') . (string)($_SESSION['cart.currency']['symbol_right'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
 										</tr>
 										</tbody>
 									</table>
