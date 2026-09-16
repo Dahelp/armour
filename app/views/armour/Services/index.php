@@ -1,14 +1,5 @@
 
-<div class="breadcrumbs">
-    <div class="container">
-		<nav class="mb-4 breadcrumb-blok" aria-label="breadcrumb">
-			<ol class="breadcrumb flex-lg-nowrap">
-                <li class="breadcrumb-item"><a href="<?= PATH ?>"><i class="fas fa-home"></i></a></li>
-                <li class="breadcrumb-item active"><?=$type->name;?></li>
-            </ol>
-		</nav>
-    </div>
-</div>
+<?=\app\models\Breadcrumbs::render([['label' => $type->name]])?>
 <div class="contents">
     <div class="container">
 		<div class="row">

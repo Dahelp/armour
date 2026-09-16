@@ -1,17 +1,8 @@
 
-<div class="storefront-breadcrumb">
-	<div class="col-full">
-		<nav class="woocommerce-breadcrumb" aria-label="breadcrumbs">
-			<a href="<?= PATH ?>">Главная</a>
-			<?php if($type->hide_anons=="show") { ?>
-				<span class="breadcrumb-separator"> / </span>
-				<a href="<?=$type->param_url?>"><?=$type->name;?></a>
-			<?php } ?>
-			<span class="breadcrumb-separator"> / </span>
-			<?=$find->name;?>			
-		</nav>
-	</div>
-</div>
+<?=\app\models\Breadcrumbs::render(array_merge(
+	$type->hide_anons === 'show' ? [['label' => $type->name, 'url' => $type->param_url]] : [],
+	[['label' => $find->name]]
+))?>
 <div id="content" class="site-content" tabindex="-1">
 	<div class="col-full">
 		<div id="primary" class="content-area">

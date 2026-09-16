@@ -1,18 +1,9 @@
 <?php $order_prefix = \ishop\App::options('order_prefix'); ?>
-<!--start-breadcrumbs-->
-<div class="breadcrumbs">
-    <div class="container">
-		<nav class="mb-4 breadcrumb-blok" aria-label="breadcrumb">
-			<ol class="breadcrumb flex-lg-nowrap">
-                <li class="breadcrumb-item"><a href="<?= PATH ?>"><i class="fas fa-home"></i></a></li>
-				<li class="breadcrumb-item"><a href="<?= PATH ?>/user/cabinet">Личный кабинет</a></li>
-                <li class="breadcrumb-item active"><a href="<?= PATH ?>/user/orders">История заказов</a></li>
-				<li class="breadcrumb-item active">Заказ №<?=$order_prefix?><?=$_GET["id"]?></li>
-            </ol>
-		</nav>
-    </div>
-</div>
-<!--end-breadcrumbs-->
+<?=\app\models\Breadcrumbs::render([
+	['label' => 'Личный кабинет', 'url' => PATH . '/user/cabinet'],
+	['label' => 'История заказов', 'url' => PATH . '/user/orders'],
+	['label' => 'Заказ №' . $order_prefix . ($_GET['id'] ?? '')],
+])?>
 <?php $curr = \ishop\App::$app->getProperty('currency'); ?>
 <!--prdt-starts-->
 <div class="prdt">

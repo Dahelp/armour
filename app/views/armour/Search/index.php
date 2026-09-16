@@ -1,11 +1,6 @@
 <div class="prdt">
     <div class="container">
-        <nav class="mb-4 breadcrumb-blok" aria-label="Хлебные крошки">
-            <ol class="breadcrumb flex-lg-nowrap">
-                <li class="breadcrumb-item"><a href="<?=PATH?>" aria-label="Главная"><i class="fas fa-home" aria-hidden="true"></i></a></li>
-                <li class="breadcrumb-item text-nowrap active">Поиск по запросу «<?=h($query)?>»</li>
-            </ol>
-        </nav>
+        <?=\app\models\Breadcrumbs::render([['label' => 'Поиск по запросу «' . $query . '»']])?>
         <section class="d-md-flex justify-content-between align-items-center mb-4 pb-2">
             <h1 class="h2 mb-3 mb-md-0 me-3">Поиск по запросу: <strong><?=h($query)?></strong></h1>
         </section>

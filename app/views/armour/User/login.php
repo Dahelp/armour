@@ -1,15 +1,4 @@
-<!--start-breadcrumbs-->
-<div class="breadcrumbs">
-    <div class="container">
-        <div class="breadcrumbs-main">
-            <ol class="breadcrumb">
-                <li><a href="<?= PATH ?>">Главная</a></li>
-                <li>Вход</li>
-            </ol>
-        </div>
-    </div>
-</div>
-<!--end-breadcrumbs-->
+<?=\app\models\Breadcrumbs::render([['label' => 'Вход']])?>
 <!--prdt-starts-->
 <div class="prdt">
     <div class="container">

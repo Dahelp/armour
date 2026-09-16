@@ -1,17 +1,8 @@
 
-<div class="breadcrumbs">
-    <div class="container">
-		<nav class="mb-4 breadcrumb-blok" aria-label="breadcrumb">
-			<ol class="breadcrumb flex-lg-nowrap">
-                <li class="breadcrumb-item"><a href="<?= PATH ?>"><i class="fas fa-home"></i></a></li>
-				<?php if($type->hide_anons) { ?>
-					<li class="breadcrumb-item active"><a href="<?=$type->param_url?>"><?=$type->name;?></a></li>
-				<?php } ?>
-                <li class="breadcrumb-item active"><?=$find->name;?></li>
-            </ol>
-		</nav>
-    </div>
-</div>
+<?=\app\models\Breadcrumbs::render(array_merge(
+	$type->hide_anons ? [['label' => $type->name, 'url' => $type->param_url]] : [],
+	[['label' => $find->name]]
+))?>
 <div class="contents">
     <div class="container">
 		<div class="row">		

@@ -2,15 +2,7 @@
 <!--prdt-starts-->
 <div class="prdt">
     <div class="container">
-		<!--start-breadcrumbs-->
-		<nav class="mb-4 breadcrumb-blok" aria-label="breadcrumb">
-			<ol class="breadcrumb flex-lg-nowrap">
-                <li class="breadcrumb-item"><a href="<?= PATH ?>"><i class="fas fa-home"></i></a></li>
-				<li class="breadcrumb-item active"><a href="<?=$params->url_params?>"><?=$params->title;?></a></li>				
-                <li class="breadcrumb-item active"><?=$find->value;?></li>
-            </ol>
-		</nav>
-		<!--end-breadcrumbs-->
+		<?=\app\models\Breadcrumbs::render([['label' => $params->title, 'url' => $params->url_params], ['label' => $find->value]])?>
 		<section class="align-items-center">
             <h1 class="h2 mb-3 mb-md-0 me-3">
 				<?php

@@ -1,10 +1,4 @@
-<div class="storefront-breadcrumb">
-	<div class="col-full">
-		<nav class="woocommerce-breadcrumb" aria-label="breadcrumbs">
-			<?=$breadcrumbs;?>
-		</nav>
-	</div>
-</div>
+<?=$breadcrumbs;?>
 <?php
 $productUrl = rtrim(PATH, '/') . '/' . ltrim((string)($this->route['alias'] ?? $product->alias), '/');
 $productImage = !empty($product->img)

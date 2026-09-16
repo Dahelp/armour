@@ -1,17 +1,5 @@
 <?php $user = \R::findOne('user', 'id = ?', [$_SESSION['user']['id']]); ?>
-<!--start-breadcrumbs-->
-<div class="breadcrumbs">
-    <div class="container">        
-		<nav class="mb-4 breadcrumb-blok" aria-label="breadcrumb">
-			<ol class="breadcrumb flex-lg-nowrap">
-                <li class="breadcrumb-item"><a href="<?= PATH ?>"><i class="fas fa-home"></i></a></li>
-				<li class="breadcrumb-item"><a href="<?= PATH ?>/user/cabinet">Личный кабинет</a></li>
-                <li class="breadcrumb-item active">Редактирование профиля</li>
-            </ol>
-		</nav>
-    </div>
-</div>
-<!--end-breadcrumbs-->
+<?=\app\models\Breadcrumbs::render([['label' => 'Личный кабинет', 'url' => PATH . '/user/cabinet'], ['label' => 'Редактирование профиля']])?>
 <!--prdt-starts-->
 <div class="prdt">
     <div class="container">

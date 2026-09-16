@@ -1,16 +1,4 @@
-<!--start-breadcrumbs-->
-<div class="breadcrumbs">
-    <div class="container">
-        <!--start-breadcrumbs-->
-		<nav class="mb-4 breadcrumb-blok" aria-label="breadcrumb">
-			<ol class="breadcrumb flex-lg-nowrap">
-                <li class="breadcrumb-item"><a href="<?= PATH ?>"><i class="fas fa-home"></i></a></li>
-                <li class="breadcrumb-item active">Каталог техники</li>
-            </ol>
-		</nav>
-    </div>
-</div>
-<!--end-breadcrumbs-->
+<?=\app\models\Breadcrumbs::render([['label' => 'Каталог техники']])?>
 <!--start-single-->
 <div class="single contact">
     <div class="container">

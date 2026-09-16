@@ -1,13 +1,5 @@
 <?php $inseo_prod = $inseoProd; ?>
-<!--start-breadcrumbs-->
-<div class="storefront-breadcrumb">
-	<div class="col-full">
-		<nav class="woocommerce-breadcrumb" aria-label="breadcrumbs">
-			<?=$breadcrumbs;?>
-		</nav>
-	</div>
-</div>
-<!--end-breadcrumbs-->
+<?=$breadcrumbs;?>
 <!--prdt-starts-->
 <?php $curr = \ishop\App::$app->getProperty('currency'); ?>
 <div id="content" class="site-content left-sidebar" tabindex="-1">

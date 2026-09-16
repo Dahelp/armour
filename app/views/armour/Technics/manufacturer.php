@@ -1,18 +1,8 @@
-<!--start-breadcrumbs-->
-<div class="breadcrumbs">
-    <div class="container">
-        <!--start-breadcrumbs-->
-		<nav class="mb-4 breadcrumb-blok" aria-label="breadcrumb">
-			<ol class="breadcrumb flex-lg-nowrap">
-                <li class="breadcrumb-item"><a href="<?= PATH ?>"><i class="fas fa-home"></i></a></li>
-				<li class="breadcrumb-item"><a href="technics">Каталог техники</a></li>
-				<li class="breadcrumb-item"><a href="technics/type/<?=$type["alias"]?>">Производители <?=$type["seoname_1"]?></a></li>
-                <li class="breadcrumb-item active"><?php echo \ishop\App::upFirstLetter($type["seoname_3"]);?> <?=$manufacturer["name"]?></li>
-            </ol>
-		</nav>
-    </div>
-</div>
-<!--end-breadcrumbs-->
+<?=\app\models\Breadcrumbs::render([
+	['label' => 'Каталог техники', 'url' => PATH . '/technics'],
+	['label' => 'Производители ' . $type['seoname_1'], 'url' => PATH . '/technics/type/' . $type['alias']],
+	['label' => \ishop\App::upFirstLetter($type['seoname_3']) . ' ' . $manufacturer['name']],
+])?>
 <!--start-single-->
 <div class="single contact">
     <div class="container">

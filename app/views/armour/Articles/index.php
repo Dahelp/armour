@@ -1,12 +1,5 @@
 
-<div class="storefront-breadcrumb">
-	<div class="col-full">
-		<nav class="woocommerce-breadcrumb" aria-label="breadcrumbs">
-			<a href="<?= PATH ?>">Главная</a>
-			<span class="breadcrumb-separator"> / </span><?=$type->name;?>
-		</nav>
-	</div>
-</div>
+<?=\app\models\Breadcrumbs::render([['label' => $type->name]])?>
 <div id="content" class="site-content" tabindex="-1">
     <div class="col-full">
 		<div class="woocommerce"></div>
