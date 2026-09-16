@@ -12,7 +12,7 @@ $schema=[
 ];
 ?>
 <script type="application/ld+json"><?=json_encode($schema,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_THROW_ON_ERROR)?></script>
-<div class="storefront-breadcrumb"><div class="col-full"><nav class="woocommerce-breadcrumb" aria-label="breadcrumbs"><a href="/">Главная</a> / <a href="/catalog">Каталог</a> / <?=h((string)$cross['cross_vendor'])?> <?=h((string)$cross['cross_name'])?></nav></div></div>
+<div class="storefront-breadcrumb"><div class="col-full"><nav class="woocommerce-breadcrumb" aria-label="breadcrumbs"><a href="/">Главная</a> / <?=h((string)$cross['cross_vendor'])?> <?=h((string)$cross['cross_name'])?></nav></div></div>
 <div id="content" class="site-content single-product" tabindex="-1"><div class="col-full"><main class="site-main">
 <article class="i-product product"><div class="grid full-box">
 <div class="width-1-3 gallery-width"><figure class="woocommerce-product-gallery__wrapper"><a href="<?=h($productPath)?>"><img src="<?=h($productImage)?>" class="wp-post-image" alt="<?=h((string)$cross['product_name'])?> — аналог <?=h((string)$cross['cross_name'])?>"></a></figure></div>

@@ -11,7 +11,7 @@ class Breadcrumbs{
         $breadcrumbs_array = self::getParts($cats, $category_id);
 
         if($breadcrumbs_array){			
-			$breadcrumbs = "<a href='" . PATH . "'>Главная</a><span class='breadcrumb-separator'> / </span><a href='" . PATH . "/catalog'>Каталог</a><span class='breadcrumb-separator'> / </span>";
+			$breadcrumbs = "<a href='" . PATH . "'>Главная</a><span class='breadcrumb-separator'> / </span>";
 			$categoryTypes = [];
 			foreach ($cats as $category) {
 				$categoryTypes[(string)$category['alias']] = (int)($category['type_id'] ?? 0);
@@ -37,7 +37,7 @@ class Breadcrumbs{
             }
         }else{
 			if($bname){
-				$breadcrumbs = "<a itemprop='item' class='text-nowrap' href='" . PATH . "'>Главная</a><span class='breadcrumb-separator'> / </span><a itemprop='item' class='text-nowrap' href='" . PATH . "/catalog'>Каталог</a>";
+				$breadcrumbs = "<a itemprop='item' class='text-nowrap' href='" . PATH . "'>Главная</a><span class='breadcrumb-separator'> / </span>";
 			}else{
 				$breadcrumbs = "<a itemprop='item' class='text-nowrap' href='" . PATH . "'>Главная</a><span class='breadcrumb-separator'> / </span>Каталог";
 			}
