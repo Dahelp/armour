@@ -75,20 +75,18 @@ class Pagination{
     }
 
     public function getParams(){
-        $url = $_SERVER['REQUEST_URI'];
-        preg_match_all("#filter=[\d,&]#", $url, $matches);
-        if(count($matches[0]) > 1){
-            $url = preg_replace("#filter=[\d,&]+#", "", $url, 1);
+        $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
+        $path = parse_url($requestUri, PHP_URL_PATH) ?: '/';
+        $query = parse_url($requestUri, PHP_URL_QUERY) ?: '';
+        parse_str($query, $params);
+        unset($params['page']);
+
+        if ($params === []) {
+            return $path . '?';
         }
-        $url = explode('?', $url);
-        $uri = $url[0] . '?';
-        if(isset($url[1]) && $url[1] != ''){
-            $params = explode('&', $url[1]);
-            foreach($params as $param){
-                if(!preg_match("#page=#", $param)) $uri .= "{$param}&amp;";
-            }
-        }
-        return urldecode($uri);
+
+        $query = str_replace('%2C', ',', http_build_query($params, '', '&amp;', PHP_QUERY_RFC3986));
+        return $path . '?' . $query . '&amp;';
     }
 
 }

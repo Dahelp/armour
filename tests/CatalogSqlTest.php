@@ -40,6 +40,10 @@ $treeIds = $categoryModel->getIdList(1);
 sort($treeIds, SORT_NUMERIC);
 sqlAssert($treeIds === [1, 2, 3, 4], 'Category descendants were collected incorrectly.');
 
+$_SERVER['REQUEST_URI'] = '/industrialnye-shiny?filter=49,17&page=2&sort=price';
+$pagination = new \ishop\libs\Pagination(2, 20, 60);
+sqlAssert($pagination->uri === '/industrialnye-shiny?filter=49,17&amp;sort=price&amp;', 'Pagination must retain every active filter and sort parameter.');
+
 $migration = (string)file_get_contents(dirname(__DIR__) . '/database/migrations/20260828_003_add_catalog_performance_indexes.sql');
 foreach (['product', 'attribute_product', 'product_attribute', 'related_product', 'similar_product', 'review_product'] as $table) {
     sqlAssert(str_contains($migration, "'$table'"), "Missing performance index for $table.");

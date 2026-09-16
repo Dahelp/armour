@@ -7,26 +7,9 @@ $('body').on('change', '.w_sidebar select', function(){
 		var requestUrl = new URL(window.location.href);
 		requestUrl.searchParams.set('filter', data);
 		requestUrl.searchParams.delete('page');
-        $.ajax({
-            url: requestUrl.pathname + requestUrl.search,
-            type: 'GET',
-            beforeSend: function(){
-                $('.preloader').fadeIn(300, function(){
-                    $('.product-one').hide();
-                });
-            },
-            success: function(res){
-                $('.preloader').delay(500).fadeOut('slow', function(){
-                    $('.product-one').html(res).fadeIn();
-					history.pushState({}, '', requestUrl.pathname + requestUrl.search);
-                });
-            },
-            error: function () {
-                alert('Ошибка!');
-            }
-        });
+		window.location.assign(requestUrl.pathname + requestUrl.search);
     }else{
-        window.location = location.pathname;
+		window.location.assign(location.pathname);
     }
 });
 

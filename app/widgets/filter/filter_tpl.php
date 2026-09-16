@@ -7,7 +7,7 @@
 				<select data-placeholder="<?=$group_item['title'];?>" multiple="multiple" class="form-control select js-select2">
                 <?php foreach($this->attrs[$group_id] as $attr_id => $value): ?>
 
-						<option value="<?=$attr_id;?>" data-badge=""><?=$value;?></option>
+						<option value="<?=$attr_id;?>" data-badge=""<?=in_array((string)$attr_id, $filter ?? [], true) ? ' selected' : '';?>><?=$value;?></option>
 
                 <?php endforeach; ?>
 				</select>
