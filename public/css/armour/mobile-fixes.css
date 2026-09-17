@@ -1300,7 +1300,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .header-contacts__hours {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 3px;
         min-width: 0;
     }
 
@@ -1339,7 +1339,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         border-bottom: 1px dashed #262626;
         color: #262626 !important;
         font-size: 13px;
-        line-height: 1.25;
+        line-height: 16px !important;
         margin-left: 12px;
         padding: 0 !important;
         text-decoration: none;
@@ -1359,7 +1359,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         display: flex;
         font-size: 14px;
         gap: 6px;
-        line-height: 1.18;
+        line-height: 16px !important;
         text-decoration: none;
     }
 
@@ -1375,17 +1375,12 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         font-size: 11px;
         gap: 1px;
         grid-area: hours;
-        line-height: 1.2;
+        line-height: 13px !important;
         padding-left: 12px;
     }
 
     .header-contacts__hours-title {
-        align-items: center;
-        color: #102f4a;
-        display: flex;
-        font-size: 11px;
-        font-weight: 700;
-        gap: 6px;
+        display: none;
     }
 
     .header-contacts__hours-title .far {
