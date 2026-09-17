@@ -167,19 +167,20 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 				</div>
 				<div class="widget_text site-phone">
 					<div class="textwidget custom-html-widget">
-						<div class="grid decstop all-page">
-							<div class="width-1-2">
-								<p><a href="#" class="btn btn-call show_form" rel="form2">Обратный звонок</a>
-								</p>
-								<p><a href="#" class="btn btn-send show_form" rel="form3">Написать сообщение</a></p>
+						<div class="grid decstop all-page header-contacts">
+							<div class="header-contacts__actions">
+								<a href="#" class="btn btn-call header-contacts__callback show_form" rel="form2"><i class="fas fa-phone-alt" aria-hidden="true"></i>Обратный звонок</a>
+								<a href="#" class="btn btn-send header-contacts__message show_form" rel="form3">Написать сообщение</a>
 							</div>
-							<div class="width-1-2 position-relative site-phone__number">
-								<p class="font-14">
-									
-									<a class="contact-link" href="tel:+79250707707">+7(925) <span>070 77 07</span></a><br>
-									<a class="contact-link" href="tel:+79250707707">+7(903) <span>540 60 60</span></a><br>
-									<a class="contact-link" href="mailto:a30@its50.ru">a30@its50.ru</a>
-								</p>
+							<div class="header-contacts__details position-relative site-phone__number">
+								<a class="contact-link header-contacts__item" href="tel:+79250707707"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>+7(925) 070 77 07</span></a>
+								<a class="contact-link header-contacts__item" href="tel:+79035406060"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>+7(903) 540 60 60</span></a>
+								<a class="contact-link header-contacts__item" href="mailto:a30@its50.ru"><i class="fas fa-envelope" aria-hidden="true"></i><span>a30@its50.ru</span></a>
+							</div>
+							<div class="header-contacts__hours">
+								<div class="header-contacts__hours-title"><i class="far fa-clock" aria-hidden="true"></i>Режим работы</div>
+								<div>Пн-Пт: 9:00-17:00</div>
+								<div>Сб-Вс: выходной</div>
 							</div>
 						</div>
 						<div class="grid mobile all-page">

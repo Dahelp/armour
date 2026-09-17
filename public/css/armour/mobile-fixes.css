@@ -1266,3 +1266,140 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     }
 }
 }
+
+@media (min-width: 1101px) {
+    .site-header .site-phone {
+        flex: 0 0 430px;
+        width: 430px !important;
+    }
+
+    .header-contacts {
+        align-items: center;
+        display: grid;
+        gap: 18px;
+        grid-template-columns: auto auto auto;
+        justify-content: end;
+        margin: 0;
+    }
+
+    .header-contacts__actions,
+    .header-contacts__details,
+    .header-contacts__hours {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        min-width: 0;
+    }
+
+    .header-contacts__actions {
+        align-items: flex-start;
+        padding-right: 2px;
+    }
+
+    .site-phone .header-contacts__callback {
+        align-items: center;
+        background: #12a33a;
+        border: 0;
+        border-radius: 8px;
+        color: #fff !important;
+        display: inline-flex;
+        font-size: 14px;
+        font-weight: 700;
+        gap: 8px;
+        line-height: 1.2;
+        padding: 12px 18px;
+        text-decoration: none;
+        transition: background-color .2s ease, transform .2s ease;
+    }
+
+    .site-phone .header-contacts__callback:hover,
+    .site-phone .header-contacts__callback:focus {
+        background: #0f8f33;
+        transform: translateY(-1px);
+    }
+
+    .site-phone .header-contacts__message {
+        border-bottom: 1px dashed #262626;
+        color: #262626 !important;
+        font-size: 14px;
+        line-height: 1.25;
+        padding: 0;
+        text-decoration: none;
+    }
+
+    .header-contacts__details {
+        border-left: 1px solid #d9e1e7;
+        padding-left: 18px;
+    }
+
+    .site-phone .header-contacts__item {
+        align-items: center;
+        color: #111 !important;
+        display: flex;
+        font-size: 16px;
+        gap: 8px;
+        line-height: 1.1;
+        text-decoration: none;
+    }
+
+    .header-contacts__item .fas {
+        color: #0b8f35;
+        font-size: 13px;
+        width: 15px;
+    }
+
+    .header-contacts__hours {
+        border-left: 1px solid #d9e1e7;
+        color: #53626e;
+        font-size: 13px;
+        line-height: 1.25;
+        padding-left: 18px;
+    }
+
+    .header-contacts__hours-title {
+        align-items: center;
+        color: #102f4a;
+        display: flex;
+        font-size: 14px;
+        font-weight: 700;
+        gap: 8px;
+    }
+
+    .header-contacts__hours-title .far {
+        color: #0b8f35;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1101px) and (max-width: 1240px) {
+    .site-header > .col-full.flex {
+        gap: 14px;
+    }
+
+    body.woocommerce-active .site-header .site-branding {
+        flex-basis: 200px;
+        width: 200px !important;
+    }
+
+    .site-header .site-search {
+        flex-basis: 330px;
+    }
+
+    .site-header .site-phone {
+        flex-basis: 405px;
+        width: 405px !important;
+    }
+
+    .header-contacts {
+        gap: 13px;
+    }
+
+    .header-contacts__details,
+    .header-contacts__hours {
+        padding-left: 13px;
+    }
+
+    .site-phone .header-contacts__callback {
+        padding: 11px 14px;
+    }
+}
