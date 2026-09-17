@@ -1269,18 +1269,18 @@ ul.products li.product .box-price-btn .product-card-unified__price {
 
 @media (min-width: 1101px) {
     .site-header .site-phone {
-        flex: 0 0 365px;
-        width: 365px !important;
+        flex: 0 0 310px;
+        width: 310px !important;
     }
 
     .header-contacts {
         align-items: center;
         display: grid;
-        gap: 8px 18px;
+        gap: 7px 12px;
         grid-template-areas:
             "actions details"
             "hours details";
-        grid-template-columns: 150px 185px;
+        grid-template-columns: 126px 164px;
         justify-content: end;
         margin: 0;
     }
@@ -1312,8 +1312,8 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         gap: 8px;
         justify-content: center;
         line-height: 1.2;
-        min-width: 150px;
-        padding: 12px 14px;
+        min-width: 126px;
+        padding: 11px 12px;
         text-decoration: none;
         transition: background-color .2s ease, transform .2s ease;
     }
@@ -1329,7 +1329,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         color: #262626 !important;
         font-size: 14px;
         line-height: 1.25;
-        margin-left: 18px;
+        margin-left: 10px;
         padding: 0;
         text-decoration: none;
     }
@@ -1337,24 +1337,24 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .header-contacts__details {
         border-left: 1px solid #d9e1e7;
         grid-area: details;
-        padding-left: 18px;
+        padding-left: 12px;
     }
 
     .site-phone .header-contacts__item {
         align-items: center;
         color: #111 !important;
         display: flex;
-        font-size: 15px;
-        gap: 8px;
+        font-size: 14px;
+        gap: 6px;
         line-height: 1.1;
         text-decoration: none;
     }
 
     .header-contacts__item .fas {
         color: #0b8f35;
-        font-size: 13px;
-        flex: 0 0 15px;
-        width: 15px;
+        font-size: 12px;
+        flex: 0 0 13px;
+        width: 13px;
     }
 
     .header-contacts__hours {
@@ -1363,16 +1363,16 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         gap: 3px;
         grid-area: hours;
         line-height: 1.25;
-        padding-left: 18px;
+        padding-left: 10px;
     }
 
     .header-contacts__hours-title {
         align-items: center;
         color: #102f4a;
         display: flex;
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
-        gap: 8px;
+        gap: 6px;
     }
 
     .header-contacts__hours-title .far {
@@ -1396,23 +1396,23 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     }
 
     .site-header .site-phone {
-        flex-basis: 345px;
-        width: 345px !important;
+        flex-basis: 300px;
+        width: 300px !important;
     }
 
     .header-contacts {
-        gap: 7px 14px;
-        grid-template-columns: 142px 175px;
+        gap: 6px 10px;
+        grid-template-columns: 124px 158px;
     }
 
     .header-contacts__details,
     .header-contacts__hours {
-        padding-left: 14px;
+        padding-left: 10px;
     }
 
     .site-phone .header-contacts__callback {
-        min-width: 142px;
-        padding: 11px 12px;
+        min-width: 124px;
+        padding: 10px 10px;
     }
 
     .site-phone .header-contacts__item {
