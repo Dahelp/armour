@@ -177,7 +177,8 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 								<p class="font-14">
 									
 									<a class="contact-link" href="tel:+79250707707">+7(925) <span>070 77 07</span></a><br>
-									<a class="contact-link" href="tel:+79250707707">+7(903) <span>540 60 60</span></a>
+									<a class="contact-link" href="tel:+79250707707">+7(903) <span>540 60 60</span></a><br>
+									<a class="contact-link" href="mailto:a30@its50.ru">a30@its50.ru</a>
 								</p>
 							</div>
 						</div>
@@ -269,7 +270,6 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 	<li id="menu-item-21999" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-21999 menu-item"><a href="/news">Новости</a></li>
 </ul>
 </li>
-<li id="menu-item-5895" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5895 menu-item"><a href="/contacts">Контакты</a></li>
 </ul></nav>    <div class="menu-block menu-block--empty"></div>
 <nav class="mobile-menu-shortcuts" aria-label="Навигация для мобильных устройств" style="display: none;">
     <span class="mobile-menu-shortcuts__heading">Каталог продукции</span>
@@ -281,7 +281,6 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
         <a href="/dostavka">Доставка и оплата</a>
         <a href="/comp">О компании</a>
         <a href="/articles">Статьи</a>
-        <a href="/contacts">Контакты</a>
     </div>
 </nav>
 </div>
@@ -407,8 +406,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 						<div class="textwidget custom-html-widget">
 							<p class="text-bold font-15 footer-caption">Присоединяйтесь к нам в соцсетях</p>
 							<div class="socimg">
-								<a target="_blank" href="https://vk.com/armourshina" title="ВКонтакте" rel="nofollow"><i class="fab fa-vk" style="font-size:24px;line-height: 1; color: var(--white);"></i></a>
-								<a target="_blank" href="https://ok.ru/armourshina" title="Одноклассники" rel="nofollow"><i class="fab fa-odnoklassniki-square" style="font-size:24px;line-height: 1; color: var(--white);"></i></a>
+								<a target="_blank" href="https://vk.com/techtires" title="ВКонтакте" rel="nofollow"><i class="fab fa-vk" style="font-size:24px;line-height: 1; color: var(--white);"></i></a>
 							</div>
 						</div>
 					</div>
@@ -441,7 +439,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 				<div class="widget_text widget widget_custom_html">
 					<p class="text-bold font-15 footer-caption">Остались вопросы?</p>
 					<div>
-						<i class="icon icon-mail-white"></i><a href="mailto:info@techtires.ru">info@techtires.ru</a>
+						<i class="icon icon-mail-white"></i><a href="mailto:a30@its50.ru">a30@its50.ru</a>
 					</div>
 					<div class="text-center">
 						<a href="#" class="text-uppercase font-14 btn btn-border btn-border-white btn-send show_form" rel="form3">Задать вопрос</a>

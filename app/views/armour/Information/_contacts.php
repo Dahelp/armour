@@ -2,7 +2,7 @@
 
 <div class="information-grid information-grid--contacts">
     <section><h2>Телефоны</h2><p><a href="tel:+79250707707">+7 (925) 070-77-07</a><br><a href="tel:+79035406060">+7 (903) 540-60-60</a></p></section>
-    <section><h2>Электронная почта</h2><p><a href="mailto:info@techtires.ru">info@techtires.ru</a></p></section>
+    <section><h2>Электронная почта</h2><p><a href="mailto:a30@its50.ru">a30@its50.ru</a></p></section>
     <section><h2>Режим работы</h2><p>Пн–Пт: 09:00–17:00<br>Сб–Вс: выходной</p></section>
 </div>
 

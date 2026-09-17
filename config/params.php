@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'admin_email' => 'info@techtires.ru',
+    'admin_email' => 'a30@its50.ru',
     'shop_name' => 'ТехШина',
 	'shop_description' => 'Промышленные шины для погрузчиков и спецтехники, диски и фильтры',
 	'og_logo' => 'banners/hero-industrial-tires-v2.webp',
