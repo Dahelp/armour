@@ -1336,6 +1336,8 @@ ul.products li.product .box-price-btn .product-card-unified__price {
 
     .header-contacts__details {
         border-left: 1px solid #d9e1e7;
+        display: flex !important;
+        flex-direction: column !important;
         grid-area: details;
         padding-left: 12px;
     }
