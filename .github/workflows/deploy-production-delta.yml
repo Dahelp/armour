@@ -1,12 +1,6 @@
 name: Deploy production source delta
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - app/views/armour/Search/index.php
-      - .github/workflows/deploy-production-delta.yml
   workflow_dispatch:
 
 concurrency:
