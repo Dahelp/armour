@@ -1307,6 +1307,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         align-items: flex-start;
         grid-area: actions;
         justify-content: center;
+        padding: 0 !important;
     }
 
     .site-phone .header-contacts__callback {
