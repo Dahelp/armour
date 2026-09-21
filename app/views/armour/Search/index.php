@@ -7,12 +7,12 @@
 
         <?php if (!empty($products)): ?>
             <?php $curr = \ishop\App::$app->getProperty('currency'); ?>
-            <div class="woocommerce columns-4 product-search-results">
-                <ul class="products columns-4">
+            <div class="row g-0 mx-n2 product-one product-search-results">
                     <?php foreach ($products as $product): ?>
-                        <?php new \app\widgets\product\Product($product, $curr); ?>
+                        <div class="col-xl-3 col-lg-6 col-md-4 col-sm-6 mb-3">
+                            <?php new \app\widgets\product\Product($product, $curr, 'product_tpl.php'); ?>
+                        </div>
                     <?php endforeach; ?>
-                </ul>
             </div>
             <div class="text-center product-results-count">
                 <p>Показано: <?=count($products)?> из <?=$total?></p>
