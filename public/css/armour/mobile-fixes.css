@@ -233,6 +233,86 @@
     .home-hero__lead { max-width: 320px; }
 }
 
+/* Keep mobile actions compact: they sit beside the main phone number. */
+@media (max-width: 767px) {
+    header.site-header {
+        height: 166px !important;
+        min-height: 166px;
+    }
+
+    .site-header > .col-full.flex {
+        height: 122px;
+    }
+
+    .site-header .site-phone {
+        display: block !important;
+        left: 148px;
+        right: auto;
+        top: 15px;
+        width: 52px !important;
+    }
+
+    .mobile .site-phone__number {
+        gap: 4px;
+    }
+
+    .mobile .site-phone__number > p {
+        flex: 0 0 24px;
+    }
+
+    .site-phone .mobile .site-phone__number a {
+        border-radius: 4px;
+        height: 28px;
+        min-width: 24px;
+        padding: 0;
+        width: 24px;
+    }
+
+    .site-phone .mobile .site-phone__number .btn-call {
+        background: #12a33a;
+    }
+
+    .site-phone .mobile .site-phone__number .btn-send {
+        background: #fff;
+        border: 1px solid #0b8f35;
+    }
+
+    .site-phone .mobile .site-phone__number .btn-call::after,
+    .site-phone .mobile .site-phone__number .btn-send::after {
+        content: none;
+    }
+
+    .site-phone .mobile .site-phone__number .fas {
+        font-size: 13px;
+    }
+
+    .mobile .site-phone__number > p.font-14,
+    .mobile .site-phone__number .hide-phone {
+        display: none !important;
+    }
+
+    .site-header .site-search {
+        top: 65px;
+    }
+
+    .site-header .site-search .dgwt-wcas-search-wrapp,
+    .site-header .site-search form,
+    .site-header .site-search .dgwt-wcas-sf-wrapp {
+        width: 100% !important;
+    }
+
+    div.storefront-primary-navigation,
+    .header-menu-mobile {
+        top: 122px;
+    }
+
+    .menu-wrapper.mobile-menu-open {
+        height: calc(100vh - 166px) !important;
+        max-height: calc(100vh - 166px) !important;
+        top: 166px;
+    }
+}
+
 /* A compact but complete mobile header: contacts, search and catalogue are always available. */
 .mobile-header-details { display: none; }
 
@@ -1758,4 +1838,27 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .header-contacts__details {
         padding-left: 12px;
     }
+}
+
+@media (max-width: 767px) {
+    header.site-header { height: 166px !important; min-height: 166px; }
+    .site-header > .col-full.flex { height: 122px; }
+    .site-header .site-phone { display: block !important; left: 148px; right: auto; top: 15px; width: 52px !important; }
+    .mobile .site-phone__number { gap: 4px; }
+    .mobile .site-phone__number > p { flex: 0 0 24px; }
+    .site-phone .mobile .site-phone__number a { border-radius: 4px; height: 28px; min-width: 24px; padding: 0; width: 24px; }
+    .site-phone .mobile .site-phone__number .btn-call { background: #12a33a; }
+    .site-phone .mobile .site-phone__number .btn-send { background: #fff; border: 1px solid #0b8f35; }
+    .site-phone .mobile .site-phone__number .btn-call::after,
+    .site-phone .mobile .site-phone__number .btn-send::after { content: none; }
+    .site-phone .mobile .site-phone__number .fas { font-size: 13px; }
+    .mobile .site-phone__number > p.font-14,
+    .mobile .site-phone__number .hide-phone { display: none !important; }
+    .site-header .site-search { top: 65px; }
+    .site-header .site-search .dgwt-wcas-search-wrapp,
+    .site-header .site-search form,
+    .site-header .site-search .dgwt-wcas-sf-wrapp { width: 100% !important; }
+    div.storefront-primary-navigation,
+    .header-menu-mobile { top: 122px; }
+    .menu-wrapper.mobile-menu-open { height: calc(100vh - 166px) !important; max-height: calc(100vh - 166px) !important; top: 166px; }
 }
