@@ -86,6 +86,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel='stylesheet' id='app-style-css' href='css/armour/style.min.css' media='all' />
 <link rel='stylesheet' id='product-tabs-style-css' href='/css/armour/product-tabs.css?v=<?=filemtime(WWW.'/css/armour/product-tabs.css')?>' media='all' />
 <link rel='stylesheet' id='mobile-fixes-css' href='/css/armour/mobile-fixes.css?v=<?=filemtime(WWW.'/css/armour/mobile-fixes.css')?>' media='all' />
+<link rel='stylesheet' id='store-header-css' href='/css/armour/store-header.css?v=<?=filemtime(WWW.'/css/armour/store-header.css')?>' media='all' />
 <link rel='stylesheet' id='cart-style-css' href='/css/armour/cart.css?v=<?=filemtime(WWW.'/css/armour/cart.css')?>' media='all' />
 <link rel="stylesheet" href="public/adminlte/plugins/select2/css/select2.min.css" />
 <link rel="stylesheet" href="public/adminlte/plugins/select2-bootstrap5-theme/select2-bootstrap-5-theme.min.css" />
@@ -134,9 +135,9 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <body class="woocommerce-active">
 	<div class="preloader" id="preloader"><img src="images/ring.svg" width="150" height="150" alt=""></div>
 	<div id="page" class="hfeed site">    
-		<header id="masthead" class="site-header prochie-tovary premium-header" role="banner" style="">
-			<div class="col-full flex">
-				<div class="site-branding">
+		<header id="masthead" class="site-header prochie-tovary store-header" role="banner">
+			<div class="col-full store-header__top">
+				<div class="store-header__brand">
 					<a href="/" class="custom-logo-link" rel="home" aria-label="ТехШина — промышленные шины">
 						<svg class="custom-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" role="img" aria-labelledby="techtires-logo-title">
 							<title id="techtires-logo-title">ТехШина</title>
@@ -145,17 +146,17 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 						</svg>
 					</a>
 				</div>
-				<div class="mobile-header-details">
-					<a href="tel:+79250707707"><strong>+7 (925) 070-77-07</strong><span>Пн–Пт · 09:00–17:00</span></a>
+				<div class="store-header__mobile-phone">
+					<a href="tel:+79250707707"><strong>+7 (925) 070-77-07</strong><span>Пн-Пт: 9:00-17:00</span></a>
 				</div>
-				<div class="site-search">
+				<div class="store-header__search">
 					<div class="dgwt-wcas-search-wrapp dgwt-wcas-has-submit woocommerce dgwt-wcas-style-solaris js-dgwt-wcas-layout-classic dgwt-wcas-layout-classic js-dgwt-wcas-mobile-overlay-enabled dgwt-wcas-active" style="position: relative;">
-						<form class="dgwt-wcas-search-form searchform" role="search" method="get"  action="search" >
+						<form class="dgwt-wcas-search-form searchform" role="search" method="get" action="search">
 							<div class="dgwt-wcas-sf-wrapp">
 								<label class="screen-reader-text" for="typeahead">Поиск товаров</label>
 								<input id="typeahead" type="search" class="dgwt-wcas-search-input typeahead" name="s" value="" placeholder="Поиск по названию или артикулу товара" autocomplete="off">
 								
-								<button type="submit" aria-label="Поиск" class="dgwt-wcas-search-submit hidden">
+								<button type="submit" aria-label="Поиск" class="dgwt-wcas-search-submit">
 									<svg class="dgwt-wcas-ico-magnifier" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 51.539 51.361" xml:space="preserve">
 										<path d="M51.539,49.356L37.247,35.065c3.273-3.74,5.272-8.623,5.272-13.983c0-11.742-9.518-21.26-21.26-21.26 S0,9.339,0,21.082s9.518,21.26,21.26,21.26c5.361,0,10.244-1.999,13.983-5.272l14.292,14.292L51.539,49.356z M2.835,21.082 c0-10.176,8.249-18.425,18.425-18.425s18.425,8.249,18.425,18.425S31.436,39.507,21.26,39.507S2.835,31.258,2.835,21.082z"></path>
 									</svg>
@@ -165,35 +166,25 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 						<div class="dgwt-wcas-suggestions-wrapp woocommerce dgwt-wcas-has-img dgwt-wcas-has-price dgwt-wcas-has-sku search_form_helper hidden" ></div>
 					</div>
 				</div>
-				<div class="widget_text site-phone">
-					<div class="textwidget custom-html-widget">
-						<div class="grid decstop all-page header-contacts">
-							<div class="header-contacts__actions">
-								<a href="#" class="btn btn-call header-contacts__callback show_form" rel="form2"><i class="fas fa-phone-alt" aria-hidden="true"></i>Обратный звонок</a>
-								<a href="#" class="btn btn-send header-contacts__message show_form" rel="form3">Написать сообщение</a>
-							</div>
-							<div class="header-contacts__details">
-								<a class="contact-link header-contacts__item" href="tel:+79250707707"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>+7(925) 070 77 07</span></a>
-								<a class="contact-link header-contacts__item" href="tel:+79035406060"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>+7(903) 540 60 60</span></a>
-								<a class="contact-link header-contacts__item" href="mailto:a30@its50.ru"><i class="fas fa-envelope" aria-hidden="true"></i><span>a30@its50.ru</span></a>
-							</div>
-							<div class="header-contacts__hours">
-								<div class="header-contacts__hours-title"><i class="far fa-clock" aria-hidden="true"></i>Режим работы</div>
-								<div>Пн-Пт: 9:00-17:00</div>
-								<div>Сб-Вс: выходной</div>
-							</div>
-						</div>
-						<div class="grid mobile all-page">
-							<div class="position-relative site-phone__number">
-								<p><a href="#" class="btn btn-call show_form" rel="form2" aria-label="Заказать обратный звонок"><i class="fas fa-phone-alt" aria-hidden="true"></i></a></p>
-								<p><a href="#" class="btn btn-send show_form" rel="form3" aria-label="Написать сообщение"><i class="fas fa-envelope" aria-hidden="true"></i></a></p>
-								<p class="font-14"><button type="button" class="mobile-phone-toggle" aria-label="Показать номер телефона" aria-expanded="false"><i class="fas fa-chevron-down" aria-hidden="true"></i></button></p>
-								<div class="hide-phone">
-									<p class="font-14"><i class="fas fa-phone-alt" aria-hidden="true"></i><a href="tel:+79250707707">+7(925) <span>070 77 07</span><br><i>многоканальный</i></a></p>
-								</div>
-							</div>
-						</div>
+				<div class="store-header__desktop-contacts">
+					<div class="store-header__actions">
+						<a href="#" class="store-header__callback show_form" rel="form2"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>Обратный звонок</span></a>
+						<a href="#" class="store-header__message show_form" rel="form3">Написать сообщение</a>
 					</div>
+					<div class="store-header__hours">
+						<strong><i class="far fa-clock" aria-hidden="true"></i>Режим работы</strong>
+						<span>Пн-Пт: 9:00-17:00</span>
+						<span>Сб-Вс: выходной</span>
+					</div>
+					<div class="store-header__details">
+						<a href="tel:+79250707707"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>+7 (925) 070-77-07</span></a>
+						<a href="tel:+79035406060"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>+7 (903) 540-60-60</span></a>
+						<a href="mailto:a30@its50.ru"><i class="fas fa-envelope" aria-hidden="true"></i><span>a30@its50.ru</span></a>
+					</div>
+				</div>
+				<div class="store-header__mobile-actions" aria-label="Быстрые действия">
+					<a href="tel:+79250707707" aria-label="Позвонить"><i class="fas fa-phone-alt" aria-hidden="true"></i></a>
+					<a href="#" class="show_form" rel="form3" aria-label="Написать сообщение"><i class="fas fa-envelope" aria-hidden="true"></i></a>
 				</div>
 </div><div class="storefront-primary-navigation"><div class="col-full"><div class="header__layout"></div>
 <div class="menu-wrapper container-wrapper">
