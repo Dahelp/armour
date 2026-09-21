@@ -1547,13 +1547,13 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     }
 
     .site-header .site-phone {
-        flex-basis: 540px;
-        width: 540px !important;
+        flex-basis: 556px;
+        width: 556px !important;
     }
 
     .header-contacts {
         gap: 0;
-        grid-template-columns: 180px 160px 200px;
+        grid-template-columns: 196px 160px 200px;
     }
 
     .header-contacts__actions {
@@ -1575,6 +1575,10 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .header-contacts__details {
         box-sizing: border-box;
         padding-left: 16px !important;
+    }
+
+    .header-contacts__details .contact-link.header-contacts__item {
+        margin-left: 0 !important;
     }
 }
 
