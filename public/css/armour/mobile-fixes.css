@@ -1552,7 +1552,29 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     }
 
     .header-contacts {
-        grid-template-columns: 160px 120px 200px;
+        gap: 0;
+        grid-template-columns: 180px 150px 200px;
+    }
+
+    .header-contacts__actions {
+        padding: 0 !important;
+    }
+
+    .site-phone .header-contacts__callback {
+        min-height: 36px;
+        padding: 8px 16px !important;
+        width: 180px;
+    }
+
+    .site-phone .header-contacts__message {
+        align-self: center;
+        margin-left: 0;
+    }
+
+    .header-contacts__hours,
+    .header-contacts__details {
+        box-sizing: border-box;
+        padding-left: 16px;
     }
 }
 
