@@ -1322,6 +1322,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         gap: 7px;
         justify-content: center;
         line-height: 1.1;
+        margin-left: 0 !important;
         min-height: 32px;
         min-width: 0;
         padding: 7px 11px !important;
