@@ -2293,9 +2293,10 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     header.site-header.premium-header { height: 134px !important; min-height: 134px; }
     header.premium-header > .col-full.flex { display: grid !important; grid-template-columns: 205px minmax(260px, 1fr) 556px; gap: 30px; height: 88px; }
     body.woocommerce-active header.premium-header .site-branding { width: 205px !important; }
-    header.premium-header .site-search { max-width: 440px !important; position: static !important; width: 100% !important; }
+    header.premium-header .site-search { max-width: 440px !important; padding: 0 !important; position: static !important; width: 100% !important; }
     header.premium-header .site-phone { position: static !important; width: 556px !important; }
     header.premium-header .header-contacts { grid-template-areas: "actions hours details"; grid-template-columns: 196px 160px 200px; }
+    header.premium-header .storefront-primary-navigation { top: 0 !important; }
 }
 
 @media (min-width: 1101px) and (max-width: 1279px) {
