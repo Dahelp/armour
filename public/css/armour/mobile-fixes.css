@@ -1314,6 +1314,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         background: #12a33a;
         border: 0;
         border-radius: 8px;
+        box-sizing: border-box;
         color: #fff !important;
         display: inline-flex;
         font-size: 13px;
@@ -1322,10 +1323,11 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         justify-content: center;
         line-height: 1.1;
         min-height: 32px;
-        min-width: 160px;
+        min-width: 0;
         padding: 7px 11px !important;
         text-decoration: none;
         transition: background-color .2s ease, transform .2s ease;
+        width: 160px;
     }
 
     .site-phone .header-contacts__callback:hover,
@@ -1426,7 +1428,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     }
 
     .site-phone .header-contacts__callback {
-        min-width: 150px;
+        width: 150px;
         padding: 7px 10px;
     }
 
