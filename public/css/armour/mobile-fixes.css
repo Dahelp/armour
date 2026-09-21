@@ -1547,13 +1547,13 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     }
 
     .site-header .site-phone {
-        flex-basis: 530px;
-        width: 530px !important;
+        flex-basis: 540px;
+        width: 540px !important;
     }
 
     .header-contacts {
         gap: 0;
-        grid-template-columns: 180px 150px 200px;
+        grid-template-columns: repeat(3, 180px);
     }
 
     .header-contacts__actions {
