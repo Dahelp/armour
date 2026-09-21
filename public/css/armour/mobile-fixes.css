@@ -1553,7 +1553,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
 
     .header-contacts {
         gap: 0;
-        grid-template-columns: repeat(3, 180px);
+        grid-template-columns: 180px 160px 200px;
     }
 
     .header-contacts__actions {
