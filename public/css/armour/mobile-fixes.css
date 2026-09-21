@@ -1537,3 +1537,74 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         font-size: 13px;
     }
 }
+
+@media (min-width: 1301px) {
+    .site-header .site-search {
+        flex: 0 0 460px !important;
+        max-width: 460px !important;
+        width: 460px !important;
+    }
+
+    .site-header .site-phone {
+        flex-basis: 530px;
+        width: 530px !important;
+    }
+
+    .header-contacts {
+        grid-template-columns: 160px 120px 200px;
+    }
+}
+
+@media (min-width: 1181px) and (max-width: 1300px) {
+    .site-header .site-phone {
+        flex-basis: 420px;
+        width: 420px !important;
+    }
+
+    .header-contacts {
+        gap: 16px;
+        grid-template-areas:
+            "actions details"
+            "hours details";
+        grid-template-columns: 160px 220px;
+    }
+
+    .header-contacts__hours {
+        padding-left: 0;
+    }
+
+    .header-contacts__hours-title .far {
+        display: inline;
+    }
+
+    .header-contacts__details {
+        padding-left: 14px;
+    }
+}
+
+@media (min-width: 1101px) and (max-width: 1180px) {
+    .site-header .site-phone {
+        flex-basis: 400px;
+        width: 400px !important;
+    }
+
+    .header-contacts {
+        gap: 14px;
+        grid-template-areas:
+            "actions details"
+            "hours details";
+        grid-template-columns: 140px 246px;
+    }
+
+    .header-contacts__hours {
+        padding-left: 0;
+    }
+
+    .header-contacts__hours-title .far {
+        display: inline;
+    }
+
+    .header-contacts__details {
+        padding-left: 12px;
+    }
+}
