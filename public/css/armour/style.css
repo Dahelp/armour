@@ -1907,6 +1907,21 @@ button:focus {
     box-shadow: inset 1px 4px 10px rgba(0, 111, 0, 0.7);
 }
 
+.clear-vkorzine.btn-green-back {
+    background: #004a8e;
+    border-color: #004a8e;
+}
+
+.clear-vkorzine.btn-green-back:hover,
+.clear-vkorzine.btn-green-back:focus {
+    box-shadow: 1px 2px 10px rgba(0, 74, 142, 0.69);
+    color: #fff;
+}
+
+.clear-vkorzine.btn-green-back:active {
+    box-shadow: inset 1px 4px 10px rgba(0, 74, 142, 0.7);
+}
+
 /******/
 
 /***

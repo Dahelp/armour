@@ -76,6 +76,18 @@ a.icon-wish:hover{color:#fff}
   font-size: 11px;
 }
 .btn-green-back:hover {color: #fff;}
+.clear-vkorzine.btn-green-back {
+  background: #004a8e;
+  border-color: #004a8e;
+}
+.clear-vkorzine.btn-green-back:focus,
+.clear-vkorzine.btn-green-back:hover {
+  box-shadow: 1px 2px 10px rgba(0, 74, 142, .69);
+  color: #fff;
+}
+.clear-vkorzine.btn-green-back:active {
+  box-shadow: inset 1px 4px 10px rgba(0, 74, 142, .7);
+}
 .casters-block td img{width:65px !important}
 .woocommerce-Price-amount bdi{font-text:bold}
 
