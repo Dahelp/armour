@@ -1482,7 +1482,8 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     }
 
     .site-phone .header-contacts__callback {
-        width: 150px;
+        font-size: 12px;
+        width: 160px;
     }
 }
 
