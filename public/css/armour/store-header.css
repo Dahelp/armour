@@ -23,6 +23,12 @@
     width: 100%;
 }
 
+#masthead.store-header .store-header__top::before,
+#masthead.store-header .store-header__top::after {
+    content: none !important;
+    display: none !important;
+}
+
 #masthead.store-header .store-header__brand,
 #masthead.store-header .store-header__search,
 #masthead.store-header .store-header__desktop-contacts {
