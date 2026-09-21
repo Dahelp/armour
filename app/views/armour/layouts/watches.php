@@ -80,10 +80,10 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 </style>
 <link rel="stylesheet" href="css/armour/bootstrap.css" />
 <link rel="stylesheet" href="public/adminlte/plugins/fontawesome-free/css/all.min.css" />
-<link rel='stylesheet' id='storefront-style-css' href='css/armour/style.css' media='all' />
+<link rel='stylesheet' id='storefront-style-css' href='css/armour/style.css?v=<?=filemtime(WWW.'/css/armour/style.css')?>' media='all' />
 <link rel='stylesheet' id='apphlp-css' href='css/armour/apphlp.css' media='all' />
 <link rel='stylesheet' id='libs-style-css' href='css/armour/libs.min.css' media='all' />
-<link rel='stylesheet' id='app-style-css' href='css/armour/style.min.css' media='all' />
+<link rel='stylesheet' id='app-style-css' href='css/armour/style.min.css?v=<?=filemtime(WWW.'/css/armour/style.min.css')?>' media='all' />
 <link rel='stylesheet' id='product-tabs-style-css' href='/css/armour/product-tabs.css?v=<?=filemtime(WWW.'/css/armour/product-tabs.css')?>' media='all' />
 <link rel='stylesheet' id='mobile-fixes-css' href='/css/armour/mobile-fixes.css?v=<?=filemtime(WWW.'/css/armour/mobile-fixes.css')?>' media='all' />
 <link rel='stylesheet' id='store-header-css' href='/css/armour/store-header.css?v=<?=filemtime(WWW.'/css/armour/store-header.css')?>' media='all' />
