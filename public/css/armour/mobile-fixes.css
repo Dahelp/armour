@@ -1574,7 +1574,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .header-contacts__hours,
     .header-contacts__details {
         box-sizing: border-box;
-        padding-left: 16px;
+        padding-left: 16px !important;
     }
 }
 

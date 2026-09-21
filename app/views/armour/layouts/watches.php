@@ -172,7 +172,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 								<a href="#" class="btn btn-call header-contacts__callback show_form" rel="form2"><i class="fas fa-phone-alt" aria-hidden="true"></i>Обратный звонок</a>
 								<a href="#" class="btn btn-send header-contacts__message show_form" rel="form3">Написать сообщение</a>
 							</div>
-							<div class="header-contacts__details position-relative">
+							<div class="header-contacts__details">
 								<a class="contact-link header-contacts__item" href="tel:+79250707707"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>+7(925) 070 77 07</span></a>
 								<a class="contact-link header-contacts__item" href="tel:+79035406060"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>+7(903) 540 60 60</span></a>
 								<a class="contact-link header-contacts__item" href="mailto:a30@its50.ru"><i class="fas fa-envelope" aria-hidden="true"></i><span>a30@its50.ru</span></a>
