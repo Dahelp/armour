@@ -134,7 +134,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <body class="woocommerce-active">
 	<div class="preloader" id="preloader"><img src="images/ring.svg" width="150" height="150" alt=""></div>
 	<div id="page" class="hfeed site">    
-		<header id="masthead" class="site-header prochie-tovary" role="banner" style="">
+		<header id="masthead" class="site-header prochie-tovary premium-header" role="banner" style="">
 			<div class="col-full flex">
 				<div class="site-branding">
 					<a href="/" class="custom-logo-link" rel="home" aria-label="ТехШина — промышленные шины">
