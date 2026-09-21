@@ -1271,9 +1271,9 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         align-items: center;
         align-self: center;
         display: flex;
-        flex: 0 0 325px;
+        flex: 0 0 440px;
         min-height: 72px;
-        width: 325px !important;
+        width: 440px !important;
     }
 
     .site-phone .textwidget {
@@ -1286,13 +1286,12 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .header-contacts {
         align-items: center;
         display: grid;
-        gap: 4px 14px;
-        grid-template-areas:
-            "actions details"
-            "hours details";
-        grid-template-columns: 136px 169px;
+        gap: 16px;
+        grid-template-areas: "actions hours details";
+        grid-template-columns: 160px 1fr 170px;
         justify-content: end;
         margin: 0;
+        width: 100%;
     }
 
     .header-contacts__actions,
@@ -1307,7 +1306,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .header-contacts__actions {
         align-items: flex-start;
         grid-area: actions;
-        padding-right: 2px;
+        justify-content: center;
     }
 
     .site-phone .header-contacts__callback {
@@ -1323,7 +1322,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         justify-content: center;
         line-height: 1.1;
         min-height: 32px;
-        min-width: 136px;
+        min-width: 160px;
         padding: 7px 11px !important;
         text-decoration: none;
         transition: background-color .2s ease, transform .2s ease;
@@ -1340,7 +1339,7 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         color: #262626 !important;
         font-size: 13px;
         line-height: 16px !important;
-        margin-left: 12px;
+        margin-left: 18px;
         padding: 0 !important;
         text-decoration: none;
     }
@@ -1350,7 +1349,8 @@ ul.products li.product .box-price-btn .product-card-unified__price {
         display: flex !important;
         flex-direction: column !important;
         grid-area: details;
-        padding-left: 12px;
+        justify-content: center;
+        padding-left: 16px;
     }
 
     .site-phone .header-contacts__item {
@@ -1371,16 +1371,23 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     }
 
     .header-contacts__hours {
+        border-left: 1px solid #d9e1e7;
         color: #53626e;
         font-size: 11px;
         gap: 1px;
         grid-area: hours;
         line-height: 13px !important;
-        padding-left: 12px;
+        padding-left: 16px;
     }
 
     .header-contacts__hours-title {
-        display: none;
+        align-items: center;
+        color: #1a2e3e;
+        display: flex;
+        font-size: 12px;
+        font-weight: 600;
+        gap: 5px;
+        line-height: 14px;
     }
 
     .header-contacts__hours-title .far {
@@ -1404,22 +1411,22 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     }
 
     .site-header .site-phone {
-        flex-basis: 315px;
-        width: 315px !important;
+        flex-basis: 390px;
+        width: 390px !important;
     }
 
     .header-contacts {
-        gap: 4px 11px;
-        grid-template-columns: 132px 162px;
+        gap: 12px;
+        grid-template-columns: 150px 1fr 158px;
     }
 
     .header-contacts__details,
     .header-contacts__hours {
-        padding-left: 10px;
+        padding-left: 12px;
     }
 
     .site-phone .header-contacts__callback {
-        min-width: 132px;
+        min-width: 150px;
         padding: 7px 10px;
     }
 
