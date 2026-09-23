@@ -173,16 +173,15 @@ class CartController extends AppController {
 			}
 			$email = trim((string)($_POST['email'] ?? ($_SESSION['user']['email'] ?? '')));
 			$usok = $email !== '' ? \R::findOne('user', 'email = ?', [$email]) : null;
-				if($usok["id"]) {
+				$data = $_POST;
+				if(!empty($usok["id"])) {
 					$user_id = $usok["id"];
 					$comp_id = $usok["comp_id"];
 					$groups = $usok["groups"];
-					$data = $_POST;				
 				}else{
 					// регистрация пользователя
 					if(!User::checkAuth()){
 						$user = new User();
-						$data = $_POST;
 						$first = substr($data["telefon"], 4,1);
 						$first = (int)$first;
 						if(!$first) { 
@@ -203,30 +202,29 @@ class CartController extends AppController {
 								redirect();
 							}
 						}
-						if(!$_FILES['rekvizity']) {
-							if($data['groups'] == 4){
-								$company = new Company();						
-								$company->load($data);
-								
-								if(!$company->validate($data) || !$company->checkUnique()){
-									$company->getErrors();
-									$_SESSION['form_data'] = $data;
-									redirect();
-								}
-								$data['tip'] = 1;
-								$data['user_id'] = $user_id;
-								if($id = $company->save('company')){							
-									\R::exec("UPDATE user SET comp_id = '".$id."' WHERE id = ?", [$user_id]);
-									\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','33','company','".$id."','".date('Y-m-d H:i:s')."','".$user_id."')");
-								
-								}
-								
+						if(($data['groups'] ?? null) == 4 && !empty($data['comp_name'])){
+							if(empty($data['comp_short_name'])){
+								$data['comp_short_name'] = $data['comp_name'];
+							}
+							$data['tip'] = 1;
+							$data['user_id'] = $user_id;
+							$company = new Company();
+							$company->load($data);
+
+							if(!$company->validate($data) || !$company->checkUnique()){
+								$company->getErrors();
+								$_SESSION['form_data'] = $data;
+								redirect();
+							}
+							if($id = $company->save('company')){
+								\R::exec("UPDATE user SET comp_id = ? WHERE id = ?", [$id, $user_id]);
+								\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','33','company',?,'".date('Y-m-d H:i:s')."',?)", [$id, $user_id]);
 							}
 						}
 					}
 				}		
 				// сохранение заказа
-				$data['user_id'] = isset($user_id) ? $user_id : $_SESSION['user']['id'];
+				$data['user_id'] = $user_id ?? ($_SESSION['user']['id'] ?? 0);
 				$data['comp_id'] = !empty($comp_id) ? $comp_id : ($id ?? '');
 				$data['comp_short_name'] = !empty($_POST['comp_short_name']) ? $_POST['comp_short_name'] : '';
 				$data['inn'] = !empty($_POST['inn']) ? $_POST['inn'] : '';
@@ -238,17 +236,17 @@ class CartController extends AppController {
 				$cit = $data['city_id'] ? \R::findOne('cities', 'city_id = ?', [$data['city_id']]) : null;
 				$city_name = (string)($cit['city_name'] ?? '');
 				$data['branch_id'] = !empty($_POST['branch_id']) ? $_POST['branch_id'] : '';
-				$data['groups'] = !empty($_SESSION['user']['groups']) ? $_SESSION['user']['groups'] : $_POST['groups'];
-				$user_email = isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : $_POST['email'];
+				$data['groups'] = !empty($_SESSION['user']['groups']) ? $_SESSION['user']['groups'] : ($_POST['groups'] ?? 3);
+				$user_email = isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : ($_POST['email'] ?? '');
 				$rekvizity = !empty($_FILES['rekvizity']['tmp_name']) ? '1' : '0';
 				$usm = \R::findOne('user', 'email = ?', [$user_email]);
 				if($data['groups'] == 4){
 					$comp = \R::findOne('company', 'user_id = ?', [$data['user_id']]);
-					if($comp['nds']){
+					if(!empty($comp['nds'])){
 						$data['nds'] = $comp['nds'];
 					}
 				}
-				if($usm["admin_id"] !="0"){
+				if(!empty($usm["admin_id"]) && $usm["admin_id"] !="0"){
 					$data['admin_id'] = $usm["admin_id"];
 				}else{
 					$data['admin_id'] = 0;
@@ -258,12 +256,18 @@ class CartController extends AppController {
 				$dost = \R::findOne('dostavka', 'id = ?', [$ord["dostavka_id"]]);
 				$bran = \R::findOne('branch_office', 'branch_id = ?', [$ord["branch_id"]]);
 				$trans = \R::findOne('transport_company', 'id = ?', [$ord["transport_id"]]);
+				$address = '';
+				$transport_company = '';
+				$vid = '';
+				$compname = '';
+				$nds = '';
+				$dogovor = '';
 				
-				if($trans["name"]) { $transport_company = "<b>Название ТК:</b> ".$trans["name"]."<br>"; }
+				if(!empty($trans["name"])) { $transport_company = "<b>Название ТК:</b> ".$trans["name"]."<br>"; }
 				if($ord["address"] !="") { $address = "<br><b>Адрес:</b> ".$ord["address"]."<br>"; }
 				if($data['user_id']) {
-					if($usm["groups"] == 3) { $vid = "<b>Вид клиента:</b> Физическое лицо<br>"; }
-					if($usm["groups"] == 4) { 				
+					if(($usm["groups"] ?? $data['groups']) == 3) { $vid = "<b>Вид клиента:</b> Физическое лицо<br>"; }
+					if(($usm["groups"] ?? $data['groups']) == 4) { 				
 						$vid = "<b>Вид клиента:</b> Юридическое лицо<br>";
 						if($comp) {
 							$compname = "<b>Компания (зарегистрирована):</b> ".$comp['comp_short_name']." (".$comp['inn'].")<br>";						
@@ -282,7 +286,7 @@ class CartController extends AppController {
 						}							
 					}
 				}
-				Order::mailOrder($order_id, $user_email, $usm["name"], $usm["telefon"], $usm["admin_id"], $ord["note"], $ord["date"], $dost["name"], $bran["branch_name"], $address, $transport_company, $city_name, $vid, $compname, $nds, $dogovor);
+				Order::mailOrder($order_id, $user_email, $usm["name"] ?? '', $usm["telefon"] ?? '', $usm["admin_id"] ?? 0, $ord["note"], $ord["date"], $dost["name"] ?? '', $bran["branch_name"] ?? '', $address, $transport_company, $city_name, $vid, $compname, $nds, $dogovor);
 				
         }
         redirect();

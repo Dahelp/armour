@@ -256,6 +256,31 @@ $('#typeahead').bind('typeahead:select', function(ev, suggestion) {
 });
 
 /*Cart*/
+function updateCheckoutConditionalFields() {
+	var deliverySelect = document.getElementById('dostavka_id');
+	var clientTypeSelect = document.getElementById('vidurlface');
+	var selectedDeliveryText = deliverySelect && deliverySelect.options[deliverySelect.selectedIndex] ? deliverySelect.options[deliverySelect.selectedIndex].text.toLowerCase() : '';
+	var selectedDeliveryValue = deliverySelect ? String(deliverySelect.value) : '';
+	var companyFields = document.getElementById('vid_urlface');
+	var isCompany = clientTypeSelect && String(clientTypeSelect.value) === '4';
+	var isTransport = selectedDeliveryValue === '2' || selectedDeliveryText.indexOf('транспорт') !== -1;
+	var isPickup = selectedDeliveryText.indexOf('самовывоз') !== -1;
+	var isCourier = selectedDeliveryText.indexOf('курьер') !== -1 || selectedDeliveryText.indexOf('достав') !== -1;
+
+	$('#another_transport, #another_city').toggle(isTransport);
+	$('#another_sklad').toggle(isPickup);
+	$('#another_adress').toggle(isCourier);
+
+	if (companyFields) {
+		companyFields.style.display = isCompany ? 'block' : 'none';
+		$(companyFields).find('.cart-company-required').prop('required', isCompany);
+	}
+}
+
+window.val = updateCheckoutConditionalFields;
+
+$(document).ready(updateCheckoutConditionalFields);
+
 function setProductCartQuantity(id, qty) {
 	qty = Math.max(0, parseInt(qty, 10) || 0);
 	$('.qty-item-' + id).val(qty > 0 ? qty : 1).attr('value', qty > 0 ? qty : 1);
