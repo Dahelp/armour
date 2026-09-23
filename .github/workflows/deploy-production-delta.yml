@@ -1,6 +1,12 @@
 name: Deploy production source delta
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - public/css/armour/cart.css
+      - .github/workflows/deploy-production-delta.yml
   workflow_dispatch:
 
 concurrency:
