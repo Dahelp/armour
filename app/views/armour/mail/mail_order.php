@@ -1,5 +1,27 @@
 <!doctype html>
 <html lang="ru">
+<?php
+$escapeMailValue = static function ($value): string {
+    return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
+};
+$orderDetails = [
+    'Способ доставки' => $dostavka_name ?? '',
+    'Пункт самовывоза' => $branch_name ?? '',
+    'Транспортная компания' => $transport_company ?? '',
+    'Город' => $city_name ?? '',
+    'Адрес' => $address ?? '',
+    'Вид клиента' => $vid ?? '',
+    'Компания' => $compname ?? '',
+    'Налогообложение' => $nds ?? '',
+    'Условия поставки' => $dogovor ?? '',
+    'Файл реквизитов' => $rekvizity_name ?? '',
+    'Имя' => $uname ?? '',
+    'Номер телефона' => $telefon ?? '',
+    'E-mail' => $user_email ?? '',
+    'Комментарий' => $note ?? '',
+    'Время заказа' => $date ?? '',
+];
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,7 +32,7 @@
 <body>
 <table style="width:740px;background-color:#f4f6f9;font-family:Tahoma, Helvetica, sans-serif;color:#212529;font-size:13px;border:1px solid #eee">
 	<tr>             
-		<td style="padding:20px;width:300px"><img src="<?=PATH?>/images/logo_armour.png" alt="<?=$namecomp?>" style="width:100px;height:50px"></td>
+		<td style="padding:20px;width:300px"><img src="<?=PATH?>/images/logo_armour.png" alt="<?=htmlspecialchars((string)$namecomp, ENT_QUOTES, 'UTF-8')?>" style="width:100px;height:50px"></td>
 		<td style="padding:20px;width:440px;font-weight:bold" align="right"> <a href="<?=PATH?>" style="color:#2C3E50">Главная</a> | <a href="<?=PATH?>/category" style="color:#2C3E50">Каталог</a> | <a href="<?=PATH?>/dostavka" style="color:#2C3E50">Доставка</a> | <a href="<?=PATH?>/contacts" style="color:#2C3E50">Контакты</a></td>
 	</tr>
 	<tr>
@@ -23,7 +45,7 @@
 								<td colspan="4" style="padding:20px 0 20px 0">
 									<p>Здравствуйте <?=htmlspecialchars((string)$uname, ENT_QUOTES, 'UTF-8')?>.<br><br>
 										Благодарим Вас за заказ!<br>
-										Ваш заказ на сайте <?=$namecomp?> оформлен. В ближайшее время с вами свяжутся для подтверждения заказа по email.<br><br>
+										Ваш заказ на сайте <?=htmlspecialchars((string)$namecomp, ENT_QUOTES, 'UTF-8')?> оформлен. В ближайшее время с вами свяжутся для подтверждения заказа по email.<br><br>
 										<strong>Ваш заказ: № <?=htmlspecialchars((string)($ord['inv'] ?? $order_id), ENT_QUOTES, 'UTF-8')?> от <?=htmlspecialchars((string)$date, ENT_QUOTES, 'UTF-8')?></strong>
 									</p>
 									<table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%;">
@@ -55,21 +77,20 @@
 										</tbody>
 									</table>
 									<br><br>
-									<b>Способ доставки:</b> <?=$dostavka_name?><br>
-									<?=$transport_company?>
-									<b>Город:</b> <?=$branch_name?><?=$city_name?>
-									<?=$address?>
+									<table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%;">
+										<tbody>
+										<?php foreach($orderDetails as $label => $value): ?>
+											<?php if(trim((string)$value) === '') continue; ?>
+											<tr>
+												<td style="padding: 8px; border: 1px solid #ddd; width: 35%; font-weight: bold;"><?=$escapeMailValue($label)?></td>
+												<td style="padding: 8px; border: 1px solid #ddd;"><?=$escapeMailValue($value)?></td>
+											</tr>
+										<?php endforeach; ?>
+										</tbody>
+									</table>
 									<br><br>
-									<?=$vid?>
-									<?=$nds?>
-									<?=$dogovor?>
-									<b>Имя:</b> <?=$uname?><br>
-									<b>Номер телефона:</b> <?=$telefon?><br>
-									<b>E-mail:</b> <?=$user_email?><br>
-									<b>Комментарий:</b> <?=$note?><br>
-									<b>Время заказа:</b> <?=$date?><br><br><br>
-										С уважением, <?=$namecomp?> <br>
-									<b>Телефон:</b> <?=$tell_site?>
+									С уважением, <?=htmlspecialchars((string)$namecomp, ENT_QUOTES, 'UTF-8')?> <br>
+									<b>Телефон:</b> <?=htmlspecialchars((string)$tell_site, ENT_QUOTES, 'UTF-8')?>
 								</td>
 							</tr>
 						</table>

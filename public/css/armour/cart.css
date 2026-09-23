@@ -15,6 +15,10 @@
     margin-bottom: 24px;
 }
 
+.cart-section .register-top.heading {
+    margin-bottom: 24px;
+}
+
 .cart-page-card .register-top.heading h2,
 .cart-section .register-top.heading h2 {
     color: #174f7a;
@@ -202,7 +206,7 @@
 
 .cart-company-panel {
     margin-top: 18px;
-    padding: 22px;
+    padding: 18px;
     border: 1px solid #d9e5ec;
     border-radius: 6px;
     background: #fff;
@@ -215,6 +219,12 @@
 .cart-company-panel .form-control[type="file"] {
     height: auto;
     padding: 8px 12px;
+}
+
+.cart-delivery-section .notauth,
+.cart-delivery-section .zakaz-inpt,
+.cart-delivery-section #another_adress {
+    margin-top: 12px;
 }
 
 .visually-hidden {

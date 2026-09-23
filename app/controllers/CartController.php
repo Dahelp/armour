@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use app\services\PersonalDataConsent;
 
-use app\models\admin\Company;
 use app\models\Cart;
 use app\models\Order;
 use app\models\User;
@@ -202,32 +201,11 @@ class CartController extends AppController {
 								redirect();
 							}
 						}
-						if(($data['groups'] ?? null) == 4 && !empty($data['comp_name'])){
-							if(empty($data['comp_short_name'])){
-								$data['comp_short_name'] = $data['comp_name'];
-							}
-							$data['tip'] = 1;
-							$data['user_id'] = $user_id;
-							$company = new Company();
-							$company->load($data);
-
-							if(!$company->validate($data) || !$company->checkUnique()){
-								$company->getErrors();
-								$_SESSION['form_data'] = $data;
-								redirect();
-							}
-							if($id = $company->save('company')){
-								\R::exec("UPDATE user SET comp_id = ? WHERE id = ?", [$id, $user_id]);
-								\R::exec("INSERT INTO `admin_last_history`(`gh_id`, `ah_id`, `name_tbl`, `id_tbl`, `date_modified`, `customer_id`) VALUES ('2','33','company',?,'".date('Y-m-d H:i:s')."',?)", [$id, $user_id]);
-							}
-						}
 					}
 				}		
 				// сохранение заказа
 				$data['user_id'] = $user_id ?? ($_SESSION['user']['id'] ?? 0);
 				$data['comp_id'] = !empty($comp_id) ? $comp_id : ($id ?? '');
-				$data['comp_short_name'] = !empty($_POST['comp_short_name']) ? $_POST['comp_short_name'] : '';
-				$data['inn'] = !empty($_POST['inn']) ? $_POST['inn'] : '';
 				$data['note'] = !empty($_POST['note']) ? $_POST['note'] : '';
 				$data['dostavka_id'] = !empty($_POST['dostavka_id']) ? $_POST['dostavka_id'] : '';
 				$data['address'] = !empty($_POST['address']) ? $_POST['address'] : '';
@@ -256,37 +234,33 @@ class CartController extends AppController {
 				$dost = \R::findOne('dostavka', 'id = ?', [$ord["dostavka_id"]]);
 				$bran = \R::findOne('branch_office', 'branch_id = ?', [$ord["branch_id"]]);
 				$trans = \R::findOne('transport_company', 'id = ?', [$ord["transport_id"]]);
-				$address = '';
-				$transport_company = '';
+				$address = (string)($ord["address"] ?? '');
+				$transport_company = (string)($trans["name"] ?? '');
 				$vid = '';
 				$compname = '';
 				$nds = '';
 				$dogovor = '';
+				$rekvizity_name = !empty($_FILES['rekvizity']['name']) ? (string)$_FILES['rekvizity']['name'] : '';
 				
-				if(!empty($trans["name"])) { $transport_company = "<b>Название ТК:</b> ".$trans["name"]."<br>"; }
-				if($ord["address"] !="") { $address = "<br><b>Адрес:</b> ".$ord["address"]."<br>"; }
 				if($data['user_id']) {
-					if(($usm["groups"] ?? $data['groups']) == 3) { $vid = "<b>Вид клиента:</b> Физическое лицо<br>"; }
+					if(($usm["groups"] ?? $data['groups']) == 3) { $vid = "Физическое лицо"; }
 					if(($usm["groups"] ?? $data['groups']) == 4) { 				
-						$vid = "<b>Вид клиента:</b> Юридическое лицо<br>";
+						$vid = "Юридическое лицо";
 						if($comp) {
-							$compname = "<b>Компания (зарегистрирована):</b> ".$comp['comp_short_name']." (".$comp['inn'].")<br>";						
-							if($comp["nds"] == "1") { $nds = "<b>Налогообложение:</b> c НДС<br>"; }
-							if($comp["nds"] == "2") { $nds = "<b>Налогообложение:</b> без НДС<br>"; } 
-							if($comp["dogovor"] == "1") { $dogovor = "<b>Условия поставки:</b> Договор<br>"; }
-							if($comp["dogovor"] == "2") { $dogovor = "<b>Условия поставки:</b> Счёт-договор<br>"; }
+							$compname = trim((string)$comp['comp_short_name'] . (!empty($comp['inn']) ? ' (' . $comp['inn'] . ')' : ''));
+							if($comp["nds"] == "1") { $nds = "с НДС"; }
+							if($comp["nds"] == "2") { $nds = "без НДС"; } 
+							if($comp["dogovor"] == "1") { $dogovor = "Договор"; }
+							if($comp["dogovor"] == "2") { $dogovor = "Счёт-договор"; }
 						}else{
-							if($data['inn']) {
-								$compname = "<b>Компания:</b> ".$data['comp_short_name']." (".$data['inn'].")<br>";
-							}
-							if($_POST["nds"] == "1") { $nds = "<b>Налогообложение:</b> c НДС<br>"; }
-							if($_POST["nds"] == "2") { $nds = "<b>Налогообложение:</b> без НДС<br>"; } 
-							if($_POST["dogovor"] == "1") { $dogovor = "<b>Условия поставки:</b> Договор<br>"; }
-							if($_POST["dogovor"] == "2") { $dogovor = "<b>Условия поставки:</b> Счёт-договор<br>"; }
+							if(($_POST["nds"] ?? '') == "1") { $nds = "с НДС"; }
+							if(($_POST["nds"] ?? '') == "2") { $nds = "без НДС"; } 
+							if(($_POST["dogovor"] ?? '') == "1") { $dogovor = "Договор"; }
+							if(($_POST["dogovor"] ?? '') == "2") { $dogovor = "Счёт-договор"; }
 						}							
 					}
 				}
-				Order::mailOrder($order_id, $user_email, $usm["name"] ?? '', $usm["telefon"] ?? '', $usm["admin_id"] ?? 0, $ord["note"], $ord["date"], $dost["name"] ?? '', $bran["branch_name"] ?? '', $address, $transport_company, $city_name, $vid, $compname, $nds, $dogovor);
+				Order::mailOrder($order_id, $user_email, $usm["name"] ?? '', $usm["telefon"] ?? '', $usm["admin_id"] ?? 0, $ord["note"], $ord["date"], $dost["name"] ?? '', $bran["branch_name"] ?? '', $address, $transport_company, $city_name, $vid, $compname, $nds, $dogovor, $rekvizity_name);
 				
         }
         redirect();

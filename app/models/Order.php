@@ -86,7 +86,7 @@ class Order extends AppModel {
         \R::exec("INSERT INTO order_product (`order_id`, `product_id`, `article`, `qty`, `unit`, `name`, `price`, `discount_value`, `discount_type`, `discount`, `price_discount`, `discount_amount`) VALUES $sql_part");
     }
 
-    public static function mailOrder($order_id, $user_email, $uname, $telefon, $admin_id, $note, $date, $dostavka_name, $branch_name, $address, $transport_company, $city_name, $vid, $compname, $nds, $dogovor){
+    public static function mailOrder($order_id, $user_email, $uname, $telefon, $admin_id, $note, $date, $dostavka_name, $branch_name, $address, $transport_company, $city_name, $vid, $compname, $nds, $dogovor, $rekvizity_name = ''){
         // Create the Transport
         $transport = (new Swift_SmtpTransport(App::$app->getProperty('smtp_host'), App::$app->getProperty('smtp_port'), App::$app->getProperty('smtp_protocol')))
             ->setUsername(App::$app->getProperty('smtp_login'))

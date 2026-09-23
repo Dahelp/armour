@@ -143,26 +143,6 @@
 									<div class="cart-company-panel">
 										<div class="row gx-4 gy-3">
 											<div class="col-sm-6">
-												<label class="form-label" for="comp_name">Полное наименование компании <span class="text-danger">*</span></label>
-												<input type="text" name="comp_name" class="form-control cart-company-required" id="comp_name" placeholder="Общество с ограниченной ответственностью Компания" value="<?= isset($_SESSION['form_data']['comp_name']) ? h($_SESSION['form_data']['comp_name']) : '' ?>">
-											</div>
-											<div class="col-sm-6">
-												<label class="form-label" for="comp_short_name">Краткое наименование</label>
-												<input type="text" name="comp_short_name" class="form-control" id="comp_short_name" placeholder="ООО Компания" value="<?= isset($_SESSION['form_data']['comp_short_name']) ? h($_SESSION['form_data']['comp_short_name']) : '' ?>">
-											</div>
-											<div class="col-sm-6">
-												<label class="form-label" for="inn">ИНН <span class="text-danger">*</span></label>
-												<input type="text" name="inn" class="form-control cart-company-required" id="inn" placeholder="10 или 12 цифр" maxlength="12" value="<?= isset($_SESSION['form_data']['inn']) ? h($_SESSION['form_data']['inn']) : '' ?>">
-											</div>
-											<div class="col-sm-6">
-												<label class="form-label" for="kpp">КПП</label>
-												<input type="text" name="kpp" class="form-control" id="kpp" placeholder="9 цифр" maxlength="9" value="<?= isset($_SESSION['form_data']['kpp']) ? h($_SESSION['form_data']['kpp']) : '' ?>">
-											</div>
-											<div class="col-sm-12">
-												<label class="form-label" for="url_address">Юридический адрес</label>
-												<input type="text" name="url_address" class="form-control" id="url_address" value="<?= isset($_SESSION['form_data']['url_address']) ? h($_SESSION['form_data']['url_address']) : '' ?>">
-											</div>
-											<div class="col-sm-6">
 												<label class="form-label" for="nds">Система налогообложения <span class="text-danger">*</span></label>
 												<select name="nds" class="form-control cart-company-required" id="nds">
 													<option value = "" selected="selected">Выберите систему налогообложения</option>
