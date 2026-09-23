@@ -4,6 +4,7 @@
                 <div class="bg-light rounded-3 py-5 px-4 px-xxl-5">
                     <div class="register-top heading">
                         <h2>Оформление заказа</h2>
+                        <button type="button" class="cart-clear-button" onclick="clearCart()">Очистить корзину</button>
                     </div> 
 					
                     <div id="prodcart" class="table-responsive">
@@ -23,14 +24,14 @@
                                         <td><a href="/<?=$item['alias'] ?>"><img src="images/product/mini/<?= $item['img'] ?>" alt="<?=$item['name'] ?>"></a></td>
                                         <td><a href="/<?=$item['alias'] ?>"><?=$item['name'] ?></a></td>
                                         <td style="text-align:center">
-											<div class="cart-quantity-control">
-												<button type="button" data-id="<?=$id;?>" class="my-minus-<?=$id;?> my-minus" aria-label="Уменьшить количество"><i class="fas fa-minus" aria-hidden="true"></i></button>
+											<div class="cart-quantity-control quantity-block">
+												<button type="button" data-id="<?=$id;?>" class="quantity-arrow-minus my-minus-<?=$id;?> my-minus" aria-label="Уменьшить количество"><span aria-hidden="true">-</span></button>
 												<span class="qty-item qty-item-<?=$id;?>"><?=$item['qty'];?></span>
-												<?php if($item['qty'] < $item['max']) { ?><button type="button" data-id="<?=$id;?>" class="my-plus-<?=$id;?> my-plus" aria-label="Увеличить количество"><i class="fas fa-plus" aria-hidden="true"></i></button><?php } ?>
+												<?php if($item['qty'] < $item['max']) { ?><button type="button" data-id="<?=$id;?>" class="quantity-arrow-plus my-plus-<?=$id;?> my-plus" aria-label="Увеличить количество"><span aria-hidden="true">+</span></button><?php } ?>
 											</div>
 										</td>
                                         <td><?=$item['price'] ?></td>
-                                        <td><button type="button" data-id="<?=$id;?>" class="del-items cart-remove-button" aria-label="Удалить товар"><i class="fas fa-times" aria-hidden="true"></i></button></td>
+                                        <td><button type="button" data-id="<?=$id;?>" class="del-items cart-remove-button" aria-label="Удалить товар"><span aria-hidden="true">×</span></button></td>
                                     </tr>
                                 <?php endforeach;?>
                                 <tr>
@@ -46,7 +47,7 @@
 						</div>
                     </div>                                            
 						<div class="product-info cart-dimensions">
-						<div class="col-md-6 bg-light px-xxl-5" id="prodinfo">
+						<div class="cart-dimensions-card bg-light px-xxl-5" id="prodinfo">
 							<div class="register-top heading">
 								<h2>Габаритные размеры</h2>
 							</div>
