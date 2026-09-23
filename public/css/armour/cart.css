@@ -55,47 +55,42 @@
 
 .cart-page-card .cart-quantity-control {
     display: inline-flex;
-    align-items: stretch;
-    overflow: hidden;
-    border: 1px solid #dfe8ef;
-    border-radius: 6px;
-    background: #fff;
+    align-items: center;
 }
 
 .cart-page-card .cart-quantity-control button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    padding: 0;
-    border: 0;
-    background: #f6fafc;
-    background-image: none;
-    color: #004a8e;
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1;
-    text-indent: 0;
+    height: 34px;
 }
 
-.cart-page-card .cart-quantity-control button:hover,
-.cart-page-card .cart-quantity-control button:focus {
-    background: #004a8e;
-    color: #fff;
+.cart-page-card .cart-quantity-control .quantity-arrow-minus,
+.cart-page-card .cart-quantity-control button.quantity-arrow-minus:active {
+    background-position: 1px -473px;
+}
+
+.cart-page-card .cart-quantity-control .quantity-arrow-minus:hover {
+    background-position: 1px -531px;
+}
+
+.cart-page-card .cart-quantity-control .quantity-arrow-plus,
+.cart-page-card .cart-quantity-control button.quantity-arrow-plus:active {
+    background-position: 3px -502px;
+}
+
+.cart-page-card .cart-quantity-control .quantity-arrow-plus:hover {
+    background-position: 3px -560px;
 }
 
 .cart-page-card .cart-quantity-control .qty-item {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    min-width: 42px;
-    border-right: 1px solid #dfe8ef;
-    border-left: 1px solid #dfe8ef;
-    color: #1d2f3b;
+    width: 35px;
+    min-width: 35px;
+    padding: 5px 0;
+    color: #43454b;
     font-size: 14px;
+    line-height: 1.618;
+    text-align: center;
 }
 
 .cart-page-card .cart-remove-button {
@@ -159,6 +154,15 @@
 .cart-section {
     width: 100%;
     max-width: 100%;
+    margin-top: 32px;
+}
+
+.cart-page-card + .cart-section {
+    margin-top: 32px;
+}
+
+.cart-section + .cart-section {
+    margin-top: 32px;
 }
 
 .cart-contact-section .col-xl-12,
