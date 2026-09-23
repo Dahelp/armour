@@ -3,7 +3,7 @@
 <div class="prdt">
     <div class="container">
 		<?php if(!empty($_SESSION['cart'])):?>
-			<form method="post" action="cart/checkout" role="form" aria-hidden="true" data-toggle="validator" enctype="multipart/form-data">
+			<form method="post" action="cart/checkout" role="form" data-toggle="validator" enctype="multipart/form-data">
 			<div class="product-cart cart-page-card">
 			<div class="prdt-top">			
             <div class="col-md-12">
