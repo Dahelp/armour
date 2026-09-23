@@ -1,15 +1,6 @@
 name: Deploy production source delta
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - app/views/armour/Cart/view.php
-      - app/views/armour/Cart/cart_table.php
-      - public/css/armour/cart.css
-      - public/js/main.js
-      - .github/workflows/deploy-production-delta.yml
   workflow_dispatch:
 
 concurrency:
