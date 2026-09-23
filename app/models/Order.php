@@ -87,13 +87,8 @@ class Order extends AppModel {
     }
 
     public static function mailOrder($order_id, $user_email, $uname, $telefon, $admin_id, $note, $date, $dostavka_name, $branch_name, $address, $transport_company, $city_name, $vid, $compname, $nds, $dogovor, $rekvizity_name = ''){
-        // Create the Transport
-        $transport = (new Swift_SmtpTransport(App::$app->getProperty('smtp_host'), App::$app->getProperty('smtp_port'), App::$app->getProperty('smtp_protocol')))
-            ->setUsername(App::$app->getProperty('smtp_login'))
-            ->setPassword(App::$app->getProperty('smtp_password'))
-        ;
-        // Create the Mailer using your created Transport
-        $mailer = new Swift_Mailer($transport);
+		$ord = \R::findOne('order', 'id = ?', [$order_id]);
+		$orderInv = (string)($ord['inv'] ?? $order_id);
 		$namecomp = App::$app->getProperty('shop_name');
 		$tell_site = \ishop\App::options('option_telefon');
 		$order_prefix = \ishop\App::options('order_prefix');
@@ -101,14 +96,21 @@ class Order extends AppModel {
         ob_start();
         require APP . '/views/'.TEMPLATE.'/mail/mail_order.php';
         $body = ob_get_clean();
-		$ord = \R::findOne('order', 'id = ?', [$order_id]);
-        $message_client = (new Swift_Message("Вы совершили заказ №{$ord["inv"]} на сайте " . App::$app->getProperty('shop_name')))
+        try {
+        // Create the Transport
+        $transport = (new Swift_SmtpTransport(App::$app->getProperty('smtp_host'), App::$app->getProperty('smtp_port'), App::$app->getProperty('smtp_protocol')))
+            ->setUsername(App::$app->getProperty('smtp_login'))
+            ->setPassword(App::$app->getProperty('smtp_password'))
+        ;
+        // Create the Mailer using your created Transport
+        $mailer = new Swift_Mailer($transport);
+        $message_client = (new Swift_Message("Вы совершили заказ №{$orderInv} на сайте " . App::$app->getProperty('shop_name')))
             ->setFrom([App::$app->getProperty('smtp_login') => App::$app->getProperty('shop_name')])
             ->setTo($user_email)
             ->setBody($body, 'text/html')
         ;
 
-        $message_admin = (new Swift_Message("Сделан заказ №{$ord["inv"]} на сайте " . App::$app->getProperty('shop_name')))
+        $message_admin = (new Swift_Message("Сделан заказ №{$orderInv} на сайте " . App::$app->getProperty('shop_name')))
             ->setFrom([App::$app->getProperty('smtp_login') => App::$app->getProperty('shop_name')])
             ->setTo(App::$app->getProperty('admin_email'))
             ->setBody($body, 'text/html')
@@ -123,7 +125,7 @@ class Order extends AppModel {
 		
         if($admin_id !="0"){
 			$adm = \R::findOne('user', 'id = ?', [$admin_id]);
-			$message_manager = (new Swift_Message("Сделан заказ №{$ord["inv"]} на сайте " . App::$app->getProperty('shop_name')))
+			$message_manager = (new Swift_Message("Сделан заказ №{$orderInv} на сайте " . App::$app->getProperty('shop_name')))
 				->setFrom([App::$app->getProperty('smtp_login') => App::$app->getProperty('shop_name')])
 				->setTo($adm["email"])
 				->setBody($body, 'text/html')
@@ -134,6 +136,9 @@ class Order extends AppModel {
         // Send the message
         $result = $mailer->send($message_client);
         $result = $mailer->send($message_admin);
+		} catch (\Throwable $e) {
+			error_log('Order mail send failed for order #' . $order_id . ': ' . $e->getMessage());
+		}
 		
 		
         unset($_SESSION['cart']);
