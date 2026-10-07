@@ -1,4 +1,8 @@
 <?php
+// Render a cross through the same storefront layout as a sellable product.
+require APP . '/views/' . TEMPLATE . '/Product/view.php';
+return;
+
 $productPath='/'.ltrim((string)$cross['product_alias'],'/');
 $crossUrl=rtrim(PATH,'/').'/'.$canonicalPath;
 $productImage=!empty($cross['img'])?'/images/product/baseimg/'.rawurlencode((string)$cross['img']):'/images/'.ltrim((string)\ishop\App::$app->getProperty('og_logo'),'/');

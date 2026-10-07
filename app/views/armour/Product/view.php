@@ -54,7 +54,7 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 									<figure class="woocommerce-product-gallery__wrapper">
 										<div class="woocommerce-product-gallery__image flex-active-slide">
 											<picture>
-												<img src="images/product/baseimg/<?=$product->img;?>" class="wp-post-image" alt="" title="" />
+												<img src="/images/product/baseimg/<?=rawurlencode((string)$product->img);?>" class="wp-post-image" alt="" title="" />
 											</picture>											
 										</div>										
 									</figure>
