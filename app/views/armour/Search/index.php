@@ -21,7 +21,7 @@
                 <?php if ($pagination->countPages > 1): ?><?=$pagination?><?php endif; ?>
             </div>
         <?php else: ?>
-            <div class="woocommerce-info">По вашему запросу товары не найдены.</div>
+            <div class="woocommerce-info search-empty-message">По вашему запросу товары не найдены.</div>
         <?php endif; ?>
     </div>
 </div>

@@ -13421,6 +13421,12 @@ a.button.clear-vkorzine.btn-green-back:active {
 .search_match_100 {
     box-shadow: 1px 2px 10px rgba(0, 111, 0, 0.69);
 }
+
+/* The icon font contains an invalid glyph for this search-only notice. */
+.woocommerce-info.search-empty-message::before {
+    content: none;
+    display: none;
+}
 .organization-info .form-row  {
     display: flex;
     gap: 30px;
