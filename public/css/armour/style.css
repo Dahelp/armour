@@ -13424,8 +13424,13 @@ a.button.clear-vkorzine.btn-green-back:active {
 
 /* The icon font contains an invalid glyph for this search-only notice. */
 .woocommerce-info.search-empty-message::before {
-    content: none;
-    display: none;
+    content: "ℹ";
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    vertical-align: middle;
 }
 .organization-info .form-row  {
     display: flex;
