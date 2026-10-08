@@ -90,6 +90,7 @@ jobs:
           rm -f /app/controllers/ComparisonController.php
           rm -f /app/views/armour/Comparison/index.php
           rm -f /app/views/armour/User/bookmarks.php
+          rm -f /app/services/ProtectedBrandRedirector.php
           rm -f /public/_health_db.php
           bye
           LFTP
