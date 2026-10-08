@@ -39,6 +39,18 @@ coreAssert(
     \app\services\LegacyUrlRedirector::normalisePath('../admin') === '',
     'Traversal-like paths must be rejected.'
 );
+coreAssert(
+    \app\services\ProtectedBrandRedirector::isProtectedBrandPath('shiny-dlya-cfmoto/cforce-600'),
+    'A legacy CFMOTO URL must be recognised for redirect.'
+);
+coreAssert(
+    \app\services\ProtectedBrandRedirector::isProtectedBrandPath('tehnika/сф-мото'),
+    'A Cyrillic CFMOTO variant must be recognised for redirect.'
+);
+coreAssert(
+    !\app\services\ProtectedBrandRedirector::isProtectedBrandPath('catalog-kvadrotciklov'),
+    'The neutral ATV catalogue must not be redirected.'
+);
 
 coreAssert(\ishop\ErrorHandler::normaliseStatusCode(404) === 404, 'HTTP 404 must be preserved.');
 coreAssert(\ishop\ErrorHandler::normaliseStatusCode(419) === 419, 'HTTP 419 must be preserved.');
