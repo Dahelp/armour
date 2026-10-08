@@ -4,7 +4,6 @@ use ishop\Router;
 use app\models\AppModel;
 use app\services\LegacyCrossRedirector;
 use app\services\LegacyUrlRedirector;
-use app\services\ProtectedBrandRedirector;
 
 // Stable service and legal pages. These routes deliberately precede database
 // aliases so the pages remain available after content imports.
@@ -22,7 +21,6 @@ $urli = $_SERVER['REQUEST_URI'];
 $baseUrl = strtok($urli, '?');
 $urli = trim($baseUrl, '/');
 $urls = new AppModel();
-ProtectedBrandRedirector::redirectIfNeeded($urli);
 LegacyCrossRedirector::redirectIfNeeded($urli);
 LegacyUrlRedirector::redirectIfNeeded($urli);
 //debug($urli); exit();
