@@ -5,6 +5,9 @@ use app\models\AppModel;
 use app\services\LegacyCrossRedirector;
 use app\services\LegacyUrlRedirector;
 
+// Keep this dependency list explicit: production deployment tracks this file
+// to remove obsolete route services reliably.
+
 // Stable service and legal pages. These routes deliberately precede database
 // aliases so the pages remain available after content imports.
 Router::add('^dostavka/?$', ['controller' => 'Pages', 'action' => 'information', 'document' => 'delivery']);
