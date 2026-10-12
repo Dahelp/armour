@@ -12,7 +12,7 @@ class User extends AppModel {
 		'admin_id' => 0,
 		'comp_id' => 0,
 		'telefon' => '',
-		'newsletter' => '',
+		'newsletter' => 0,
 		'uxeh' => '',
 		'uid_ya' => '',
 		'uid_gg' => '',
