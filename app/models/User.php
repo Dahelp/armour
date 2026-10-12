@@ -9,6 +9,7 @@ class User extends AppModel {
         'email' => '',
         'role' => 'user',
 		'groups' => '3',
+		'admin_id' => 0,
 		'telefon' => '',
 		'newsletter' => '',
     ];

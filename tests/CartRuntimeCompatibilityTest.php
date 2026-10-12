@@ -50,6 +50,7 @@ assertCartRuntime(!isset($_SESSION['cart'][42]),'Out-of-stock product must not b
 $root = dirname(__DIR__);
 $controller = file_get_contents($root . '/app/controllers/CartController.php');
 $order = file_get_contents($root . '/app/models/Order.php');
+$user = file_get_contents($root . '/app/models/User.php');
 $managerMail = file_get_contents($root . '/app/views/armour/mail/mail_manager.php');
 
 assertCartRuntime(str_contains($controller, '$mod = (object)['), 'Unified modification must be initialized before property assignment.');
@@ -63,6 +64,7 @@ assertCartRuntime(str_contains($layout,"filemtime(WWW.'/js/main.js')"),'Cart Jav
 $cartTable = file_get_contents($root . '/app/views/armour/Cart/cart_table.php');
 assertCartRuntime(str_contains($cartTable,'cart-empty-state'),'Cart page must render an explicit empty state after removing its last item.');
 assertCartRuntime(str_contains($order, "(array)(\$_SESSION['cart'] ?? [])"), 'Order creation must tolerate an absent cart session.');
+assertCartRuntime(str_contains($user, "'admin_id' => 0"), 'Checkout users must have an explicit unassigned manager under strict SQL mode.');
 assertCartRuntime(str_contains($managerMail, '$itog_qty = 0; $sum = 0;'), 'Mail totals must be initialized under PHP 8.2.');
 
 echo "Cart runtime compatibility tests passed.\n";
