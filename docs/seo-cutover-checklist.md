@@ -3,9 +3,8 @@
 ## Current verified state
 
 - TechTires runs on PHP 8.2 and HTTPS.
-- The production sitemap previously contained 8,159 canonical URLs, including
-  7,181 unique cross-number paths. Re-run the production smoke test and confirm
-  the live count before cutover; the 2026-10-12 audit found only the homepage.
+- The production sitemap contains 8,170 canonical URLs after regeneration and
+  the successful 2026-10-12 production smoke test.
 - The imported legacy page map contains 764 active permanent redirects.
 - The cross audit found 7,150 old `crossing-*.html` URLs that are safe for
   cutover. All 7,150 rows passed structural validation and a distributed live
