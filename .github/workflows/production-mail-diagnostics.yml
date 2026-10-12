@@ -1,0 +1,98 @@
+name: Production mail diagnostics
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Build one-time mail runner
+        shell: bash
+        env:
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          file="__mail_diagnostics_$(printf '%s' "$FTP_PASSWORD:$GITHUB_RUN_ID" | sha256sum | cut -c1-24).php"
+          echo "DIAGNOSTIC_FILE=$file" >> "$GITHUB_ENV"
+          mkdir -p .diagnostics
+          cat > ".diagnostics/$file" <<'PHP'
+          <?php
+          declare(strict_types=1);
+          header('Content-Type: text/plain; charset=utf-8');
+          header('Cache-Control: no-store');
+          require dirname(__DIR__) . '/config/init.php';
+          new \ishop\App();
+          $app = \ishop\App::$app;
+          $host = (string)$app->getProperty('smtp_host');
+          $port = (int)$app->getProperty('smtp_port');
+          $protocol = (string)$app->getProperty('smtp_protocol');
+          $login = (string)$app->getProperty('smtp_login');
+          $password = (string)$app->getProperty('smtp_password');
+          $admin = (string)$app->getProperty('admin_email');
+          echo 'SMTP_CONFIG=' . json_encode([
+              'host' => $host,
+              'port' => $port,
+              'protocol' => $protocol,
+              'sender' => $login,
+              'admin' => $admin,
+              'password_configured' => $password !== '',
+          ], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR) . "\n";
+          $transport = (new \Swift_SmtpTransport($host, $port, $protocol))
+              ->setUsername($login)
+              ->setPassword($password);
+          $mailer = new \Swift_Mailer($transport);
+          $stamp = date('Y-m-d H:i:s T');
+          foreach (['client' => 'dahelp@yandex.com', 'admin' => $admin] as $label => $recipient) {
+              try {
+                  $message = (new \Swift_Message("TechTires: контроль SMTP {$stamp}"))
+                      ->setFrom([$login => 'ТехШина'])
+                      ->setTo($recipient)
+                      ->setBody("Контроль доставки TechTires. Время отправки: {$stamp}", 'text/plain');
+                  echo strtoupper($label) . '_ACCEPTED=' . $mailer->send($message) . "\n";
+              } catch (\Throwable $error) {
+                  echo strtoupper($label) . '_ERROR=' . $error->getMessage() . "\n";
+              }
+          }
+          PHP
+
+      - name: Upload and run mail diagnostics
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          put ".diagnostics/$DIAGNOSTIC_FILE" -o "/public/$DIAGNOSTIC_FILE"
+          bye
+          LFTP
+          curl --fail-with-body --silent --show-error --max-time 90 "https://techtires.ru/$DIAGNOSTIC_FILE"
+
+      - name: Remove one-time mail runner
+        if: always()
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit false
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          rm "/public/$DIAGNOSTIC_FILE"
+          bye
+          LFTP
