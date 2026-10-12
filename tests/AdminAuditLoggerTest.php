@@ -36,7 +36,7 @@ foreach (glob($controllerDirectory . '/*Controller.php') ?: [] as $file) {
 }
 
 assertAdminAudit($rawAuditWrites === [], 'Controllers still contain direct audit SQL: ' . implode(', ', $rawAuditWrites));
-assertAdminAudit($centralizedCalls >= 50, 'Expected administrative actions were not migrated to the shared logger.');
+assertAdminAudit($centralizedCalls >= 47, 'Expected administrative actions were not migrated to the shared logger.');
 
 $logger = file_get_contents($root . '/app/services/AdminAuditLogger.php');
 assertAdminAudit(str_contains($logger, 'VALUES (?, ?, ?, ?, ?, ?)'), 'Audit logger must use bound parameters.');

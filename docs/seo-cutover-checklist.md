@@ -3,8 +3,9 @@
 ## Current verified state
 
 - TechTires runs on PHP 8.2 and HTTPS.
-- The production sitemap contains 8,159 canonical URLs, including 7,181 unique
-  cross-number paths.
+- The production sitemap previously contained 8,159 canonical URLs, including
+  7,181 unique cross-number paths. Re-run the production smoke test and confirm
+  the live count before cutover; the 2026-10-12 audit found only the homepage.
 - The imported legacy page map contains 764 active permanent redirects.
 - The cross audit found 7,150 old `crossing-*.html` URLs that are safe for
   cutover. All 7,150 rows passed structural validation and a distributed live
@@ -13,7 +14,7 @@
   TechTires, 26 require a web-server rule because the old path contains spaces,
   seven contain unsupported route aliases and one alias is invalid.
 - Product pages expose Product/Offer JSON-LD.
-- TechTires remains intentionally closed in `robots.txt` until cutover.
+- TechTires is open for indexing in `robots.txt`.
 - armour-shina.ru still returns its own pages with HTTP 200 and therefore does
   not yet transfer ranking signals to TechTires.
 
@@ -34,9 +35,9 @@
    exactly one permanent redirect to the same path on techtires.ru; the
    TechTires legacy layer may then make one additional `.html` → canonical
    redirect. Do not redirect every request to the TechTires homepage.
-5. Replace both `robots.txt` files on TechTires with
-   `ops/production/robots.open.txt`, update the smoke-test expectation in the
-   same release commit and run that production smoke test.
+5. Confirm both `robots.txt` files on TechTires match
+   `ops/production/robots.open.txt` and run the production smoke test after
+   every deployment and immediately before cutover.
 6. Add both domains and all protocol/`www` variants to Yandex Webmaster and
    Google Search Console. Submit `https://techtires.ru/sitemap.xml` and use the
    official site-move/change-of-address tool where available.
