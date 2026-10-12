@@ -77,6 +77,15 @@ jobs:
           mkdir -p .release/public
           cp -p robots.txt .release/robots.txt
           cp -p public/robots.txt .release/public/robots.txt
+          opcache_file="__opcache_reset_${GITHUB_RUN_ID}.php"
+          echo "OPCACHE_RESET_FILE=$opcache_file" >> "$GITHUB_ENV"
+          cat > ".release/public/$opcache_file" <<'PHP'
+          <?php
+          declare(strict_types=1);
+          header('Content-Type: text/plain; charset=utf-8');
+          header('Cache-Control: no-store');
+          echo function_exists('opcache_reset') && opcache_reset() ? 'ok' : 'unavailable';
+          PHP
           {
             printf 'APP_ENV=production\nAPP_DEBUG=0\nAPP_URL=https://techtires.ru\n\n'
             printf 'DB_HOST=%s\nDB_PORT=3306\nDB_DATABASE=%s\nDB_USERNAME=%s\nDB_PASSWORD=%s\n\n' "$DB_HOST" "$DB_DATABASE" "$DB_USERNAME" "$DB_PASSWORD"
@@ -108,5 +117,16 @@ jobs:
           rm -f /app/views/armour/User/bookmarks.php
           rm -f /app/services/ProtectedBrandRedirector.php
           rm -f /public/_health_db.php
+          bye
+          LFTP
+          result="$(curl --fail-with-body --silent --show-error --max-time 30 "https://techtires.ru/$OPCACHE_RESET_FILE")"
+          printf 'OPcache reset: %s\n' "$result"
+          test "$result" = "ok" || test "$result" = "unavailable"
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          rm "/public/$OPCACHE_RESET_FILE"
           bye
           LFTP
