@@ -64,6 +64,8 @@ assertCartRuntime(str_contains($layout,"filemtime(WWW.'/js/main.js')"),'Cart Jav
 $cartTable = file_get_contents($root . '/app/views/armour/Cart/cart_table.php');
 assertCartRuntime(str_contains($cartTable,'cart-empty-state'),'Cart page must render an explicit empty state after removing its last item.');
 assertCartRuntime(str_contains($order, "(array)(\$_SESSION['cart'] ?? [])"), 'Order creation must tolerate an absent cart session.');
+assertCartRuntime(str_contains($order, "SHOW COLUMNS FROM `order_product`"), 'Order products must adapt to the deployed database schema.');
+assertCartRuntime(str_contains($order, 'array_intersect_key($values, $availableColumns)'), 'Unsupported order product columns must be excluded before insert.');
 assertCartRuntime(str_contains($user, "'admin_id' => 0"), 'Checkout users must have an explicit unassigned manager under strict SQL mode.');
 assertCartRuntime(str_contains($user, "'comp_id' => 0"), 'Checkout users must have an explicit unassigned company under strict SQL mode.');
 assertCartRuntime(str_contains($user, "'newsletter' => 0"), 'Checkout users must default newsletter consent to the strict integer value 0.');

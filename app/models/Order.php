@@ -69,21 +69,47 @@ class Order extends AppModel {
     }
 
     public static function saveOrderProduct($order_id){
-        $sql_part = '';
+		$availableColumns = array_fill_keys(
+			array_map(
+				static fn(array $column): string => (string)$column['Field'],
+				\R::getAll('SHOW COLUMNS FROM `order_product`')
+			),
+			true
+		);
 		foreach((array)($_SESSION['cart'] ?? []) as $product_id => $product){
             $product_id = (int)$product_id;
+			$values = [
+				'order_id' => (int)$order_id,
+				'product_id' => $product_id,
+				'article' => (string)($product['article'] ?? ''),
+				'qty' => (float)($product['qty'] ?? 0),
+				'unit' => (string)($product['unit'] ?? ''),
+				'name' => (string)($product['name'] ?? ''),
+				'price' => (float)($product['price'] ?? 0),
+				'discount' => 0.0,
+				'discount_amount' => 0.0,
+			];
 			if(!empty($_SESSION['promocart'])){
 				$prods = \R::getRow('SELECT * FROM product WHERE id = ?', [$product_id]);
 				$promo = \R::getRow('SELECT * FROM plagins_promocode WHERE promocode = ?', [$_SESSION['promocart']]);
 				$discount = ($prods['price']/100)*$promo["value"];
 				$discount_amount = $discount * $product['qty'];
-				$sql_part .= "('".$order_id."', '".$product_id."', '".$product['article']."', '".$product['qty']."', '".$product['unit']."', '".$product['name']."', '".$prods['price']."', '".$promo["value"]."', '3', '".$discount."', '".$product['price']."', '".$discount."'),";
-			}else{
-				$sql_part .= "('".$order_id."', '".$product_id."', '".$product['article']."', '".$product['qty']."', '".$product['unit']."', '".$product['name']."', '".$product['price']."', '', '', '', '', ''),";
+				$values['price'] = (float)$prods['price'];
+				$values['discount_value'] = (float)$promo['value'];
+				$values['discount_type'] = '3';
+				$values['discount'] = (float)$discount;
+				$values['price_discount'] = (float)$product['price'];
+				$values['discount_amount'] = (float)$discount_amount;
 			}
+			$values = array_intersect_key($values, $availableColumns);
+			$columns = array_keys($values);
+			$columnSql = implode(', ', array_map(static fn(string $column): string => "`{$column}`", $columns));
+			$placeholders = implode(', ', array_fill(0, count($columns), '?'));
+			\R::exec(
+				"INSERT INTO `order_product` ({$columnSql}) VALUES ({$placeholders})",
+				array_values($values)
+			);
         }
-        $sql_part = rtrim($sql_part, ',');
-        \R::exec("INSERT INTO order_product (`order_id`, `product_id`, `article`, `qty`, `unit`, `name`, `price`, `discount_value`, `discount_type`, `discount`, `price_discount`, `discount_amount`) VALUES $sql_part");
     }
 
     public static function mailOrder($order_id, $user_email, $uname, $telefon, $admin_id, $note, $date, $dostavka_name, $branch_name, $address, $transport_company, $city_name, $vid, $compname, $nds, $dogovor, $rekvizity_name = ''){
