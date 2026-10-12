@@ -13,6 +13,10 @@ class User extends AppModel {
 		'comp_id' => 0,
 		'telefon' => '',
 		'newsletter' => '',
+		'uxeh' => '',
+		'uid_ya' => '',
+		'uid_gg' => '',
+		'uid_vk' => '',
     ];
 
     public $rules = [

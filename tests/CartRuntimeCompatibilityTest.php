@@ -66,6 +66,9 @@ assertCartRuntime(str_contains($cartTable,'cart-empty-state'),'Cart page must re
 assertCartRuntime(str_contains($order, "(array)(\$_SESSION['cart'] ?? [])"), 'Order creation must tolerate an absent cart session.');
 assertCartRuntime(str_contains($user, "'admin_id' => 0"), 'Checkout users must have an explicit unassigned manager under strict SQL mode.');
 assertCartRuntime(str_contains($user, "'comp_id' => 0"), 'Checkout users must have an explicit unassigned company under strict SQL mode.');
+foreach (['uxeh', 'uid_ya', 'uid_gg', 'uid_vk'] as $legacyUserField) {
+    assertCartRuntime(str_contains($user, "'{$legacyUserField}' => ''"), "Checkout users must initialize legacy field {$legacyUserField} under strict SQL mode.");
+}
 assertCartRuntime(str_contains($managerMail, '$itog_qty = 0; $sum = 0;'), 'Mail totals must be initialized under PHP 8.2.');
 
 echo "Cart runtime compatibility tests passed.\n";
