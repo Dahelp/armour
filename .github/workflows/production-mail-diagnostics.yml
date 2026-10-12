@@ -17,7 +17,7 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           set -euo pipefail
-          file="__mail_diagnostics_$(printf '%s' "$FTP_PASSWORD:$GITHUB_RUN_ID" | sha256sum | cut -c1-24).php"
+          file="__smtp_probe_$(printf '%s' "$FTP_PASSWORD:$GITHUB_RUN_ID" | sha256sum | cut -c1-24).php"
           echo "DIAGNOSTIC_FILE=$file" >> "$GITHUB_ENV"
           mkdir -p .diagnostics
           cat > ".diagnostics/$file" <<'PHP'
