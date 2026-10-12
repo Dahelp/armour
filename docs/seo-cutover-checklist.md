@@ -3,6 +3,9 @@
 ## Current verified state
 
 - TechTires runs on PHP 8.2 and HTTPS.
+- The armour-shina.ru cutover was activated on 2026-10-12. The old domain now
+  returns permanent redirects that retain paths and query strings. The remote
+  rollback file is `/.htaccess.before-techtires-38261522233`.
 - The production sitemap contains 8,170 canonical URLs after regeneration and
   the successful 2026-10-12 production smoke test.
 - The imported legacy page map contains 764 active permanent redirects.

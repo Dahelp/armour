@@ -10,10 +10,9 @@ on:
       remote_directory:
         description: FTP document root of armour-shina.ru
         required: true
-        default: /www/armour-shina.ru/
+        default: /
         type: choice
         options:
-          - /www/armour-shina.ru/
           - /
 
 concurrency:
@@ -61,13 +60,13 @@ jobs:
           test -n "$FTP_USERNAME"
           test -n "$FTP_PASSWORD"
           case "$REMOTE_DIRECTORY" in
-            /|/www/armour-shina.ru/) ;;
+            /) ;;
             *) exit 2 ;;
           esac
           backup=".htaccess.before-techtires-${GITHUB_RUN_ID}"
           mkdir -p armour-redirect-backup
           lftp <<LFTP
-          set cmd:fail-exit false
+          set cmd:fail-exit true
           set ftp:passive-mode true
           set ftp:ssl-allow false
           set net:max-retries 3
@@ -76,7 +75,6 @@ jobs:
           cd "$REMOTE_DIRECTORY"
           get .htaccess -o "armour-redirect-backup/.htaccess"
           mv .htaccess "$backup"
-          set cmd:fail-exit true
           put ops/armour-shina-redirect/.htaccess -o .htaccess.techtires-upload
           mv .htaccess.techtires-upload .htaccess
           bye
