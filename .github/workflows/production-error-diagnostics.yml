@@ -32,6 +32,8 @@ jobs:
               ['dahelp@yandex.com']
           );
           echo 'LATEST_TEST_ORDER=' . json_encode($order, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR) . "\n";
+          $productCount = $order ? (int)\R::getCell('SELECT COUNT(*) FROM order_product WHERE order_id = ?', [$order['id']]) : 0;
+          echo 'LATEST_TEST_ORDER_PRODUCT_COUNT=' . $productCount . "\n";
           $columns = \R::getCol(
               'SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? ORDER BY ORDINAL_POSITION',
               ['order_product']
