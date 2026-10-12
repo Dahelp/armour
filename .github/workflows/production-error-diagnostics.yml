@@ -32,6 +32,11 @@ jobs:
               ['dahelp@yandex.com']
           );
           echo 'LATEST_TEST_ORDER=' . json_encode($order, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR) . "\n";
+          $columns = \R::getCol(
+              'SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? ORDER BY ORDINAL_POSITION',
+              ['order_product']
+          );
+          echo 'ORDER_PRODUCT_COLUMNS=' . json_encode($columns, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR) . "\n";
           $path = dirname(__DIR__) . '/tmp/errors.log';
           if (!is_file($path)) {
               echo "ERROR_LOG_MISSING\n";
