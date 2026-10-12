@@ -11,7 +11,43 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Read recent application errors
+      - name: Build one-time diagnostic runner
+        shell: bash
+        env:
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          file="__error_diagnostics_$(printf '%s' "$FTP_PASSWORD:$GITHUB_RUN_ID" | sha256sum | cut -c1-24).php"
+          echo "DIAGNOSTIC_FILE=$file" >> "$GITHUB_ENV"
+          mkdir -p .diagnostics
+          cat > ".diagnostics/$file" <<'PHP'
+          <?php
+          declare(strict_types=1);
+          header('Content-Type: text/plain; charset=utf-8');
+          header('Cache-Control: no-store');
+          require dirname(__DIR__) . '/config/init.php';
+          \ishop\Db::instance();
+          $order = \R::getRow(
+              'SELECT o.id, o.inv, o.date, o.status, o.note FROM `order` o JOIN `user` u ON u.id = o.user_id WHERE u.email = ? ORDER BY o.id DESC LIMIT 1',
+              ['dahelp@yandex.com']
+          );
+          echo 'LATEST_TEST_ORDER=' . json_encode($order, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR) . "\n";
+          $path = dirname(__DIR__) . '/tmp/errors.log';
+          if (!is_file($path)) {
+              echo "ERROR_LOG_MISSING\n";
+              exit;
+          }
+          $log = new SplFileObject($path, 'r');
+          $log->seek(PHP_INT_MAX);
+          $last = $log->key();
+          $start = max(0, $last - 39);
+          for ($line = $start; $line <= $last; ++$line) {
+              $log->seek($line);
+              echo preg_replace('#(?:[A-Za-z]:)?[/\\\\](?:[^ |/\\\\]+[/\\\\])+([^ |/\\\\]+\.php)#', '.../$1', $log->current());
+          }
+          PHP
+
+      - name: Upload and run diagnostics
         shell: bash
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
@@ -20,14 +56,30 @@ jobs:
           set -euo pipefail
           sudo apt-get update -qq
           sudo apt-get install -y -qq lftp
-          mkdir -p .diagnostics
           lftp <<LFTP
           set cmd:fail-exit true
           set ftp:passive-mode true
           set ftp:ssl-allow false
           open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
-          get /tmp/errors.log -o .diagnostics/errors.log
+          put ".diagnostics/$DIAGNOSTIC_FILE" -o "/public/$DIAGNOSTIC_FILE"
           bye
           LFTP
-          tail -n 40 .diagnostics/errors.log \
-            | sed -E 's#(/[^ |]+/)+([^/ |]+\.php)#.../\2#g'
+          curl --fail-with-body --silent --show-error --max-time 60 "https://techtires.ru/$DIAGNOSTIC_FILE"
+
+      - name: Remove one-time diagnostic runner
+        if: always()
+        shell: bash
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit false
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          rm "/public/$DIAGNOSTIC_FILE"
+          bye
+          LFTP
