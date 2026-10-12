@@ -26,14 +26,13 @@ jobs:
           header('Content-Type: text/plain; charset=utf-8');
           header('Cache-Control: no-store');
           require dirname(__DIR__) . '/config/init.php';
-          new \ishop\App();
-          $app = \ishop\App::$app;
-          $host = (string)$app->getProperty('smtp_host');
-          $port = (int)$app->getProperty('smtp_port');
-          $protocol = (string)$app->getProperty('smtp_protocol');
-          $login = (string)$app->getProperty('smtp_login');
-          $password = (string)$app->getProperty('smtp_password');
-          $admin = (string)$app->getProperty('admin_email');
+          $params = require dirname(__DIR__) . '/config/params.php';
+          $host = (string)$params['smtp_host'];
+          $port = (int)$params['smtp_port'];
+          $protocol = (string)$params['smtp_protocol'];
+          $login = (string)$params['smtp_login'];
+          $password = (string)$params['smtp_password'];
+          $admin = (string)$params['admin_email'];
           echo 'SMTP_CONFIG=' . json_encode([
               'host' => $host,
               'port' => $port,
