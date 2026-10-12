@@ -19,6 +19,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: curl, dom, fileinfo, gd, intl, mbstring, openssl, pdo_mysql
+          coverage: none
+
+      - name: Build authoritative production autoloader
+        run: composer install --no-dev --prefer-dist --no-interaction --classmap-authoritative
+
       - name: Assemble changed application files
         shell: bash
         env:
@@ -56,6 +66,12 @@ jobs:
           # even when they were not changed in the current delta.
           mkdir -p .release/vendor/ishop
           cp -pR vendor/ishop/core .release/vendor/ishop/core
+          # The production autoloader is authoritative, so every newly added
+          # application class must be shipped together with the regenerated
+          # Composer maps even during a source-only delta deployment.
+          mkdir -p .release/vendor
+          cp -p vendor/autoload.php .release/vendor/autoload.php
+          cp -pR vendor/composer .release/vendor/composer
           mkdir -p .release/app/services
           cp -p app/services/PersonalDataConsent.php .release/app/services/PersonalDataConsent.php
           mkdir -p .release/public
