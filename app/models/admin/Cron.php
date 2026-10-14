@@ -6,6 +6,38 @@ use app\models\AppModel;
 
 class Cron extends AppModel {
 
+    public static function ensureSystemJobs(): void
+    {
+        $jobs = [
+            'refresh-tovars' => [
+                'name' => 'Обновление цен и наличия',
+                'alias' => '',
+                'url_download' => 'tovars.csv',
+                'hide' => 'hide',
+            ],
+            'sitemap' => [
+                'name' => 'Обновление карты сайта',
+                'alias' => '',
+                'url_download' => 'sitemap.xml',
+                'hide' => 'show',
+            ],
+        ];
+
+        foreach ($jobs as $systemName => $values) {
+            if (\R::findOne('cron', 'url_params = ?', [$systemName])) {
+                continue;
+            }
+            $job = \R::dispense('cron');
+            $job->name = $values['name'];
+            $job->alias = $values['alias'];
+            $job->urlParams = $systemName;
+            $job->urlDownload = $values['url_download'];
+            $job->hide = $values['hide'];
+            $job->dateUpdate = null;
+            \R::store($job);
+        }
+    }
+
     public $attributes = [
 		'name' => '',
         'alias' => '',

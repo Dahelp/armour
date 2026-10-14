@@ -47,13 +47,14 @@
                                 <tr><td colspan="6" class="text-center text-muted">CRON-задания пока не настроены.</td></tr>
                             <?php endif; ?>
                             <?php foreach($crons as $cron): ?>
+                                <?php $canRun = $cron['hide'] === 'show' && ($cron['url_params'] !== 'refresh-tovars' || trim((string)$cron['alias']) !== ''); ?>
                                 <tr class="cont_td_znach">
                                     <td><?=h($cron['name']);?></td>
 									<td><?=h($cron['url_params']);?></td>
 									<td><?=h($cron['alias']);?></td>
 									<td><?=$cron['hide'] === 'show' ? '<span class="badge badge-success">Активный</span>' : '<span class="badge badge-secondary">Неактивный</span>';?></td>
 									<td><?=h($cron['date_update']);?></td>
-									<td><a href="<?=ADMIN;?>/cron/edit?id=<?=$cron['id'];?>" title="Редактировать"><i class="fas fa-pencil-alt"></i></a> <a class="delete" href="<?=ADMIN;?>/cron/delete?id=<?=$cron['id'];?>" title="Удалить"><i class="fas fa-times-circle text-danger"></i></a> <button type="button" class="btn btn-link p-0 ml-1 js-cron-run" data-url="<?=PATH?>/cron/<?=h($cron['url_params']);?>?id=<?=$cron['id'];?>" title="Запустить"><i class="far fa-rocket-launch"></i></button> <span class="cron-run-status ml-2"></span></td>
+									<td><a href="<?=ADMIN;?>/cron/edit?id=<?=$cron['id'];?>" title="Редактировать"><i class="fas fa-pencil-alt"></i></a> <a class="delete" href="<?=ADMIN;?>/cron/delete?id=<?=$cron['id'];?>" title="Удалить"><i class="fas fa-times-circle text-danger"></i></a> <button type="button" class="btn btn-link p-0 ml-1 js-cron-run" data-url="<?=PATH?>/cron/<?=h($cron['url_params']);?>?id=<?=$cron['id'];?>" title="<?=$canRun ? 'Запустить' : 'Сначала заполните URL источника и включите задание';?>" <?=$canRun ? '' : 'disabled';?>><i class="far fa-rocket-launch"></i></button> <span class="cron-run-status ml-2"><?=$canRun ? '' : '<span class="text-warning">Требуется настройка</span>';?></span></td>
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>

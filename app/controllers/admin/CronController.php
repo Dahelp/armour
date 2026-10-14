@@ -9,7 +9,7 @@ use ishop\App;
 class CronController extends AppController {
 
     public function indexAction(){
-		
+		Cron::ensureSystemJobs();
 		$crons = \R::getAll("SELECT * FROM cron ORDER BY name");
 		
 		$this->set(compact('crons'));
