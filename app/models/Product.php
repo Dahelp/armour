@@ -115,4 +115,24 @@ class Product extends AppModel {
         $_SESSION['success'] = 'Спасибо за Вашу заявку товара под заказ. В ближайшее время с Вами свяжется менеджер для согласования заказа';
     }
 
+	public static function mailArrivalNotification(string $name_tovar, string $fio, string $email, string $product_url): void
+	{
+		$transport = (new Swift_SmtpTransport(App::$app->getProperty('smtp_host'), App::$app->getProperty('smtp_port'), App::$app->getProperty('smtp_protocol')))
+			->setUsername(App::$app->getProperty('smtp_login'))
+			->setPassword(App::$app->getProperty('smtp_password'));
+		$mailer = new Swift_Mailer($transport);
+		$namecomp = App::$app->getProperty('shop_name');
+		ob_start();
+		require APP . '/views/' . TEMPLATE . '/mail/mail_arrival_notification.php';
+		$body = ob_get_clean();
+		$message = (new Swift_Message('Сообщить о поступлении товара — ' . $name_tovar))
+			->setFrom([App::$app->getProperty('smtp_login') => $namecomp])
+			->setTo(App::$app->getProperty('admin_email'))
+			->setReplyTo([$email => $fio])
+			->setBody($body, 'text/html');
+		if ($mailer->send($message) < 1) {
+			throw new \RuntimeException('Не удалось отправить заявку. Попробуйте ещё раз позднее.');
+		}
+	}
+
 }

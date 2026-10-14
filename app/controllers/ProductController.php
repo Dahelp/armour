@@ -87,6 +87,34 @@ class ProductController extends AppController {
 			}else { $this->errors['unique'][] = "Запрос не обработан! Вы отказались принимать условия политики конфиденциальности на сайте. К сожалению, мы не сможем воспользоваться Вашими данными для ответа по запросу."; }
 			redirect();
 		}       
+		if (($_POST['arrival_notification'] ?? '') === $dtmd) {
+			if (!PersonalDataConsent::accepted($_POST)) {
+				PersonalDataConsent::reject($_POST);
+				redirect();
+				return;
+			}
+			$fio = mb_substr(trim((string)($_POST['arrival_name'] ?? '')), 0, 191);
+			$email = mb_substr(trim((string)($_POST['arrival_email'] ?? '')), 0, 191);
+			if ($fio === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				$_SESSION['error'] = 'Укажите имя и корректный e-mail.';
+				redirect();
+				return;
+			}
+			if ((int)$product->quantity > 0) {
+				$_SESSION['error'] = 'Товар уже есть в наличии.';
+				redirect();
+				return;
+			}
+
+			Product::mailArrivalNotification($name_tovar, $fio, $email, $productUrl ?? (PATH . '/' . $product->alias));
+			\R::exec(
+				'INSERT INTO mail_request (user_id, product_id, name, fio, tell, email, note, data_create, hide_call, data_call, call_uid, hide_order, order_id, hide) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				[$user_id, $product_id, $name_tovar, $fio, '', $email, 'Сообщить о поступлении', $data_create, '', '', '', '', '', 0]
+			);
+			$_SESSION['success'] = 'Заявка принята. Мы сообщим вам, когда товар появится в наличии.';
+			redirect();
+			return;
+		}
 
         // хлебные крошки
         $breadcrumbs = Breadcrumbs::getBreadcrumbs($product->category_id, $product->name, $alias, mb_strtolower($this->route["controller"]));

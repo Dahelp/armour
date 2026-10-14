@@ -682,6 +682,34 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 		</div>
 	</div>
 </div>
+<?php if (isset($product) && (int)$product->quantity <= 0) { ?>
+<div id="arrival-notification-modal" rel="form6" class="black wpcf7-zakazat-v-odin-klik-modal modal" style="display: none;">
+	<div class="big_box_close"></div>
+	<div class="form_box" style="top: 112px;">
+		<a class="a_close_box" rel="form6">x</a>
+		<div class="form_title">Сообщить о поступлении</div>
+		<div class="form_form">
+			<form action="" method="post" class="wpcf7-form init" aria-label="Сообщить о поступлении">
+				<span class="wpcf7-form-control-wrap">
+					<input class="wpcf7-form-control wpcf7-text" readonly="readonly" value="<?=h((string)$product->name)?>" type="text" aria-label="Товар">
+				</span>
+				<div class="flex two-input">
+					<div><span class="wpcf7-form-control-wrap"><input maxlength="191" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" required aria-required="true" placeholder="Ваше имя*" type="text" name="arrival_name"></span></div>
+					<div><span class="wpcf7-form-control-wrap"><input maxlength="191" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" required aria-required="true" placeholder="Ваш E-mail*" type="email" name="arrival_email"></span></div>
+				</div>
+				<span class="wpcf7-form-control-wrap">
+					<span class="wpcf7-form-control wpcf7-acceptance"><span class="wpcf7-list-item"><label>
+						<input type="checkbox" name="privacy_accept" value="1" class="check-val" required aria-required="true">
+						<span class="wpcf7-list-item-label">Я принимаю <a href="/politika-konfidencialnosti" target="_blank">Политику конфиденциальности</a> и даю <a href="/soglasie-na-obrabotku-personalnyh-dannyh" target="_blank">согласие на обработку персональных данных</a></span>
+					</label></span></span>
+				</span>
+				<input type="hidden" name="arrival_notification" value="<?=md5(date('Y-m-d'))?>">
+				<input class="wpcf7-form-control wpcf7-submit has-spinner btn-send" type="submit" value="Отправить" disabled>
+			</form>
+		</div>
+	</div>
+</div>
+<?php } ?>
 <aside id="cookie-consent" class="cookie-consent" aria-label="Настройки файлов cookie" role="dialog" aria-live="polite" hidden>
 	<div class="cookie-consent__text">
 		<strong>Файлы cookie</strong>

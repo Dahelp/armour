@@ -35,7 +35,7 @@ foreach ($controllers as $controller) {
 $layout = (string)file_get_contents($root . '/app/views/armour/layouts/watches.php');
 $productController = (string)file_get_contents($root . '/app/controllers/ProductController.php');
 $productView = (string)file_get_contents($root . '/app/views/armour/Product/view.php');
-consentAssert(substr_count($layout, 'name="privacy_accept"') === 4, 'All four public modal forms must use the unified consent field.');
+consentAssert(substr_count($layout, 'name="privacy_accept"') === 5, 'All five public modal forms must use the unified consent field.');
 consentAssert(str_contains($productController, 'PersonalDataConsent::accepted($_POST)'), 'Review consent is not validated server-side.');
 consentAssert(str_contains($productView, 'partials/privacy-consent.php'), 'Review consent control is missing.');
 consentAssert(str_contains($layout, 'data-cookie-acknowledge'), 'Cookie notice acknowledgement is missing.');
