@@ -229,8 +229,9 @@ var products = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
+        cache: false,
         wildcard: '%QUERY',
-        url: path + '/search/typeahead?query=%QUERY'
+        url: path + '/search/typeahead?v=20261014-2&query=%QUERY'
     }
 });
 

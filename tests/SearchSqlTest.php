@@ -12,6 +12,7 @@ function searchSqlAssert(bool $condition, string $message): void
 }
 
 $source = (string)file_get_contents(dirname(__DIR__) . '/app/controllers/SearchController.php');
+$mainJs = (string)file_get_contents(dirname(__DIR__) . '/public/js/main.js');
 
 searchSqlAssert(
     substr_count($source, 'FROM attribute_product ap') === 3,
@@ -47,6 +48,14 @@ searchSqlAssert(
 searchSqlAssert(
     $normaliseQuery->invoke($controller, 'модель, шина') === 'модель, шина',
     'Ordinary punctuation outside a numeric value must remain unchanged.'
+);
+searchSqlAssert(
+    str_contains($source, "header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0')"),
+    'Dynamic typeahead responses must not be retained by the browser cache.'
+);
+searchSqlAssert(
+    str_contains($mainJs, 'cache: false') && str_contains($mainJs, '/search/typeahead?v='),
+    'The typeahead client must bypass stale cached responses.'
 );
 
 echo "Search SQL checks passed.\n";
