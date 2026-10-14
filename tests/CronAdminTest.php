@@ -17,5 +17,6 @@ cronAdminAssert(str_contains($view, "Выполняется…") && str_contains
 cronAdminAssert(str_contains($view, "CRON-задания пока не настроены."), 'Empty cron configuration is not explained.');
 cronAdminAssert(str_contains($sync, "cron_backup_pre_legacy_sync"), 'Legacy cron sync must create a recovery backup.');
 cronAdminAssert(str_contains($sync, "WHERE url_params = ?"), 'Legacy cron sync must upsert by system name.');
+cronAdminAssert(str_contains($sync, "SHOW DATABASES") && str_contains($sync, "discoverCronSchema"), 'Legacy cron database must be auto-discovered when its name is not configured.');
 
 echo "Cron admin checks passed.\n";
