@@ -14,6 +14,8 @@ $admin = (string)file_get_contents($root . '/app/views/armour/admin/Cron/index.p
 
 feedAssert(str_contains($service, 'CURLOPT_SSL_VERIFYPEER => true'), 'Product feed TLS verification must be enabled.');
 feedAssert(str_contains($service, "str_getcsv(\$line, ';')"), 'Product feed must be parsed without a temporary cron directory.');
+feedAssert(str_contains($service, "preg_split('/\\r\\n|\\n|\\r/', \$contents)"), 'Windows-1251 feeds must be split without UTF-8 validation.');
+feedAssert(!str_contains($service, "preg_split('/\\R/u'"), 'Feed line parsing must not require valid UTF-8.');
 feedAssert(!str_contains($service, 'file_put_contents'), 'Product feed must not depend on a writable relative cron directory.');
 feedAssert(str_contains($service, '\\R::begin()') && str_contains($service, '\\R::rollback()'), 'Product updates must be transactional.');
 feedAssert(str_contains($controller, 'new ProductFeedUpdater()'), 'Refresh endpoint must use the validated updater.');

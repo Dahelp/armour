@@ -30,7 +30,9 @@ final class ProductFeedUpdater
             throw new \RuntimeException($error !== '' ? 'Не удалось скачать файл: ' . $error : 'Источник вернул HTTP ' . $status . '.');
         }
 
-        $lines = preg_split('/\R/u', $contents) ?: [];
+        // Supplier feeds can be encoded as Windows-1251. Line boundaries are
+        // ASCII bytes, so parsing them must not require valid UTF-8 input.
+        $lines = preg_split('/\r\n|\n|\r/', $contents) ?: [];
         if (count($lines) < 2) {
             throw new \RuntimeException('Файл с остатками пуст или не содержит строк товаров.');
         }
