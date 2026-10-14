@@ -225,17 +225,19 @@ document.addEventListener("DOMContentLoaded", function() {
 /*MODAL*/
 
 /* Search */
-var products = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    remote: {
-        cache: false,
-        wildcard: '%QUERY',
-        url: path + '/search/typeahead?v=20261014-2&query=%QUERY'
-    }
-});
-
-products.initialize();
+function searchProducts(query, syncResults, asyncResults) {
+    syncResults([]);
+    $.ajax({
+        url: path + '/search/typeahead',
+        data: {query: query},
+        dataType: 'json',
+        cache: false
+    }).done(function(items) {
+        asyncResults(Array.isArray(items) ? items : []);
+    }).fail(function() {
+        asyncResults([]);
+    });
+}
 
 $("#typeahead").typeahead({
     // hint: false,
@@ -244,7 +246,7 @@ $("#typeahead").typeahead({
     name: 'products',
     display: 'name',
     limit: 10,
-    source: products,
+    source: searchProducts,
 	templates: {
         empty: 'Товар не найден. Попробуйте ввести запрос по другому.', //optional
         suggestion: function(el){return '<a href="'+el.alias+'"><div class="tt-images"><img class="img-fit" src="images/product/mini/'+el.img+'" /></div><div class="tt-info"><div class="tt-name">'+el.name+'</div><div class="tt-price"><span class="fw-600 fs-16 text-primary">'+el.price+' руб</span></div></div></a>';}

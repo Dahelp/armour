@@ -54,8 +54,10 @@ searchSqlAssert(
     'Dynamic typeahead responses must not be retained by the browser cache.'
 );
 searchSqlAssert(
-    str_contains($mainJs, 'cache: false') && str_contains($mainJs, '/search/typeahead?v='),
-    'The typeahead client must bypass stale cached responses.'
+    str_contains($mainJs, 'cache: false')
+        && str_contains($mainJs, 'source: searchProducts')
+        && str_contains($mainJs, 'asyncResults(Array.isArray(items) ? items : [])'),
+    'The typeahead client must bypass stale caches and pass the complete API result to the menu.'
 );
 
 echo "Search SQL checks passed.\n";
