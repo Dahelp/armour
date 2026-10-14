@@ -755,7 +755,7 @@ requiredFields.forEach(field => {
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="public/adminlte/plugins/select2/js/select2.full.min.js"></script>
 <script src="js/validator.js"></script>
-<script src="js/typeahead.bundle.js"></script>
+<script src="/js/typeahead.bundle.js?v=<?=filemtime(WWW.'/js/typeahead.bundle.js')?>"></script>
 <script src="js/imagezoom.js"></script>
 <script src="js/slider.js"></script>
 <script defer src="js/jquery.flexslider.js"></script>

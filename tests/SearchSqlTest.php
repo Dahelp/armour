@@ -13,6 +13,8 @@ function searchSqlAssert(bool $condition, string $message): void
 
 $source = (string)file_get_contents(dirname(__DIR__) . '/app/controllers/SearchController.php');
 $mainJs = (string)file_get_contents(dirname(__DIR__) . '/public/js/main.js');
+$typeaheadJs = (string)file_get_contents(dirname(__DIR__) . '/public/js/typeahead.bundle.js');
+$layout = (string)file_get_contents(dirname(__DIR__) . '/app/views/armour/layouts/watches.php');
 
 searchSqlAssert(
     substr_count($source, 'FROM attribute_product ap') === 3,
@@ -58,6 +60,15 @@ searchSqlAssert(
         && str_contains($mainJs, 'source: searchProducts')
         && str_contains($mainJs, 'asyncResults(Array.isArray(items) ? items : [])'),
     'The typeahead client must bypass stale caches and pass the complete API result to the menu.'
+);
+searchSqlAssert(
+    str_contains($typeaheadJs, 'suggestions = suggestions.slice(0, that.limit - rendered);')
+        && !str_contains($typeaheadJs, 'that._append(query, suggestions.slice(0, that.limit - rendered));'),
+    'Typeahead must calculate the remaining result limit before incrementing the rendered count.'
+);
+searchSqlAssert(
+    str_contains($layout, "typeahead.bundle.js?v=<?=filemtime(WWW.'/js/typeahead.bundle.js')?>"),
+    'The corrected typeahead bundle must be cache-busted in the storefront layout.'
 );
 
 echo "Search SQL checks passed.\n";
