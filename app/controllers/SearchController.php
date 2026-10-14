@@ -16,15 +16,25 @@ class SearchController extends AppController{
                     "SELECT id, name, img, price, alias FROM (
                         SELECT id, name, img, price, alias
                         FROM product
-                        WHERE hide = 'show' AND concat(name, article) LIKE ?
+                        WHERE hide = 'show' AND (
+                            REPLACE(CONCAT_WS(' ', name, article), ',', '.') LIKE ?
+                            OR EXISTS (
+                                SELECT 1
+                                FROM attribute_product ap
+                                INNER JOIN attribute_value av ON av.id = ap.attr_id
+                                WHERE ap.product_id = product.id
+                                  AND REPLACE(av.value, ',', '.') LIKE ?
+                            )
+                        )
                         UNION
                         SELECT product.id, product.name, product.img, product.price, product.alias
                         FROM product
                         JOIN plagins_cross ON product.id = plagins_cross.product_id
                         LEFT JOIN plagins_cross_vendor ON plagins_cross_vendor.id = plagins_cross.vendor_id
-                        WHERE CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name) LIKE ?
+                        WHERE product.hide = 'show'
+                          AND REPLACE(CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name), ',', '.') LIKE ?
                     ) product LIMIT 15",
-                    [$like, $like]
+                    [$like, $like, $like]
                 );
                 header('Content-Type: application/json; charset=utf-8');
                 echo json_encode($products, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -49,14 +59,24 @@ class SearchController extends AppController{
 		$total = (int)\R::getCell(
             "SELECT COUNT(*) FROM (
                 SELECT id FROM product
-                WHERE hide = 'show' AND concat(name, article) LIKE ?
+                WHERE hide = 'show' AND (
+                    REPLACE(CONCAT_WS(' ', name, article), ',', '.') LIKE ?
+                    OR EXISTS (
+                        SELECT 1
+                        FROM attribute_product ap
+                        INNER JOIN attribute_value av ON av.id = ap.attr_id
+                        WHERE ap.product_id = product.id
+                          AND REPLACE(av.value, ',', '.') LIKE ?
+                    )
+                )
                 UNION
                 SELECT product.id FROM product
                 JOIN plagins_cross ON product.id = plagins_cross.product_id
                 LEFT JOIN plagins_cross_vendor ON plagins_cross_vendor.id = plagins_cross.vendor_id
-                WHERE CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name) LIKE ?
+                WHERE product.hide = 'show'
+                  AND REPLACE(CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name), ',', '.') LIKE ?
             ) product",
-            [$like, $like]
+            [$like, $like, $like]
         );
 		$pagination = new Pagination($page, $perpage, $total);
         $start = $pagination->getStart();
@@ -66,18 +86,28 @@ class SearchController extends AppController{
                 "SELECT * FROM (
                     SELECT id, name, price, alias, hit, new_product, sale, img, category_id, article, quantity, stock_status_id, brand_id
                     FROM product
-                    WHERE hide = 'show' AND concat(name, article) LIKE ?
+                    WHERE hide = 'show' AND (
+                        REPLACE(CONCAT_WS(' ', name, article), ',', '.') LIKE ?
+                        OR EXISTS (
+                            SELECT 1
+                            FROM attribute_product ap
+                            INNER JOIN attribute_value av ON av.id = ap.attr_id
+                            WHERE ap.product_id = product.id
+                              AND REPLACE(av.value, ',', '.') LIKE ?
+                        )
+                    )
                     UNION
                     SELECT product.id, product.name, product.price, product.alias, product.hit, product.new_product,
                            product.sale, product.img, product.category_id, product.article, product.quantity, product.stock_status_id, product.brand_id
                     FROM product
                     JOIN plagins_cross ON product.id = plagins_cross.product_id
                     LEFT JOIN plagins_cross_vendor ON plagins_cross_vendor.id = plagins_cross.vendor_id
-                    WHERE CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name) LIKE ?
+                    WHERE product.hide = 'show'
+                      AND REPLACE(CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name), ',', '.') LIKE ?
                 ) product
                 ORDER BY FIELD(`stock_status_id`, 1, 3, 2, 0), name ASC
                 LIMIT {$start}, {$perpage}",
-                [$like, $like]
+                [$like, $like, $like]
             );
         
         }
@@ -93,6 +123,7 @@ class SearchController extends AppController{
     private function normaliseQuery(string $query): string
     {
         $query = preg_replace('/\s+/u', ' ', trim($query));
+        $query = preg_replace('/(?<=\d),(?=\d)/u', '.', (string)$query);
         return mb_substr((string)$query, 0, 100, 'UTF-8');
     }
 
