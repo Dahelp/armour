@@ -9,7 +9,11 @@ use ishop\App;
 class CronController extends AppController {
 
     public function indexAction(){
-		Cron::ensureSystemJobs();
+		try {
+			Cron::ensureSystemJobs();
+		} catch (\Throwable $exception) {
+			$_SESSION['error'] = 'Не удалось автоматически создать системные CRON-задания. Их можно добавить вручную.';
+		}
 		$crons = \R::getAll("SELECT * FROM cron ORDER BY name");
 		
 		$this->set(compact('crons'));

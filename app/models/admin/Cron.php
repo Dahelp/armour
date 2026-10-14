@@ -27,14 +27,10 @@ class Cron extends AppModel {
             if (\R::findOne('cron', 'url_params = ?', [$systemName])) {
                 continue;
             }
-            $job = \R::dispense('cron');
-            $job->name = $values['name'];
-            $job->alias = $values['alias'];
-            $job->urlParams = $systemName;
-            $job->urlDownload = $values['url_download'];
-            $job->hide = $values['hide'];
-            $job->dateUpdate = null;
-            \R::store($job);
+            \R::exec(
+                'INSERT INTO cron (name, alias, url_params, url_download, hide, date_update) VALUES (?, ?, ?, ?, ?, ?)',
+                [$values['name'], $values['alias'], $systemName, $values['url_download'], $values['hide'], date('Y-m-d H:i:s')]
+            );
         }
     }
 
