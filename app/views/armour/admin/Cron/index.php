@@ -43,14 +43,17 @@
                             </tr>
 					    </thead>
                         <tbody>
+                            <?php if (!$crons): ?>
+                                <tr><td colspan="6" class="text-center text-muted">CRON-задания пока не настроены.</td></tr>
+                            <?php endif; ?>
                             <?php foreach($crons as $cron): ?>
                                 <tr class="cont_td_znach">
-                                    <td><?=$cron['name'];?></td>
-									<td><?=$cron['url_params'];?></td>
-									<td><?=$cron['alias'];?></td>
-                                    <td></td>	
-									<td><?=$cron['date_update'];?></td>
-									<td><a href="<?=ADMIN;?>/cron/edit?id=<?=$cron['id'];?>"><i class="fas fa-pencil-alt"></i></a> <a class="delete" href="<?=ADMIN;?>/cron/delete?id=<?=$cron['id'];?>"><i class="fas fa-times-circle text-danger"></i></a> <a class="read-more-<?=$cron['id'];?>" href="/admin/cron"><i class="far fa-rocket-launch"></i></a> <a target="_blank" href="/cron/<?=$cron['url_download'];?>"><i class='fas fa-eye'></i></a></td>                                    
+                                    <td><?=h($cron['name']);?></td>
+									<td><?=h($cron['url_params']);?></td>
+									<td><?=h($cron['alias']);?></td>
+									<td><?=$cron['hide'] === 'show' ? '<span class="badge badge-success">Активный</span>' : '<span class="badge badge-secondary">Неактивный</span>';?></td>
+									<td><?=h($cron['date_update']);?></td>
+									<td><a href="<?=ADMIN;?>/cron/edit?id=<?=$cron['id'];?>" title="Редактировать"><i class="fas fa-pencil-alt"></i></a> <a class="delete" href="<?=ADMIN;?>/cron/delete?id=<?=$cron['id'];?>" title="Удалить"><i class="fas fa-times-circle text-danger"></i></a> <button type="button" class="btn btn-link p-0 ml-1 js-cron-run" data-url="<?=PATH?>/cron/<?=h($cron['url_params']);?>?id=<?=$cron['id'];?>" title="Запустить"><i class="far fa-rocket-launch"></i></button> <span class="cron-run-status ml-2"></span></td>
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>
@@ -61,18 +64,25 @@
 		</div>
 	</div>
 </section>
-<?php foreach($crons as $cron): ?>
 <script>
-$(document).ready(function(){  
-$('.read-more-<?=$cron['id'];?>').on('click', function(){ //При клике по элементу с id выполнять...
-        $.ajax({
-            url: '<?=PATH?>/cron/<?=$cron['url_params'];?>?id=<?=$cron['id'];?>', //Путь к файлу, который нужно подгрузить
-            type: 'GET'           
-        });
-    })
+$(document).ready(function(){
+    $('.js-cron-run').on('click', function(event){
+        event.preventDefault();
+        var button = $(this);
+        var status = button.siblings('.cron-run-status');
+        button.prop('disabled', true);
+        status.removeClass('text-success text-danger').addClass('text-muted').text('Выполняется…');
+        $.ajax({url: button.data('url'), type: 'GET'})
+            .done(function(){
+                status.removeClass('text-muted').addClass('text-success').text('Выполнено');
+            })
+            .fail(function(xhr){
+                status.removeClass('text-muted').addClass('text-danger').text('Ошибка ' + xhr.status);
+            })
+            .always(function(){ button.prop('disabled', false); });
+    });
 });
 </script>
-<?php endforeach; ?>
 <?php }else{ ?>
 <div class="alert alert-warning alert-dismissible">
 	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
