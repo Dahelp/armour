@@ -73,12 +73,13 @@ $(document).ready(function(){
         var status = button.siblings('.cron-run-status');
         button.prop('disabled', true);
         status.removeClass('text-success text-danger').addClass('text-muted').text('Выполняется…');
-        $.ajax({url: button.data('url'), type: 'GET'})
-            .done(function(){
-                status.removeClass('text-muted').addClass('text-success').text('Выполнено');
+        $.ajax({url: button.data('url'), type: 'GET', dataType: 'json'})
+            .done(function(response){
+                status.removeClass('text-muted').addClass('text-success').text(response.message || 'Выполнено');
             })
             .fail(function(xhr){
-                status.removeClass('text-muted').addClass('text-danger').text('Ошибка ' + xhr.status);
+                var message = xhr.responseJSON && xhr.responseJSON.error ? xhr.responseJSON.error : 'Ошибка ' + xhr.status;
+                status.removeClass('text-muted').addClass('text-danger').text(message);
             })
             .always(function(){ button.prop('disabled', false); });
     });

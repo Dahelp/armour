@@ -6,6 +6,7 @@ use app\models\admin\Cron;
 use app\models\AppModel;
 use app\models\User;
 use app\services\SitemapGenerator;
+use app\services\ProductFeedUpdater;
 use ishop\App;
 
 class CronController extends AppController {
@@ -50,7 +51,28 @@ class CronController extends AppController {
 	}
 	
 	public function refreshTovarsAction() {	
-	     return "Задание выполнено!";
+		$this->layout = false;
+		header('Content-Type: application/json; charset=utf-8');
+		try {
+			$id = (int)($_GET['id'] ?? 0);
+			$job = $id > 0 ? \R::findOne('cron', 'id = ? AND url_params = ?', [$id, 'refresh-tovars']) : null;
+			if (!$job) {
+				throw new \RuntimeException('Задание обновления товаров не найдено.');
+			}
+			if ($job->hide !== 'show') {
+				throw new \RuntimeException('Задание отключено.');
+			}
+			$result = (new ProductFeedUpdater())->update((string)$job->alias);
+			\R::exec('UPDATE cron SET date_update = ? WHERE id = ?', [date('Y-m-d H:i:s'), $id]);
+			echo json_encode([
+				'ok' => true,
+				'message' => sprintf('Обновлено товаров: %d; не найдено: %d; пропущено строк: %d.', $result['updated'], $result['not_found'], $result['invalid']),
+			], JSON_UNESCAPED_UNICODE);
+		} catch (\Throwable $exception) {
+			http_response_code(500);
+			echo json_encode(['ok' => false, 'error' => $exception->getMessage()], JSON_UNESCAPED_UNICODE);
+		}
+		die;
 	}
 	
 	public function refreshKameryAction() {	
