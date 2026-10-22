@@ -6,6 +6,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <?php require __DIR__ . '/yandex-head.php'; ?>
 	<base href="<?=PATH?>/">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="csrf-token" content="<?=h(\app\services\CsrfProtection::token())?>" />
@@ -133,6 +134,9 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <script src="js/imask.min.js"></script><!-- telefon -->
 </head>
 <body class="woocommerce-active">
+<?php if (preg_match('/^[1-9][0-9]*$/D', $yandexCounter)): ?>
+<noscript><div><img src="https://mc.yandex.ru/watch/<?=$yandexCounter?>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<?php endif; ?>
 	<div class="preloader" id="preloader"><img src="images/ring.svg" width="150" height="150" alt=""></div>
 	<div id="page" class="hfeed site">    
 		<header id="masthead" class="site-header prochie-tovary store-header" role="banner">
