@@ -57,6 +57,7 @@ jobs:
           set ftp:passive-mode true
           set ftp:ssl-allow false
           open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          put "database/migrations/20261022_006_yandex_settings.sql" -o "/database/migrations/20261022_006_yandex_settings.sql"
           put ".runner/$RUNNER_FILE" -o "/public/$RUNNER_FILE"
           bye
           LFTP
