@@ -9,6 +9,18 @@ class Cron extends AppModel {
     public static function ensureSystemJobs(): void
     {
         $jobs = [
+            'refresh-filtry' => [
+                'name' => 'Обновление цен и наличия фильтров',
+                'alias' => 'https://its50.ru/xls/nalichie/filtrs.csv',
+                'url_download' => 'filtrs.csv',
+                'hide' => 'show',
+            ],
+            'refresh-kamery' => [
+                'name' => 'Обновление цен и наличия камер',
+                'alias' => 'https://its50.ru/xls/nalichie/kamery.csv',
+                'url_download' => 'kamery.csv',
+                'hide' => 'show',
+            ],
             'refresh-tovars' => [
                 'name' => 'Обновление цен и наличия',
                 'alias' => '',

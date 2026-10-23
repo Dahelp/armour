@@ -47,7 +47,7 @@
                                 <tr><td colspan="6" class="text-center text-muted">CRON-задания пока не настроены.</td></tr>
                             <?php endif; ?>
                             <?php foreach($crons as $cron): ?>
-                                <?php $canRun = $cron['hide'] === 'show' && ($cron['url_params'] !== 'refresh-tovars' || trim((string)$cron['alias']) !== ''); ?>
+                                <?php $canRun = $cron['hide'] === 'show' && (!in_array($cron['url_params'], ['refresh-tovars', 'refresh-filtry', 'refresh-kamery'], true) || trim((string)$cron['alias']) !== ''); ?>
                                 <tr class="cont_td_znach">
                                     <td><?=h($cron['name']);?></td>
 									<td><?=h($cron['url_params']);?></td>

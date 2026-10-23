@@ -51,11 +51,23 @@ class CronController extends AppController {
 	}
 	
 	public function refreshTovarsAction() {	
+		$this->refreshFeed('refresh-tovars');
+	}
+
+	public function refreshFiltryAction() {
+		$this->refreshFeed('refresh-filtry');
+	}
+
+	public function refreshKameryAction() {
+		$this->refreshFeed('refresh-kamery');
+	}
+
+	private function refreshFeed(string $systemName): void {
 		$this->layout = false;
 		header('Content-Type: application/json; charset=utf-8');
 		try {
 			$id = (int)($_GET['id'] ?? 0);
-			$job = $id > 0 ? \R::findOne('cron', 'id = ? AND url_params = ?', [$id, 'refresh-tovars']) : null;
+			$job = $id > 0 ? \R::findOne('cron', 'id = ? AND url_params = ?', [$id, $systemName]) : null;
 			if (!$job) {
 				throw new \RuntimeException('Задание обновления товаров не найдено.');
 			}
@@ -73,10 +85,6 @@ class CronController extends AppController {
 			echo json_encode(['ok' => false, 'error' => $exception->getMessage()], JSON_UNESCAPED_UNICODE);
 		}
 		die;
-	}
-	
-	public function refreshKameryAction() {	
-	     return "Задание выполнено!";
 	}
 	
 	public function refreshCompleteTovarsAction() {	
