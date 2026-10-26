@@ -4459,6 +4459,10 @@ tr .one-click {
     transition: top 0.2s ease-in-out;
 }
 
+.casters-block table thead .tab-list {
+    top: 0;
+}
+
 .tab-list::after {
     content: "";
     position: absolute;
