@@ -4460,7 +4460,7 @@ tr .one-click {
 }
 
 .casters-block table thead .tab-list {
-    top: 0;
+    top: 0 !important;
 }
 
 .tab-list::after {
