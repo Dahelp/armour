@@ -67,7 +67,9 @@ class CronController extends AppController {
 		header('Content-Type: application/json; charset=utf-8');
 		try {
 			$id = (int)($_GET['id'] ?? 0);
-			$job = $id > 0 ? \R::findOne('cron', 'id = ? AND url_params = ?', [$id, $systemName]) : null;
+			$job = $id > 0
+				? \R::findOne('cron', 'id = ? AND url_params = ?', [$id, $systemName])
+				: \R::findOne('cron', 'url_params = ?', [$systemName]);
 			if (!$job) {
 				throw new \RuntimeException('Задание обновления товаров не найдено.');
 			}
@@ -75,7 +77,7 @@ class CronController extends AppController {
 				throw new \RuntimeException('Задание отключено.');
 			}
 			$result = (new ProductFeedUpdater())->update((string)$job->alias);
-			\R::exec('UPDATE cron SET date_update = ? WHERE id = ?', [date('Y-m-d H:i:s'), $id]);
+			\R::exec('UPDATE cron SET date_update = ? WHERE id = ?', [date('Y-m-d H:i:s'), $job->id]);
 			echo json_encode([
 				'ok' => true,
 				'message' => sprintf('Обновлено товаров: %d; не найдено: %d; пропущено строк: %d.', $result['updated'], $result['not_found'], $result['invalid']),
@@ -92,10 +94,24 @@ class CronController extends AppController {
 	}
 	
 	public function sitemapAction() {
-		$count = (new SitemapGenerator())->generate();
-		\R::exec('UPDATE cron SET date_update = ? WHERE id = ?', [date('Y-m-d H:i:s'), $_GET['id'] ?? 2]);
 		$this->layout = false;
-		$this->set(compact('count'));
+		header('Content-Type: application/json; charset=utf-8');
+		try {
+			$id = (int)($_GET['id'] ?? 0);
+			$job = $id > 0
+				? \R::findOne('cron', 'id = ? AND url_params = ?', [$id, 'sitemap'])
+				: \R::findOne('cron', 'url_params = ?', ['sitemap']);
+			if (!$job || $job->hide !== 'show') {
+				throw new \RuntimeException('Задание карты сайта не найдено или отключено.');
+			}
+			$count = (new SitemapGenerator())->generate();
+			\R::exec('UPDATE cron SET date_update = ? WHERE id = ?', [date('Y-m-d H:i:s'), $job->id]);
+			echo json_encode(['ok' => true, 'message' => sprintf('Карта сайта обновлена: %d URL.', $count)], JSON_UNESCAPED_UNICODE);
+		} catch (\Throwable $exception) {
+			http_response_code(500);
+			echo json_encode(['ok' => false, 'error' => $exception->getMessage()], JSON_UNESCAPED_UNICODE);
+		}
+		die;
 	}
 	
 	public function ymlfidAction() {	
