@@ -18,7 +18,8 @@
     grid-template-columns: 205px minmax(280px, 1fr) 556px;
     height: 94px;
     margin: 0 auto;
-    max-width: 100%;
+    /* Match .col-full: 1400px content plus 10px padding on each side. */
+    max-width: 1420px;
     padding: 0 10px !important;
     width: 100%;
 }
