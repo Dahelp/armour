@@ -134,9 +134,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <script src="js/imask.min.js"></script><!-- telefon -->
 </head>
 <body class="woocommerce-active">
-<?php if (preg_match('/^[1-9][0-9]*$/D', $yandexCounter)): ?>
-<noscript><div><img src="https://mc.yandex.ru/watch/<?=$yandexCounter?>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<?php endif; ?>
+
 	<div class="preloader" id="preloader"><img src="images/ring.svg" width="150" height="150" alt=""></div>
 	<div id="page" class="hfeed site">    
 		<header id="masthead" class="site-header prochie-tovary store-header" role="banner">
@@ -717,10 +715,10 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <aside id="cookie-consent" class="cookie-consent" aria-label="Настройки файлов cookie" role="dialog" aria-live="polite" hidden>
 	<div class="cookie-consent__text">
 		<strong>Файлы cookie</strong>
-		<span>Сайт использует файлы cookie для корректной работы корзины, форм и личного кабинета. Подробнее — в <a href="/politika-fajlov-cookie">Политике файлов cookie</a>.</span>
+		<span>Сайт использует технические cookie для работы корзины, форм и личного кабинета. Нажимая «Согласен», вы разрешаете использование Яндекс.Метрики, включая Вебвизор, и передачу данных о посещении и действиях на сайте в Яндекс. До согласия Метрика отключена. Подробнее — в <a href="/politika-fajlov-cookie">Политике файлов cookie</a>.</span>
 	</div>
 	<div class="cookie-consent__actions">
-		<button type="button" class="cookie-consent__primary" data-cookie-acknowledge>Принимаю</button>
+		<button type="button" class="cookie-consent__primary" data-cookie-acknowledge>Согласен</button>
 	</div>
 </aside>
 <script src="/js/cookie-consent.js?v=<?=filemtime(WWW.'/js/cookie-consent.js')?>" defer></script>
