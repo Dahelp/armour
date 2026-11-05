@@ -2,6 +2,9 @@ name: Audit filter attributes
 
 on:
   workflow_dispatch:
+concurrency:
+  group: techtires-production
+  cancel-in-progress: false
 permissions:
   contents: read
 
@@ -22,6 +25,7 @@ jobs:
         run: |
           set -euo pipefail
           token="$(printf '%s' "$FTP_PASSWORD:$GITHUB_RUN_ID" | sha256sum | cut -c1-32)"
+          echo "::add-mask::$token"
           file="__visibility_sync_${token}.php"
           echo "RUNNER_TOKEN=$token" >> "$GITHUB_ENV"
           echo "RUNNER_FILE=$file" >> "$GITHUB_ENV"
