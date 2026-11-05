@@ -1,0 +1,42 @@
+name: Inspect legacy admin integration
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read legacy integration metadata
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME_ARMOUR }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD_ARMOUR }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          mkdir -p .legacy-inspect
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          get .htaccess -o .legacy-inspect/htaccess.txt
+          get admin/index.php -o .legacy-inspect/admin-index.php
+          get admin/auth/enter.php -o .legacy-inspect/admin-login.php
+          get config.php -o .legacy-inspect/config.php
+          bye
+          LFTP
+          python3 <<'PY'
+          import pathlib, re, json, hashlib
+          base = pathlib.Path('.legacy-inspect')
+          report = {}
+          for name in ('admin-index.php', 'admin-login.php', 'config.php'):
+              text = (base / name).read_text(errors='replace')
+              report[name] = {'sha256': hashlib.sha256(text.encode()).hexdigest(), 'mysql_api': 'mysql_connect(' in text or 'mysql_query(' in text, 'mysqli_api': 'mysqli_' in text, 'session_fields': sorted(set(re.findall(r"\$_SESSION(?:\['[^']+'\])+", text))), 'defined_keys': re.findall(r"define\s*\(\s*['\"]([A-Z_]+)['\"]", text)}
+          report['htaccess'] = (base / 'htaccess.txt').read_text()
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          PY
+          rm -rf .legacy-inspect
