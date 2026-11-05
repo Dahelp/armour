@@ -1,5 +1,5 @@
 <?php
-// PHP 5.6-compatible: runs in the original Armour hosting account.
+// PHP 5.4-compatible: runs in the original Armour hosting account.
 require_once __DIR__.'/__owner_bridge_ticket.php';
 header('Cache-Control: no-store, private, max-age=0');
 header('Referrer-Policy: no-referrer');
@@ -53,7 +53,7 @@ if ($path === '/__owner_bridge.php') {
     exit;
 }
 $claims = \app\services\LegacyAdminTicket::verify(isset($_COOKIE['armour_owner_access']) ? $_COOKIE['armour_owner_access'] : '', $secret, 'legacy-admin-session', $ownerId, time(), 3600);
-if (!$claims || !isset($claims['sid']) || !hash_equals(hash('sha256', session_id()), $claims['sid']) || empty($_SESSION['auth']['admin']) || (int)$_SESSION['auth']['user_id'] !== $legacyId || (int)$_SESSION['auth']['role'] !== (int)$config['legacy_role'] || empty($_SESSION['owner_bridge_expires']) || $_SESSION['owner_bridge_expires'] <= time()) ownerBridgeReject($path);
+if (!$claims || !isset($claims['sid']) || !\app\services\LegacyAdminTicket::equals(hash('sha256', session_id()), $claims['sid']) || empty($_SESSION['auth']['admin']) || (int)$_SESSION['auth']['user_id'] !== $legacyId || (int)$_SESSION['auth']['role'] !== (int)$config['legacy_role'] || empty($_SESSION['owner_bridge_expires']) || $_SESSION['owner_bridge_expires'] <= time()) ownerBridgeReject($path);
 
 $relative = ltrim(rawurldecode($path), '/');
 if (strpos($relative, "\0") !== false || strpos($relative, '\\') !== false || preg_match('#(?:^|/)\.#', $relative)) ownerBridgeReject($path);

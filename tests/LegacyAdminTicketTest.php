@@ -4,6 +4,7 @@ require dirname(__DIR__).'/app/services/LegacyAdminTicket.php';
 use app\services\LegacyAdminTicket;
 
 $key = str_repeat('a',64);
+if (!LegacyAdminTicket::equals($key,$key) || LegacyAdminTicket::equals($key,str_repeat('b',64)) || LegacyAdminTicket::equals($key,'a') || LegacyAdminTicket::equals($key,null)) throw new RuntimeException('Constant-time comparison failed.');
 $claims = ['purpose'=>'legacy-admin-launch','uid'=>42,'exp'=>1045,'nonce'=>str_repeat('b',64)];
 $ticket = LegacyAdminTicket::sign($claims,$key);
 if (LegacyAdminTicket::verify($ticket,$key,'legacy-admin-launch',42,1000,45) !== $claims) throw new RuntimeException('Owner ticket rejected.');
