@@ -12,15 +12,25 @@ try {
     if (count($owners) !== 1) throw new RuntimeException('The specified TechTires administrator was not found uniquely.');
     $source = new PDO('mysql:host=127.0.0.1;charset=utf8mb4', (string)getenv('DB_USERNAME_ARMOUR'), (string)getenv('DB_PASSWORD_ARMOUR'), [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC]);
     $accounts = [];
+    $legacySchemas = [];
     foreach ($source->query('SHOW DATABASES')->fetchAll(PDO::FETCH_COLUMN) as $schema) {
         if (in_array($schema, ['mysql','information_schema','performance_schema','sys'], true)) continue;
         $quoted = '`'.str_replace('`','``',$schema).'`';
         if (!in_array('customers', $source->query('SHOW TABLES FROM '.$quoted)->fetchAll(PDO::FETCH_COLUMN), true)) continue;
+        $legacySchemas[] = $quoted;
         $statement = $source->prepare('SELECT customer_id, name, id_role FROM '.$quoted.'.customers WHERE (LOWER(email) = LOWER(?) OR LOWER(login) = LOWER(?)) AND id_role <> 1');
         $statement->execute([$email, $email]);
         $accounts = array_merge($accounts, $statement->fetchAll());
     }
-    if (count($accounts) !== 1) throw new RuntimeException('The matching original Armour administrator was not found uniquely.');
+    if (count($accounts) !== 1) {
+        $metadata = [];
+        foreach ($legacySchemas as $schema) {
+            $metadata[] = ['roles'=>$source->query('SELECT id_role,name_role FROM '.$schema.'.roles WHERE id_role <> 1')->fetchAll(), 'columns'=>$source->query('SHOW COLUMNS FROM '.$schema.'.customers')->fetchAll()];
+        }
+        http_response_code(500);
+        echo json_encode(['ok'=>false,'error'=>'The matching original Armour administrator was not found uniquely.','account_schema'=>$metadata], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+        exit;
+    }
     echo json_encode(['ok'=>true, 'owner_id'=>(int)$owners[0]['id'], 'legacy_id'=>(int)$accounts[0]['customer_id'], 'legacy_name'=>$accounts[0]['name'], 'legacy_role'=>(int)$accounts[0]['id_role']], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
 } catch (Throwable $error) {
     http_response_code(500);
