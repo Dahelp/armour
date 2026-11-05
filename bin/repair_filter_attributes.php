@@ -13,14 +13,23 @@ try {
         $filterRepairConnection = new PDO($config['dsn'], $config['user'], $config['pass'], [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC]);
     }
     $db = $filterRepairConnection;
-    if ($apply) {
-        foreach (['attribute', 'product_attribute'] as $table) {
-            $engine = $db->query("SHOW TABLE STATUS WHERE Name = '$table'")->fetch(PDO::FETCH_ASSOC)['Engine'] ?? '';
-            if ($engine !== 'InnoDB') throw new RuntimeException('Transactional tables are required.');
+    $engines = [];
+    foreach (['attribute', 'product_attribute'] as $table) {
+        $engines[$table] = $db->query("SHOW TABLE STATUS WHERE Name = '$table'")->fetch(PDO::FETCH_ASSOC)['Engine'] ?? '';
+        if (!in_array($engines[$table], ['InnoDB', 'MyISAM', 'Aria'], true)) throw new RuntimeException('Unsupported storage engine.');
+        if ($apply) {
             $db->exec("CREATE TABLE IF NOT EXISTS {$table}_backup_filter_groups_20261105 LIKE $table");
         }
     }
-    $db->beginTransaction();
+    $tableLocked = false;
+    $restoreRows = [];
+    $restoreDefinitions = [];
+    if ($apply && count(array_filter($engines, static fn(string $engine): bool => $engine !== 'InnoDB')) > 0) {
+        $db->exec('LOCK TABLES attribute WRITE, product_attribute WRITE, product READ, attribute_backup_filter_groups_20261105 WRITE, product_attribute_backup_filter_groups_20261105 WRITE');
+        $tableLocked = true;
+    } else {
+        $db->beginTransaction();
+    }
     $readProduct = $db->prepare('SELECT article FROM product WHERE id = ?');
     $readRows = $db->prepare('SELECT * FROM product_attribute WHERE product_id = ? ORDER BY id FOR UPDATE');
     $readDefinition = $db->prepare('SELECT * FROM attribute WHERE id = ? FOR UPDATE');
@@ -49,6 +58,10 @@ try {
             if (!$already) $operations[] = $change;
         }
     }
+    // Save every affected row before the first write, including for legacy MyISAM tables.
+    if ($apply) {
+        foreach ($operations as $change) $backup->execute([$change['row_id']]);
+    }
     $definitionChanges = 0;
     foreach ($plan['definition_changes'] as $fix) {
         $readDefinition->execute([$fix['id']]);
@@ -58,6 +71,7 @@ try {
             ++$definitionChanges;
             if ($apply) {
                 $db->exec('INSERT IGNORE INTO attribute_backup_filter_groups_20261105 SELECT * FROM attribute WHERE id = '.(int)$fix['id']);
+                $restoreDefinitions[] = $fix;
                 $statement = $db->prepare('UPDATE attribute SET attribute_group_id = ? WHERE id = ? AND attribute_group_id = ?');
                 $statement->execute([$fix['to'], $fix['id'], $fix['from']]);
                 if ($statement->rowCount() !== 1) throw new RuntimeException('Definition update failed.');
@@ -66,7 +80,7 @@ try {
     }
     if ($apply) {
         foreach ($operations as $change) {
-            $backup->execute([$change['row_id']]);
+            $restoreRows[] = $change;
             $write->execute([$change['to_attribute'], $change['to_group'], $change['row_id'], $change['product_id'], $change['from_attribute'], $change['from_group'], $change['text']]);
             if ($write->rowCount() !== 1) throw new RuntimeException('Concurrent dimension update detected.');
         }
@@ -76,13 +90,26 @@ try {
             $values = array_map(static fn(array $row): array => [$row['id'], $row['product_id'], $row['attribute_text']], $after);
             if ($before !== $values) throw new RuntimeException('Attribute values or row counts changed.');
         }
-        $db->commit();
+        if ($tableLocked) {
+            $db->exec('UNLOCK TABLES');
+            $tableLocked = false;
+        } else {
+            $db->commit();
+        }
     } else {
         $db->rollBack();
     }
-    echo json_encode(['ok'=>true, 'applied'=>$apply, 'products'=>count($plan['products']), 'changed_rows'=>count($operations), 'definition_changes'=>$definitionChanges, 'values_preserved'=>true, 'without_original_dimensions'=>$plan['without_original_dimensions'], 'absent_products'=>$plan['absent_products']], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR).PHP_EOL;
+    echo json_encode(['ok'=>true, 'applied'=>$apply, 'engines'=>$engines, 'products'=>count($plan['products']), 'changed_rows'=>count($operations), 'definition_changes'=>$definitionChanges, 'values_preserved'=>true, 'without_original_dimensions'=>$plan['without_original_dimensions'], 'absent_products'=>$plan['absent_products']], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR).PHP_EOL;
 } catch (Throwable $error) {
     if (isset($db) && $db->inTransaction()) $db->rollBack();
+    if (!empty($tableLocked)) {
+        // Nontransactional legacy tables stay exclusively locked during recovery.
+        $restore = $db->prepare('UPDATE product_attribute SET attribute_id = ?, attribute_group_id = ? WHERE id = ? AND product_id = ?');
+        foreach (array_reverse($restoreRows) as $change) $restore->execute([$change['from_attribute'], $change['from_group'], $change['row_id'], $change['product_id']]);
+        $restore = $db->prepare('UPDATE attribute SET attribute_group_id = ? WHERE id = ?');
+        foreach (array_reverse($restoreDefinitions) as $fix) $restore->execute([$fix['from'], $fix['id']]);
+        $db->exec('UNLOCK TABLES');
+    }
     if (PHP_SAPI !== 'cli') http_response_code(500);
     echo json_encode(['ok'=>false, 'error'=>$error instanceof PDOException ? 'Database operation failed; changes rolled back.' : $error->getMessage()], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR).PHP_EOL;
     if (PHP_SAPI === 'cli') exit(1);
