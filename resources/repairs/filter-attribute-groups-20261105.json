@@ -1,0 +1,2525 @@
+{
+    "version": 1,
+    "definition_changes": [
+        {
+            "id": 77,
+            "from": 73,
+            "to": 3,
+            "name": "Внутренний Диаметр 1, мм"
+        }
+    ],
+    "products": [
+        {
+            "id": 347,
+            "article": "5247",
+            "name": "EK-3001AB Фильтр воздушный",
+            "alias": "filter-4",
+            "source_dimensions": 9,
+            "changes": [
+                {
+                    "row_id": 2979,
+                    "product_id": 347,
+                    "text": "265",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 2980,
+                    "product_id": 347,
+                    "text": "220",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 66,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 2973,
+                    "product_id": 347,
+                    "text": "135",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 2975,
+                    "product_id": 347,
+                    "text": "23",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 69,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 2977,
+                    "product_id": 347,
+                    "text": "442",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 2981,
+                    "product_id": 347,
+                    "text": "133",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 2974,
+                    "product_id": 347,
+                    "text": "105",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 2976,
+                    "product_id": 347,
+                    "text": "17",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 78,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 2978,
+                    "product_id": 347,
+                    "text": "402",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 348,
+            "article": "6328",
+            "name": "EK-3005AB Фильтр воздушный",
+            "alias": "filter-24",
+            "source_dimensions": 5,
+            "changes": [
+                {
+                    "row_id": 2984,
+                    "product_id": 348,
+                    "text": "135",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 2985,
+                    "product_id": 348,
+                    "text": "406",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 2988,
+                    "product_id": 348,
+                    "text": "116",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 2986,
+                    "product_id": 348,
+                    "text": "397",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 349,
+            "article": "7746",
+            "name": "EK-3006AB Фильтр воздушный",
+            "alias": "filter-160",
+            "source_dimensions": 8,
+            "changes": [
+                {
+                    "row_id": 2991,
+                    "product_id": 349,
+                    "text": "170",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 2993,
+                    "product_id": 349,
+                    "text": "17",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 69,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 2995,
+                    "product_id": 349,
+                    "text": "406",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 2998,
+                    "product_id": 349,
+                    "text": "163",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 2992,
+                    "product_id": 349,
+                    "text": "134",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 2994,
+                    "product_id": 349,
+                    "text": "17",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 78,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 2996,
+                    "product_id": 349,
+                    "text": "405",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 350,
+            "article": "6329",
+            "name": "EK-3009AB Фильтр воздушный",
+            "alias": "filter-25",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3001,
+                    "product_id": 350,
+                    "text": "133",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3003,
+                    "product_id": 350,
+                    "text": "355",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3006,
+                    "product_id": 350,
+                    "text": "132",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3002,
+                    "product_id": 350,
+                    "text": "111",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3004,
+                    "product_id": 350,
+                    "text": "337",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 351,
+            "article": "8376",
+            "name": "EK-3015AB Фильтр воздушный",
+            "alias": "filter-161",
+            "source_dimensions": 7,
+            "changes": [
+                {
+                    "row_id": 3013,
+                    "product_id": 351,
+                    "text": "157",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3014,
+                    "product_id": 351,
+                    "text": "133",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 66,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3009,
+                    "product_id": 351,
+                    "text": "67",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3010,
+                    "product_id": 351,
+                    "text": "17",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 69,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3011,
+                    "product_id": 351,
+                    "text": "274",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3015,
+                    "product_id": 351,
+                    "text": "65",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3012,
+                    "product_id": 351,
+                    "text": "254",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 352,
+            "article": "5113",
+            "name": "EK-3019AB Фильтр воздушный",
+            "alias": "filter-5",
+            "source_dimensions": 7,
+            "changes": [
+                {
+                    "row_id": 3018,
+                    "product_id": 352,
+                    "text": "150",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3024,
+                    "product_id": 352,
+                    "text": "149",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3019,
+                    "product_id": 352,
+                    "text": "109",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3022,
+                    "product_id": 352,
+                    "text": "489",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3020,
+                    "product_id": 352,
+                    "text": "524",
+                    "from_attribute": 60,
+                    "from_group": 1,
+                    "to_attribute": 71,
+                    "to_group": 2,
+                    "name": "Высота 1, мм"
+                },
+                {
+                    "row_id": 3021,
+                    "product_id": 352,
+                    "text": "510",
+                    "from_attribute": 61,
+                    "from_group": 1,
+                    "to_attribute": 72,
+                    "to_group": 2,
+                    "name": "Высота 2, мм"
+                }
+            ]
+        },
+        {
+            "id": 353,
+            "article": "5248",
+            "name": "EK-3020AB Фильтр воздушный",
+            "alias": "filter-6",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3027,
+                    "product_id": 353,
+                    "text": "107",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3029,
+                    "product_id": 353,
+                    "text": "410",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3032,
+                    "product_id": 353,
+                    "text": "108",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3028,
+                    "product_id": 353,
+                    "text": "88",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3030,
+                    "product_id": 353,
+                    "text": "401",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 354,
+            "article": "4568",
+            "name": "EK-3024AB Фильтр воздушный",
+            "alias": "filter-7",
+            "source_dimensions": 10,
+            "changes": [
+                {
+                    "row_id": 3041,
+                    "product_id": 354,
+                    "text": "376",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3043,
+                    "product_id": 354,
+                    "text": "304",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 66,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3035,
+                    "product_id": 354,
+                    "text": "196",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3037,
+                    "product_id": 354,
+                    "text": "24",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 69,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3039,
+                    "product_id": 354,
+                    "text": "460",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3042,
+                    "product_id": 354,
+                    "text": "220",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 74,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3044,
+                    "product_id": 354,
+                    "text": "185",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 75,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3036,
+                    "product_id": 354,
+                    "text": "158",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3038,
+                    "product_id": 354,
+                    "text": "17",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 78,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3040,
+                    "product_id": 354,
+                    "text": "447",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 356,
+            "article": "6330",
+            "name": "EK-3028AB Фильтр воздушный",
+            "alias": "filter-162",
+            "source_dimensions": 7,
+            "changes": [
+                {
+                    "row_id": 3051,
+                    "product_id": 356,
+                    "text": "133",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3053,
+                    "product_id": 356,
+                    "text": "330",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3056,
+                    "product_id": 356,
+                    "text": "133",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 74,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3057,
+                    "product_id": 356,
+                    "text": "127",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 75,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3052,
+                    "product_id": 356,
+                    "text": "94",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3054,
+                    "product_id": 356,
+                    "text": "315",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 357,
+            "article": "4911",
+            "name": "EK-3029AB Фильтр воздушный",
+            "alias": "filter-9",
+            "source_dimensions": 7,
+            "changes": [
+                {
+                    "row_id": 3062,
+                    "product_id": 357,
+                    "text": "132",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3063,
+                    "product_id": 357,
+                    "text": "470",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3066,
+                    "product_id": 357,
+                    "text": "131",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3060,
+                    "product_id": 357,
+                    "text": "126",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3061,
+                    "product_id": 357,
+                    "text": "94",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 78,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3064,
+                    "product_id": 357,
+                    "text": "465",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 358,
+            "article": "4566",
+            "name": "EK-3035AB Фильтр воздушный",
+            "alias": "filter-10",
+            "source_dimensions": 9,
+            "changes": [
+                {
+                    "row_id": 3075,
+                    "product_id": 358,
+                    "text": "246",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3076,
+                    "product_id": 358,
+                    "text": "201",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 66,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3069,
+                    "product_id": 358,
+                    "text": "135",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3071,
+                    "product_id": 358,
+                    "text": "19",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 69,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3073,
+                    "product_id": 358,
+                    "text": "490",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3077,
+                    "product_id": 358,
+                    "text": "130",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3070,
+                    "product_id": 358,
+                    "text": "104",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3072,
+                    "product_id": 358,
+                    "text": "19",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 78,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3074,
+                    "product_id": 358,
+                    "text": "480",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 359,
+            "article": "4912",
+            "name": "EK-3043AB Фильтр воздушный",
+            "alias": "filter-11",
+            "source_dimensions": 7,
+            "changes": [
+                {
+                    "row_id": 3080,
+                    "product_id": 359,
+                    "text": "150",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3082,
+                    "product_id": 359,
+                    "text": "405",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3085,
+                    "product_id": 359,
+                    "text": "149",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 74,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3086,
+                    "product_id": 359,
+                    "text": "142",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 75,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3081,
+                    "product_id": 359,
+                    "text": "109",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3083,
+                    "product_id": 359,
+                    "text": "392",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 360,
+            "article": "5114",
+            "name": "EK-3044AB Фильтр воздушный",
+            "alias": "filter-12",
+            "source_dimensions": 7,
+            "changes": [
+                {
+                    "row_id": 3089,
+                    "product_id": 360,
+                    "text": "167",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3090,
+                    "product_id": 360,
+                    "text": "17",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 69,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3092,
+                    "product_id": 360,
+                    "text": "485",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3095,
+                    "product_id": 360,
+                    "text": "163",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3091,
+                    "product_id": 360,
+                    "text": "159",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3093,
+                    "product_id": 360,
+                    "text": "452",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 361,
+            "article": "9186",
+            "name": "EK-3046AB Фильтр воздушный",
+            "alias": "filter-163",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3101,
+                    "product_id": 361,
+                    "text": "277,88",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3097,
+                    "product_id": 361,
+                    "text": "150.5",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3099,
+                    "product_id": 361,
+                    "text": "339.6",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3102,
+                    "product_id": 361,
+                    "text": "148",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 74,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3098,
+                    "product_id": 361,
+                    "text": "108.5",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3100,
+                    "product_id": 361,
+                    "text": "316",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 362,
+            "article": "4567",
+            "name": "EK-3047AB Фильтр воздушный",
+            "alias": "filter-13",
+            "source_dimensions": 7,
+            "changes": [
+                {
+                    "row_id": 3108,
+                    "product_id": 362,
+                    "text": "291",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3109,
+                    "product_id": 362,
+                    "text": "256",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 66,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3104,
+                    "product_id": 362,
+                    "text": "183",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3106,
+                    "product_id": 362,
+                    "text": "338",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3110,
+                    "product_id": 362,
+                    "text": "183",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3105,
+                    "product_id": 362,
+                    "text": "132",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3107,
+                    "product_id": 362,
+                    "text": "334",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 363,
+            "article": "4913",
+            "name": "EK-3050AB Фильтр воздушный",
+            "alias": "filter-15",
+            "source_dimensions": 5,
+            "changes": [
+                {
+                    "row_id": 3116,
+                    "product_id": 363,
+                    "text": "545",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3119,
+                    "product_id": 363,
+                    "text": "194",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3115,
+                    "product_id": 363,
+                    "text": "153",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3117,
+                    "product_id": 363,
+                    "text": "533",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 364,
+            "article": "9187",
+            "name": "EK-3052AB Фильтр воздушный",
+            "alias": "filter-164",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3125,
+                    "product_id": 364,
+                    "text": "276",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3121,
+                    "product_id": 364,
+                    "text": "165",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3123,
+                    "product_id": 364,
+                    "text": "521",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3126,
+                    "product_id": 364,
+                    "text": "163",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 74,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3122,
+                    "product_id": 364,
+                    "text": "134",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3124,
+                    "product_id": 364,
+                    "text": "495",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 365,
+            "article": "8634",
+            "name": "EK-3054AB Фильтр воздушный",
+            "alias": "filter-165",
+            "source_dimensions": 8,
+            "changes": [
+                {
+                    "row_id": 3128,
+                    "product_id": 365,
+                    "text": "167",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3130,
+                    "product_id": 365,
+                    "text": "23",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 69,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3132,
+                    "product_id": 365,
+                    "text": "475",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3135,
+                    "product_id": 365,
+                    "text": "163",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3129,
+                    "product_id": 365,
+                    "text": "134",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3131,
+                    "product_id": 365,
+                    "text": "19",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 78,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3133,
+                    "product_id": 365,
+                    "text": "450",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 366,
+            "article": "5362",
+            "name": "EK-3057AB Фильтр воздушный",
+            "alias": "filter-14",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3138,
+                    "product_id": 366,
+                    "text": "209",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3140,
+                    "product_id": 366,
+                    "text": "470",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3143,
+                    "product_id": 366,
+                    "text": "200",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3139,
+                    "product_id": 366,
+                    "text": "178",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3141,
+                    "product_id": 366,
+                    "text": "455",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 367,
+            "article": "5115",
+            "name": "EK-3065AB Фильтр воздушный",
+            "alias": "filter-16",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3146,
+                    "product_id": 367,
+                    "text": "208",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3148,
+                    "product_id": 367,
+                    "text": "380",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3151,
+                    "product_id": 367,
+                    "text": "209",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3147,
+                    "product_id": 367,
+                    "text": "156",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3149,
+                    "product_id": 367,
+                    "text": "299",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 368,
+            "article": "4565",
+            "name": "EK-3075AB Фильтр воздушный",
+            "alias": "filter-17",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3154,
+                    "product_id": 368,
+                    "text": "180",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3156,
+                    "product_id": 368,
+                    "text": "510",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3159,
+                    "product_id": 368,
+                    "text": "179",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3155,
+                    "product_id": 368,
+                    "text": "146",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3157,
+                    "product_id": 368,
+                    "text": "490",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 369,
+            "article": "9188",
+            "name": "EK-3081AB Фильтр воздушный",
+            "alias": "filter-166",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3165,
+                    "product_id": 369,
+                    "text": "236",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3161,
+                    "product_id": 369,
+                    "text": "132",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3163,
+                    "product_id": 369,
+                    "text": "474",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3166,
+                    "product_id": 369,
+                    "text": "132",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 74,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3162,
+                    "product_id": 369,
+                    "text": "94",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3164,
+                    "product_id": 369,
+                    "text": "450",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 370,
+            "article": "4564",
+            "name": "EK-3090AB Фильтр воздушный",
+            "alias": "filter-18",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3168,
+                    "product_id": 370,
+                    "text": "92",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3170,
+                    "product_id": 370,
+                    "text": "350",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3173,
+                    "product_id": 370,
+                    "text": "94",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3169,
+                    "product_id": 370,
+                    "text": "74",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3171,
+                    "product_id": 370,
+                    "text": "340",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 371,
+            "article": "6331",
+            "name": "EK-3091AB Фильтр воздушный",
+            "alias": "filter-20",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3176,
+                    "product_id": 371,
+                    "text": "83",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3178,
+                    "product_id": 371,
+                    "text": "322",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3181,
+                    "product_id": 371,
+                    "text": "84",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3177,
+                    "product_id": 371,
+                    "text": "65",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3179,
+                    "product_id": 371,
+                    "text": "314",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 372,
+            "article": "5246",
+            "name": "EK-3505AB Фильтр воздушный",
+            "alias": "filter-19",
+            "source_dimensions": 8,
+            "changes": [
+                {
+                    "row_id": 3184,
+                    "product_id": 372,
+                    "text": "168",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3186,
+                    "product_id": 372,
+                    "text": "22",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 69,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3188,
+                    "product_id": 372,
+                    "text": "382",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3191,
+                    "product_id": 372,
+                    "text": "163",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3185,
+                    "product_id": 372,
+                    "text": "134",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3187,
+                    "product_id": 372,
+                    "text": "17",
+                    "from_attribute": 59,
+                    "from_group": 1,
+                    "to_attribute": 78,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3189,
+                    "product_id": 372,
+                    "text": "352",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 373,
+            "article": "6332",
+            "name": "EK-3585AB Фильтр воздушный",
+            "alias": "filter-21",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3194,
+                    "product_id": 373,
+                    "text": "213",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3196,
+                    "product_id": 373,
+                    "text": "610",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3199,
+                    "product_id": 373,
+                    "text": "209",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3195,
+                    "product_id": 373,
+                    "text": "181",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3197,
+                    "product_id": 373,
+                    "text": "559",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 374,
+            "article": "9189",
+            "name": "EK-3700AB Фильтр воздушный",
+            "alias": "filter-167",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3205,
+                    "product_id": 374,
+                    "text": "130",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3201,
+                    "product_id": 374,
+                    "text": "84,33",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 68,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3203,
+                    "product_id": 374,
+                    "text": "315",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3206,
+                    "product_id": 374,
+                    "text": "84",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 74,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3202,
+                    "product_id": 374,
+                    "text": "63",
+                    "from_attribute": 58,
+                    "from_group": 1,
+                    "to_attribute": 77,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3204,
+                    "product_id": 374,
+                    "text": "295.5",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 375,
+            "article": "6333",
+            "name": "EK-3802AB Фильтр воздушный",
+            "alias": "filter-22",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3208,
+                    "product_id": 375,
+                    "text": "102",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3210,
+                    "product_id": 375,
+                    "text": "346",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3213,
+                    "product_id": 375,
+                    "text": "84",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3209,
+                    "product_id": 375,
+                    "text": "73",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3211,
+                    "product_id": 375,
+                    "text": "338",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 376,
+            "article": "4580",
+            "name": "EK-3803AB Фильтр воздушный",
+            "alias": "filter-3",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3216,
+                    "product_id": 376,
+                    "text": "118",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3218,
+                    "product_id": 376,
+                    "text": "370",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3221,
+                    "product_id": 376,
+                    "text": "102",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3217,
+                    "product_id": 376,
+                    "text": "92",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3219,
+                    "product_id": 376,
+                    "text": "362",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 377,
+            "article": "5245",
+            "name": "EK-3804AB Фильтр воздушный",
+            "alias": "filter-23",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3224,
+                    "product_id": 377,
+                    "text": "131",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3226,
+                    "product_id": 377,
+                    "text": "370",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3229,
+                    "product_id": 377,
+                    "text": "115",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3225,
+                    "product_id": 377,
+                    "text": "112",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3227,
+                    "product_id": 377,
+                    "text": "368",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 408,
+            "article": "9363",
+            "name": "EK-3557AB Фильтр воздушный",
+            "alias": "ek-3557ab-vozdushnyj-filtr",
+            "source_dimensions": 5,
+            "changes": [
+                {
+                    "row_id": 3288,
+                    "product_id": 408,
+                    "text": "371",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3291,
+                    "product_id": 408,
+                    "text": "114",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3287,
+                    "product_id": 408,
+                    "text": "116",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3289,
+                    "product_id": 408,
+                    "text": "380",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 410,
+            "article": "11123",
+            "name": "EK-3041AB воздушный фильтр комплект",
+            "alias": "ek-3041ab-vozdushnyj-filtr-komplekt",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3300,
+                    "product_id": 410,
+                    "text": "135",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3302,
+                    "product_id": 410,
+                    "text": "490",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3305,
+                    "product_id": 410,
+                    "text": "133",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3301,
+                    "product_id": 410,
+                    "text": "103",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3303,
+                    "product_id": 410,
+                    "text": "475",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 409,
+            "article": "11112",
+            "name": "EK-3705AB воздушный фильтр",
+            "alias": "ek-3705ab-vozdushnyj-filtr",
+            "source_dimensions": 8,
+            "changes": [
+                {
+                    "row_id": 3296,
+                    "product_id": 409,
+                    "text": "195",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3298,
+                    "product_id": 409,
+                    "text": "153",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 66,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3292,
+                    "product_id": 409,
+                    "text": "88",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3294,
+                    "product_id": 409,
+                    "text": "314",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3297,
+                    "product_id": 409,
+                    "text": "104",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 74,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3299,
+                    "product_id": 409,
+                    "text": "85",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 75,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3293,
+                    "product_id": 409,
+                    "text": "73",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3295,
+                    "product_id": 409,
+                    "text": "280",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 411,
+            "article": "11124",
+            "name": "EK-3060AB воздушный фильтр комплект",
+            "alias": "ek-3060ab-vozdushnyj-filtr-komplekt",
+            "source_dimensions": 7,
+            "changes": [
+                {
+                    "row_id": 3309,
+                    "product_id": 411,
+                    "text": "208",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 65,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3311,
+                    "product_id": 411,
+                    "text": "160",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 66,
+                    "to_group": 2,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3307,
+                    "product_id": 411,
+                    "text": "362",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3310,
+                    "product_id": 411,
+                    "text": "126",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 74,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3312,
+                    "product_id": 411,
+                    "text": "95",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 75,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3306,
+                    "product_id": 411,
+                    "text": "105",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3308,
+                    "product_id": 411,
+                    "text": "357",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 413,
+            "article": "11126",
+            "name": "EK-3117AB воздушный фильтр",
+            "alias": "ek-3117ab-vozdushnyj-filtr",
+            "source_dimensions": 7,
+            "changes": [
+                {
+                    "row_id": 3316,
+                    "product_id": 413,
+                    "text": "228",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3318,
+                    "product_id": 413,
+                    "text": "493",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3321,
+                    "product_id": 413,
+                    "text": "230",
+                    "from_attribute": 55,
+                    "from_group": 1,
+                    "to_attribute": 74,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 1, мм"
+                },
+                {
+                    "row_id": 3322,
+                    "product_id": 413,
+                    "text": "219",
+                    "from_attribute": 56,
+                    "from_group": 1,
+                    "to_attribute": 75,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр 2, мм"
+                },
+                {
+                    "row_id": 3317,
+                    "product_id": 413,
+                    "text": "173",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3319,
+                    "product_id": 413,
+                    "text": "481",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        },
+        {
+            "id": 418,
+            "article": "11253",
+            "name": "EK-3807AB воздушный фильтр комплект",
+            "alias": "ek-3807ab-vozdushnyj-filtr-komplekt",
+            "source_dimensions": 6,
+            "changes": [
+                {
+                    "row_id": 3330,
+                    "product_id": 418,
+                    "text": "145",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 67,
+                    "to_group": 2,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3332,
+                    "product_id": 418,
+                    "text": "536",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 70,
+                    "to_group": 2,
+                    "name": "Высота, мм"
+                },
+                {
+                    "row_id": 3335,
+                    "product_id": 418,
+                    "text": "135",
+                    "from_attribute": 54,
+                    "from_group": 1,
+                    "to_attribute": 73,
+                    "to_group": 3,
+                    "name": "Наружный Диаметр, мм"
+                },
+                {
+                    "row_id": 3331,
+                    "product_id": 418,
+                    "text": "123",
+                    "from_attribute": 57,
+                    "from_group": 1,
+                    "to_attribute": 76,
+                    "to_group": 3,
+                    "name": "Внутренний Диаметр, мм"
+                },
+                {
+                    "row_id": 3333,
+                    "product_id": 418,
+                    "text": "523",
+                    "from_attribute": 52,
+                    "from_group": 1,
+                    "to_attribute": 79,
+                    "to_group": 3,
+                    "name": "Высота, мм"
+                }
+            ]
+        }
+    ],
+    "conflicts": [],
+    "absent_products": [
+        "11110"
+    ],
+    "without_original_dimensions": [
+        {
+            "article": "4682",
+            "name": "ST508AB Фильтр воздушный"
+        },
+        {
+            "article": "4683",
+            "name": "ST600AB Фильтр воздушный"
+        },
+        {
+            "article": "4685",
+            "name": "ST613AB Фильтр воздушный"
+        },
+        {
+            "article": "4686",
+            "name": "ST614AB Фильтр воздушный"
+        },
+        {
+            "article": "4689",
+            "name": "ST618AB Фильтр воздушный"
+        },
+        {
+            "article": "4691",
+            "name": "ST626AB Фильтр воздушный"
+        },
+        {
+            "article": "9364",
+            "name": "EK-3546AB Фильтр воздушный"
+        },
+        {
+            "article": "9365",
+            "name": "EK-3547AB Фильтр воздушный"
+        }
+    ]
+}

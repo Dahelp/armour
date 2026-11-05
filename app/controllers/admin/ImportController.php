@@ -7,6 +7,7 @@ use ishop\App;
 use app\models\AppModel;
 use app\services\RemoteXmlDownloader;
 use app\services\UrlAliasRepository;
+use app\services\ProductAttributeXmlMapper;
 
 class ImportController extends AppController {
 
@@ -37,6 +38,12 @@ class ImportController extends AppController {
 					if ( $_POST['url_file'])
 					{ 
 
+						$attributeDefinitions = \R::getAll('SELECT * FROM attribute');
+						$mappedOffers = [];
+						// Validate the entire feed before creating products or uploading images.
+						foreach ($xml->shop->offers->offer as $offer) {
+							$mappedOffers[(string)$offer['id']] = (new ProductAttributeXmlMapper())->map($offer, $attributeDefinitions);
+						}
 						foreach ( $xml->shop->offers->offer as $row )  
 						{
 							$product = new Product();
@@ -79,14 +86,9 @@ class ImportController extends AppController {
 									if($isNonEmptyArray){ 
 										$attributeRows = [];
 										$attributeBindings = [];
-										foreach ( $row->param as $params ) {							
-
-											$att = \R::findOne('attribute', 'attribute_name = ?', [$params["name"]]);
-											if ($att) {
+											foreach ($mappedOffers[(string)$row['id']] as $mappedAttribute) {
 												$attributeRows[] = '(?, ?, ?, ?)';
-												array_push($attributeBindings, (int)$id, (int)$att->id, (int)$att->attribute_group_id, (string)$params);
-											}
-											
+												array_push($attributeBindings, (int)$id, $mappedAttribute['attribute_id'], $mappedAttribute['attribute_group_id'], $mappedAttribute['text']);
 										}
 										if ($attributeRows !== []) {
 											\R::exec('INSERT IGNORE INTO product_attribute (product_id, attribute_id, attribute_group_id, attribute_text) VALUES ' . implode(',', $attributeRows), $attributeBindings);

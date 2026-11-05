@@ -134,9 +134,9 @@ class ExportController extends AppController {
 								  <sales_notes></sales_notes>
 								  <description></description>";
 								  
-						$params = \R::getAll("SELECT * FROM attribute JOIN product_attribute ON attribute.id = product_attribute.attribute_id AND product_attribute.product_id = '".$prod["prod_id"]."' ORDER BY attribute.attribute_name");
+						$params = \R::getAll('SELECT a.attribute_name, g.attribute_name AS group_name, pa.attribute_text FROM product_attribute pa JOIN attribute a ON a.id = pa.attribute_id JOIN attribute g ON g.id = pa.attribute_group_id WHERE pa.product_id = ? ORDER BY g.attribute_position, a.attribute_position, pa.id', [(int)$prod['id']]);
 							foreach($params as $param) {
-								$text.= "<param name=\"".$param["attribute_name"]."\">".$param["attribute_text"]."</param>";
+								$text.= '<param name="'.htmlspecialchars($param['attribute_name'], ENT_XML1 | ENT_QUOTES, 'UTF-8').'" group="'.htmlspecialchars($param['group_name'], ENT_XML1 | ENT_QUOTES, 'UTF-8').'">'.htmlspecialchars($param['attribute_text'], ENT_XML1 | ENT_QUOTES, 'UTF-8').'</param>';
 							}
 						$text.= "<country_of_origin></country_of_origin>
 						</offer>";        
