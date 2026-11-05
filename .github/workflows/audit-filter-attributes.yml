@@ -42,7 +42,7 @@ jobs:
           require dirname(__DIR__) . '/config/init.php';
 
           PHP
-          sed '1d' bin/audit_filter_attributes.php >> ".runner/$file"
+          sed '1,2d' bin/audit_filter_attributes.php >> ".runner/$file"
 
       - name: Upload runner
         shell: bash
