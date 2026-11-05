@@ -1,5 +1,5 @@
 .single-product .tab-list {
-    top: 0;
+    top: 0 !important;
 }
 
 .tab-list .reviews-count {
