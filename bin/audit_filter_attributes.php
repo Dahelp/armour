@@ -16,6 +16,21 @@ foreach ($schemas as $schema) {
     $q = '`'.str_replace('`','``',$schema).'`';
     $tables = $source->query('SHOW TABLES FROM '.$q)->fetchAll(PDO::FETCH_COLUMN);
     $result['source_tables'][$schema] = $tables;
+    if (in_array('goods_attribute', $tables, true)) {
+        $result['source_attributes'] = $source->query('SELECT * FROM '.$q.'.attribute')->fetchAll();
+        $result['source_goods_columns'] = $source->query('SHOW COLUMNS FROM '.$q.'.goods')->fetchAll();
+        $identityColumns = array_filter(array_column($result['source_goods_columns'], 'Field'), static fn($column) => preg_match('/^(goods_id|id|article|articul|goods_article|goods_articul|goods_name|name|brand_id|goods_brand_id|model|goods_model)$/', $column));
+        $selected = implode(',', array_map(static fn($column) => '`'.$column.'`', $identityColumns));
+        $nameColumn = in_array('goods_name', $identityColumns, true) ? 'goods_name' : 'name';
+        $idColumn = in_array('goods_id', $identityColumns, true) ? 'goods_id' : 'id';
+        $where = "`$nameColumn` LIKE '%фильтр%'";
+        $result['source_goods'] = $source->query('SELECT '.$selected.' FROM '.$q.'.goods WHERE '.$where)->fetchAll();
+        $attributeColumns = $source->query('SHOW COLUMNS FROM '.$q.'.goods_attribute')->fetchAll(PDO::FETCH_COLUMN);
+        $result['source_goods_attribute_columns'] = $attributeColumns;
+        $allowed = array_intersect($attributeColumns, ['id','goods_id','attribute_id','attribute_group_id','attribute_text','attribute_value']);
+        $selectedAttributes = implode(',', array_map(static fn($column) => '`'.$column.'`', $allowed));
+        $result['source_goods_attributes'] = $source->query('SELECT '.$selectedAttributes.' FROM '.$q.'.goods_attribute WHERE goods_id IN (SELECT `'.$idColumn.'` FROM '.$q.'.goods WHERE '.$where.')')->fetchAll();
+    }
     if (in_array('product_attribute',$tables,true)) {
         $result['source_attributes'] = $source->query('SELECT * FROM '.$q.'.attribute')->fetchAll();
         $result['source_filters'] = $source->query("SELECT p.article,p.name,pa.* FROM $q.product p JOIN $q.product_attribute pa ON pa.product_id=p.id WHERE p.name LIKE '%Фильтр%' OR p.name LIKE '%фильтр%' ORDER BY p.id,pa.id")->fetchAll();
