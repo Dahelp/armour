@@ -6,6 +6,14 @@ on:
         description: Existing TechTires and Armour administrator email
         required: true
         type: string
+      create_private_account:
+        description: Create a dedicated password-disabled Armour account if the owner has none
+        type: boolean
+        default: false
+      legacy_login:
+        description: Existing Armour login, if different from the owner email
+        type: string
+        required: false
 concurrency:
   group: techtires-production
   cancel-in-progress: false
@@ -26,11 +34,14 @@ jobs:
         run: |
           composer install --no-dev --prefer-dist --no-interaction --classmap-authoritative
           php tests/LegacyAdminTicketTest.php
+          php tests/LegacyAdminGatewayTest.php
           php -l ops/legacy-admin-bridge/gateway.php
           php -l app/controllers/admin/LegacyController.php
       - name: Build protected account lookup
         env:
           OWNER_EMAIL: ${{ inputs.owner_email }}
+          LEGACY_LOGIN: ${{ inputs.legacy_login }}
+          CREATE_ACCOUNT: ${{ inputs.create_private_account }}
           SOURCE_USER: ${{ secrets.DB_USERNAME_ARMOUR }}
           SOURCE_PASSWORD: ${{ secrets.DB_PASSWORD_ARMOUR }}
         run: |
@@ -41,6 +52,7 @@ jobs:
           echo "RUNNER_TOKEN=$token" >> "$GITHUB_ENV"
           echo "RUNNER_FILE=$file" >> "$GITHUB_ENV"
           email64="$(printf '%s' "$OWNER_EMAIL" | base64 -w0)"
+          login64="$(printf '%s' "$LEGACY_LOGIN" | base64 -w0)"
           user64="$(printf '%s' "$SOURCE_USER" | base64 -w0)"
           pass64="$(printf '%s' "$SOURCE_PASSWORD" | base64 -w0)"
           mkdir -p .runner
@@ -51,6 +63,8 @@ jobs:
           if (!hash_equals('$token', (string)(\$_SERVER['HTTP_X_RUNNER_TOKEN'] ?? ''))) { http_response_code(403); exit; }
           if (isset(\$_POST['reset_opcache'])) { echo !function_exists('opcache_reset') || opcache_reset() ? 'ok' : 'failed'; exit; }
           putenv('LEGACY_OWNER_EMAIL=' . base64_decode('$email64'));
+          putenv('LEGACY_OWNER_LOGIN=' . base64_decode('$login64'));
+          putenv('LEGACY_CREATE_OWNER=$CREATE_ACCOUNT');
           putenv('DB_USERNAME_ARMOUR=' . base64_decode('$user64'));
           putenv('DB_PASSWORD_ARMOUR=' . base64_decode('$pass64'));
           require dirname(__DIR__).'/config/init.php';
