@@ -1,0 +1,11 @@
+RewriteEngine On
+
+RewriteRule ^__owner_bridge\.php$ - [L]
+
+# All private requests, including assets, pass the PHP access check.
+RewriteCond %{HTTP_COOKIE} (^|;[[:space:]]*)armour_owner_access= [NC]
+RewriteRule ^(?:admin(?:/.*)?|userfiles/.*|views/.*|favicon\.ico|Logo_round\.png)$ __owner_bridge.php [L,QSA]
+
+# Keep the public cutover unchanged for everyone else.
+RewriteCond %{HTTP_HOST} ^(?:www\.)?armour-shina\.ru$ [NC]
+RewriteRule ^ https://techtires.ru%{REQUEST_URI} [R=301,L,NE]

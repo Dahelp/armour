@@ -85,6 +85,11 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      <?php if (\app\services\LegacyAdminAccess::allowed($_SESSION['user'] ?? null)): ?>
+      <li class="nav-item">
+        <a class="nav-link" href="<?=ADMIN?>/legacy" target="_blank" rel="noopener noreferrer" title="Старая админка для сверки товаров">armour-shina.ru <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+      </li>
+      <?php endif; ?>
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">

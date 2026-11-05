@@ -1,0 +1,144 @@
+name: Install private legacy admin access
+on:
+  workflow_dispatch:
+    inputs:
+      owner_email:
+        description: Existing TechTires and Armour administrator email
+        required: true
+        type: string
+concurrency:
+  group: techtires-production
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: curl, dom, fileinfo, gd, intl, mbstring, openssl, pdo_mysql
+          coverage: none
+      - name: Check owner-ticket guards and build autoloader
+        run: |
+          composer install --no-dev --prefer-dist --no-interaction --classmap-authoritative
+          php tests/LegacyAdminTicketTest.php
+          php -l ops/legacy-admin-bridge/gateway.php
+          php -l app/controllers/admin/LegacyController.php
+      - name: Build protected account lookup
+        env:
+          OWNER_EMAIL: ${{ inputs.owner_email }}
+          SOURCE_USER: ${{ secrets.DB_USERNAME_ARMOUR }}
+          SOURCE_PASSWORD: ${{ secrets.DB_PASSWORD_ARMOUR }}
+        run: |
+          set -euo pipefail
+          token="$(openssl rand -hex 24)"
+          echo "::add-mask::$token"
+          file="__legacy_owner_$(openssl rand -hex 16).php"
+          echo "RUNNER_TOKEN=$token" >> "$GITHUB_ENV"
+          echo "RUNNER_FILE=$file" >> "$GITHUB_ENV"
+          email64="$(printf '%s' "$OWNER_EMAIL" | base64 -w0)"
+          user64="$(printf '%s' "$SOURCE_USER" | base64 -w0)"
+          pass64="$(printf '%s' "$SOURCE_PASSWORD" | base64 -w0)"
+          mkdir -p .runner
+          cat > ".runner/$file" <<PHP
+          <?php
+          header('Content-Type: application/json; charset=utf-8');
+          header('Cache-Control: no-store');
+          if (!hash_equals('$token', (string)(\$_SERVER['HTTP_X_RUNNER_TOKEN'] ?? ''))) { http_response_code(403); exit; }
+          if (isset(\$_POST['reset_opcache'])) { echo !function_exists('opcache_reset') || opcache_reset() ? 'ok' : 'failed'; exit; }
+          putenv('LEGACY_OWNER_EMAIL=' . base64_decode('$email64'));
+          putenv('DB_USERNAME_ARMOUR=' . base64_decode('$user64'));
+          putenv('DB_PASSWORD_ARMOUR=' . base64_decode('$pass64'));
+          require dirname(__DIR__).'/config/init.php';
+          PHP
+          sed '1,2d' bin/lookup_legacy_admin_owner.php >> ".runner/$file"
+          php -l ".runner/$file"
+      - name: Find the owner's existing accounts
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          put ".runner/$RUNNER_FILE" -o "/public/$RUNNER_FILE"
+          bye
+          LFTP
+          curl --fail-with-body --silent --show-error --max-time 60 -X POST -H "X-Runner-Token:$RUNNER_TOKEN" "https://techtires.ru/$RUNNER_FILE" -o .runner/owner.json || { cat .runner/owner.json; exit 1; }
+          php -r '$r=json_decode(file_get_contents(".runner/owner.json"),true,512,JSON_THROW_ON_ERROR);if(!($r["ok"]??false))exit(1);echo "Matched owner accounts: ".$r["owner_id"]." / ".$r["legacy_id"].PHP_EOL;'
+      - name: Build private server configuration
+        run: |
+          key="$(openssl rand -hex 32)"
+          echo "::add-mask::$key"
+          export BRIDGE_KEY="$key"
+          php <<'PHP'
+          <?php
+          $owner=json_decode(file_get_contents('.runner/owner.json'),true,512,JSON_THROW_ON_ERROR);
+          $config=['secret'=>getenv('BRIDGE_KEY'),'owner_id'=>$owner['owner_id'],'legacy_id'=>$owner['legacy_id'],'legacy_role'=>$owner['legacy_role'],'legacy_name'=>$owner['legacy_name']];
+          file_put_contents('.runner/legacy-admin.php',"<?php\nreturn ".var_export($config,true).";\n");
+          PHP
+      - name: Install the gated legacy entry point atomically
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME_ARMOUR }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD_ARMOUR }}
+        run: |
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          get .htaccess -o .runner/legacy-htaccess-backup
+          put ops/legacy-admin-bridge/gateway.php -o /__owner_bridge.php
+          put app/services/LegacyAdminTicket.php -o /__owner_bridge_ticket.php
+          put .runner/legacy-admin.php -o /.owner-bridge-config.php
+          put ops/legacy-admin-bridge/.htaccess -o /.htaccess.owner-upload
+          mv .htaccess .htaccess.before-owner-$GITHUB_RUN_ID
+          mv .htaccess.owner-upload .htaccess
+          bye
+          LFTP
+      - name: Install owner-only TechTires header link
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          put app/services/LegacyAdminTicket.php -o /app/services/LegacyAdminTicket.php
+          put app/services/LegacyAdminAccess.php -o /app/services/LegacyAdminAccess.php
+          put app/controllers/admin/LegacyController.php -o /app/controllers/admin/LegacyController.php
+          mirror --reverse --transfer-all --no-perms vendor/composer /vendor/composer
+          put vendor/autoload.php -o /vendor/autoload.php
+          put .runner/legacy-admin.php -o /config/legacy-admin.php
+          put app/views/armour/layouts/admin.php -o /app/views/armour/layouts/admin.php
+          bye
+          LFTP
+          result="$(curl --fail-with-body --silent --show-error --max-time 30 -X POST -d reset_opcache=1 -H "X-Runner-Token:$RUNNER_TOKEN" "https://techtires.ru/$RUNNER_FILE")"
+          test "$result" = ok
+      - name: Verify owner access and unchanged public redirects
+        run: php bin/verify_legacy_admin_access.php .runner/legacy-admin.php
+      - name: Remove the temporary lookup endpoint
+        if: always()
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          if ! command -v lftp >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y -qq lftp; fi
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          rm -f "/public/$RUNNER_FILE"
+          bye
+          LFTP

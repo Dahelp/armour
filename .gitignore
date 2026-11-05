@@ -12,3 +12,4 @@
 .env
 .env.*
 !.env.example
+config/legacy-admin.php
