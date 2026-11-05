@@ -1,3 +1,7 @@
+.single-product .tab-list {
+    top: 0;
+}
+
 .tab-list .reviews-count {
     display: inline-flex;
     align-items: center;
