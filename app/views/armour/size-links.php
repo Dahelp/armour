@@ -15,7 +15,7 @@ $sizeLinks = \R::getAll(
      INNER JOIN url_alias u ON u.sef = av.alias AND LOWER(u.view) = 'tiposize'
      INNER JOIN attribute_product ap ON ap.attr_id = av.id
      INNER JOIN product p ON p.id = ap.product_id
-     WHERE av.attr_group_id = 2 AND p.hide = 'show' AND u.sef <> '' $sizeScope
+     WHERE p.hide = 'show' AND u.sef <> '' $sizeScope
      GROUP BY av.id, av.value ORDER BY total DESC, av.value",
     $sizeBindings
 );
