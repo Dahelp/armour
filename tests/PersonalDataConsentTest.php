@@ -39,7 +39,7 @@ consentAssert(substr_count($layout, 'name="privacy_accept"') === 5, 'All five pu
 consentAssert(str_contains($productController, 'PersonalDataConsent::accepted($_POST)'), 'Review consent is not validated server-side.');
 consentAssert(str_contains($productView, 'partials/privacy-consent.php'), 'Review consent control is missing.');
 consentAssert(str_contains($layout, 'data-cookie-acknowledge'), 'Cookie notice acknowledgement is missing.');
-consentAssert(str_contains($layout, '>Принимаю</button>'), 'Cookie notice acceptance label is incorrect.');
+consentAssert(str_contains($layout, '>Согласен</button>'), 'Cookie notice acceptance label is incorrect.');
 consentAssert(!str_contains($layout, 'data-cookie-preference'), 'Misleading cookie preference controls remain in the layout.');
 consentAssert(!str_contains($layout, 'data-cookie-settings'), 'Unused cookie settings control remains in the layout.');
 
