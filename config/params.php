@@ -2,6 +2,7 @@
 
 return [
     'admin_email' => 'a30@its50.ru',
+    'shop_phone' => '+7 (925) 070-77-07',
     'shop_name' => 'ТехШина',
 	'shop_description' => 'Промышленные шины для погрузчиков и спецтехники, диски и фильтры',
 	'og_logo' => 'banners/hero-industrial-tires-v2.webp',

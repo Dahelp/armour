@@ -25,7 +25,7 @@ class Newsletter extends AppModel {
 		$mailer->registerPlugin(new Swift_Plugins_AntiFloodPlugin(100, 30));
 	
 		$namecomp = App::$app->getProperty('shop_name');
-		$tell_site = \ishop\App::options('option_telefon');
+		$tell_site = \ishop\App::$app->getProperty('shop_phone');
 		ob_start();
         require APP . '/views/'.TEMPLATE.'/mail/mail_newsletter.php';
         $body = ob_get_clean();

@@ -116,7 +116,7 @@ class Order extends AppModel {
 		$ord = \R::findOne('order', 'id = ?', [$order_id]);
 		$orderInv = (string)($ord['inv'] ?? $order_id);
 		$namecomp = App::$app->getProperty('shop_name');
-		$tell_site = \ishop\App::options('option_telefon');
+		$tell_site = \ishop\App::$app->getProperty('shop_phone');
 		$order_prefix = \ishop\App::options('order_prefix');
 		// Create a message
         ob_start();

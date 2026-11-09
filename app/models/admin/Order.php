@@ -169,7 +169,7 @@ class Order extends AppModel {
         // Create the Mailer using your created Transport
         $mailer = new Swift_Mailer($transport);
 		$namecomp = App::$app->getProperty('shop_name');
-		$tell_site = \ishop\App::options('option_telefon');
+		$tell_site = \ishop\App::$app->getProperty('shop_phone');
 
 		// Create a message
         ob_start();
@@ -196,7 +196,7 @@ class Order extends AppModel {
         // Create the Mailer using your created Transport
         $mailer = new Swift_Mailer($transport);
 		$namecomp = App::$app->getProperty('shop_name');
-		$tell_site = \ishop\App::options('option_telefon');
+		$tell_site = \ishop\App::$app->getProperty('shop_phone');
 
 		// Create a message
         ob_start();

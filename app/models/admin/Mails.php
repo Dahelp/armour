@@ -23,7 +23,7 @@ class Mails extends AppModel {
 		$subject = $data["subject"];
 		$email = $data["email"];
 		$content = $data["content"];
-		$tell_site = \ishop\App::options('option_telefon');
+		$tell_site = \ishop\App::$app->getProperty('shop_phone');
 		ob_start();
         require APP . '/views/'.TEMPLATE.'/mail/mailbox.php';
         $body = ob_get_clean();
@@ -63,7 +63,7 @@ class Mails extends AppModel {
 		$subject = $data["subject"];
 		$email = $data["email"];
 		$content = $data["content"];
-		$tell_site = \ishop\App::options('option_telefon');
+		$tell_site = \ishop\App::$app->getProperty('shop_phone');
 		ob_start();
         require APP . '/views/'.TEMPLATE.'/mail/mailbox.php';
         $body = ob_get_clean();
