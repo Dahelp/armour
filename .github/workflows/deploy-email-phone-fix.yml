@@ -1,0 +1,93 @@
+name: Deploy email contact phone fix
+on:
+  workflow_dispatch:
+concurrency:
+  group: techtires-production
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Prepare phone fix and protected verification
+        run: |
+          set -euo pipefail
+          mkdir -p .release/public
+          git diff-tree --no-commit-id --name-only -r 1a9c9ab7 | while IFS= read -r file; do
+            php -l "$file"
+            mkdir -p ".release/$(dirname "$file")"
+            cp "$file" ".release/$file"
+          done
+          token="$(openssl rand -hex 24)"
+          echo "::add-mask::$token"
+          echo "RUNNER_TOKEN=$token" >> "$GITHUB_ENV"
+          file="__mail_phone_$(openssl rand -hex 16).php"
+          echo "RUNNER_FILE=$file" >> "$GITHUB_ENV"
+          cat > ".release/public/$file" <<'PHP'
+          <?php
+          header('Cache-Control: no-store');
+          if (!hash_equals('TOKEN_PLACEHOLDER', (string)($_SERVER['HTTP_X_RUNNER_TOKEN'] ?? ''))) { http_response_code(403); exit; }
+          if (isset($_GET['reset'])) { echo !function_exists('opcache_reset') || opcache_reset() ? 'ok' : 'failed'; exit; }
+          require dirname(__DIR__) . '/config/init.php';
+          $params = require CONF . '/params.php';
+          \ishop\App::$app = \ishop\Registry::instance();
+          foreach ($params as $key => $value) { \ishop\App::$app->setProperty($key, $value); }
+          $tell_site = \ishop\App::$app->getProperty('shop_phone');
+          $namecomp = $params['shop_name'];
+          $name_tovar = $fio_modal = $tell_modal = $email_modal = $prim_modal = 'verification';
+          ob_start();
+          require APP . '/views/' . TEMPLATE . '/mail/mail_zchet.php';
+          $html = ob_get_clean();
+          $ok = $tell_site === '+7 (925) 070-77-07' && str_contains($html, $tell_site) && !str_contains($html, '424-98-90');
+          foreach (['app/controllers/UserController.php', 'app/models/Callback.php', 'app/models/Cross.php', 'app/models/Oneclick.php', 'app/models/Order.php', 'app/models/Product.php', 'app/models/Sendmail.php', 'app/models/Zchet.php', 'app/models/admin/Mails.php', 'app/models/admin/Newsletter.php', 'app/models/admin/Order.php'] as $file) {
+              $source = file_get_contents(ROOT . '/' . $file);
+              $ok = $ok && str_contains($source, "getProperty('shop_phone')") && !str_contains($source, "options('option_telefon')");
+          }
+          if (!$ok) { http_response_code(500); }
+          header('Content-Type: application/json; charset=utf-8');
+          echo json_encode(['ok' => $ok, 'invoice_email_phone' => $tell_site], JSON_UNESCAPED_UNICODE);
+          PHP
+          sed -i "s/TOKEN_PLACEHOLDER/$token/" ".release/public/$file"
+          php -l ".release/public/$file"
+      - name: Upload only phone fix files
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          set net:max-retries 3
+          set net:timeout 30
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          mirror --reverse --transfer-all --no-perms .release/ /
+          bye
+          LFTP
+      - name: Reset PHP cache and verify invoice email on production
+        run: |
+          set -euo pipefail
+          test "$(curl --fail-with-body --silent --show-error --max-time 30 -H "X-Runner-Token:$RUNNER_TOKEN" "https://techtires.ru/$RUNNER_FILE?reset=1")" = ok
+          curl --fail-with-body --silent --show-error --max-time 30 -H "X-Runner-Token:$RUNNER_TOKEN" "https://techtires.ru/$RUNNER_FILE"
+      - name: Remove verification runner
+        if: always()
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          if [ -z "$RUNNER_FILE" ]; then exit 0; fi
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          rm -f "/public/$RUNNER_FILE"
+          bye
+          LFTP
