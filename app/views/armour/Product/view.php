@@ -64,7 +64,6 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 						<div class="width-2-3 plansh-width" id="tab-buy" style="padding-top:0;">
 							<div class="summary entry-summary grid">
 								<h1 class="product_title entry-title" itemprop="name"><?=$product->name?></h1>
-                                <?php $sizeProductId = (int)$product->id; require APP . '/views/armour/size-links.php'; ?>
 								<div class="width-3-5">
 									<div class="box-price-btn">
 										<div class="grid">
@@ -104,7 +103,7 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 													if( $filter['url_params'] != "" ) { ?>
 													<tr>
 														<td><?=$filter['title']?></td>
-														<td><?=$filter['value']?></td>
+														<td><?php if (!empty($filter['size_url'])): ?><a class="product-size-link" href="/<?=h(implode('/', array_map('rawurlencode', explode('/', ltrim($filter['size_url'], '/')))))?>" style="text-decoration:underline" title="Все товары размера <?=h($filter['value'])?>"><?=h($filter['value'])?></a><?php else: ?><?=h($filter['value'])?><?php endif; ?></td>
 													</tr>
 												<?php } } ?>
 												 </tbody>

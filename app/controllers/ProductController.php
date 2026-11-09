@@ -187,11 +187,12 @@ class ProductController extends AppController {
 				: 0.0,
 		];
 		$productFilters = \R::getAll(
-			'SELECT ag.title, ag.url_params, av.value, av.alias
+			'SELECT ag.title, ag.url_params, av.value, av.alias, MIN(size_url.sef) AS size_url
 			 FROM attribute_group ag
 			 INNER JOIN attribute_category ac ON ac.group_id = ag.id
 			 INNER JOIN attribute_value av ON av.attr_group_id = ag.id
 			 INNER JOIN attribute_product ap ON ap.attr_id = av.id
+			 LEFT JOIN url_alias size_url ON size_url.sef = av.alias AND LOWER(size_url.view) = \'tiposize\'
 			 WHERE ap.product_id = ?
 			 GROUP BY ag.id, ag.title, ag.url_params, av.value, av.alias',
 			[$product->id]
