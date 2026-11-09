@@ -149,6 +149,7 @@
 	</div>
 </div><!-- #post-## -->
 <?php $curr = \ishop\App::$app->getProperty('currency'); ?>
+<?php require APP . '/views/armour/size-links.php'; ?>
 <?php if($hits){ ?>
 <div class="widget_text home-hit">
     <div class="hit-caption">Хиты продаж</div>

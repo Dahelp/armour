@@ -64,6 +64,7 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 						<div class="width-2-3 plansh-width" id="tab-buy" style="padding-top:0;">
 							<div class="summary entry-summary grid">
 								<h1 class="product_title entry-title" itemprop="name"><?=$product->name?></h1>
+                                <?php $sizeProductId = (int)$product->id; require APP . '/views/armour/size-links.php'; ?>
 								<div class="width-3-5">
 									<div class="box-price-btn">
 										<div class="grid">

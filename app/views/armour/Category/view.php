@@ -10,7 +10,8 @@
 				<header class="woocommerce-products-header" itemscope="" itemtype="https://schema.org/Product">
 					<h1 itemprop="name"><?=$category->name?></h1>
 				</header>
-				<?php if($subcategories) { ?>
+                                <?php $sizeCategoryIds = array_map('intval', explode(',', $ids)); require APP . '/views/armour/size-links.php'; ?>
+                                <?php if($subcategories) { ?>
 					<div class="sub-category sub-category-custom ">
 						<div class="cat-tab">
 							<div class="cat-tab__content sub-category-hide-content-mobile">
