@@ -16,7 +16,7 @@ try {
     }
     $one=static function(string $sql,array $args) use($db): array {
         $s=$db->prepare($sql); $s->execute($args); $rows=$s->fetchAll();
-        if(count($rows)!==1) throw new RuntimeException('Required catalog reference is missing or ambiguous.');
+        if(count($rows)!==1) throw new RuntimeException('Required catalog reference is missing or ambiguous: '.json_encode($args,JSON_UNESCAPED_UNICODE));
         return $rows[0];
     };
     $category=$one('SELECT id FROM category WHERE name=?',['Шины ATV для квадроциклов']);
