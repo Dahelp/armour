@@ -30,7 +30,23 @@ try {
         17=>['Ширина протектора (мм)','279'],18=>['Макс. Давление (КПа)','48'],
         19=>['Вес, кг','15'],20=>['Объём, м3','0.13']
     ];
-    foreach($specs as $id=>[$name,$value]) $one('SELECT id FROM attribute WHERE id=? AND attribute_name=? AND attribute_group_id=1',[$id,$name]);
+    $normalise=static fn(string $name): string=>preg_replace('/[^a-zа-яё0-9]/u','',mb_strtolower($name));
+    $synonyms=[6=>['Размер диска (RIM)','Размер диска'],7=>['Диаметр диска (дюйм)'],
+        9=>['Модель протектора'],14=>['Наружный диаметр (мм)'],16=>['Тип (TL)','Тип шины'],
+        18=>['Макс. Давление (KPA)'],19=>['Вес (кг)'],20=>['Объем (м3)']];
+    $definitions=$db->query('SELECT id,attribute_name FROM attribute WHERE attribute_group_id=1')->fetchAll();
+    $resolved=[]; $missing=[];
+    foreach($specs as $preferredId=>[$name,$value]) {
+        $names=array_map($normalise,array_merge([$name],$synonyms[$preferredId]??[]));
+        $matches=array_values(array_filter($definitions,static fn($a)=>in_array($normalise($a['attribute_name']),$names,true)));
+        $preferred=array_values(array_filter($matches,static fn($a)=>(int)$a['id']===$preferredId));
+        if(count($preferred)===1) $match=$preferred[0];
+        elseif(count($matches)===1) $match=$matches[0];
+        else { $missing[]=$name; continue; }
+        $resolved[(int)$match['id']]=[$name,$value];
+    }
+    if($missing) throw new RuntimeException('Missing or ambiguous tire attributes: '.implode('; ',$missing));
+    $specs=$resolved;
     $filters=[];
     foreach([[1,'14 дюймов'],[2,'27x11-14'],[3,'Vulcan'],[4,'EKKA']] as [$group,$value]) {
         $filters[]=$one('SELECT id FROM attribute_value WHERE attr_group_id=? AND value=?',[$group,$value])['id'];
