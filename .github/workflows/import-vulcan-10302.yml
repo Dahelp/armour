@@ -56,6 +56,7 @@ jobs:
           set ftp:ssl-allow false
           open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
           put ".runner/$RUNNER_FILE" -o "/public/$RUNNER_FILE"
+          put "public/images/product/baseimg/vulcan-10302-no-photo.svg" -o "/public/images/product/baseimg/vulcan-10302-no-photo.svg"
           bye
           LFTP
       - name: Check or import product

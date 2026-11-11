@@ -12,6 +12,9 @@ try {
     $find=$db->prepare('SELECT id,article,name,alias,hide,price,quantity FROM product WHERE article=?');
     $find->execute(['10302']); $existing=$find->fetchAll();
     if ($existing) {
+        if ($apply && count($existing)===1 && $existing[0]['alias']===$alias) {
+            $db->prepare("UPDATE product SET img=? WHERE id=? AND article='10302' AND (img='' OR img IS NULL)")->execute(['vulcan-10302-no-photo.svg',$existing[0]['id']]);
+        }
         echo json_encode(['ok'=>true,'created'=>false,'products'=>$existing],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES); return;
     }
     $one=static function(string $sql,array $args) use($db): array {
@@ -60,7 +63,7 @@ try {
         'title'=>'Купить 27×11.00-14 6PR TL VULCAN EKKA — шины для квадроциклов',
         'description'=>'Бескамерная шина EKKA 27×11.00-14 6PR TL с грязевым протектором VULCAN для квадроциклов. Цена 13 700 ₽. Характеристики и условия доставки.',
         'content'=>$content,'price'=>13700,'quantity'=>0,'stock_status_id'=>0,'hide'=>'show',
-        'model'=>'Vulcan','unit'=>'шт','weight'=>15,'volume'=>0.13,'img'=>'',
+        'model'=>'Vulcan','unit'=>'шт','weight'=>15,'volume'=>0.13,'img'=>'vulcan-10302-no-photo.svg',
         'date'=>date('Y-m-d'),'data_edit_all'=>date('Y-m-d H:i:s'),'data_edit_price'=>date('Y-m-d')];
     // Supply empty/zero values only for mandatory legacy columns lacking defaults.
     $fields=$db->query('SHOW COLUMNS FROM product')->fetchAll(); $insert=[];
@@ -87,7 +90,7 @@ try {
     foreach($filters as $filter) $s->execute([$id,$filter]);
     $db->prepare('INSERT INTO url_alias (sef,view,urlid) VALUES (?,?,?)')->execute([$alias,'product',$id]);
     $db->commit();
-    echo json_encode(['ok'=>true,'created'=>true,'id'=>$id,'article'=>'10302','alias'=>$alias,'price'=>13700,'quantity'=>0,'image'=>''],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+    echo json_encode(['ok'=>true,'created'=>true,'id'=>$id,'article'=>'10302','alias'=>$alias,'price'=>13700,'quantity'=>0,'image'=>'vulcan-10302-no-photo.svg'],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 } catch(Throwable $e) {
     if($db->inTransaction()) $db->rollBack();
     if(PHP_SAPI!=='cli') http_response_code(500);
