@@ -1,0 +1,84 @@
+name: Import VULCAN 10302
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: Add missing product from supplied specification
+        type: boolean
+        default: false
+concurrency:
+  group: techtires-production
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_mysql
+      - name: Build protected runner
+        env:
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          token="$(openssl rand -hex 24)"
+          echo "::add-mask::$token"
+          file="__vulcan_$(openssl rand -hex 16).php"
+          echo "RUNNER_TOKEN=$token" >> "$GITHUB_ENV"
+          echo "RUNNER_FILE=$file" >> "$GITHUB_ENV"
+          mkdir -p .runner
+          cat > ".runner/$file" <<PHP
+          <?php
+          header('Content-Type: application/json; charset=utf-8');
+          header('Cache-Control: no-store');
+          if (!hash_equals('$token', (string)(\$_SERVER['HTTP_X_RUNNER_TOKEN'] ?? ''))) { http_response_code(403); exit; }
+          require dirname(__DIR__).'/config/init.php';
+          \$vulcanApply = '$APPLY' === 'true';
+          PHP
+          sed '1,2d' bin/import_vulcan_10302.php >> ".runner/$file"
+          php -l ".runner/$file"
+      - name: Upload runner
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          put ".runner/$RUNNER_FILE" -o "/public/$RUNNER_FILE"
+          bye
+          LFTP
+      - name: Check or import product
+        run: |
+          curl --fail-with-body --silent --show-error --max-time 60 -X POST -H "X-Runner-Token:$RUNNER_TOKEN" "https://techtires.ru/$RUNNER_FILE" -o vulcan-result.json
+          cat vulcan-result.json
+          php -r '$r=json_decode(file_get_contents("vulcan-result.json"),true,512,JSON_THROW_ON_ERROR);exit(($r["ok"]??false)?0:1);'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vulcan-result
+          path: vulcan-result.json
+      - name: Remove runner
+        if: always()
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp <<LFTP
+          set cmd:fail-exit true
+          set ftp:passive-mode true
+          set ftp:ssl-allow false
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" ftp://grass.gohost.ru:21
+          rm -f "/public/$RUNNER_FILE"
+          bye
+          LFTP
