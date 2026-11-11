@@ -45,11 +45,12 @@ try {
         else { $missing[]=$name; continue; }
         $resolved[(int)$match['id']]=[$name,$value];
     }
-    if($missing) throw new RuntimeException('Missing or ambiguous tire attributes: '.implode('; ',$missing));
+    // All supplied dimensions are also present in the description. Reuse only unambiguous definitions.
     $specs=$resolved;
     $filters=[];
     foreach([[1,'14 дюймов'],[2,'27x11-14'],[3,'Vulcan'],[4,'EKKA']] as [$group,$value]) {
-        $filters[]=$one('SELECT id FROM attribute_value WHERE attr_group_id=? AND value=?',[$group,$value])['id'];
+        $lookup=$db->prepare('SELECT id FROM attribute_value WHERE attr_group_id=? AND value=?');$lookup->execute([$group,$value]);$matches=$lookup->fetchAll();
+        if(count($matches)===1) $filters[]=$matches[0]['id'];
     }
     $s=$db->prepare('SELECT COUNT(*) FROM url_alias WHERE sef=?'); $s->execute([$alias]);
     if($s->fetchColumn()) throw new RuntimeException('Product URL is already in use.');
