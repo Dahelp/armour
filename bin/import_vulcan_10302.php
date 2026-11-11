@@ -19,7 +19,7 @@ try {
         if(count($rows)!==1) throw new RuntimeException('Required catalog reference is missing or ambiguous: '.json_encode($args,JSON_UNESCAPED_UNICODE));
         return $rows[0];
     };
-    $category=$one('SELECT id FROM category WHERE name=?',['Шины ATV для квадроциклов']);
+    $category=$one('SELECT c.id FROM category c JOIN url_alias u ON u.urlid=c.id WHERE u.sef=? AND LOWER(u.view)=? AND c.name LIKE ?',['catalog-kvadrotciklov','category','%квадро%']);
     $brand=$one('SELECT id FROM brand WHERE UPPER(TRIM(name))=?',['EKKA']);
     $specs=[
         4=>['Размер шины','27×11.00-14'],5=>['Слойность (PR)','6'],
