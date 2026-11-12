@@ -1,9 +1,9 @@
-name: Import VULCAN 10302
+name: Update VULCAN 10302 from document
 on:
   workflow_dispatch:
     inputs:
       apply:
-        description: Add missing product from supplied specification
+        description: Replace product 10302 data with the supplied document
         type: boolean
         default: false
 concurrency:
@@ -32,6 +32,7 @@ jobs:
           file="__vulcan_$(openssl rand -hex 16).php"
           echo "RUNNER_TOKEN=$token" >> "$GITHUB_ENV"
           echo "RUNNER_FILE=$file" >> "$GITHUB_ENV"
+          source64="$(base64 -w0 resources/products/vulcan-10302.json)"
           mkdir -p .runner
           cat > ".runner/$file" <<PHP
           <?php
@@ -39,9 +40,10 @@ jobs:
           header('Cache-Control: no-store');
           if (!hash_equals('$token', (string)(\$_SERVER['HTTP_X_RUNNER_TOKEN'] ?? ''))) { http_response_code(403); exit; }
           require dirname(__DIR__).'/config/init.php';
+          \$vulcanSource = json_decode(base64_decode('$source64'), true, 512, JSON_THROW_ON_ERROR);
           \$vulcanApply = '$APPLY' === 'true';
           PHP
-          sed '1,2d' bin/import_vulcan_10302.php >> ".runner/$file"
+          sed '1,2d' bin/update_vulcan_10302.php >> ".runner/$file"
           php -l ".runner/$file"
       - name: Upload runner
         env:
