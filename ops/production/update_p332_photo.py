@@ -32,8 +32,9 @@ with tempfile.TemporaryDirectory() as directory:
         request = urllib.request.Request('https://techtires.ru/' + name, data=b'', headers={'X-Runner-Token': token})
         with urllib.request.urlopen(request, timeout=90) as response:
             result = json.load(response)
-        (ROOT / 'p332-result.json').write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
-        print(json.dumps(result, ensure_ascii=False))
+        summary = {key: value for key, value in result.items() if key != 'products'}
+        (ROOT / 'p332-result.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding='utf-8')
+        print(json.dumps(summary, ensure_ascii=False))
         if result.get('ok') is not True:
             raise RuntimeError('Photo update failed')
         for product in result['products']:

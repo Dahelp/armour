@@ -2,8 +2,8 @@
 require dirname(__DIR__).'/config/environment.php';
 $config=require dirname(__DIR__).'/config/config_db.php';
 $db=new PDO($config['dsn'],$config['user'],$config['pass'],[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC]);
-$rows=$db->query("SELECT DISTINCT p.id,p.name,p.alias,p.img FROM product p JOIN attribute_product ap ON ap.product_id=p.id JOIN attribute_value av ON av.id=ap.attr_id JOIN attribute_group ag ON ag.id=av.attr_group_id WHERE UPPER(TRIM(av.value))='P332' AND ag.url_params='protect' ORDER BY p.id")->fetchAll();
-if(!$rows) throw new RuntimeException('No P332 tread products found');
+$rows=$db->query("SELECT DISTINCT p.id,p.alias FROM product p WHERE UPPER(TRIM(p.model))='P332' OR UPPER(p.name) REGEXP '(^|[^A-Z0-9])P332([^A-Z0-9]|$)' OR p.id IN (SELECT ap.product_id FROM attribute_product ap JOIN attribute_value av ON av.id=ap.attr_id JOIN attribute_group ag ON ag.id=av.attr_group_id WHERE UPPER(TRIM(av.value))='P332' AND ag.url_params='protect') ORDER BY p.id")->fetchAll();
+if(!$rows) throw new RuntimeException('No P332 products found');
 $image='p332-pale-blue-600-20261112.jpg';
 foreach(['baseimg','mini'] as $dir) {
     $path=dirname(__DIR__).'/public/images/product/'.$dir.'/'.$image;
