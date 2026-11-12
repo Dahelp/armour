@@ -53,7 +53,7 @@ function updateVulcanFromDocument(PDO $db, array $source, bool $apply): array
         }
         return true;
     };
-    $locked=false;$namedLock=false;$original=null;$originalRows=[];$created=[];$mutated=false;
+    $stage='identity check';$locked=false;$namedLock=false;$original=null;$originalRows=[];$created=[];$mutated=false;
     try {
         $namedLock=(int)$db->query("SELECT GET_LOCK('import_vulcan_10302',10)")->fetchColumn()===1;
         if(!$namedLock) throw new RuntimeException('Product maintenance is already running.');
@@ -63,11 +63,14 @@ function updateVulcanFromDocument(PDO $db, array $source, bool $apply): array
         if($fieldsMatch($product) && $attributesMatch($rows,$defs)) return ['ok'=>true,'changed'=>false,'id'=>$id,'article'=>'10302','attribute_count'=>13];
         if(!$apply) return ['ok'=>true,'ready'=>true,'id'=>$id,'article'=>'10302','attribute_count'=>13,'paragraph_count'=>2];
         // These tables preserve the complete original card and attribute rows once.
+        $stage='create backup';
         $db->exec('CREATE TABLE IF NOT EXISTS product_backup_vulcan_10302_20261112 LIKE product');
         $db->exec('CREATE TABLE IF NOT EXISTS product_attribute_backup_vulcan_10302_20261112 LIKE product_attribute');
         // The shared attribute dictionary uses MyISAM on this host. Lock and restore explicitly.
+        $stage='lock product tables';
         $db->exec('LOCK TABLES product WRITE, product_attribute WRITE, attribute WRITE, product_backup_vulcan_10302_20261112 WRITE, product_attribute_backup_vulcan_10302_20261112 WRITE');
         $locked=true;
+        $stage='read locked snapshot';
         $original=$readProduct();$originalRows=$readAttributes();
         if($original['alias']!==$source['alias']) throw new RuntimeException('Product URL identity changed.');
         $s=$db->prepare('SELECT COUNT(*) FROM product_backup_vulcan_10302_20261112 WHERE id=?');$s->execute([$id]);
@@ -75,11 +78,14 @@ function updateVulcanFromDocument(PDO $db, array $source, bool $apply): array
             $db->prepare('INSERT INTO product_backup_vulcan_10302_20261112 SELECT * FROM product WHERE id=?')->execute([$id]);
             $db->prepare('INSERT INTO product_attribute_backup_vulcan_10302_20261112 SELECT * FROM product_attribute WHERE product_id=?')->execute([$id]);
         }
+        $stage='resolve attribute group';
         $group=$db->query('SELECT id FROM attribute WHERE id=1 AND attribute_group_id=0')->fetchColumn();
         if(!$group) throw new RuntimeException('Main attribute group is missing.');
         $defs=$definitions();$resolved=[];
+        $stage='read attribute fields';
         $columns=$db->query('SHOW COLUMNS FROM attribute')->fetchAll();
         foreach($source['attributes'] as $position=>$a) {
+            $stage='resolve attribute: '.$a['name'];
             $matches=array_values(array_filter($defs,static fn(array $d): bool=>$normalise($d['attribute_name'])===$normalise($a['name'])));
             if($matches) $attributeId=(int)$matches[0]['id'];
             else {
@@ -97,11 +103,14 @@ function updateVulcanFromDocument(PDO $db, array $source, bool $apply): array
             }
             $resolved[]=[$id,$attributeId,1,(string)$a['value']];
         }
+        $stage='write product';
         $mutated=true;
         $writeProduct($fields+['data_edit_all'=>date('Y-m-d H:i:s')]);
         $db->prepare('DELETE FROM product_attribute WHERE product_id=?')->execute([$id]);
         $insert=$db->prepare('INSERT INTO product_attribute (product_id,attribute_id,attribute_group_id,attribute_text) VALUES (?,?,?,?)');
+        $stage='write product attributes';
         foreach($resolved as $row) $insert->execute($row);
+        $stage='verify product';
         if(!$fieldsMatch($readProduct()) || !$attributesMatch($readAttributes(),$definitions())) throw new RuntimeException('Saved product differs from the source document.');
         return ['ok'=>true,'changed'=>true,'id'=>$id,'article'=>'10302','attribute_count'=>13,'paragraph_count'=>2,'source_sha256'=>hash('sha256',json_encode($source,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES))];
     } catch(Throwable $error) {
@@ -114,6 +123,7 @@ function updateVulcanFromDocument(PDO $db, array $source, bool $apply): array
             }
         }
         foreach($created as $attributeId) $db->prepare('DELETE FROM attribute WHERE id=?')->execute([$attributeId]);
+        if($error instanceof PDOException) throw new RuntimeException('Update failed at '.$stage.': '.($error->errorInfo[2] ?? $error->getCode()));
         throw $error;
     } finally {
         if($locked) $db->exec('UNLOCK TABLES');
