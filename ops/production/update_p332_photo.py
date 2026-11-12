@@ -11,7 +11,7 @@ from deploy_ftps import ROOT, PIN
 name = '__p332_' + secrets.token_hex(16) + '.php'
 token = secrets.token_hex(32)
 body = (ROOT / 'bin/update_p332_photo.php').read_text(encoding='utf-8')
-source = "<?php\nheader('Content-Type: application/json');\nheader('Cache-Control: no-store');\nif ($_SERVER['REQUEST_METHOD'] !== 'POST' || !hash_equals('" + token + "', (string)($_SERVER['HTTP_X_RUNNER_TOKEN'] ?? ''))) { http_response_code(403); exit; }\n" + body.removeprefix('<?php')
+source = "<?php\nheader('Content-Type: application/json');\nheader('Cache-Control: no-store');\nif ($_SERVER['REQUEST_METHOD'] !== 'POST' || !hash_equals('" + token + "', (string)($_SERVER['HTTP_X_RUNNER_TOKEN'] ?? ''))) { http_response_code(403); exit; }\ntry {\n" + body.removeprefix('<?php') + "\n} catch (Throwable $e) { echo json_encode(['ok'=>false,'error'=>$e->getMessage()]); }\n"
 connection = ['curl', '--fail', '--silent', '--show-error', '--ssl-reqd', '--tlsv1.2',
               '--cacert', str(ROOT / 'ops/production/grass-ftps.pem'), '--pinnedpubkey', PIN,
               '--ciphers', 'DEFAULT:@SECLEVEL=1', '--connect-timeout', '20', '--max-time', '120',
@@ -27,7 +27,7 @@ with tempfile.TemporaryDirectory() as directory:
     try:
         for folder in ('baseimg', 'mini'):
             transfer(['--ftp-create-dirs', '--upload-file', str(ROOT / 'resources/products/p332/p332-600.jpg'),
-                      'ftp://grass.gohost.ru:21//public/images/product/' + folder + '/p332-white-600-20261112.jpg'])
+                      'ftp://grass.gohost.ru:21//public/images/product/' + folder + '/p332-pale-blue-600-20261112.jpg'])
         transfer(['--upload-file', str(runner), 'ftp://grass.gohost.ru:21//public/' + name])
         request = urllib.request.Request('https://techtires.ru/' + name, data=b'', headers={'X-Runner-Token': token})
         with urllib.request.urlopen(request, timeout=90) as response:
