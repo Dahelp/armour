@@ -12,6 +12,9 @@ function updateVulcanFromDocument(PDO $db, array $source, bool $apply): array
     $content=implode('',array_map(static fn(string $p): string=>'<p>'.htmlspecialchars($p,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8').'</p>',$source['paragraphs']));
     $fields=['name'=>$source['name'],'title'=>$source['title'],'description'=>$source['description'],'content'=>$content,
         'price'=>$source['price'],'quantity'=>$source['quantity'],'stock_status_id'=>0,'weight'=>$source['weight'],'volume'=>$source['volume'],'model'=>'Vulcan'];
+    $productColumns=array_flip(array_column($db->query('SHOW COLUMNS FROM product')->fetchAll(),'Field'));
+    $fields=array_intersect_key($fields,$productColumns);
+    $timestamp=isset($productColumns['data_edit_all'])?['data_edit_all'=>date('Y-m-d H:i:s')]:[];
     $normalise=static fn(string $text): string=>mb_strtolower(trim($text),'UTF-8');
     $expected=[];
     foreach($source['attributes'] as $a) {
@@ -105,7 +108,7 @@ function updateVulcanFromDocument(PDO $db, array $source, bool $apply): array
         }
         $stage='write product';
         $mutated=true;
-        $writeProduct($fields+['data_edit_all'=>date('Y-m-d H:i:s')]);
+        $writeProduct($fields+$timestamp);
         $db->prepare('DELETE FROM product_attribute WHERE product_id=?')->execute([$id]);
         $insert=$db->prepare('INSERT INTO product_attribute (product_id,attribute_id,attribute_group_id,attribute_text) VALUES (?,?,?,?)');
         $stage='write product attributes';
