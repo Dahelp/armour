@@ -3,6 +3,7 @@
 require dirname(__DIR__) . '/config/init.php';
 \ishop\Db::instance();
 $plan = json_decode(file_get_contents(ROOT . '/resources/repairs/remaining-filter-urls.json'), true, 512, JSON_THROW_ON_ERROR);
+$committed = false;
 \R::begin();
 try {
     foreach ($plan as $row) {
@@ -18,9 +19,11 @@ try {
         (new \app\services\UrlAliasRepository())->save($row['new'], 'Product', (int)$row['id']);
     }
     \R::commit();
-    echo json_encode(['ok'=>true, 'products'=>count($plan)]);
+    $committed = true;
+    $sitemapUrls = (new \app\services\SitemapGenerator())->generate();
+    echo json_encode(['ok'=>true, 'products'=>count($plan), 'sitemap_urls'=>$sitemapUrls]);
 } catch (Throwable $error) {
-    \R::rollback();
+    if (!$committed) \R::rollback();
     http_response_code(500);
     echo json_encode(['ok'=>false, 'error'=>$error->getMessage()]);
 }
