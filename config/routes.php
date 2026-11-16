@@ -24,6 +24,7 @@ $urli = $_SERVER['REQUEST_URI'];
 $baseUrl = strtok($urli, '?');
 $urli = trim($baseUrl, '/');
 require __DIR__ . '/oil_filter_redirects.php';
+require __DIR__ . '/filter_redirects.php';
 $urls = new AppModel();
 LegacyCrossRedirector::redirectIfNeeded($urli);
 LegacyUrlRedirector::redirectIfNeeded($urli);

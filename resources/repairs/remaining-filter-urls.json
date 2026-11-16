@@ -1,0 +1,1024 @@
+[
+  {
+    "id": 347,
+    "name": "EK-3001AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-4",
+    "new": "ek-3001ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 348,
+    "name": "EK-3005AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-24",
+    "new": "ek-3005ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 349,
+    "name": "EK-3006AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-160",
+    "new": "ek-3006ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 350,
+    "name": "EK-3009AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-25",
+    "new": "ek-3009ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 351,
+    "name": "EK-3015AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-161",
+    "new": "ek-3015ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 352,
+    "name": "EK-3019AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-5",
+    "new": "ek-3019ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 353,
+    "name": "EK-3020AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-6",
+    "new": "ek-3020ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 354,
+    "name": "EK-3024AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-7",
+    "new": "ek-3024ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 356,
+    "name": "EK-3028AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-162",
+    "new": "ek-3028ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 357,
+    "name": "EK-3029AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-9",
+    "new": "ek-3029ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 358,
+    "name": "EK-3035AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-10",
+    "new": "ek-3035ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 359,
+    "name": "EK-3043AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-11",
+    "new": "ek-3043ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 360,
+    "name": "EK-3044AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-12",
+    "new": "ek-3044ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 361,
+    "name": "EK-3046AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-163",
+    "new": "ek-3046ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 362,
+    "name": "EK-3047AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-13",
+    "new": "ek-3047ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 363,
+    "name": "EK-3050AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-15",
+    "new": "ek-3050ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 364,
+    "name": "EK-3052AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-164",
+    "new": "ek-3052ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 365,
+    "name": "EK-3054AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-165",
+    "new": "ek-3054ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 366,
+    "name": "EK-3057AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-14",
+    "new": "ek-3057ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 367,
+    "name": "EK-3065AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-16",
+    "new": "ek-3065ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 368,
+    "name": "EK-3075AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-17",
+    "new": "ek-3075ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 369,
+    "name": "EK-3081AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-166",
+    "new": "ek-3081ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 370,
+    "name": "EK-3090AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-18",
+    "new": "ek-3090ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 371,
+    "name": "EK-3091AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-20",
+    "new": "ek-3091ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 372,
+    "name": "EK-3505AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-19",
+    "new": "ek-3505ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 373,
+    "name": "EK-3585AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-21",
+    "new": "ek-3585ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 374,
+    "name": "EK-3700AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-167",
+    "new": "ek-3700ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 375,
+    "name": "EK-3802AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-22",
+    "new": "ek-3802ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 376,
+    "name": "EK-3803AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-3",
+    "new": "ek-3803ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 377,
+    "name": "EK-3804AB Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-23",
+    "new": "ek-3804ab-vozdushnyj-filtr"
+  },
+  {
+    "id": 378,
+    "name": "EK-3904A (EK-9004) EKKA Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-168",
+    "new": "ek-3904a-vozdushnyj-filtr"
+  },
+  {
+    "id": 379,
+    "name": "EK-3904B (EK-9005) EKKA Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-169",
+    "new": "ek-3904b-vozdushnyj-filtr"
+  },
+  {
+    "id": 380,
+    "name": "EK-3906A (EK-9006) EKKA Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-2",
+    "new": "ek-3906a-vozdushnyj-filtr"
+  },
+  {
+    "id": 381,
+    "name": "EK-3906B (EK-9007) EKKA Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-170",
+    "new": "ek-3906b-vozdushnyj-filtr"
+  },
+  {
+    "id": 382,
+    "name": "EK-3936A (EK-9036A) EKKA Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-171",
+    "new": "ek-3936a-vozdushnyj-filtr"
+  },
+  {
+    "id": 383,
+    "name": "EK-3936B (EK-9036B) EKKA Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-172",
+    "new": "ek-3936b-vozdushnyj-filtr"
+  },
+  {
+    "id": 384,
+    "name": "EK-3937A (EK-9037A) EKKA Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-173",
+    "new": "ek-3937a-vozdushnyj-filtr"
+  },
+  {
+    "id": 385,
+    "name": "EK-3937B (EK-9037B) EKKA Фильтр воздушный",
+    "category": "filtry-vozdushnye",
+    "old": "filter-174",
+    "new": "ek-3937b-vozdushnyj-filtr"
+  },
+  {
+    "id": 458,
+    "name": "EK-4817 (EK-2017) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-27",
+    "new": "ek-4817-gidravlicheskij-filtr"
+  },
+  {
+    "id": 459,
+    "name": "EK-4820 (EK-2020) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-26",
+    "new": "ek-4820-gidravlicheskij-filtr"
+  },
+  {
+    "id": 460,
+    "name": "EK-4829 (EK-2029) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-28",
+    "new": "ek-4829-gidravlicheskij-filtr"
+  },
+  {
+    "id": 461,
+    "name": "EK-4836 (EK-2036) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-29",
+    "new": "ek-4836-gidravlicheskij-filtr"
+  },
+  {
+    "id": 462,
+    "name": "EK-4841 (EK-2041) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-30",
+    "new": "ek-4841-gidravlicheskij-filtr"
+  },
+  {
+    "id": 463,
+    "name": "EK-4864 (EK-2064) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-43",
+    "new": "ek-4864-gidravlicheskij-filtr"
+  },
+  {
+    "id": 464,
+    "name": "EK-4869 (EK-2069) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-31",
+    "new": "ek-4869-gidravlicheskij-filtr"
+  },
+  {
+    "id": 465,
+    "name": "EK-4874 (EK-2074) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-32",
+    "new": "ek-4874-gidravlicheskij-filtr"
+  },
+  {
+    "id": 466,
+    "name": "EK-4886 (EK-2086) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-33",
+    "new": "ek-4886-gidravlicheskij-filtr"
+  },
+  {
+    "id": 468,
+    "name": "EK-4826 (EK-2126) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-34",
+    "new": "ek-4826-gidravlicheskij-filtr"
+  },
+  {
+    "id": 469,
+    "name": "EK-4828 (EK-2128) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-35",
+    "new": "ek-4828-gidravlicheskij-filtr"
+  },
+  {
+    "id": 470,
+    "name": "EK-4876 (EK-2176) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-36",
+    "new": "ek-4876-gidravlicheskij-filtr"
+  },
+  {
+    "id": 471,
+    "name": "EK-4877 (EK-2177) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-37",
+    "new": "ek-4877-gidravlicheskij-filtr"
+  },
+  {
+    "id": 472,
+    "name": "EK-4888 (EK-2188) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-38",
+    "new": "ek-4888-gidravlicheskij-filtr"
+  },
+  {
+    "id": 473,
+    "name": "EK-4805 (EK-3105) EKKA Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-39",
+    "new": "ek-4805-gidravlicheskij-filtr"
+  },
+  {
+    "id": 474,
+    "name": "EK-4005 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-40",
+    "new": "ek-4005-gidravlicheskij-filtr"
+  },
+  {
+    "id": 475,
+    "name": "EK-4012 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-41",
+    "new": "ek-4012-gidravlicheskij-filtr"
+  },
+  {
+    "id": 476,
+    "name": "EK-4013 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-42",
+    "new": "ek-4013-gidravlicheskij-filtr"
+  },
+  {
+    "id": 477,
+    "name": "EK-4014 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-44",
+    "new": "ek-4014-gidravlicheskij-filtr"
+  },
+  {
+    "id": 478,
+    "name": "EK-4018 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-45",
+    "new": "ek-4018-gidravlicheskij-filtr"
+  },
+  {
+    "id": 479,
+    "name": "EK-4028 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-46",
+    "new": "ek-4028-gidravlicheskij-filtr"
+  },
+  {
+    "id": 480,
+    "name": "EK-4033 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-47",
+    "new": "ek-4033-gidravlicheskij-filtr"
+  },
+  {
+    "id": 481,
+    "name": "EK-4034 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-48",
+    "new": "ek-4034-gidravlicheskij-filtr"
+  },
+  {
+    "id": 482,
+    "name": "EK-4035 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-49",
+    "new": "ek-4035-gidravlicheskij-filtr"
+  },
+  {
+    "id": 483,
+    "name": "EK-4045 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-50",
+    "new": "ek-4045-gidravlicheskij-filtr"
+  },
+  {
+    "id": 484,
+    "name": "EK-4049 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-51",
+    "new": "ek-4049-gidravlicheskij-filtr"
+  },
+  {
+    "id": 485,
+    "name": "EK-4052 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-52",
+    "new": "ek-4052-gidravlicheskij-filtr"
+  },
+  {
+    "id": 486,
+    "name": "EK-4055 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-53",
+    "new": "ek-4055-gidravlicheskij-filtr"
+  },
+  {
+    "id": 487,
+    "name": "EK-4055-1 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-54",
+    "new": "ek-4055-1-gidravlicheskij-filtr"
+  },
+  {
+    "id": 488,
+    "name": "EK-4060 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-55",
+    "new": "ek-4060-gidravlicheskij-filtr"
+  },
+  {
+    "id": 489,
+    "name": "EK-4074 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-56",
+    "new": "ek-4074-gidravlicheskij-filtr"
+  },
+  {
+    "id": 490,
+    "name": "EK-4080 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-57",
+    "new": "ek-4080-gidravlicheskij-filtr"
+  },
+  {
+    "id": 491,
+    "name": "EK-4083 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-58",
+    "new": "ek-4083-gidravlicheskij-filtr"
+  },
+  {
+    "id": 492,
+    "name": "EK-4087 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-59",
+    "new": "ek-4087-gidravlicheskij-filtr"
+  },
+  {
+    "id": 493,
+    "name": "EK-4090 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-60",
+    "new": "ek-4090-gidravlicheskij-filtr"
+  },
+  {
+    "id": 494,
+    "name": "EK-4106 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-61",
+    "new": "ek-4106-gidravlicheskij-filtr"
+  },
+  {
+    "id": 495,
+    "name": "EK-4118 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-62",
+    "new": "ek-4118-gidravlicheskij-filtr"
+  },
+  {
+    "id": 497,
+    "name": "EK-4162 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-63",
+    "new": "ek-4162-gidravlicheskij-filtr"
+  },
+  {
+    "id": 498,
+    "name": "EK-4165 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-64",
+    "new": "ek-4165-gidravlicheskij-filtr"
+  },
+  {
+    "id": 499,
+    "name": "EK-4202 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-65",
+    "new": "ek-4202-gidravlicheskij-filtr"
+  },
+  {
+    "id": 500,
+    "name": "EK-4203 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-66",
+    "new": "ek-4203-gidravlicheskij-filtr"
+  },
+  {
+    "id": 501,
+    "name": "EK-4275 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-67",
+    "new": "ek-4275-gidravlicheskij-filtr"
+  },
+  {
+    "id": 502,
+    "name": "EK-4412 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-68",
+    "new": "ek-4412-gidravlicheskij-filtr"
+  },
+  {
+    "id": 503,
+    "name": "EK-4439 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-69",
+    "new": "ek-4439-gidravlicheskij-filtr"
+  },
+  {
+    "id": 505,
+    "name": "EK-4467 Фильтр гидравлический",
+    "category": "filtry-gidravlicheskie",
+    "old": "filter-70",
+    "new": "ek-4467-gidravlicheskij-filtr"
+  },
+  {
+    "id": 548,
+    "name": "EK-1004 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-105",
+    "new": "ek-1004-toplivnyj-filtr"
+  },
+  {
+    "id": 549,
+    "name": "EK-1005 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-106",
+    "new": "ek-1005-toplivnyj-filtr"
+  },
+  {
+    "id": 550,
+    "name": "EK-1006 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-107",
+    "new": "ek-1006-toplivnyj-filtr"
+  },
+  {
+    "id": 552,
+    "name": "EK-1009 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-108",
+    "new": "ek-1009-toplivnyj-filtr"
+  },
+  {
+    "id": 553,
+    "name": "EK-1014 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-109",
+    "new": "ek-1014-toplivnyj-filtr"
+  },
+  {
+    "id": 554,
+    "name": "EK-1015 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-110",
+    "new": "ek-1015-toplivnyj-filtr"
+  },
+  {
+    "id": 555,
+    "name": "EK-1016 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-111",
+    "new": "ek-1016-toplivnyj-filtr"
+  },
+  {
+    "id": 556,
+    "name": "EK-1018 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-112",
+    "new": "ek-1018-toplivnyj-filtr"
+  },
+  {
+    "id": 557,
+    "name": "EK-1019 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-113",
+    "new": "ek-1019-toplivnyj-filtr"
+  },
+  {
+    "id": 558,
+    "name": "EK-1020 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-114",
+    "new": "ek-1020-toplivnyj-filtr"
+  },
+  {
+    "id": 559,
+    "name": "EK-1029 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-115",
+    "new": "ek-1029-toplivnyj-filtr"
+  },
+  {
+    "id": 560,
+    "name": "EK-1032 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-116",
+    "new": "ek-1032-toplivnyj-filtr"
+  },
+  {
+    "id": 561,
+    "name": "EK-1033 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-117",
+    "new": "ek-1033-toplivnyj-filtr"
+  },
+  {
+    "id": 562,
+    "name": "EK-1039 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-119",
+    "new": "ek-1039-toplivnyj-filtr"
+  },
+  {
+    "id": 563,
+    "name": "EK-8039 (EK-1039) CUP EKKA Стакан топливного фильтра",
+    "category": "filtry-toplivnye",
+    "old": "filter-118",
+    "new": "ek-8039-stakan-toplivnogo-filtra"
+  },
+  {
+    "id": 564,
+    "name": "EK-1041 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-120",
+    "new": "ek-1041-toplivnyj-filtr"
+  },
+  {
+    "id": 565,
+    "name": "EK-1042 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-121",
+    "new": "ek-1042-toplivnyj-filtr"
+  },
+  {
+    "id": 566,
+    "name": "EK-1043 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-122",
+    "new": "ek-1043-toplivnyj-filtr"
+  },
+  {
+    "id": 567,
+    "name": "EK-1044 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-123",
+    "new": "ek-1044-toplivnyj-filtr"
+  },
+  {
+    "id": 568,
+    "name": "EK-1053 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-124",
+    "new": "ek-1053-toplivnyj-filtr"
+  },
+  {
+    "id": 569,
+    "name": "EK-1055 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-125",
+    "new": "ek-1055-toplivnyj-filtr"
+  },
+  {
+    "id": 570,
+    "name": "EK-1059 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-126",
+    "new": "ek-1059-toplivnyj-filtr"
+  },
+  {
+    "id": 571,
+    "name": "EK-1067 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-127",
+    "new": "ek-1067-toplivnyj-filtr"
+  },
+  {
+    "id": 572,
+    "name": "EK-1068 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-128",
+    "new": "ek-1068-toplivnyj-filtr"
+  },
+  {
+    "id": 573,
+    "name": "EK-1071 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-129",
+    "new": "ek-1071-toplivnyj-filtr"
+  },
+  {
+    "id": 574,
+    "name": "EK-1076 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-130",
+    "new": "ek-1076-toplivnyj-filtr"
+  },
+  {
+    "id": 575,
+    "name": "EK-1077 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-131",
+    "new": "ek-1077-toplivnyj-filtr"
+  },
+  {
+    "id": 576,
+    "name": "EK-1081 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-132",
+    "new": "ek-1081-toplivnyj-filtr"
+  },
+  {
+    "id": 577,
+    "name": "EK-1083 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-133",
+    "new": "ek-1083-toplivnyj-filtr"
+  },
+  {
+    "id": 579,
+    "name": "EK-1087 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-134",
+    "new": "ek-1087-toplivnyj-filtr"
+  },
+  {
+    "id": 580,
+    "name": "EK-1091 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-135",
+    "new": "ek-1091-toplivnyj-filtr"
+  },
+  {
+    "id": 582,
+    "name": "EK-1096 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-136",
+    "new": "ek-1096-toplivnyj-filtr"
+  },
+  {
+    "id": 583,
+    "name": "EK-1097 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-137",
+    "new": "ek-1097-toplivnyj-filtr"
+  },
+  {
+    "id": 585,
+    "name": "EK-1105 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-138",
+    "new": "ek-1105-toplivnyj-filtr"
+  },
+  {
+    "id": 586,
+    "name": "EK-1108 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-139",
+    "new": "ek-1108-toplivnyj-filtr"
+  },
+  {
+    "id": 587,
+    "name": "EK-1111 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-140",
+    "new": "ek-1111-toplivnyj-filtr"
+  },
+  {
+    "id": 588,
+    "name": "EK-1126 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-141",
+    "new": "ek-1126-toplivnyj-filtr"
+  },
+  {
+    "id": 589,
+    "name": "EK-1132 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-142",
+    "new": "ek-1132-toplivnyj-filtr"
+  },
+  {
+    "id": 591,
+    "name": "EK-1148 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-143",
+    "new": "ek-1148-toplivnyj-filtr"
+  },
+  {
+    "id": 592,
+    "name": "EK-1171 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-144",
+    "new": "ek-1171-toplivnyj-filtr"
+  },
+  {
+    "id": 594,
+    "name": "EK-1800 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-145",
+    "new": "ek-1800-toplivnyj-filtr"
+  },
+  {
+    "id": 595,
+    "name": "EK-1801 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-146",
+    "new": "ek-1801-toplivnyj-filtr"
+  },
+  {
+    "id": 596,
+    "name": "EK-1809 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-147",
+    "new": "ek-1809-toplivnyj-filtr"
+  },
+  {
+    "id": 597,
+    "name": "EK-1810 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-148",
+    "new": "ek-1810-toplivnyj-filtr"
+  },
+  {
+    "id": 598,
+    "name": "EK-1811 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-149",
+    "new": "ek-1811-toplivnyj-filtr"
+  },
+  {
+    "id": 599,
+    "name": "EK-1812 Фильтр топливный",
+    "category": "filtry-toplivnye",
+    "old": "filter-151",
+    "new": "ek-1812-toplivnyj-filtr"
+  },
+  {
+    "id": 636,
+    "name": "EK-5010 (EK-5010A) EKKA Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-153",
+    "new": "ek-5010-filtr-kabiny"
+  },
+  {
+    "id": 637,
+    "name": "EK-5009 (EK-5010B) EKKA Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-152",
+    "new": "ek-5009-filtr-kabiny"
+  },
+  {
+    "id": 638,
+    "name": "EK-5011 Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-154",
+    "new": "ek-5011-filtr-kabiny"
+  },
+  {
+    "id": 639,
+    "name": "EK-5016 Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-99",
+    "new": "ek-5016-filtr-kabiny"
+  },
+  {
+    "id": 640,
+    "name": "EK-5018 Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-100",
+    "new": "ek-5018-filtr-kabiny"
+  },
+  {
+    "id": 641,
+    "name": "EK-5020 Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-155",
+    "new": "ek-5020-filtr-kabiny"
+  },
+  {
+    "id": 642,
+    "name": "EK-5051 Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-156",
+    "new": "ek-5051-filtr-kabiny"
+  },
+  {
+    "id": 643,
+    "name": "EK-5053 Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-101",
+    "new": "ek-5053-filtr-kabiny"
+  },
+  {
+    "id": 644,
+    "name": "EK-5075 Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-102",
+    "new": "ek-5075-filtr-kabiny"
+  },
+  {
+    "id": 645,
+    "name": "EK-5079 Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-157",
+    "new": "ek-5079-filtr-kabiny"
+  },
+  {
+    "id": 646,
+    "name": "EK-5070 (EK-5080) EKKA Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-158",
+    "new": "ek-5070-filtr-kabiny"
+  },
+  {
+    "id": 647,
+    "name": "EK-5001 (EK-5100) EKKA Фильтр кабины",
+    "category": "filtry-kabiny",
+    "old": "filter-159",
+    "new": "ek-5001-filtr-kabiny"
+  },
+  {
+    "id": 660,
+    "name": "EK-6021 (EK-1021) EKKA Фильтр охлаждающей жидкости",
+    "category": "filtry-ohlazhdayuschey-zhidkosti",
+    "old": "filter-96",
+    "new": "ek-6021-filtr-ohlazhdayuschej-zhidkosti"
+  },
+  {
+    "id": 661,
+    "name": "EK-6022 EKKA Фильтр охлаждающей жидкости",
+    "category": "filtry-ohlazhdayuschey-zhidkosti",
+    "old": "filter-97",
+    "new": "ek-6022-filtr-ohlazhdayuschej-zhidkosti"
+  },
+  {
+    "id": 662,
+    "name": "EK-6025 (EK-1025) EKKA Фильтр охлаждающей жидкости",
+    "category": "filtry-ohlazhdayuschey-zhidkosti",
+    "old": "filter-98",
+    "new": "ek-6025-filtr-ohlazhdayuschej-zhidkosti"
+  },
+  {
+    "id": 666,
+    "name": "EK-7451 (EK-3051) EKKA Фильтр сапуна",
+    "category": "filtry-sapuna",
+    "old": "filter-103",
+    "new": "ek-7451-filtr-sapuna"
+  },
+  {
+    "id": 667,
+    "name": "EK-7400 (EK-3100) EKKA Фильтр сапуна",
+    "category": "filtry-sapuna",
+    "old": "filter-104",
+    "new": "ek-7400-filtr-sapuna"
+  }
+]

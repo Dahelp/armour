@@ -1,4 +1,5 @@
 """Execute the reviewed oil URL migration, removing the authenticated runner afterwards."""
+import argparse
 import os
 from pathlib import Path
 import secrets
@@ -7,9 +8,13 @@ import tempfile
 import urllib.request
 from deploy_ftps import ROOT, PIN
 
-name = '__oil_urls_' + secrets.token_hex(16) + '.php'
+parser = argparse.ArgumentParser()
+parser.add_argument('--remaining', action='store_true')
+args = parser.parse_args()
+name = '__filter_urls_' + secrets.token_hex(16) + '.php'
 token = secrets.token_hex(32)
-body = (ROOT / 'bin/migrate_oil_filter_urls.php').read_text(encoding='utf-8-sig')
+body_path = 'bin/migrate_remaining_filter_urls.php' if args.remaining else 'bin/migrate_oil_filter_urls.php'
+body = (ROOT / body_path).read_text(encoding='utf-8-sig')
 source = "<?php\nheader('Content-Type: application/json');\nheader('Cache-Control: no-store');\nif (!hash_equals('" + token + "', (string)($_SERVER['HTTP_X_RUNNER_TOKEN'] ?? ''))) { http_response_code(403); exit; }\n" + body.removeprefix('<?php')
 connection = ['curl', '--fail', '--silent', '--show-error', '--ssl-reqd', '--tlsv1.2',
               '--cacert', str(ROOT / 'ops/production/grass-ftps.pem'), '--pinnedpubkey', PIN,
