@@ -54,6 +54,13 @@ with tempfile.TemporaryDirectory() as directory:
             for paragraph in source_data['paragraphs']:
                 if paragraph not in html.unescape(page):
                     raise RuntimeError('Full document description was not published')
+            schema = re.search(r'<script type="application/ld\+json">(\{.*?"@type":"Product".*?\})</script>', page, re.S)
+            product_schema = json.loads(schema.group(1))
+            offer = product_schema['offers']
+            if float(offer['price']) != float(source_data['price']) or offer['availability'] != ('https://schema.org/InStock' if source_data['quantity'] > 0 else 'https://schema.org/OutOfStock'):
+                raise RuntimeError('Public price or availability differs from requested values')
+            if source_data['quantity'] > 0 and 'data-max="' + str(source_data['quantity']) + '"' not in page:
+                raise RuntimeError('Public purchase quantity limit differs from requested stock')
             rows = re.findall(r'<th class="attribute_name 1">(.*?)</th><td class="attribute_value">(.*?)</td>', page, re.S)
             attributes = {clean(key).lower(): clean(value) for key, value in rows}
             if len(attributes) != 11:

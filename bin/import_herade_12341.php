@@ -17,11 +17,11 @@ function importHerade12341(PDO $db,array $source,bool $apply): array
         return (int)$db->lastInsertId();
     };
     $content=implode('',array_map(static fn(string $p):string=>'<p>'.htmlspecialchars($p,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8').'</p>',$source['paragraphs']));
-    $locked=false;$named=false;$id=0;$newDefinitions=[];$newBrand=0;$stage='identity';
+    $locked=false;$named=false;$id=0;$newDefinitions=[];$newBrand=0;$stage='identity';$originalStock=null;
     try {
         $named=(int)$db->query("SELECT GET_LOCK('import_herade_12341',10)")->fetchColumn()===1;if(!$named)throw new RuntimeException('Import is already running.');
-        if($apply){$db->exec('LOCK TABLES product WRITE, brand WRITE, category READ, url_alias WRITE, attribute WRITE, product_attribute WRITE, attribute_product WRITE, attribute_value READ');$locked=true;}
-        $s=$db->prepare('SELECT id,article,alias,title,description,content,img,category_id FROM product WHERE article=? OR alias=?');$s->execute([$source['article'],$source['alias']]);$existing=$s->fetchAll();
+        if($apply){$db->exec('CREATE TABLE IF NOT EXISTS product_stock_backup_herade_12341_20261117 LIKE product');$db->exec('LOCK TABLES product WRITE, brand WRITE, category READ, url_alias WRITE, attribute WRITE, product_attribute WRITE, attribute_product WRITE, attribute_value READ, product_stock_backup_herade_12341_20261117 WRITE');$locked=true;}
+        $s=$db->prepare('SELECT id,article,alias,title,description,content,img,category_id,price,quantity,stock_status_id FROM product WHERE article=? OR alias=?');$s->execute([$source['article'],$source['alias']]);$existing=$s->fetchAll();
         $donor=$one('SELECT id,name,img,category_id FROM product WHERE article=? AND alias=?',[$source['donor_article'],$source['donor_alias']],'photo donor');
         if($donor['name']!==$source['donor_name'] || $donor['img']!==$source['image'])throw new RuntimeException('Photo donor identity changed.');
         if(!is_file(dirname(__DIR__).'/public/images/product/baseimg/'.$donor['img']))throw new RuntimeException('Donor photo file is missing.');
@@ -34,7 +34,15 @@ function importHerade12341(PDO $db,array $source,bool $apply): array
             if($p['title']!==$source['title']||$p['description']!==$source['description']||$p['content']!==$content||$p['img']!==$donor['img']||(int)$p['category_id']!==(int)$category['urlid'])throw new RuntimeException('Article already exists with different data; no overwrite performed.');
             $s=$db->prepare('SELECT attribute_id,attribute_text FROM product_attribute WHERE product_id=?');$s->execute([$p['id']]);$saved=$s->fetchAll();
             if(count($saved)!==11)throw new RuntimeException('Existing article has incomplete characteristics.');
-            return ['ok'=>true,'created'=>false,'id'=>(int)$p['id'],'alias'=>$source['alias'],'attribute_count'=>11,'image'=>$donor['img']];
+            if($apply && ((float)$p['price']!==(float)$source['price'] || (int)$p['quantity']!==(int)$source['quantity'] || (int)$p['stock_status_id']!==($source['quantity']>0?1:0))) {
+                $stage='update requested price and quantity';
+                $db->prepare('INSERT IGNORE INTO product_stock_backup_herade_12341_20261117 SELECT * FROM product WHERE id=?')->execute([$p['id']]);
+                $originalStock=$p;
+                $db->prepare('UPDATE product SET price=?,quantity=?,stock_status_id=? WHERE id=? AND article=?')->execute([$source['price'],$source['quantity'],$source['quantity']>0?1:0,$p['id'],'12341']);
+                $verified=$one('SELECT price,quantity,stock_status_id FROM product WHERE id=? AND article=?',[$p['id'],'12341'],'updated stock');
+                if((float)$verified['price']!==(float)$source['price'] || (int)$verified['quantity']!==(int)$source['quantity'] || (int)$verified['stock_status_id']!==($source['quantity']>0?1:0))throw new RuntimeException('Requested price or stock was not saved.');
+            }
+            return ['ok'=>true,'created'=>false,'id'=>(int)$p['id'],'alias'=>$source['alias'],'attribute_count'=>11,'image'=>$donor['img'],'price'=>$source['price'],'quantity'=>$source['quantity']];
         }
         $s=$db->prepare('SELECT id FROM brand WHERE UPPER(TRIM(name))=?');$s->execute([$source['brand']]);$brands=$s->fetchAll();if(count($brands)>1)throw new RuntimeException('Ambiguous manufacturer.');
         $one('SELECT id FROM attribute WHERE id=1 AND attribute_group_id=0',[],'main attribute group');
@@ -66,6 +74,7 @@ function importHerade12341(PDO $db,array $source,bool $apply): array
         foreach($saved as $index=>$row)if((int)$row['attribute_id']!==$resolved[$index][0]||$row['attribute_text']!==$resolved[$index][1])throw new RuntimeException('Characteristic verification failed.');
         return ['ok'=>true,'created'=>true,'id'=>$id,'article'=>'12341','alias'=>$source['alias'],'attribute_count'=>11,'paragraph_count'=>5,'image'=>$donor['img'],'category_alias'=>$source['category_alias']];
     } catch(Throwable $error) {
+        if($originalStock)$db->prepare('UPDATE product SET price=?,quantity=?,stock_status_id=? WHERE id=? AND article=?')->execute([$originalStock['price'],$originalStock['quantity'],$originalStock['stock_status_id'],$originalStock['id'],'12341']);
         if($id){foreach(['url_alias','attribute_product','product_attribute'] as $table){$key=$table==='url_alias'?'urlid':'product_id';$db->prepare('DELETE FROM '.$table.' WHERE '.$key.'=?'.($table==='url_alias'?" AND view='product'":''))->execute([$id]);}$db->prepare('DELETE FROM product WHERE id=? AND article=?')->execute([$id,'12341']);}
         foreach($newDefinitions as $attributeId)$db->prepare('DELETE FROM attribute WHERE id=?')->execute([$attributeId]);
         if($newBrand)$db->prepare('DELETE FROM brand WHERE id=?')->execute([$newBrand]);
