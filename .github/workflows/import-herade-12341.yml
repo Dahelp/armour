@@ -1,0 +1,37 @@
+name: Import HERADE 12341 from document
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: Add the requested HERADE 11.00-20 product
+        type: boolean
+        default: false
+concurrency:
+  group: techtires-production
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  import:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_mysql
+      - name: Validate importer
+        run: php -l bin/import_herade_12341.php
+      - name: Import and verify one product over pinned FTPS
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          APPLY: ${{ inputs.apply }}
+        run: python3 ops/production/import_herade_12341.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: herade-result
+          path: herade-result.json
