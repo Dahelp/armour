@@ -22,6 +22,11 @@ checkCatalog(Canonical::resolve('tiposize-13%2F80-20.HTML',$rows)==='tiposize-13
 checkCatalog(Canonical::resolve('diameter/16.5',$rows)==='diameter-16-5','Diameter display value must not become a URL.');
 foreach(['marka-ekka','tiposize-unknown.html','cart.html','tiposize-../admin.html','tiposize-%2e%2e/admin.html','marka-%0d%0aLocation:evil.html'] as $path)checkCatalog(Canonical::resolve($path,$rows)===null,'Unsafe, unknown or already canonical path was redirected: '.$path);
 checkCatalog(Canonical::resolve('MARKA.html/',$rows)==='marka','Filter root variant was not normalised.');
+$rows[]=['sef'=>'tiposize-20.5-70-16','alias'=>'tiposize-20.5-70-16','value'=>'20.5 70-16','url_params'=>'tiposize'];
+checkCatalog(Canonical::resolve('tiposize-20.5%2070-16.html',$rows)==='tiposize-20.5-70-16','Encoded historical space must resolve to a valid size URL.');
+$rewrite=(string)file_get_contents(dirname(__DIR__).'/public/.htaccess');
+checkCatalog((bool)preg_match('/\[B=([^,]+),/',$rewrite,$escape),'Front controller must escape unsafe query backreferences.');
+checkCatalog(str_contains($escape[1],' ')&&!str_contains($escape[1],'/'),'Escape spaces without breaking literal size slashes.');
 
 // SQLite fixture with intentionally different group IDs catches the original migration mistake.
 class CatalogFixturePdo extends PDO {

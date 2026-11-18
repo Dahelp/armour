@@ -5,7 +5,8 @@ FileETag MTime Size
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule (.*) index.php?$1 [L,QSA]
+# Escape delimiters/spaces in the query backreference, retaining literal size slashes.
+RewriteRule (.*) index.php?$1 "[B= ?#&,L,QSA]"
 
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml
