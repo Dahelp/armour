@@ -36,6 +36,8 @@ $publishedDocument = new DOMDocument();
 seoAssert($publishedDocument->loadXML($publishedSitemap), 'The published sitemap.xml must be valid.');
 seoAssert(!str_contains($publishedSitemap, '/product/'), 'Technical product URLs must not appear in sitemap.xml.');
 seoAssert(!str_contains($publishedSitemap, '/category/'), 'Technical category URLs must not appear in sitemap.xml.');
+seoAssert(!preg_match('#<loc>[^<]*/(?:tiposize|marka|protect|diameter|disk)/#', $publishedSitemap), 'Filter sitemap entries must use registered canonical aliases.');
+seoAssert(!preg_match('#<loc>[^<]*/(?:tiposize|marka|protect|diameter|disk)-[^<]*\.html</loc>#i', $publishedSitemap), 'Legacy filter HTML URLs must not return to the deployment sitemap.');
 
 $productView = (string)file_get_contents(dirname(__DIR__) . '/app/views/armour/Product/view.php');
 seoAssert(str_contains($productView, 'application/ld+json'), 'Product JSON-LD is missing.');
