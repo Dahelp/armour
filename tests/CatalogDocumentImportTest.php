@@ -25,8 +25,12 @@ checkCatalog(Canonical::resolve('MARKA.html/',$rows)==='marka','Filter root vari
 $rows[]=['sef'=>'tiposize-20.5-70-16','alias'=>'tiposize-20.5-70-16','value'=>'20.5 70-16','url_params'=>'tiposize'];
 checkCatalog(Canonical::resolve('tiposize-20.5%2070-16.html',$rows)==='tiposize-20.5-70-16','Encoded historical space must resolve to a valid size URL.');
 $rewrite=(string)file_get_contents(dirname(__DIR__).'/public/.htaccess');
-checkCatalog((bool)preg_match('/\[B=([^,]+),/',$rewrite,$escape),'Front controller must escape unsafe query backreferences.');
-checkCatalog(str_contains($escape[1],' ')&&!str_contains($escape[1],'/'),'Escape spaces without breaking literal size slashes.');
+checkCatalog(str_contains($rewrite,'[B,L,QSA]'),'Use the escaping mode supported by the production Apache version.');
+$remove=new ReflectionMethod(\ishop\Router::class,'removeQueryString');
+foreach(['tiposize-13/80-20','tiposize-15*4-8','cross/ab+cd','catalog-katok'] as $path){$encoded=urlencode($path).'&page=2';$decoded=\ishop\App::decodeRouteQuery($encoded);checkCatalog($remove->invoke(null,$decoded)===$path,'Escaped front-controller route changed: '.$path);}
+checkCatalog(\ishop\App::decodeRouteQuery('')==='','Missing routing query must still open the homepage.');
+checkCatalog(\ishop\App::decodeRouteQuery('catalog-katok&s=a%26b')==='catalog-katok&s=a%26b','Route decoding must not change parameter encoding.');
+foreach(["admin\n",'catalog&admin/delete','fake=route'] as $unsafe){try{\ishop\App::decodeRouteQuery(urlencode($unsafe));throw new RuntimeException('Unsafe escaped route was accepted.');}catch(Exception $error){checkCatalog($error->getCode()===404,'Unsafe escaped route must be a genuine 404.');}}
 
 // SQLite fixture with intentionally different group IDs catches the original migration mistake.
 class CatalogFixturePdo extends PDO {

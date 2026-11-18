@@ -10,7 +10,7 @@ class App{
     public static $app;
 
     public function __construct(){
-        $query = trim((string)($_SERVER['QUERY_STRING'] ?? ''), '/');
+        $query = self::decodeRouteQuery((string)($_SERVER['QUERY_STRING'] ?? ''));
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
@@ -18,6 +18,19 @@ class App{
         $this->getParams();
         new ErrorHandler();
         Router::dispatch($query);
+    }
+
+    public static function decodeRouteQuery(string $query): string
+    {
+        $parts = explode('&', $query, 2);
+        if (str_contains($parts[0], '=')) {
+            return $query;
+        }
+        $path = urldecode($parts[0]);
+        if (preg_match('/[\x00-\x1F\x7F&?=#]/', $path) || str_contains($path, chr(92))) {
+            throw new \Exception('Страница не найдена', 404);
+        }
+        return trim($path, '/') . (isset($parts[1]) ? '&' . $parts[1] : '');
     }
 
     protected function getParams(){
