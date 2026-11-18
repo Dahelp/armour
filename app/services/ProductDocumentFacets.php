@@ -8,6 +8,7 @@ final class ProductDocumentFacets
     public array $createdValues=[];
     public array $createdAliases=[];
     public array $updatedAliases=[];
+    public array $deletedAliases=[];
     public array $createdCategoryLinks=[];
     public function __construct(private \PDO $db) {}
     private function insertValue(array $data): int
@@ -40,14 +41,7 @@ final class ProductDocumentFacets
                 $id=$this->insertValue(['attr_group_id'=>$groupId,'value'=>$value,'alias'=>$alias,'hide'=>'show','title'=>$value,'description'=>'','keywords'=>'','content'=>'','img'=>'']);$this->createdValues[]=$id;$av=['id'=>$id,'value'=>$value,'alias'=>$alias];
             }
             $avId=(int)$av['id'];$alias=(string)$av['alias'];
-            if($group['url_params']!=='') {
-                $s=$this->db->prepare('SELECT id,view,urlid FROM url_alias WHERE sef=?');$s->execute([$alias]);$urls=$s->fetchAll(\PDO::FETCH_ASSOC);
-                if($urls){
-                    if(count($urls)!==1||strtolower($urls[0]['view'])!==$prefix)throw new \RuntimeException('Filter URL conflicts with a different page type: '.$alias);
-                    if((int)$urls[0]['urlid']!==$avId){$this->updatedAliases[]=['id'=>$urls[0]['id'],'urlid'=>$urls[0]['urlid']];$this->db->prepare('UPDATE url_alias SET urlid=? WHERE id=?')->execute([$avId,$urls[0]['id']]);}
-                }
-                else {$this->db->prepare('INSERT INTO url_alias (sef,view,urlid) VALUES (?,?,?)')->execute([$alias,FilterUrlCanonicalizer::CONTROLLERS[$prefix],$avId]);$this->createdAliases[]=(int)$this->db->lastInsertId();}
-            }
+            if($group['url_params']!=='')$this->ensureRoute($avId,$prefix,$alias);
             $s=$this->db->prepare('SELECT COUNT(*) FROM attribute_category WHERE category_id=? AND group_id=?');$s->execute([$categoryId,$groupId]);
             if(!$s->fetchColumn()){$this->db->prepare('INSERT INTO attribute_category (category_id,group_id) VALUES (?,?)')->execute([$categoryId,$groupId]);$this->createdCategoryLinks[]=[$categoryId,$groupId];}
             // Replace only this product's bindings in the explicitly supplied group.
@@ -58,9 +52,20 @@ final class ProductDocumentFacets
         }
         return $result;
     }
+    public function ensureRoute(int $avId,string $prefix,string $alias): void
+    {
+        if(!isset(FilterUrlCanonicalizer::CONTROLLERS[$prefix]))throw new \RuntimeException('Unknown public filter type.');
+        $s=$this->db->prepare('SELECT * FROM url_alias WHERE sef=? ORDER BY id');$s->execute([$alias]);$urls=$s->fetchAll(\PDO::FETCH_ASSOC);
+        if(!$urls){$this->db->prepare('INSERT INTO url_alias (sef,view,urlid) VALUES (?,?,?)')->execute([$alias,FilterUrlCanonicalizer::CONTROLLERS[$prefix],$avId]);$this->createdAliases[]=(int)$this->db->lastInsertId();return;}
+        foreach($urls as $row)if(strtolower($row['view'])!==$prefix)throw new \RuntimeException('Filter URL conflicts with a different page type: '.$alias);
+        $correct=array_values(array_filter($urls,static fn($row)=>(int)$row['urlid']===$avId));$keep=$correct[0]??$urls[0];
+        foreach($urls as $row)if((int)$row['id']!==(int)$keep['id']){$this->deletedAliases[]=$row;$this->db->prepare('DELETE FROM url_alias WHERE id=?')->execute([$row['id']]);}
+        if((int)$keep['urlid']!==$avId){$this->updatedAliases[]=['id'=>$keep['id'],'urlid'=>$keep['urlid']];$this->db->prepare('UPDATE url_alias SET urlid=? WHERE id=?')->execute([$avId,$keep['id']]);}
+    }
     public function rollbackCreated(): void
     {
         foreach(array_reverse($this->updatedAliases) as $row)$this->db->prepare('UPDATE url_alias SET urlid=? WHERE id=?')->execute([$row['urlid'],$row['id']]);
+        foreach(array_reverse($this->deletedAliases) as $row){$keys=implode(',',array_map(static fn($key)=>'`'.$key.'`',array_keys($row)));$this->db->prepare('INSERT INTO url_alias ('.$keys.') VALUES ('.implode(',',array_fill(0,count($row),'?')).')')->execute(array_values($row));}
         foreach(array_reverse($this->createdAliases) as $id)$this->db->prepare('DELETE FROM url_alias WHERE id=?')->execute([$id]);
         foreach(array_reverse($this->createdValues) as $id)$this->db->prepare('DELETE FROM attribute_value WHERE id=?')->execute([$id]);
         foreach($this->createdCategoryLinks as [$category,$group])$this->db->prepare('DELETE FROM attribute_category WHERE category_id=? AND group_id=?')->execute([$category,$group]);

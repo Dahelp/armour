@@ -39,6 +39,7 @@ $db->exec('CREATE TABLE url_alias (id INTEGER PRIMARY KEY AUTOINCREMENT,sef TEXT
 $db->exec("INSERT INTO attribute_group VALUES (9,'Размер шины','tiposize'),(47,'Производитель','marka'),(3,'Протектор','protect'),(108,'Посадочный диаметр','diameter'),(65,'Тип шин','')");
 $db->exec("INSERT INTO attribute_value VALUES (1,65,'Пневматические','pnevmaticheskie','show','','','','',''),(2,47,'HERADE','marka-herade','show','','','','','')");
 $db->exec("INSERT INTO url_alias (sef,view,urlid) VALUES ('marka-herade','Marka',47)");
+$db->exec("INSERT INTO url_alias (sef,view,urlid) VALUES ('marka-herade','Marka',2)");
 $writer=new Facets($db);$bound=$writer->bind(773,8,$source['facets']);
 checkCatalog((int)$db->query("SELECT urlid FROM url_alias WHERE sef='marka-herade'")->fetchColumn()===2,'Stale imported filter URL ID was not repaired.');
 checkCatalog(count($bound)===5,'All five required filter groups must be filled.');
