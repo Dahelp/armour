@@ -5,6 +5,11 @@ if(!class_exists('R'))class_alias(\RedBeanPHP\R::class,'R');
 $config=require dirname(__DIR__).'/config/config_db.php';
 $db=new PDO($config['dsn'],$config['user'],$config['pass'],[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC]);
 $apply=$heradeApply??false;
+$runtime=[];
+if(!$apply){
+    $runtime=['sapi'=>PHP_SAPI,'server'=>$_SERVER['SERVER_SOFTWARE']??'','apache'=>function_exists('apache_get_version')?apache_get_version():null];
+    foreach(['https://techtires.ru/','https://techtires.ru/tiposize-13/80-20'] as $probe){$curl=curl_init($probe);curl_setopt_array($curl,[CURLOPT_NOBODY=>true,CURLOPT_RETURNTRANSFER=>true,CURLOPT_CONNECTTIMEOUT=>5,CURLOPT_TIMEOUT=>12]);curl_exec($curl);$runtime['self_probes'][]=['url'=>$probe,'status'=>curl_getinfo($curl,CURLINFO_HTTP_CODE),'errno'=>curl_errno($curl),'error'=>curl_error($curl)];curl_close($curl);}
+}
 $sources=$catalogSources??[
     json_decode(file_get_contents(ROOT.'/resources/products/herade-12341.json'),true,512,JSON_THROW_ON_ERROR),
     json_decode(file_get_contents(ROOT.'/resources/products/vulcan-10302.json'),true,512,JSON_THROW_ON_ERROR)
@@ -67,4 +72,4 @@ try {
 if($apply){if(!is_file(ROOT.'/tmp/sitemap.before-catalog-20261118.xml'))copy(WWW.'/sitemap.xml',ROOT.'/tmp/sitemap.before-catalog-20261118.xml');\R::setup($config['dsn'],$config['user'],$config['pass']);$count=(new \app\services\SitemapGenerator())->generate();}
 $publicFilters=$db->query("SELECT ua.sef,av.alias,av.value,ag.url_params FROM attribute_value av JOIN attribute_group ag ON ag.id=av.attr_group_id JOIN url_alias ua ON ua.urlid=av.id AND LOWER(ua.view)=LOWER(ag.url_params) AND ua.sef=av.alias WHERE av.hide='show' AND ag.url_params IN ('tiposize','marka','protect','diameter','disk') ORDER BY ua.sef")->fetchAll();
 $conflict=$db->query("SELECT id,sef,view,urlid FROM url_alias WHERE sef='marka-herade'")->fetchAll();
-echo json_encode(['ok'=>true,'applied'=>$apply,'route_conflict'=>$conflict,'products'=>$products,'sitemap_urls'=>$count??null,'deduplicated_routes'=>count($facets->deletedAliases),'corrected_route_ids'=>count($correctedRoutes)+count($facets->updatedAliases),'renamed_filter_aliases'=>$renamed,'filter_pages'=>$publicFilters],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR);
+echo json_encode(['ok'=>true,'applied'=>$apply,'runtime'=>$runtime,'route_conflict'=>$conflict,'products'=>$products,'sitemap_urls'=>$count??null,'deduplicated_routes'=>count($facets->deletedAliases),'corrected_route_ids'=>count($correctedRoutes)+count($facets->updatedAliases),'renamed_filter_aliases'=>$renamed,'filter_pages'=>$publicFilters],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR);
