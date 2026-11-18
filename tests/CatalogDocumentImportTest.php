@@ -38,7 +38,9 @@ $db->exec('CREATE TABLE attribute_category (id INTEGER PRIMARY KEY AUTOINCREMENT
 $db->exec('CREATE TABLE url_alias (id INTEGER PRIMARY KEY AUTOINCREMENT,sef TEXT,view TEXT,urlid INTEGER)');
 $db->exec("INSERT INTO attribute_group VALUES (9,'Размер шины','tiposize'),(47,'Производитель','marka'),(3,'Протектор','protect'),(108,'Посадочный диаметр','diameter'),(65,'Тип шин','')");
 $db->exec("INSERT INTO attribute_value VALUES (1,65,'Пневматические','pnevmaticheskie','show','','','','',''),(2,47,'HERADE','marka-herade','show','','','','','')");
+$db->exec("INSERT INTO url_alias (sef,view,urlid) VALUES ('marka-herade','Marka',47)");
 $writer=new Facets($db);$bound=$writer->bind(773,8,$source['facets']);
+checkCatalog((int)$db->query("SELECT urlid FROM url_alias WHERE sef='marka-herade'")->fetchColumn()===2,'Stale imported filter URL ID was not repaired.');
 checkCatalog(count($bound)===5,'All five required filter groups must be filled.');
 $linked=$db->query('SELECT av.value,ag.url_params FROM attribute_product ap JOIN attribute_value av ON av.id=ap.attr_id JOIN attribute_group ag ON ag.id=av.attr_group_id WHERE product_id=773')->fetchAll();
 $byGroup=array_column($linked,'value','url_params');

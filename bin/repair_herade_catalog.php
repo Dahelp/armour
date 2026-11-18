@@ -9,7 +9,7 @@ $sources=$catalogSources??[
     json_decode(file_get_contents(ROOT.'/resources/products/herade-12341.json'),true,512,JSON_THROW_ON_ERROR),
     json_decode(file_get_contents(ROOT.'/resources/products/vulcan-10302.json'),true,512,JSON_THROW_ON_ERROR)
 ];
-$facets=new \app\services\ProductDocumentFacets($db);$locked=false;$snapshots=[];$newRoutes=[];$renamed=[];$stage='preflight';$products=[];
+$facets=new \app\services\ProductDocumentFacets($db);$locked=false;$snapshots=[];$newRoutes=[];$renamed=[];$correctedRoutes=[];$stage='preflight';$products=[];
 try {
     if($apply){
         $db->exec('CREATE TABLE IF NOT EXISTS product_backup_catalog_20261118 LIKE product');
@@ -17,6 +17,7 @@ try {
         $db->exec('CREATE TABLE IF NOT EXISTS url_alias_backup_catalog_20261118 LIKE url_alias');
         $db->exec('CREATE TABLE IF NOT EXISTS attribute_product_backup_catalog_20261118 LIKE attribute_product');
         $db->exec('LOCK TABLES product WRITE, product_attribute READ, attribute READ, attribute_product WRITE, attribute_value WRITE, attribute_group READ, attribute_category WRITE, url_alias WRITE, product_backup_catalog_20261118 WRITE, attribute_product_backup_catalog_20261118 WRITE, attribute_value_backup_catalog_20261118 WRITE, url_alias_backup_catalog_20261118 WRITE');$locked=true;
+        $db->exec("INSERT IGNORE INTO url_alias_backup_catalog_20261118 SELECT * FROM url_alias WHERE LOWER(view) IN ('tiposize','marka','protect','diameter','disk')");
     }
     foreach($sources as $source){
         $stage='verify source '.$source['article'];
@@ -51,17 +52,19 @@ try {
                 $db->prepare('UPDATE attribute_value SET alias=? WHERE id=?')->execute([$alias,$value['id']]);
                 $db->prepare('UPDATE url_alias SET sef=? WHERE sef=? AND urlid=? AND LOWER(view)=?')->execute([$alias,$oldAlias,$value['id'],$prefix]);
             }
-            $s=$db->prepare('SELECT view,urlid FROM url_alias WHERE sef=?');$s->execute([$alias]);$existing=$s->fetchAll();
+            $s=$db->prepare('SELECT id,view,urlid FROM url_alias WHERE sef=?');$s->execute([$alias]);$existing=$s->fetchAll();
             if(!$existing){$db->prepare('INSERT INTO url_alias (sef,view,urlid) VALUES (?,?,?)')->execute([$alias,\app\services\FilterUrlCanonicalizer::CONTROLLERS[$prefix],$value['id']]);$newRoutes[]=(int)$db->lastInsertId();}
-            elseif(count($existing)!==1||strtolower($existing[0]['view'])!==$prefix||(int)$existing[0]['urlid']!==(int)$value['id'])throw new RuntimeException('Conflicting public filter route.');
+            elseif(count($existing)!==1||strtolower($existing[0]['view'])!==$prefix)throw new RuntimeException('Conflicting public filter route: '.$alias);
+            elseif((int)$existing[0]['urlid']!==(int)$value['id']){$correctedRoutes[]=$existing[0];$db->prepare('UPDATE url_alias SET urlid=? WHERE id=?')->execute([$value['id'],$existing[0]['id']]);}
         }
     }
 } catch(Throwable $error){
     foreach(array_reverse($snapshots) as $snapshot){$p=$snapshot['product'];$db->prepare('UPDATE product SET name=?,title=?,description=?,content=? WHERE id=?')->execute([$p['name'],$p['title'],$p['description'],$p['content'],$p['id']]);$db->prepare('DELETE FROM attribute_product WHERE product_id=?')->execute([$p['id']]);foreach($snapshot['bindings'] as $row){$columns=implode(',',array_map(static fn($k)=>'`'.$k.'`',array_keys($row)));$db->prepare('INSERT INTO attribute_product ('.$columns.') VALUES ('.implode(',',array_fill(0,count($row),'?')).')')->execute(array_values($row));}}
+    foreach(array_reverse($correctedRoutes) as $row)$db->prepare('UPDATE url_alias SET urlid=? WHERE id=?')->execute([$row['urlid'],$row['id']]);
     foreach(array_reverse($renamed) as $change){$db->prepare('UPDATE attribute_value SET alias=? WHERE id=?')->execute([$change['old'],$change['id']]);foreach($change['route_ids'] as $routeId)$db->prepare('UPDATE url_alias SET sef=? WHERE id=?')->execute([$change['old'],$routeId]);}
     foreach($newRoutes as $id)$db->prepare('DELETE FROM url_alias WHERE id=?')->execute([$id]);$facets->rollbackCreated();
     echo json_encode(['ok'=>false,'stage'=>$stage,'error'=>$error instanceof PDOException?($error->errorInfo[2]??'Database operation failed.'):$error->getMessage()],JSON_UNESCAPED_UNICODE);exit;
 }finally{if($locked)$db->exec('UNLOCK TABLES');}
 if($apply){if(!is_file(ROOT.'/tmp/sitemap.before-catalog-20261118.xml'))copy(WWW.'/sitemap.xml',ROOT.'/tmp/sitemap.before-catalog-20261118.xml');\R::setup($config['dsn'],$config['user'],$config['pass']);$count=(new \app\services\SitemapGenerator())->generate();}
 $publicFilters=$db->query("SELECT ua.sef,av.alias,av.value,ag.url_params FROM attribute_value av JOIN attribute_group ag ON ag.id=av.attr_group_id JOIN url_alias ua ON ua.urlid=av.id AND LOWER(ua.view)=LOWER(ag.url_params) AND ua.sef=av.alias WHERE av.hide='show' AND ag.url_params IN ('tiposize','marka','protect','diameter','disk') ORDER BY ua.sef")->fetchAll();
-echo json_encode(['ok'=>true,'applied'=>$apply,'products'=>$products,'sitemap_urls'=>$count??null,'renamed_filter_aliases'=>$renamed,'filter_pages'=>$publicFilters],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR);
+echo json_encode(['ok'=>true,'applied'=>$apply,'products'=>$products,'sitemap_urls'=>$count??null,'corrected_route_ids'=>count($correctedRoutes)+count($facets->updatedAliases),'renamed_filter_aliases'=>$renamed,'filter_pages'=>$publicFilters],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR);

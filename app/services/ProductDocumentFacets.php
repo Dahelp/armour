@@ -7,6 +7,7 @@ final class ProductDocumentFacets
 {
     public array $createdValues=[];
     public array $createdAliases=[];
+    public array $updatedAliases=[];
     public array $createdCategoryLinks=[];
     public function __construct(private \PDO $db) {}
     private function insertValue(array $data): int
@@ -41,7 +42,10 @@ final class ProductDocumentFacets
             $avId=(int)$av['id'];$alias=(string)$av['alias'];
             if($group['url_params']!=='') {
                 $s=$this->db->prepare('SELECT id,view,urlid FROM url_alias WHERE sef=?');$s->execute([$alias]);$urls=$s->fetchAll(\PDO::FETCH_ASSOC);
-                if($urls){if(count($urls)!==1||strtolower($urls[0]['view'])!==$prefix||(int)$urls[0]['urlid']!==$avId)throw new \RuntimeException('Filter URL points to a different record.');}
+                if($urls){
+                    if(count($urls)!==1||strtolower($urls[0]['view'])!==$prefix)throw new \RuntimeException('Filter URL conflicts with a different page type: '.$alias);
+                    if((int)$urls[0]['urlid']!==$avId){$this->updatedAliases[]=['id'=>$urls[0]['id'],'urlid'=>$urls[0]['urlid']];$this->db->prepare('UPDATE url_alias SET urlid=? WHERE id=?')->execute([$avId,$urls[0]['id']]);}
+                }
                 else {$this->db->prepare('INSERT INTO url_alias (sef,view,urlid) VALUES (?,?,?)')->execute([$alias,FilterUrlCanonicalizer::CONTROLLERS[$prefix],$avId]);$this->createdAliases[]=(int)$this->db->lastInsertId();}
             }
             $s=$this->db->prepare('SELECT COUNT(*) FROM attribute_category WHERE category_id=? AND group_id=?');$s->execute([$categoryId,$groupId]);
@@ -56,6 +60,7 @@ final class ProductDocumentFacets
     }
     public function rollbackCreated(): void
     {
+        foreach(array_reverse($this->updatedAliases) as $row)$this->db->prepare('UPDATE url_alias SET urlid=? WHERE id=?')->execute([$row['urlid'],$row['id']]);
         foreach(array_reverse($this->createdAliases) as $id)$this->db->prepare('DELETE FROM url_alias WHERE id=?')->execute([$id]);
         foreach(array_reverse($this->createdValues) as $id)$this->db->prepare('DELETE FROM attribute_value WHERE id=?')->execute([$id]);
         foreach($this->createdCategoryLinks as [$category,$group])$this->db->prepare('DELETE FROM attribute_category WHERE category_id=? AND group_id=?')->execute([$category,$group]);
