@@ -63,8 +63,10 @@ try {
     foreach(array_reverse($correctedRoutes) as $row)$db->prepare('UPDATE url_alias SET urlid=? WHERE id=?')->execute([$row['urlid'],$row['id']]);
     foreach(array_reverse($renamed) as $change){$db->prepare('UPDATE attribute_value SET alias=? WHERE id=?')->execute([$change['old'],$change['id']]);foreach($change['route_ids'] as $routeId)$db->prepare('UPDATE url_alias SET sef=? WHERE id=?')->execute([$change['old'],$routeId]);}
     foreach($newRoutes as $id)$db->prepare('DELETE FROM url_alias WHERE id=?')->execute([$id]);$facets->rollbackCreated();
-    echo json_encode(['ok'=>false,'stage'=>$stage,'error'=>$error instanceof PDOException?($error->errorInfo[2]??'Database operation failed.'):$error->getMessage()],JSON_UNESCAPED_UNICODE);exit;
+    $conflict=$db->query("SELECT id,sef,view,urlid FROM url_alias WHERE sef='marka-herade'")->fetchAll();
+    echo json_encode(['ok'=>false,'route_conflict'=>$conflict,'stage'=>$stage,'error'=>$error instanceof PDOException?($error->errorInfo[2]??'Database operation failed.'):$error->getMessage()],JSON_UNESCAPED_UNICODE);exit;
 }finally{if($locked)$db->exec('UNLOCK TABLES');}
 if($apply){if(!is_file(ROOT.'/tmp/sitemap.before-catalog-20261118.xml'))copy(WWW.'/sitemap.xml',ROOT.'/tmp/sitemap.before-catalog-20261118.xml');\R::setup($config['dsn'],$config['user'],$config['pass']);$count=(new \app\services\SitemapGenerator())->generate();}
 $publicFilters=$db->query("SELECT ua.sef,av.alias,av.value,ag.url_params FROM attribute_value av JOIN attribute_group ag ON ag.id=av.attr_group_id JOIN url_alias ua ON ua.urlid=av.id AND LOWER(ua.view)=LOWER(ag.url_params) AND ua.sef=av.alias WHERE av.hide='show' AND ag.url_params IN ('tiposize','marka','protect','diameter','disk') ORDER BY ua.sef")->fetchAll();
-echo json_encode(['ok'=>true,'applied'=>$apply,'products'=>$products,'sitemap_urls'=>$count??null,'corrected_route_ids'=>count($correctedRoutes)+count($facets->updatedAliases),'renamed_filter_aliases'=>$renamed,'filter_pages'=>$publicFilters],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR);
+$conflict=$db->query("SELECT id,sef,view,urlid FROM url_alias WHERE sef='marka-herade'")->fetchAll();
+echo json_encode(['ok'=>true,'applied'=>$apply,'route_conflict'=>$conflict,'products'=>$products,'sitemap_urls'=>$count??null,'corrected_route_ids'=>count($correctedRoutes)+count($facets->updatedAliases),'renamed_filter_aliases'=>$renamed,'filter_pages'=>$publicFilters],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_THROW_ON_ERROR);
