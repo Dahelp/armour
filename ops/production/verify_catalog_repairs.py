@@ -65,7 +65,10 @@ def verify(result, sources):
         ids = ','.join(str(facet['id']) for facet in bound)
         category = source.get('category_alias', 'catalog-kvadrotciklov')
         status, _, filtered = fetch(category + '?filter=' + ids)
-        require(status == 200 and '/' + source['alias'] in filtered, 'Product missing from category filter intersection')
+        product_links = {urllib.parse.urljoin(BASE + '/', html.unescape(link)) for link in re.findall(r'href="([^"]+)"', filtered)}
+        require(status == 200 and BASE + '/' + source['alias'] in product_links, 'Product missing from category filter intersection')
+        for facet in bound:
+            require(re.search(r'<option\s+value="' + str(facet['id']) + r'"[^>]*>', filtered) is not None, 'Required category filter option is missing or stale: ' + facet['group'])
         size = next(facet for facet in bound if facet['group'] == 'tiposize')
         status, _, size_page = fetch(size['alias'])
         require(status == 200 and '/' + source['alias'] in size_page, 'Product missing from its size listing')

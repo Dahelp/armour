@@ -82,6 +82,8 @@ function importHerade12341(PDO $db,array $source,bool $apply): array
     } finally {if($locked)$db->exec('UNLOCK TABLES');if($named)$db->query("SELECT RELEASE_LOCK('import_herade_12341')");}
 }
 if(!defined('HERADE_IMPORT_LIBRARY_ONLY')) {
+    if(!defined('CACHE'))define('CACHE',dirname(__DIR__).'/tmp/cache');
+    if(!defined('CACHE'))define('CACHE',dirname(__DIR__).'/tmp/cache');
     try {
         require_once dirname(__DIR__).'/config/environment.php';$config=require dirname(__DIR__).'/config/config_db.php';
         $db=new PDO($config['dsn'],$config['user'],$config['pass'],[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC]);

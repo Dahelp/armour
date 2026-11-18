@@ -50,6 +50,8 @@ final class ProductDocumentFacets
             $this->db->prepare('INSERT INTO attribute_product (product_id,attr_id) VALUES (?,?)')->execute([$productId,$avId]);
             $result[]=['group'=>$prefix,'value'=>$value,'id'=>$avId,'alias'=>$group['url_params']!==''?$alias:''];
         }
+        if(defined('CACHE')&&!\ishop\Cache::instance()->clear())throw new \RuntimeException('Unable to invalidate catalog filter caches.');
+        if(defined('CACHE')&&!\ishop\Cache::instance()->clear())throw new \RuntimeException('Unable to invalidate catalog filter caches.');
         return $result;
     }
     public function ensureRoute(int $avId,string $prefix,string $alias): void
