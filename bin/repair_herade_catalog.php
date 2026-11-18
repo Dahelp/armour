@@ -1,5 +1,6 @@
 <?php
 require dirname(__DIR__).'/config/init.php';
+foreach(['FilterUrlCanonicalizer','DocumentProductContent','ProductDocumentFacets','SitemapGenerator'] as $class)require_once ROOT.'/app/services/'.$class.'.php';
 if(!class_exists('R'))class_alias(\RedBeanPHP\R::class,'R');
 $config=require dirname(__DIR__).'/config/config_db.php';
 $db=new PDO($config['dsn'],$config['user'],$config['pass'],[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC]);

@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once dirname(__DIR__).'/vendor/autoload.php';
+foreach(['FilterUrlCanonicalizer','DocumentProductContent','ProductDocumentFacets'] as $class)require_once dirname(__DIR__).'/app/services/'.$class.'.php';
 function importHerade12341(PDO $db,array $source,bool $apply): array
 {
     if(($source['article']??'')!=='12341' || count($source['attributes']??[])!==11 || count($source['paragraphs']??[])!==5) throw new RuntimeException('Unexpected document source.');
