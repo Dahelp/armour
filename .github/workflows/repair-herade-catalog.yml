@@ -1,0 +1,37 @@
+name: Repair HERADE filters and legacy size URLs
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: Apply the product and size URL repair
+        type: boolean
+        default: false
+concurrency:
+  group: techtires-production
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  import:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_mysql
+      - name: Validate importer
+        run: php -l bin/repair_herade_catalog.php
+      - name: Import and verify one product over pinned FTPS
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          APPLY: ${{ inputs.apply }}
+        run: python3 ops/production/repair_herade_catalog.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: catalog-repair-result
+          path: catalog-repair-result.json
