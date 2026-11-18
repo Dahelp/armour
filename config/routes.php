@@ -4,6 +4,8 @@ use ishop\Router;
 use app\models\AppModel;
 use app\services\LegacyCrossRedirector;
 use app\services\LegacyUrlRedirector;
+use app\services\FilterUrlCanonicalizer;
+require_once dirname(__DIR__).'/app/services/FilterUrlCanonicalizer.php';
 
 // Keep this dependency list explicit: production deployment tracks this file
 // to remove obsolete route services reliably.
@@ -23,9 +25,14 @@ $urli = $_SERVER['REQUEST_URI'];
 //$urli = urldecode($urli);
 $baseUrl = strtok($urli, '?');
 $urli = trim($baseUrl, '/');
+$urls = new AppModel();
+FilterUrlCanonicalizer::redirectIfNeeded(ltrim((string)$baseUrl, '/'));
+if (isset(FilterUrlCanonicalizer::CONTROLLERS[$urli])) {
+    Router::add('^'.preg_quote($urli, '#').'/?$', ['controller'=>FilterUrlCanonicalizer::CONTROLLERS[$urli], 'action'=>'index']);
+}
 require __DIR__ . '/oil_filter_redirects.php';
 require __DIR__ . '/filter_redirects.php';
-$urls = new AppModel();
+
 LegacyCrossRedirector::redirectIfNeeded($urli);
 LegacyUrlRedirector::redirectIfNeeded($urli);
 //debug($urli); exit();

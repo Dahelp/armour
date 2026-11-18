@@ -34,4 +34,6 @@ jobs:
         if: always()
         with:
           name: catalog-repair-result
-          path: catalog-repair-result.json
+          path: |
+            catalog-repair-result.json
+            catalog-repair-verification.json

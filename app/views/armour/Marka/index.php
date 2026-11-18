@@ -12,7 +12,7 @@
 						<div class="group-filtr">
 						<?php foreach($groups as $group): ?>
 							<div class="filtr-one">
-								<a href="<?=$type->url_params;?>/<?php echo mb_strtolower($group["alias"]); ?>" title="<?=$group["value"]?>">
+								<a href="/<?=h(ltrim((string)$group["alias"], '/'))?>" title="<?=$group["value"]?>">
 									<?php if($group->img) { ?><div class="filtrs-img"><img src="images/filtrs/baseimg/<?=$group["img"]?>" alt="<?=$group["value"]?>" title="<?=$group["value"]?>" width="150" height="120"></div><?php } ?>
 									<div class="filtrs-value"><?=$group["value"]?></div>
 								</a>

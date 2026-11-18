@@ -72,16 +72,14 @@ final class SitemapGenerator
             if($path!=='')$paths[]=$path;
         }
 
+        // Publish the same registered aliases used by routing and filter links.
         $attributeUrls = \R::getAll(
-            "SELECT ag.url_params, av.value
-             FROM attribute_group ag
-             INNER JOIN attribute_value av ON av.attr_group_id = ag.id
-             WHERE ag.url_params != '' AND av.hide = 'show' AND av.value != ''"
+            "SELECT DISTINCT ua.sef FROM attribute_group ag
+             INNER JOIN attribute_value av ON av.attr_group_id=ag.id
+             INNER JOIN url_alias ua ON ua.urlid=av.id AND LOWER(ua.view)=LOWER(ag.url_params) AND ua.sef=av.alias
+             WHERE ag.url_params!='' AND av.hide='show' AND av.value!='' AND ua.sef NOT LIKE '%.html'"
         );
-        foreach ($attributeUrls as $row) {
-            $paths[] = trim((string)$row['url_params'], '/') . '/' . trim((string)$row['value'], '/');
-        }
-
+        foreach ($attributeUrls as $row) $paths[]=(string)$row['sef'];
         $baseUrl = rtrim((string)config_env('APP_URL', PATH), '/');
         $urls = [];
         foreach ($paths as $path) {

@@ -68,5 +68,12 @@
       "name": "Объем (м3)",
       "value": "0.13"
     }
-  ]
+  ],
+  "facets": {
+    "tiposize": "27x11-14",
+    "marka": "EKKA",
+    "protect": "Vulcan",
+    "diameter": "14",
+    "tire_type": "Пневматические"
+  }
 }

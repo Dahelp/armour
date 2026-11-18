@@ -68,5 +68,16 @@
       "name": "Способ герметизации",
       "value": "TTF"
     }
-  ]
+  ],
+  "list_items": [
+    2,
+    3
+  ],
+  "facets": {
+    "tiposize": "11.00-20",
+    "marka": "HERADE",
+    "protect": "C1",
+    "diameter": "20",
+    "tire_type": "Пневматические"
+  }
 }

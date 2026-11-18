@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once dirname(__DIR__).'/vendor/autoload.php';
 function importHerade12341(PDO $db,array $source,bool $apply): array
 {
     if(($source['article']??'')!=='12341' || count($source['attributes']??[])!==11 || count($source['paragraphs']??[])!==5) throw new RuntimeException('Unexpected document source.');
@@ -16,11 +17,11 @@ function importHerade12341(PDO $db,array $source,bool $apply): array
         $db->prepare('INSERT INTO `'.$table.'` ('.$columns.') VALUES ('.implode(',',array_fill(0,count($values),'?')).')')->execute(array_values($values));
         return (int)$db->lastInsertId();
     };
-    $content=implode('',array_map(static fn(string $p):string=>'<p>'.htmlspecialchars($p,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8').'</p>',$source['paragraphs']));
-    $locked=false;$named=false;$id=0;$newDefinitions=[];$newBrand=0;$stage='identity';$originalStock=null;
+    $content=\app\services\DocumentProductContent::render($source);
+    $locked=false;$named=false;$id=0;$newDefinitions=[];$newBrand=0;$stage='identity';$originalStock=null;$originalBindings=null;$facetWriter=new \app\services\ProductDocumentFacets($db);
     try {
         $named=(int)$db->query("SELECT GET_LOCK('import_herade_12341',10)")->fetchColumn()===1;if(!$named)throw new RuntimeException('Import is already running.');
-        if($apply){$db->exec('CREATE TABLE IF NOT EXISTS product_stock_backup_herade_12341_20261117 LIKE product');$db->exec('LOCK TABLES product WRITE, brand WRITE, category READ, url_alias WRITE, attribute WRITE, product_attribute WRITE, attribute_product WRITE, attribute_value READ, product_stock_backup_herade_12341_20261117 WRITE');$locked=true;}
+        if($apply){$db->exec('CREATE TABLE IF NOT EXISTS product_stock_backup_herade_12341_20261117 LIKE product');$db->exec('LOCK TABLES product WRITE, brand WRITE, category READ, url_alias WRITE, attribute WRITE, product_attribute WRITE, attribute_product WRITE, attribute_value WRITE, attribute_group READ, attribute_category WRITE, product_stock_backup_herade_12341_20261117 WRITE');$locked=true;}
         $s=$db->prepare('SELECT id,article,alias,title,description,content,img,category_id,price,quantity,stock_status_id FROM product WHERE article=? OR alias=?');$s->execute([$source['article'],$source['alias']]);$existing=$s->fetchAll();
         $donor=$one('SELECT id,name,img,category_id FROM product WHERE article=? AND alias=?',[$source['donor_article'],$source['donor_alias']],'photo donor');
         if($donor['name']!==$source['donor_name'] || $donor['img']!==$source['image'])throw new RuntimeException('Photo donor identity changed.');
@@ -42,6 +43,7 @@ function importHerade12341(PDO $db,array $source,bool $apply): array
                 $verified=$one('SELECT price,quantity,stock_status_id FROM product WHERE id=? AND article=?',[$p['id'],'12341'],'updated stock');
                 if((float)$verified['price']!==(float)$source['price'] || (int)$verified['quantity']!==(int)$source['quantity'] || (int)$verified['stock_status_id']!==($source['quantity']>0?1:0))throw new RuntimeException('Requested price or stock was not saved.');
             }
+            if($apply){$s=$db->prepare('SELECT * FROM attribute_product WHERE product_id=?');$s->execute([$p['id']]);$originalBindings=['id'=>$p['id'],'rows'=>$s->fetchAll()];$facetWriter->bind((int)$p['id'],(int)$p['category_id'],$source['facets']);}
             return ['ok'=>true,'created'=>false,'id'=>(int)$p['id'],'alias'=>$source['alias'],'attribute_count'=>11,'image'=>$donor['img'],'price'=>$source['price'],'quantity'=>$source['quantity']];
         }
         $s=$db->prepare('SELECT id FROM brand WHERE UPPER(TRIM(name))=?');$s->execute([$source['brand']]);$brands=$s->fetchAll();if(count($brands)>1)throw new RuntimeException('Ambiguous manufacturer.');
@@ -60,12 +62,7 @@ function importHerade12341(PDO $db,array $source,bool $apply): array
         $stage='new product';
         $id=$insert('product',['category_id'=>(int)$category['urlid'],'brand_id'=>$brandId,'article'=>$source['article'],'name'=>$source['name'],'alias'=>$source['alias'],'title'=>$source['title'],'description'=>$source['description'],'content'=>$content,'price'=>$source['price'],'quantity'=>$source['quantity'],'stock_status_id'=>$source['quantity']>0?1:0,'model'=>$source['model'],'weight'=>$source['weight'],'volume'=>$source['volume'],'img'=>$donor['img'],'unit'=>'шт','hide'=>'show','date'=>date('Y-m-d'),'data_edit_all'=>date('Y-m-d H:i:s')]);
         $stage='product attributes';$s=$db->prepare('INSERT INTO product_attribute (product_id,attribute_id,attribute_group_id,attribute_text) VALUES (?,?,1,?)');foreach($resolved as [$attributeId,$text])$s->execute([$id,$attributeId,$text]);
-        // Link existing facets only; the complete document data lives in the 11 technical attributes.
-        $normalise=static fn(string $v):string=>str_replace('с','c',mb_strtolower(trim($v)));
-        foreach([[1,'20 дюймов'],[2,'11.00-20'],[3,'C1'],[4,'HERADE']] as [$group,$value]) {
-            $s=$db->prepare('SELECT id,value FROM attribute_value WHERE attr_group_id=?');$s->execute([$group]);$matches=array_values(array_filter($s->fetchAll(),static fn(array $row):bool=>$normalise($row['value'])===$normalise($value)));
-            if(count($matches)===1)$db->prepare('INSERT INTO attribute_product (product_id,attr_id) VALUES (?,?)')->execute([$id,$matches[0]['id']]);
-        }
+        $facetWriter->bind($id,(int)$category['urlid'],$source['facets']);
         $stage='canonical URL';$db->prepare('INSERT INTO url_alias (sef,view,urlid) VALUES (?,?,?)')->execute([$source['alias'],'product',$id]);
         $stage='verification';$p=$one('SELECT title,description,content,img,category_id FROM product WHERE id=?',[$id],'created product');
         if($p['title']!==$source['title']||$p['description']!==$source['description']||$p['content']!==$content||$p['img']!==$donor['img']||(int)$p['category_id']!==(int)$category['urlid'])throw new RuntimeException('Saved product does not match the document.');
@@ -74,8 +71,10 @@ function importHerade12341(PDO $db,array $source,bool $apply): array
         foreach($saved as $index=>$row)if((int)$row['attribute_id']!==$resolved[$index][0]||$row['attribute_text']!==$resolved[$index][1])throw new RuntimeException('Characteristic verification failed.');
         return ['ok'=>true,'created'=>true,'id'=>$id,'article'=>'12341','alias'=>$source['alias'],'attribute_count'=>11,'paragraph_count'=>5,'image'=>$donor['img'],'category_alias'=>$source['category_alias']];
     } catch(Throwable $error) {
+        if($originalBindings){$db->prepare('DELETE FROM attribute_product WHERE product_id=?')->execute([$originalBindings['id']]);foreach($originalBindings['rows'] as $row){$keys=implode(',',array_map(static fn($key)=>'`'.$key.'`',array_keys($row)));$db->prepare('INSERT INTO attribute_product ('.$keys.') VALUES ('.implode(',',array_fill(0,count($row),'?')).')')->execute(array_values($row));}}
         if($originalStock)$db->prepare('UPDATE product SET price=?,quantity=?,stock_status_id=? WHERE id=? AND article=?')->execute([$originalStock['price'],$originalStock['quantity'],$originalStock['stock_status_id'],$originalStock['id'],'12341']);
         if($id){foreach(['url_alias','attribute_product','product_attribute'] as $table){$key=$table==='url_alias'?'urlid':'product_id';$db->prepare('DELETE FROM '.$table.' WHERE '.$key.'=?'.($table==='url_alias'?" AND view='product'":''))->execute([$id]);}$db->prepare('DELETE FROM product WHERE id=? AND article=?')->execute([$id,'12341']);}
+        $facetWriter->rollbackCreated();
         foreach($newDefinitions as $attributeId)$db->prepare('DELETE FROM attribute WHERE id=?')->execute([$attributeId]);
         if($newBrand)$db->prepare('DELETE FROM brand WHERE id=?')->execute([$newBrand]);
         if($error instanceof PDOException)throw new RuntimeException('Import failed at '.$stage.': '.($error->errorInfo[2]??$error->getCode()));throw $error;
