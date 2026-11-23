@@ -1,0 +1,39 @@
+name: Diagnose stage 1 search
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Classify recent search failures without exporting log content
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          python3 - <<'PY'
+          import os, subprocess, tempfile, pathlib, sys
+          sys.path.insert(0, 'ops/production')
+          from deploy_ftps import PIN, ROOT
+          with tempfile.TemporaryDirectory() as directory:
+              target = pathlib.Path(directory) / 'errors.log'
+              result = subprocess.run(['curl','--fail','--silent','--show-error','--ssl-reqd','--tlsv1.2','--cacert',str(ROOT/'ops/production/grass-ftps.pem'),'--pinnedpubkey',PIN,'--ciphers','DEFAULT:@SECLEVEL=1','--connect-timeout','20','--max-time','120','--user',os.environ['FTP_USERNAME']+':'+os.environ['FTP_PASSWORD'],'ftp://grass.gohost.ru:21//tmp/errors.log','--output',str(target)])
+              if result.returncode: raise SystemExit('Unable to retrieve hosting error log')
+              lines = target.read_text(errors='replace').splitlines()
+              recent = '\n'.join(lines[-100:]).lower()
+              # Output is a fixed allowlist of booleans, never log text, SQL or request data.
+              checks = {
+                  'missing_search_pattern_method': 'undefined method app\\services\\tiresizenotation::searchpattern' in recent,
+                  'thread_stack_limit': 'thread stack overrun' in recent,
+                  'sql_syntax_error': 'sqlstate[42000]' in recent,
+                  'collation_error': 'illegal mix of collations' in recent,
+                  'regexp_error': 'regular expression' in recent or 'regexp' in recent,
+                  'pdo_placeholder_error': 'sqlstate[hy093]' in recent,
+                  'missing_notation_class': 'tiresizenotation' in recent and 'not found' in recent,
+              }
+              for name, matched in checks.items(): print(name + '=' + str(matched).lower())
+          PY
