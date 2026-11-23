@@ -266,7 +266,7 @@ ul.products.product-grid > li.product.product-card-unified {
 .product-card-unified__buy .quantity-block[style*="inline-flex"] { display: inline-flex !important; }
 .product-card-unified__buy a:focus-visible { outline: 3px solid #004a8e; outline-offset: 3px; }
 .product-card-unified__price-request { font-weight: 700; color: #132d43; }
-.catalog-seo { clear: both; margin: 32px 0; line-height: 1.7; max-width: 80ch; }
+.catalog-seo { clear: both; width: 100%; max-width: none; margin: 32px 0; line-height: 1.7; }
 .catalog-seo h2 { font-size: 24px; margin: 24px 0 14px; }
 .catalog-seo ul, .catalog-seo ol { margin-left: 24px; }
 .catalog-seo p:last-child { margin-bottom: 0; }
