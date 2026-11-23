@@ -41,9 +41,13 @@ final class TireSizeNotation
         return implode("[[:space:]\u{00A0}\u{202F}]*", $parts);
     }
 
-    /** Avoid deeply nested SQL functions on the production MySQL version. */
+    /** Legacy catalog fields use mixed collations; REGEXP requires matching operands. */
     public static function searchExpression(string $expression, string $query): string
     {
-        return $expression . (self::containsSize($query) ? ' REGEXP ?' : ' LIKE ?');
+        if (!self::containsSize($query)) {
+            return $expression . ' LIKE ?';
+        }
+        return "CONVERT($expression USING utf8mb4) COLLATE utf8mb4_unicode_ci"
+            . ' REGEXP CONVERT(? USING utf8mb4) COLLATE utf8mb4_unicode_ci';
     }
 }

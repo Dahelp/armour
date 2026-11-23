@@ -23,14 +23,24 @@ $db->exec('CREATE TABLE sizes (id INTEGER PRIMARY KEY, value TEXT)');
 $insert = $db->prepare('INSERT INTO sizes VALUES (?, ?)');
 $stored = ['18*7-8', '18 x 7 - 8', '18Х7-8', '18×7-8', "18\u{202F}х\u{202F}7-8", '18x8-8', '6,50-10', '6.50-10', '15*4 1/2-8', '15 x 4 1/2 - 8', '200/50-10', '12.00R20', 'модель, шина'];
 foreach ($stored as $id => $value) $insert->execute([$id, $value]);
+function fixturePredicate(string $query): string
+{
+    // SQLite has no MySQL CONVERT USING/collations; keep the same REGEXP and bindings.
+    return str_replace(
+        ['CONVERT(value USING utf8mb4) COLLATE utf8mb4_unicode_ci', 'CONVERT(? USING utf8mb4) COLLATE utf8mb4_unicode_ci'],
+        ['value', '?'],
+        Size::searchExpression('value', $query)
+    );
+}
+sizeAssert(substr_count(Size::searchExpression('value', '18x7-8'), 'COLLATE utf8mb4_unicode_ci') === 2, 'Both REGEXP operands must use the same collation.');
 foreach (['18*7-8', '18 x 7 - 8', '18X7-8', '18 х 7-8', '18×7-8'] as $query) {
-    $sql = 'SELECT id FROM sizes WHERE ' . Size::searchExpression('value', $query) . ' ORDER BY id';
+    $sql = 'SELECT id FROM sizes WHERE ' . fixturePredicate($query) . ' ORDER BY id';
     $stmt = $db->prepare($sql);
     $stmt->execute([Size::searchPattern($query)]);
     sizeAssert($stmt->fetchAll(PDO::FETCH_COLUMN) === [0, 1, 2, 3, 4], 'SQL size matching differs: ' . $query);
 }
 foreach (['6.50-10' => [6, 7], '15x4 1/2-8' => [8, 9], '200/50-10' => [10], '12.00R20' => [11], 'модель, шина' => [12], '99x99-99' => []] as $query => $expected) {
-    $stmt = $db->prepare('SELECT id FROM sizes WHERE ' . Size::searchExpression('value', $query) . ' ORDER BY id');
+    $stmt = $db->prepare('SELECT id FROM sizes WHERE ' . fixturePredicate($query) . ' ORDER BY id');
     $stmt->execute([Size::searchPattern($query)]);
     sizeAssert($stmt->fetchAll(PDO::FETCH_COLUMN) === $expected, 'Unexpected result for: ' . $query);
 }
