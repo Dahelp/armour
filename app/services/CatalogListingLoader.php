@@ -25,9 +25,10 @@ final class CatalogListingLoader
         $brandIds = array_values(array_unique(array_filter($brandIds)));
 
         $attributeRows = $productIds === [] ? [] : \R::getAll(
-            'SELECT product_id, attribute_id, attribute_text
-             FROM product_attribute
-             WHERE product_id IN (' . \R::genSlots($productIds) . ')',
+            'SELECT pa.product_id, pa.attribute_id, pa.attribute_text, a.attribute_name
+             FROM product_attribute pa
+             INNER JOIN attribute a ON a.id = pa.attribute_id
+             WHERE pa.product_id IN (' . \R::genSlots($productIds) . ') ORDER BY a.attribute_position',
             $productIds
         );
         $brandRows = $brandIds === [] ? [] : \R::getAll(
@@ -44,6 +45,9 @@ final class CatalogListingLoader
         $result = [];
         foreach ($rows as $row) {
             $result[(int)$row['product_id']][(int)$row['attribute_id']] = (string)$row['attribute_text'];
+            if (!empty($row['attribute_name']) && trim((string)$row['attribute_text']) !== '') {
+                $result[(int)$row['product_id']]['_summary'][] = ['label' => (string)$row['attribute_name'], 'value' => (string)$row['attribute_text']];
+            }
         }
 
         return $result;

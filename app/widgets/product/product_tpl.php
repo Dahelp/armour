@@ -9,12 +9,13 @@ $price = (float)($product['price'] ?? 0) * (float)($curr['value'] ?? 1);
 $image = basename((string)($product['img'] ?? ''));
 $imageSrc = '/images/product/baseimg/' . rawurlencode($image);
 $hasCartItem = $cartQty > 0;
+$summary = is_array($attribute) ? array_slice($attribute['_summary'] ?? [], 0, 3) : [];
 ?>
-<li class="i-product product product-card-unified type-product instock purchasable product-type-simple"
+<li class="i-product product product-card-unified type-product <?=$quantity > 0 ? 'instock' : 'outofstock'?> product-type-simple"
     itemscope itemtype="https://schema.org/Product" data-id="<?=$productId?>">
     <div class="product-card-unified__media">
         <a href="<?=h($alias)?>" class="product-card-unified__image-link" aria-label="<?=h($name)?>">
-            <img width="500" height="500" src="<?=h($imageSrc)?>" alt="<?=h($name)?>" loading="lazy" decoding="async">
+            <img itemprop="image" width="500" height="500" src="<?=h($imageSrc)?>" alt="<?=h($name)?>" loading="lazy" decoding="async">
         </a>
         <div class="product-card-unified__badges" aria-label="Метки товара">
             <?php if (!empty($product['hit'])): ?><span class="product-card-unified__badge product-card-unified__badge--hit">Хит</span><?php endif; ?>
@@ -24,21 +25,31 @@ $hasCartItem = $cartQty > 0;
     </div>
     <div class="product-card-unified__body">
         <p class="woocommerce-loop-product__title product-card-unified__title">
-            <a itemprop="url" href="<?=h($alias)?>"><span itemprop="name"><?=h($name)?></span></a>
+            <a itemprop="url" href="<?=h($alias)?>" title="<?=h($name)?>"><span itemprop="name"><?=h($name)?></span></a>
         </p>
         <?php if ($article !== ''): ?><p class="product-sku product-card-unified__sku" itemprop="sku" content="<?=h($article)?>">Артикул: <?=h($article)?></p><?php endif; ?>
+        <?php if ($summary): ?>
+        <dl class="product-card-unified__specs">
+            <?php foreach ($summary as $characteristic): ?>
+            <div><dt><?=h($characteristic['label'])?></dt><dd><?=h(\app\services\TireSizeNotation::display($characteristic['value']))?></dd></div>
+            <?php endforeach; ?>
+        </dl>
+        <?php endif; ?>
         <div class="stock product-card-unified__stock <?=$quantity > 0 ? 'is-available' : 'is-unavailable'?>">
             <i class="fas <?=$quantity > 0 ? 'fa-check-circle' : 'fa-times-circle'?>" aria-hidden="true"></i>
             <?php if ($quantity === 0): ?>Нет в наличии<?php else: ?>В наличии: <?=$quantity?> шт.<?php endif; ?>
         </div>
         <div class="box-price-btn product-card-unified__footer">
+            <?php if ($price > 0): ?>
             <div class="price product-card-unified__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <link itemprop="availability" href="https://schema.org/<?=$quantity > 0 ? 'InStock' : 'OutOfStock'?>">
                 <meta itemprop="priceCurrency" content="RUB"><meta itemprop="price" content="<?=number_format($price, 2, '.', '')?>">
                 <span class="price_prefix">Цена</span>
                 <span class="price_html"><span class="woocommerce-Price-amount amount"><bdi><?=number_format($price, 0, '.', ' ')?> <span class="woocommerce-Price-currencySymbol">₽</span></bdi></span></span>
             </div>
+            <?php else: ?><div class="product-card-unified__price-request">Цена по запросу</div><?php endif; ?>
             <div class="block-btn product-card-unified__buy">
-                <?php if ($quantity > 0): ?>
+                <?php if ($quantity > 0 && $price > 0): ?>
                     <div class="quantity-block my_quant-<?=$productId?>" style="display:<?=$hasCartItem ? 'inline-flex' : 'none'?>">
                         <button type="button" data-id="<?=$productId?>" data-qty="<?=$cartQty ?: 1?>" class="my-minus-<?=$productId?> my-minus quantity-arrow-minus" aria-label="Уменьшить количество">−</button>
                         <span class="qty-item"><input data-id="<?=$productId?>" type="text" class="text-center input-number qty-item-<?=$productId?> input-text qty text" value="<?=$cartQty ?: 1?>" min="1" max="<?=$quantity?>" maxlength="4" inputmode="numeric" aria-label="Количество"></span>

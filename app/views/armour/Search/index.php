@@ -9,9 +9,9 @@
             <?php $curr = \ishop\App::$app->getProperty('currency'); ?>
             <main class="site-main product-search-results">
                 <div class="woocommerce columns-4">
-                    <ul class="products columns-4">
+                    <ul class="products product-grid">
                     <?php foreach ($products as $product): ?>
-                        <?php new \app\widgets\product\Product($product, $curr, '', '', 'product_tpl.php'); ?>
+                        <?php new \app\widgets\product\Product($product, $curr, $cardAttributes[(int)$product['id']] ?? [], $cardBrands[(int)($product['brand_id'] ?? 0)] ?? []); ?>
                     <?php endforeach; ?>
                     </ul>
                 </div>

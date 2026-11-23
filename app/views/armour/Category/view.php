@@ -51,28 +51,18 @@
 					</div>
 					<?php } ?>
 				<?php } ?>
-				<div class="table_wrap facetwp-template" style="display: block;">
-					<div class="casters-block product-one">
-						<table>
-							<thead>								
-								<?php require APP . '/widgets/product/table_'.$category->table_alt.'_tpl.php'; ?>	
-							</thead>
-							<tbody>
-								<?php foreach($products as $product): ?>
-									
-					<?php new \app\widgets\product\Product($product, $curr, $productAttributes[(int)$product['id']] ?? [], $brands[(int)$product['brand_id']] ?? [], 'product_table_'.$category->table_alt.'_tpl.php'); ?>
-								<?php endforeach; ?>
-							</tbody>
-						</table>
-					</div>
-				</div>
+                <div class="catalog-products facetwp-template">
+                    <?php if (!empty($products)): ?>
+                        <?php \app\widgets\product\Product::listing($products, $curr, $productAttributes ?? [], $brands ?? []); ?>
+                    <?php else: ?><div class="woocommerce-info">Товары не найдены.</div><?php endif; ?>
+                </div>
 				<div class="clearfix"></div>
 				<div class="text-center" style="width:100%">                            
 					<?php if($pagination->countPages > 1): ?>
 						<?=$pagination;?>
 					<?php endif; ?>
 				</div>
-				<div class="catalog_text" itemprop="description"><?=$category->content?></div>
+				<?php require APP . '/views/armour/partials/catalog-seo.php'; ?>
 			</main>
 		</div>
 		<!-- left menu -->

@@ -11,6 +11,15 @@ class Product{
 	public $curr;
 	public $attribute;
 	public $brand;
+
+    public static function listing(iterable $products, array $curr, array $attributes = [], array $brands = []): void
+    {
+        echo '<ul class="products product-grid" role="list">';
+        foreach ($products as $product) {
+            new self($product, $curr, $attributes[(int)$product['id']] ?? [], $brands[(int)($product['brand_id'] ?? 0)] ?? []);
+        }
+        echo '</ul>';
+    }
 	
     public function __construct($product, $curr, $attribute = '', $brand = '', $tpl = ''){
 		if (is_string($attribute) && str_ends_with($attribute, '.php') && $brand === '' && $tpl === '') {

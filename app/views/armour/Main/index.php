@@ -143,9 +143,9 @@
 <div class="widget_text home-hit">
     <div class="hit-caption">Хиты продаж</div>
     <div class="woocommerce columns-4">
-        <ul class="products columns-4">
+        <ul class="products product-grid">
             <?php foreach($hits as $hit): ?>
-				<?php new \app\widgets\product\Product($hit, $curr, '', '', ''); ?>
+				<?php new \app\widgets\product\Product($hit, $curr, $cardAttributes[(int)$hit['id']] ?? [], $cardBrands[(int)($hit['brand_id'] ?? 0)] ?? []); ?>
 			<?php endforeach; ?>
         </ul>
 	</div>
@@ -156,9 +156,9 @@
     <div class="sale-back"></div>
     <div class="sale-caption">Акция</div>
     <div class="woocommerce product-slider">
-        <ul class="products columns-4 sale_slider">
+        <ul class="products product-grid">
 			<?php foreach($sales as $sale): ?>
-				<?php new \app\widgets\product\Product($sale, $curr, '', '', ''); ?>
+				<?php new \app\widgets\product\Product($sale, $curr, $cardAttributes[(int)$sale['id']] ?? [], $cardBrands[(int)($sale['brand_id'] ?? 0)] ?? []); ?>
 			<?php endforeach; ?>
 		</ul>		
     </div>
@@ -168,9 +168,9 @@
     <div class="widget_text home-new-block">
         <div class="new-caption">Новинки</div>
         <div class="woocommerce columns-4">
-            <ul class="products columns-4">
+            <ul class="products product-grid">
                 <?php foreach($new_products as $nprod): ?>
-					<?php new \app\widgets\product\Product($nprod, $curr, '', '', ''); ?>
+					<?php new \app\widgets\product\Product($nprod, $curr, $cardAttributes[(int)$nprod['id']] ?? [], $cardBrands[(int)($nprod['brand_id'] ?? 0)] ?? []); ?>
 				<?php endforeach; ?>
 			</ul>
         </div>

@@ -17,6 +17,7 @@ $search = (string)file_get_contents($root . '/app/views/armour/Search/index.php'
 $layout = (string)file_get_contents($root . '/app/views/armour/layouts/watches.php');
 $cabinet = (string)file_get_contents($root . '/app/widgets/cabinet/cabinet_tpl.php');
 $responsiveCss = (string)file_get_contents($root . '/public/css/armour/mobile-fixes.css');
+$cardCss = (string)file_get_contents($root . '/public/css/armour/product-card.css');
 
 productCardAssert(str_contains($template, 'product-card-unified'), 'Unified product card class is missing.');
 productCardAssert(!str_contains($template, 'comparison'), 'Comparison controls remain in the product card.');
@@ -37,8 +38,8 @@ productCardAssert(str_contains($template, 'В наличии: <?=$quantity?> ш�
 productCardAssert(str_contains($widget, "str_ends_with(\$attribute, '.php')"), 'Legacy widget template argument compatibility is missing.');
 productCardAssert(str_contains($homepage, 'new \\app\\widgets\\product\\Product'), 'Homepage does not use the shared card widget.');
 productCardAssert(str_contains($search, 'new \\app\\widgets\\product\\Product'), 'Search does not use the shared card widget.');
-productCardAssert(str_contains($responsiveCss, 'text-indent: 0 !important'), 'Legacy sprite CSS still hides quantity signs.');
-productCardAssert(str_contains($responsiveCss, 'background-image: none !important'), 'Quantity controls still depend on the missing legacy sprite.');
+productCardAssert(str_contains($cardCss, 'text-indent: 0 !important'), 'Legacy sprite CSS still hides quantity signs.');
+productCardAssert(str_contains($cardCss, 'background-image: none !important'), 'Quantity controls still depend on the missing legacy sprite.');
 productCardAssert(
     preg_match('/\.mobile-menu-shortcuts\s*\{\s*display:\s*none\s*!important;\s*\}/', $responsiveCss) === 1,
     'Mobile menu shortcuts must be hidden by default on desktop.'

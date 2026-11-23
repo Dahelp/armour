@@ -385,121 +385,22 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 </div>
 </div>
 
-<?php if (!empty($related_count) && !empty($related)): ?>
-<section class="related products">
-    <h4>Связанные товары</h4>
-
-    <div class="table_wrap facetwp-template" style="display: block;">
-
-        <?php
-        $related_categories = [];
-
-        foreach ($related as $rel_item) {
-            $related_categories[$rel_item['category_id']][] = $rel_item;
-        }
-        ?>
-
-        <?php foreach ($related_categories as $category_id => $items): ?>
-            <?php
-            $cat_related = $recommendationCategories[(int)$category_id] ?? null;
-
-            if (!$cat_related) {
-                continue;
-            }
-
-            $table_alt = !empty($cat_related["table_alt"]) ? $cat_related["table_alt"] : 'default';
-            $table_head_file = APP . '/widgets/product/table_' . $table_alt . '_tpl.php';
-            $product_tpl = 'product_table_' . $table_alt . '_tpl.php';
-            ?>
-
-            <h5><?= h($cat_related["name"]) ?></h5>
-
-            <div class="casters-block product-one">
-                <table>
-                    <thead>
-                        <?php
-                        if (is_file($table_head_file)) {
-                            require $table_head_file;
-                        }
-                        ?>
-                    </thead>
-
-                    <tbody>
-                        <?php foreach ($items as $item2): ?>
-                            <?php
-                            new \app\widgets\product\Product(
-                                $item2,
-                                $curr,
-                                $recommendationAttributes[(int)$item2['id']] ?? [],
-                                $recommendationBrands[(int)$item2['brand_id']] ?? [],
-                                $product_tpl
-                            );
-                            ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-
-        <?php endforeach; ?>
-
-    </div>
+<?php
+$relatedGroups = [];
+foreach (($related ?? []) as $item) $relatedGroups[(int)$item['category_id']][] = $item;
+foreach (['Связанные товары' => $relatedGroups, 'Похожие товары' => ($similar_categories ?? [])] as $sectionTitle => $groups):
+    if (!$groups) continue;
+?>
+<section class="related-products">
+    <h2><?=h($sectionTitle)?></h2>
+    <?php foreach ($groups as $categoryId => $items): ?>
+        <?php $recommendationCategory = $recommendationCategories[(int)$categoryId] ?? null; ?>
+        <?php if ($recommendationCategory): ?><h3><?=h($recommendationCategory['name'])?></h3><?php endif; ?>
+        <?php \app\widgets\product\Product::listing($items, $curr, $recommendationAttributes ?? [], $recommendationBrands ?? []); ?>
+    <?php endforeach; ?>
 </section>
-<?php endif; ?>
+<?php endforeach; ?>
 
-<?php if (!empty($similar_count) && !empty($similar_categories)): ?>
-<section class="related products">
-    <h4>Похожие товары</h4>
-
-    <div class="table_wrap facetwp-template" style="display: block;">
-
-        <?php foreach ($similar_categories as $category_id => $items): ?>
-            <?php
-            $cat_similar = $recommendationCategories[(int)$category_id] ?? null;
-
-            if (!$cat_similar) {
-                continue;
-            }
-
-            $table_alt = !empty($cat_similar["table_alt"]) ? $cat_similar["table_alt"] : 'default';
-            $table_head_file = APP . '/widgets/product/table_' . $table_alt . '_tpl.php';
-            $product_tpl = 'product_table_' . $table_alt . '_tpl.php';
-            ?>
-
-            <h5><?= htmlspecialchars($cat_similar["name"], ENT_QUOTES, 'UTF-8') ?></h5>
-
-            <div class="casters-block product-one">
-                <table>
-                    <thead>
-                        <?php
-                        if (is_file($table_head_file)) {
-                            require $table_head_file;
-                        }
-                        ?>
-                    </thead>
-
-                    <tbody>
-                        <?php foreach ($items as $item2): ?>
-                            <?php
-                            new \app\widgets\product\Product(
-                                $item2,
-                                $curr,
-                                $recommendationAttributes[(int)$item2['id']] ?? [],
-                                $recommendationBrands[(int)$item2['brand_id']] ?? [],
-                                $product_tpl
-                            );
-                            ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-
-        <?php endforeach; ?>
-
-    </div>
-</section>
-<?php endif; ?>
-
-		
 				</main><!-- #main -->
 		</div><!-- #primary -->
 

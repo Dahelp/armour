@@ -28,6 +28,11 @@ class View {
     }
 
     public function render($data){
+        if ($this->prefix === '' && is_array($data)) {
+            $pageSeo = \app\services\StorefrontSeo::prepare($data, $this->route);
+            $this->meta = \app\services\StorefrontSeo::completeMeta($this->meta, $pageSeo);
+            $data['pageSeo'] = $pageSeo;
+        }
         if(is_array($data)) extract($data);
 		$this->prefix = str_replace('\\', '/', $this->prefix);
         $viewFile = APP . "/views/".TEMPLATE."/{$this->prefix}{$this->controller}/{$this->view}.php";

@@ -11,6 +11,24 @@ use ishop\Cache;
 
 class AppController extends Controller{
 
+    public function set($data){
+        if ($this->prefix === '' && is_array($data)) {
+            $cards = [];
+            foreach (['products', 'hits', 'sales', 'new_products', 'related'] as $key) {
+                foreach (($data[$key] ?? []) as $item) {
+                    if ((is_array($item) || $item instanceof \ArrayAccess) && !empty($item['id'])) $cards[(int)$item['id']] = $item;
+                }
+            }
+            foreach (($data['similar_categories'] ?? []) as $items) {
+                foreach ($items as $item) $cards[(int)$item['id']] = $item;
+            }
+            if ($cards) {
+                [$data['cardAttributes'], $data['cardBrands']] = (new \app\services\CatalogListingLoader())->load($cards);
+            }
+        }
+        parent::set($data);
+    }
+
     public function __construct($route){
         parent::__construct($route);
         CsrfProtection::validateRequest();

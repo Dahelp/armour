@@ -91,6 +91,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel='stylesheet' id='cart-style-css' href='/css/armour/cart.css?v=<?=filemtime(WWW.'/css/armour/cart.css')?>' media='all' />
 <link rel="stylesheet" href="public/adminlte/plugins/select2/css/select2.min.css" />
 <link rel="stylesheet" href="public/adminlte/plugins/select2-bootstrap5-theme/select2-bootstrap-5-theme.min.css" />
+<link rel="stylesheet" href="/css/armour/product-card.css?v=<?=filemtime(WWW.'/css/armour/product-card.css')?>" />
 
 <style>
                 .lmp_load_more_button.br_lmp_button_settings .lmp_button:hover {

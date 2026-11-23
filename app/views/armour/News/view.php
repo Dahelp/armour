@@ -36,46 +36,11 @@
 							$curr = \ishop\App::$app->getProperty('currency');
 							$cats = \ishop\App::$app->getProperty('cats');
 						?>
-						<!-- Related products-->
-						  <?php if($related): ?>
-						  <div class="related_prod">
-						  <section class="pb-5 mb-2 mb-xl-4 recomend-1">
-							<h2 class="h3 pb-2 mb-grid-gutter text-center">Связанные товары</h2>
-							<div class="review-wrap">
-
-							<div class="wrap-container">
-							<div class="inner-container">				
-
-							<div class="swiper-container swiper1">
-								<div class="swiper-wrapper">
-								
-								<?php foreach($related as $product): ?>
-								
-									<div class="swiper-slide">					                        
-										
-												<?php new \app\widgets\product\Product($product, $curr, 'product_tpl.php'); ?>
-																
-									</div>
-									
-								<?php endforeach; ?>
-								
-								</div>
-										
-								</div>
-									
-								</div>
-									
-								</div>
-								
-							</div>
-							<div class="swiper-button-inner">
-								<div class="swiper-button-next swiper-button-next-1"></div>
-								<div class="swiper-button-prev swiper-button-prev-1"></div>
-							</div>
-						  </section>
-						  </div>
-						  <?php endif; ?>
-						  <!-- /Related products-->		  
+						<?php if (!empty($related)): ?>
+<section class="related-products"><h2>Связанные товары</h2>
+<?php \app\widgets\product\Product::listing($related, $curr, $cardAttributes ?? [], $cardBrands ?? []); ?>
+</section>
+<?php endif; ?>
 				 
 					<?php endif; ?>		
 				</div>
