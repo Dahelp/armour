@@ -25,16 +25,25 @@ final class TireSizeNotation
         return (string)preg_replace('/\s+/u', '', $query);
     }
 
-    /** $expression is a trusted SQL expression supplied by the caller, never user input. */
-    public static function searchExpression(string $expression, string $query): string
+    public static function searchPattern(string $query): string
     {
         if (!self::containsSize($query)) {
-            return $expression;
+            return '%' . $query . '%';
         }
-        $expression = "REPLACE($expression, ',', '.')";
-        foreach (['*' => 'x', 'X' => 'x', 'х' => 'x', 'Х' => 'x', '×' => 'x', ' ' => '', "\t" => '', "\n" => '', "\r" => '', "\u{00A0}" => '', "\u{202F}" => ''] as $from => $to) {
-            $expression = "REPLACE($expression, '$from', '$to')";
+        $parts = [];
+        foreach (preg_split('//u', self::searchKey($query), -1, PREG_SPLIT_NO_EMPTY) as $character) {
+            $parts[] = match ($character) {
+                'x' => '(x|X|х|Х|[*]|×)',
+                '.' => '[.,]',
+                default => preg_quote($character, '~'),
+            };
         }
-        return $expression;
+        return implode("[[:space:]\u{00A0}\u{202F}]*", $parts);
+    }
+
+    /** Avoid deeply nested SQL functions on the production MySQL version. */
+    public static function searchExpression(string $expression, string $query): string
+    {
+        return $expression . (self::containsSize($query) ? ' REGEXP ?' : ' LIKE ?');
     }
 }

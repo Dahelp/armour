@@ -25,7 +25,7 @@ searchSqlAssert(
     'Attribute values are not joined consistently in every search query.'
 );
 searchSqlAssert(
-    substr_count($source, '{$attributeSearch} LIKE ?') === 3
+    substr_count($source, '{$attributeSearch}') === 3
         && substr_count($source, "TireSizeNotation::searchExpression('av.value', \$query)") === 2,
     'Search queries do not match the filter attribute value against the current product.'
 );

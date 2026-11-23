@@ -14,7 +14,7 @@ class SearchController extends AppController{
             header('Pragma: no-cache');
             $query = $this->normaliseQuery($_GET['query'] ?? '');
             if($query){
-                $like = '%' . TireSizeNotation::searchKey($query) . '%';
+                $like = TireSizeNotation::searchPattern($query);
                 $nameSearch = TireSizeNotation::searchExpression("CONCAT_WS(' ', name, article)", $query);
                 $attributeSearch = TireSizeNotation::searchExpression('av.value', $query);
                 $crossSearch = TireSizeNotation::searchExpression("CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name)", $query);
@@ -23,13 +23,13 @@ class SearchController extends AppController{
                         SELECT id, name, img, price, alias
                         FROM product
                         WHERE hide = 'show' AND (
-                            {$nameSearch} LIKE ?
+                            {$nameSearch}
                             OR EXISTS (
                                 SELECT 1
                                 FROM attribute_product ap
                                 INNER JOIN attribute_value av ON av.id = ap.attr_id
                                 WHERE ap.product_id = product.id
-                                  AND {$attributeSearch} LIKE ?
+                                  AND {$attributeSearch}
                             )
                         )
                         UNION
@@ -38,7 +38,7 @@ class SearchController extends AppController{
                         JOIN plagins_cross ON product.id = plagins_cross.product_id
                         LEFT JOIN plagins_cross_vendor ON plagins_cross_vendor.id = plagins_cross.vendor_id
                         WHERE product.hide = 'show'
-                          AND {$crossSearch} LIKE ?
+                          AND {$crossSearch}
                     ) product LIMIT 15",
                     [$like, $like, $like]
                 );
@@ -65,7 +65,7 @@ class SearchController extends AppController{
         if ($query === '') {
             throw new \Exception('Страница не найдена', 404);
         }
-        $like = '%' . TireSizeNotation::searchKey($query) . '%';
+        $like = TireSizeNotation::searchPattern($query);
         $nameSearch = TireSizeNotation::searchExpression("CONCAT_WS(' ', name, article)", $query);
         $attributeSearch = TireSizeNotation::searchExpression('av.value', $query);
         $crossSearch = TireSizeNotation::searchExpression("CONCAT_WS(' ', plagins_cross.cross_name, plagins_cross.cross_abbreviated_name, plagins_cross_vendor.name)", $query);
@@ -73,13 +73,13 @@ class SearchController extends AppController{
             "SELECT COUNT(*) FROM (
                 SELECT id FROM product
                 WHERE hide = 'show' AND (
-                    {$nameSearch} LIKE ?
+                    {$nameSearch}
                     OR EXISTS (
                         SELECT 1
                         FROM attribute_product ap
                         INNER JOIN attribute_value av ON av.id = ap.attr_id
                         WHERE ap.product_id = product.id
-                          AND {$attributeSearch} LIKE ?
+                          AND {$attributeSearch}
                     )
                 )
                 UNION
@@ -87,7 +87,7 @@ class SearchController extends AppController{
                 JOIN plagins_cross ON product.id = plagins_cross.product_id
                 LEFT JOIN plagins_cross_vendor ON plagins_cross_vendor.id = plagins_cross.vendor_id
                 WHERE product.hide = 'show'
-                  AND {$crossSearch} LIKE ?
+                  AND {$crossSearch}
             ) product",
             [$like, $like, $like]
         );
@@ -100,13 +100,13 @@ class SearchController extends AppController{
                     SELECT id, name, price, alias, hit, new_product, sale, img, category_id, article, quantity, stock_status_id, brand_id
                     FROM product
                     WHERE hide = 'show' AND (
-                        {$nameSearch} LIKE ?
+                        {$nameSearch}
                         OR EXISTS (
                             SELECT 1
                             FROM attribute_product ap
                             INNER JOIN attribute_value av ON av.id = ap.attr_id
                             WHERE ap.product_id = product.id
-                              AND {$attributeSearch} LIKE ?
+                              AND {$attributeSearch}
                         )
                     )
                     UNION
@@ -116,7 +116,7 @@ class SearchController extends AppController{
                     JOIN plagins_cross ON product.id = plagins_cross.product_id
                     LEFT JOIN plagins_cross_vendor ON plagins_cross_vendor.id = plagins_cross.vendor_id
                     WHERE product.hide = 'show'
-                      AND {$crossSearch} LIKE ?
+                      AND {$crossSearch}
                 ) product
                 ORDER BY FIELD(`stock_status_id`, 1, 3, 2, 0), name ASC
                 LIMIT {$start}, {$perpage}",
