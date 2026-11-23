@@ -7,7 +7,7 @@ $productImage = !empty($product->img)
 $productSchema = [
 	'@context' => 'https://schema.org',
 	'@type' => 'Product',
-	'name' => trim(strip_tags((string)$product->name)),
+	'name' => \app\services\TireSizeNotation::display(trim(strip_tags((string)$product->name))),
 	'image' => [$productImage],
 	'description' => trim(strip_tags((string)($product->description ?? ''))),
 	'sku' => trim((string)($product->article ?? '')),
@@ -63,7 +63,7 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 						</div>
 						<div class="width-2-3 plansh-width" id="tab-buy" style="padding-top:0;">
 							<div class="summary entry-summary grid">
-								<h1 class="product_title entry-title" itemprop="name"><?=$product->name?></h1>
+								<h1 class="product_title entry-title" itemprop="name"><?=h(\app\services\TireSizeNotation::display((string)$product->name))?></h1>
 								<div class="width-3-5">
 									<div class="box-price-btn">
 										<div class="grid">
@@ -103,7 +103,7 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 													if( $filter['url_params'] != "" ) { ?>
 													<tr>
 														<td><?=$filter['title']?></td>
-														<td><?php if (!empty($filter['size_url'])): ?><a class="product-size-link" href="/<?=h(implode('/', array_map('rawurlencode', explode('/', ltrim($filter['size_url'], '/')))))?>" style="text-decoration:underline" title="Все товары размера <?=h($filter['value'])?>"><?=h($filter['value'])?></a><?php else: ?><?=h($filter['value'])?><?php endif; ?></td>
+														<td><?php if (!empty($filter['size_url'])): ?><a class="product-size-link" href="/<?=h(implode('/', array_map('rawurlencode', explode('/', ltrim($filter['size_url'], '/')))))?>" style="text-decoration:underline" title="Все товары размера <?=h(\app\services\TireSizeNotation::display((string)$filter['value']))?>"><?=h(\app\services\TireSizeNotation::display((string)$filter['value']))?></a><?php else: ?><?=h(\app\services\TireSizeNotation::display((string)$filter['value']))?><?php endif; ?></td>
 													</tr>
 												<?php } } ?>
 												 </tbody>
@@ -231,7 +231,7 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 											foreach($attributs as $att): ?>
 											<?php $attribute[$att['attribute_id']] = $att["attribute_text"]; ?>
 												<tr>
-													<th class="attribute_name 1"><?=$att["attribute_name"]?></th><td class="attribute_value"><?=$att["attribute_text"]?></td>
+													<th class="attribute_name 1"><?=$att["attribute_name"]?></th><td class="attribute_value"><?=\app\services\TireSizeNotation::display((string)$att["attribute_text"])?></td>
 												</tr>
 											<?php endforeach; ?>							
 										</tbody>
@@ -337,7 +337,7 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 			</div>
 			<div class="list-review"><div id="reviews" class="woocommerce-Reviews">
 		<div id="comments">
-			<h2 class="woocommerce-Reviews-title">Отзывы на <span><?=$product->name?></span></h2>
+			<h2 class="woocommerce-Reviews-title">Отзывы на <span><?=h(\app\services\TireSizeNotation::display((string)$product->name))?></span></h2>
 
 			<a rel="form-reviews" href="" class="one-click one-click-reviews btn-border-green show_form">Оставить отзыв</a>
 

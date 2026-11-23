@@ -1,7 +1,7 @@
 <?php
 $productId = (int)($product['id'] ?? 0);
 $alias = '/' . ltrim((string)($product['alias'] ?? ''), '/');
-$name = (string)($product['name'] ?? 'Товар');
+$name = \app\services\TireSizeNotation::display((string)($product['name'] ?? 'Товар'));
 $article = trim((string)($product['article'] ?? ''));
 $quantity = max(0, (int)($product['quantity'] ?? 0));
 $cartQty = max(0, (int)($_SESSION['cart'][$productId]['qty'] ?? 0));

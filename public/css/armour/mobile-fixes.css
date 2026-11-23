@@ -1864,3 +1864,33 @@ ul.products li.product .box-price-btn .product-card-unified__price {
     .header-menu-mobile { top: 122px; }
     .menu-wrapper.mobile-menu-open { height: calc(100vh - 166px) !important; max-height: calc(100vh - 166px) !important; top: 166px; }
 }
+/* Category content must determine its height; long disk links used to spill out. */
+.category-box .category-box__block ul.menu__list {
+    max-height: none;
+}
+
+.category-box .category-box__block ul.menu__list li.menu__item {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+@media (min-width: 1025px) {
+    .category-box .category-box__block ul.menu__list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    .category-box .category-box__block ul.menu__list li.menu__item {
+        max-width: none;
+    }
+
+    .category-box .category-box__block ul.menu__list li.menu__item--inline {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+    }
+
+    .category-box .category-box__block ul.menu__list li.menu__item:only-child {
+        grid-column: 1 / -1;
+    }
+}

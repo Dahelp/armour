@@ -2,14 +2,14 @@
 <!--prdt-starts-->
 <div class="prdt">
     <div class="container">
-		<?=\app\models\Breadcrumbs::render([['label' => $params->title, 'url' => $params->url_params], ['label' => $find->value]])?>
+		<?=\app\models\Breadcrumbs::render([['label' => $params->title, 'url' => $params->url_params], ['label' => \app\services\TireSizeNotation::display((string)$find->value)]])?>
 		<section class="align-items-center">
             <h1 class="h2 mb-3 mb-md-0 me-3">
 				<?php
 					if($inseo->name) { 					
-						echo $name = \ishop\App::seoreplacefilter($inseo->name, $find->id);
+						echo $name = \app\services\TireSizeNotation::display((string)\ishop\App::seoreplacefilter($inseo->name, $find->id));
 					}
-					else { echo $find->name; }
+					else { echo \app\services\TireSizeNotation::display((string)$find->name); }
 				?>
 			</h1>			
         </section>		

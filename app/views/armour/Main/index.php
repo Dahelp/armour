@@ -133,18 +133,7 @@
                     </ul>
 				</div>
 			</div>
-			<div class="category-box__block">
-				<div class="menu">
-					<div class="menu__title">
-						<span class="menu__title-link">Грузовые шины</span>
-					</div>
-					<ul class="menu__list">
-                         <li class="menu__item">
-                             <a href="/" class="menu__link">Грузовые шины</a>
-                         </li>                         
-                    </ul>
-				</div>
-			</div>
+			<?php // Грузовые шины временно скрыты до добавления ассортимента. ?>
 		</div>		
 	</div>
 </div><!-- #post-## -->
