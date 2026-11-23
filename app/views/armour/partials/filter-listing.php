@@ -1,5 +1,5 @@
 <?php
-$filterHeading = !empty($inseo->name) ? \ishop\App::seoreplacefilter($inseo->name, $find->id) : '';
+$filterHeading = \app\services\FilterSeo::resolve((string)($find->name ?? ''), (string)($inseo->name ?? ''), static fn(string $text): string => \ishop\App::seoreplacefilter($text, $find->id));
 if (\app\services\StorefrontSeo::text((string)$filterHeading) === '') $filterHeading = $pageSeo['heading'];
 $curr = \ishop\App::$app->getProperty('currency');
 ?>

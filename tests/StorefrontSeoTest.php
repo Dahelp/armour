@@ -12,14 +12,14 @@ $page = Seo::prepare($data, ['controller' => 'Tiposize']);
 seoFallbackAssert($page['heading'] === 'Шины 23.5-25', 'Filter values have no name column; H1 must use the size.');
 $meta = Seo::completeMeta(['title' => '', 'desc' => '', 'shop_url' => 'https://techtires.ru/tiposize-23.5-25'], $page);
 seoFallbackAssert(str_contains($meta['title'], '23.5-25') && str_contains($meta['desc'], '23.5-25'), 'Missing size metadata is not completed.');
-seoFallbackAssert(str_contains($page['catalogHtml'], '<h2>') && str_contains($page['catalogHtml'], '23.5-25'), 'Empty source must have useful size-selection content, including with zero products.');
+seoFallbackAssert($page['catalogHtml'] === '', 'A size page must use database content or INSEO, never invented replacement text.');
 seoFallbackAssert($meta['shop_url'] === 'https://techtires.ru/tiposize-23.5-25', 'Canonical URL must be preserved.');
 $authored = ['title' => 'Заданный &amp; title', 'desc' => 'Полное описание из документа'];
 seoFallbackAssert(Seo::completeMeta($authored, $page) === $authored, 'Authored metadata must never be overwritten or escaped twice.');
 $data['find']['content'] = '<h2>Авторский текст</h2><ol><li>Первый пункт</li><li>Второй пункт</li></ol>';
 seoFallbackAssert(Seo::prepare($data, ['controller' => 'Tiposize'])['catalogHtml'] === $data['find']['content'], 'Full source HTML and numbered lists must remain unchanged.');
 $data['inseo'] = ['content' => '<p>Общий текст группы</p>'];
-seoFallbackAssert(Seo::prepare($data, ['controller' => 'Tiposize'])['catalogHtml'] === $data['find']['content'] . $data['inseo']['content'], 'Group content must not replace authored filter content.');
+seoFallbackAssert(Seo::prepare($data, ['controller' => 'Tiposize'])['catalogHtml'] === $data['find']['content'], 'Group content is a fallback and must not append duplicate text to authored content.');
 foreach (['category', 'product', 'find', 'type'] as $key) {
     $page = Seo::prepare([$key => ['name' => 'Тестовый раздел', 'description' => 'Описание раздела']], ['controller' => 'Articles']);
     seoFallbackAssert($page['title'] !== '' && $page['description'] === 'Описание раздела', 'Metadata fallback missing for entity ' . $key);

@@ -6,6 +6,7 @@
 /tmp/*.log
 /tmp/*.sql
 /tmp/reports/
+/tmp/seo-migration/
 /tmp/*sitemap*.xml
 /tmp/mariadb-stage/
 

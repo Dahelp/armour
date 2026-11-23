@@ -47,16 +47,16 @@ final class StorefrontSeo
         $catalogHtml = $content;
         if ($isFilter) {
             $template = self::field($data['inseo'] ?? [], 'content');
-            if (self::text($template) !== '') {
+            if (self::text($catalogHtml) === '' && self::text($template) !== '') {
                 $ids = [];
                 foreach (($data['products'] ?? []) as $product) $ids[] = (int)self::field($product, 'id');
                 $ids = array_filter($ids);
                 if (str_contains($template, '{')) {
                     $template = $ids ? \ishop\App::seoreplacetiposize($template, implode(',', $ids)) : '';
                 }
-                $catalogHtml .= $template;
+                $catalogHtml = $template;
             }
-            if (self::text($catalogHtml) === '') {
+            if ($controller !== 'Tiposize' && self::text($catalogHtml) === '') {
                 $label = htmlspecialchars($heading, ENT_QUOTES, 'UTF-8');
                 $catalogHtml = '<h2>Подбор: ' . $label . '</h2>'
                     . '<p>Сравните характеристики, цены и наличие товаров в подборке «' . $label . '». '

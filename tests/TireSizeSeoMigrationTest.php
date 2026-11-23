@@ -1,0 +1,30 @@
+<?php
+declare(strict_types=1);
+require dirname(__DIR__) . '/vendor/autoload.php';
+use app\services\TireSizeSeoMigration as Migration;
+use app\services\FilterSeo;
+function migrationAssert(bool $condition, string $message): void { if (!$condition) throw new RuntimeException($message); }
+$source = [['id' => 999, 'value' => '18 * 7-8', 'title' => 'Исходный title', 'description' => 'Полное описание', 'keywords' => '', 'content' => '<h2>Исходный текст</h2><ol><li>Первый</li><li>Второй</li></ol>']];
+$target = [['id' => 27, 'value' => '18x7-8', 'alias' => 'tiposize-18*7-8', 'title' => 'До переноса', 'description' => '', 'keywords' => 'сохранить', 'content' => 'Прежний текст']];
+$plan = Migration::plan($source, $target);
+migrationAssert(count($plan['changes']) === 1 && $plan['changes'][0]['id'] === 27, 'Match by size, never copied legacy IDs.');
+migrationAssert(!isset($plan['changes'][0]['after']['keywords']), 'Empty legacy fields must not erase authored target metadata.');
+migrationAssert($plan['changes'][0]['after']['content'] === $source[0]['content'], 'Full legacy HTML and numbered lists changed.');
+$db = new PDO('sqlite::memory:');
+$db->exec('CREATE TABLE attribute_value (id INTEGER PRIMARY KEY, value TEXT, alias TEXT, title TEXT, description TEXT, keywords TEXT, content TEXT)');
+$db->prepare('INSERT INTO attribute_value VALUES (?,?,?,?,?,?,?)')->execute(array_values($target[0]));
+$db->beginTransaction(); Migration::apply($db, $plan); $db->commit();
+$after = $db->query('SELECT * FROM attribute_value')->fetchAll(PDO::FETCH_ASSOC);
+migrationAssert($after[0]['title'] === $source[0]['title'] && $after[0]['content'] === $source[0]['content'], 'Legacy text was not copied exactly.');
+migrationAssert($after[0]['alias'] === $target[0]['alias'] && $after[0]['value'] === $target[0]['value'], 'Migration must preserve aliases and dictionary values.');
+migrationAssert(Migration::plan($source, $after)['changes'] === [], 'Repeated migration must be idempotent.');
+$duplicate = $target[0]; $duplicate['id'] = 33;
+migrationAssert(Migration::plan($source, [...$target, $duplicate])['conflicts'] !== [], 'Ambiguous target values must be reported.');
+$duplicate = $source[0]; $duplicate['title'] = 'Другой title';
+migrationAssert(Migration::plan([...$source, $duplicate], $target)['conflicts'] !== [], 'Conflicting source texts must not be guessed.');
+migrationAssert(Migration::plan($source, [])['unmatched'] === ['18 * 7-8'], 'Unmatched legacy sizes must be visible in the report.');
+$expand = static fn(string $template): string => str_replace('{tiposize}', '18x7-8', $template);
+migrationAssert(FilterSeo::resolve('Авторский title', Migration::INSEO['title'], $expand) === 'Авторский title', 'INSEO must never override authored metadata.');
+migrationAssert(FilterSeo::resolve('', Migration::INSEO['title'], $expand) === 'Шины 18x7-8 — купить в ТехШина', 'Empty metadata must use the INSEO template.');
+migrationAssert(FilterSeo::resolve('Размер {tiposize}', '', $expand) === 'Размер 18x7-8', 'Stored auto-insertion code must be expanded.');
+echo "Legacy tire-size SEO migration and INSEO priority checks passed.\n";

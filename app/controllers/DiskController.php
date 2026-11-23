@@ -43,15 +43,10 @@ class DiskController extends AppController {
         //InSEO
 		$params = \R::findOne('attribute_group', "id = ?", [$find["attr_group_id"]]);
 		$inseo = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['attribute_group', $find["attr_group_id"]]);
-		if($inseo->title) {
-			$title = \ishop\App::seoreplacefilter($inseo->title, $find->id);
-		}else{ $title = $find->title; }
-		if($inseo->description) {
-			$description = \ishop\App::seoreplacefilter($inseo->description, $find->id);
-		}else{ $description = $find->description; }
-		if($inseo->keywords) {
-			$keywords = \ishop\App::seoreplacefilter($inseo->keywords, $find->id);
-		}else{ $keywords = $find->keywords; }
+        $expandSeo = static fn(string $text): string => \ishop\App::seoreplacefilter($text, $find->id);
+        $title = \app\services\FilterSeo::resolve((string)$find->title, (string)($inseo->title ?? ''), $expandSeo);
+        $description = \app\services\FilterSeo::resolve((string)$find->description, (string)($inseo->description ?? ''), $expandSeo);
+        $keywords = \app\services\FilterSeo::resolve((string)$find->keywords, (string)($inseo->keywords ?? ''), $expandSeo);
 
 		/*SEO*/
 		if($this->route["controller"]){ $path_controller = "/".mb_strtolower($this->route["controller"]).""; }else{ $path_controller = ""; }
