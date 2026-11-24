@@ -46,6 +46,8 @@
 .home-parts__links a { display: flex; flex-direction: column; gap: 6px; }
 .home-parts__links strong { font-size: 15px; }
 .home-parts__links span { font-size: 12px; color: #526776; }
+.home-parts__group > div { margin-top: 6px; font-size: 12px; }
+.home-parts__group > div a { display: inline; text-decoration: underline; text-underline-offset: 3px; }
 .home-selection-help { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-left: 3px solid #008a00; padding: 16px 20px; margin: 24px 0; background: #f4f7f9; }
 .home-selection-help p { margin: 0; font-size: 13px; color: #526776; }
 .home-selection-help strong { display: block; color: #132d43; font-size: 17px; margin-bottom: 5px; }

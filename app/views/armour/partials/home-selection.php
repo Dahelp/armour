@@ -27,7 +27,7 @@
     <h2 id="home-parts-title">Комплектующие для вашей техники</h2>
     <div class="home-parts__links">
         <a href="/catalog-disk"><strong>Колёсные диски</strong><span>Сборные и сварные</span></a>
-        <a href="/kamery-i-obodnye-lenty"><strong>Камеры и ободные ленты</strong><span>Комплектующие для шин</span></a>
+        <div class="home-parts__group"><strong>Камеры и ободные ленты</strong><div><a href="/kamery-dlya-spectehniki">Камеры</a> · <a href="/obodnye-lenty-flipper">Ободные ленты</a></div></div>
         <a href="/filtra"><strong>Фильтры для погрузчиков</strong><span>Воздушные, масляные, топливные и другие</span></a>
     </div>
 </section>
