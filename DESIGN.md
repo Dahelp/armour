@@ -26,6 +26,8 @@ components:
 
 Russian B2B/B2C industrial tire and parts catalog. Keep the established blue/green identity and technical, readable product names. Primary task: compare size, stock and price, then open the product or add it to the cart. Evidence: catalog templates, product data and existing storefront. Product listings use a product register; the homepage retains its industrial photograph.
 
+Homepage selection takes priority over promotional lists: one H1 in the hero, a size/article GET form with native datalist suggestions, canonical links for known sizes, then equipment categories including ATV/UTV and a separate parts section. The full directory is an accessible native disclosure. Hero copy must reflect both industrial and quad-bike tires. CSS and progressive enhancement are owned by home-selection.css and home-selection.js and loaded only on Main. Search without JavaScript remains supported; exact-match enhancement never constructs aliases from display sizes. No automatic competitor research is part of implementation.
+
 ## Colors
 
 Blue identifies navigation and product links. Green marks purchase actions. White surfaces and subtle borders separate cards. Status always includes text, not color alone. Runtime owner for card colors: public/css/armour/product-card.css; this document mirrors that source.

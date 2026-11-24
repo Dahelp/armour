@@ -92,6 +92,10 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel="stylesheet" href="public/adminlte/plugins/select2/css/select2.min.css" />
 <link rel="stylesheet" href="public/adminlte/plugins/select2-bootstrap5-theme/select2-bootstrap-5-theme.min.css" />
 <link rel="stylesheet" href="/css/armour/product-card.css?v=<?=filemtime(WWW.'/css/armour/product-card.css')?>" />
+<?php if (($this->route['controller'] ?? '') === 'Main'): ?>
+<link rel="stylesheet" href="/css/armour/home-selection.css?v=<?=filemtime(WWW.'/css/armour/home-selection.css')?>" />
+<script defer src="/js/home-selection.js?v=<?=filemtime(WWW.'/js/home-selection.js')?>"></script>
+<?php endif; ?>
 
 <style>
                 .lmp_load_more_button.br_lmp_button_settings .lmp_button:hover {

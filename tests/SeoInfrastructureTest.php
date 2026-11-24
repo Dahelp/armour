@@ -48,10 +48,10 @@ seoAssert(str_contains($productView, 'JSON_HEX_TAG'), 'Product JSON-LD must use 
 $mainController = (string)file_get_contents(dirname(__DIR__) . '/app/controllers/MainController.php');
 $mainView = (string)file_get_contents(dirname(__DIR__) . '/app/views/armour/Main/index.php');
 $layout = (string)file_get_contents(dirname(__DIR__) . '/app/views/armour/layouts/watches.php');
-seoAssert(str_contains($mainController, 'Промышленные шины для погрузчиков и спецтехники — ТехШина'), 'Homepage SEO title is missing.');
-seoAssert(str_contains($mainView, '<h1>Промышленные шины для погрузчиков и спецтехники</h1>'), 'Homepage H1 is missing.');
+seoAssert(str_contains($mainController, 'Шины для спецтехники и квадроциклов — подбор по размеру, цены'), 'Homepage SEO title is missing.');
+seoAssert(str_contains($mainView, 'id="home-selection-title">Шины для вашей техники</h1>'), 'Homepage H1 is missing.');
 seoAssert(str_contains($mainView, 'hero-industrial-tires-v2.webp'), 'Homepage hero image is missing.');
-seoAssert(str_contains($mainView, 'home-hero__button'), 'Homepage hero call to action is missing.');
+seoAssert(str_contains($mainView, 'home-selector__submit'), 'Homepage hero call to action is missing.');
 seoAssert(!str_contains($mainView, 'шиной Armour'), 'Legacy Armour copy remains on the homepage.');
 seoAssert(!str_contains($layout, 'generator" content="armour-shina.ru'), 'Legacy generator metadata remains in the layout.');
 

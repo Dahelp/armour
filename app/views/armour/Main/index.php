@@ -1,13 +1,38 @@
-<section class="home-hero" aria-label="Промышленные шины для спецтехники">
+<section class="home-hero home-hero--selection" aria-labelledby="home-selection-title">
     <div class="home-hero__image" aria-hidden="true">
         <picture>
             <img width="1600" height="500" src="<?=PATH?>/images/banners/hero-industrial-tires-v2.webp" alt="" decoding="async" fetchpriority="high" />
         </picture>
     </div>
     <div class="home-hero__content col-full">
-        <p class="home-hero__title">Промышленные шины для спецтехники</p>
-        <p class="home-hero__lead">Подбор шин по типоразмеру, артикулу и модели техники. Доставка по России.</p>
-        <a class="home-hero__button" href="/industrialnye-shiny">Перейти в каталог</a>
+        <div class="home-hero__intro">
+            <h1 class="home-hero__title" id="home-selection-title">Шины для вашей техники</h1>
+            <p class="home-hero__lead">Для погрузчиков, спецтехники и квадроциклов. Найдите свой размер и сравните цены, характеристики и наличие.</p>
+            <a class="home-hero__equipment-link" href="#home-equipment">Выбрать по виду техники <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="home-selector">
+            <h2>Знаете размер или артикул?</h2>
+            <form action="/search/" method="get" data-home-selection role="search" aria-label="Подбор шин">
+                <label for="home-tire-query">Размер шины или артикул</label>
+                <div class="home-selector__input">
+                    <input id="home-tire-query" type="search" name="s" list="home-tire-sizes" placeholder="Например, 17.5-25 или 9523" autocomplete="off" maxlength="100" required aria-describedby="home-query-help home-query-error">
+                    <button type="button" class="home-selector__clear" data-selection-clear hidden aria-label="Очистить размер или артикул">×</button>
+                </div>
+                <datalist id="home-tire-sizes">
+                    <?php foreach ($homeSizes as $homeSize): ?><option value="<?=h($homeSize['size'])?>" data-url="<?=h($homeSize['url'])?>"></option><?php endforeach; ?>
+                </datalist>
+                <p class="home-selector__help" id="home-query-help">Введите маркировку с боковины шины или артикул товара.</p>
+                <p class="home-selector__error" id="home-query-error" data-selection-error role="alert" hidden>Укажите размер шины или артикул.</p>
+                <button type="submit" class="home-selector__submit">Подобрать шины <span aria-hidden="true">→</span></button>
+            </form>
+            <?php if ($homeSizes): ?>
+            <nav class="home-selector__popular" aria-label="Популярные типоразмеры">
+                <span>Часто выбирают</span>
+                <div><?php foreach (array_slice($homeSizes, 0, 5) as $homeSize): ?><a href="<?=h($homeSize['url'])?>"><?=h($homeSize['size'])?></a><?php endforeach; ?></div>
+            </nav>
+            <?php endif; ?>
+            <a class="home-selector__all" href="/tiposize">Все типоразмеры <span aria-hidden="true">→</span></a>
+        </div>
     </div>
 </section>
     <div id="content" class="site-content" tabindex="-1">
@@ -18,6 +43,9 @@
 		<main id="main" class="site-main" role="main">
 
 			
+<?php require APP . '/views/armour/partials/home-selection.php'; ?>
+<details class="home-catalog-directory">
+<summary>Все категории шин и комплектующих</summary>
 <div id="post-2139" class="post-2139 page type-page status-publish hentry" style="" data-featured-image="">
 	<div class="col-full">
 		<div class="category-box flex flex-between">
@@ -137,11 +165,11 @@
 		</div>		
 	</div>
 </div><!-- #post-## -->
+</details>
 <?php $curr = \ishop\App::$app->getProperty('currency'); ?>
-<?php require APP . '/views/armour/size-links.php'; ?>
 <?php if($hits){ ?>
 <div class="widget_text home-hit">
-    <div class="hit-caption">Хиты продаж</div>
+    <h2 class="hit-caption">Хиты продаж</h2>
     <div class="woocommerce columns-4">
         <ul class="products product-grid">
             <?php foreach($hits as $hit): ?>
@@ -154,7 +182,7 @@
 <?php if($sales){ ?>
 <div class="home-sale position-relative">
     <div class="sale-back"></div>
-    <div class="sale-caption">Акция</div>
+    <h2 class="sale-caption">Акция</h2>
     <div class="woocommerce product-slider">
         <ul class="products product-grid">
 			<?php foreach($sales as $sale): ?>
@@ -166,7 +194,7 @@
 <?php } ?>
 <?php if($new_products){ ?>
     <div class="widget_text home-new-block">
-        <div class="new-caption">Новинки</div>
+        <h2 class="new-caption">Новинки</h2>
         <div class="woocommerce columns-4">
             <ul class="products product-grid">
                 <?php foreach($new_products as $nprod): ?>
@@ -223,8 +251,8 @@
     
 	<div class="entry-content">
 			<section class="home-seo__content">
-<h1>Промышленные шины для погрузчиков и спецтехники</h1>
-<p><strong>«ТехШина» поставляет шины и комплектующие для складской, строительной, карьерной и специальной техники с доставкой по России.</strong></p>
+<h2>Шины для спецтехники и квадроциклов</h2>
+<p><strong>Шины и комплектующие для складской, строительной и специальной техники, а также квадроциклов — с доставкой по России.</strong></p>
 
 <p>В каталоге представлены пневматические, цельнолитые, диагональные и радиальные шины для вилочных, фронтальных и мини-погрузчиков, экскаваторов-погрузчиков, грейдеров, катков, крановой и шахтной техники. Подобрать товар можно по типоразмеру, характеристикам и модели машины.</p>
 
@@ -234,6 +262,7 @@
     <li>цельнолитые и пневматические шины для вилочных погрузчиков;</li>
     <li>шины для мини-погрузчиков, фронтальных погрузчиков и экскаваторов;</li>
     <li>шины для дорожно-строительной, карьерной, портовой и шахтной техники;</li>
+    <li>шины для квадроциклов, ATV и UTV;</li>
     <li>сборные и сварные колесные диски;</li>
     <li>камеры, ободные ленты и фильтры для погрузчиков.</li>
 </ul>
