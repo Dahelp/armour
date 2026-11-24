@@ -64,6 +64,11 @@ if ((int)($reviewStats['review_count'] ?? 0) > 0) {
 						<div class="width-2-3 plansh-width" id="tab-buy" style="padding-top:0;">
 							<div class="summary entry-summary grid">
 								<h1 class="product_title entry-title" itemprop="name"><?=h(\app\services\TireSizeNotation::display((string)$product->name))?></h1>
+								<?php if (\app\models\User::isAdmin()): ?>
+								<div class="product-admin-actions">
+									<a class="product-admin-edit" href="<?=h(ADMIN . '/product/edit?id=' . (int)$product->id)?>"><i class="far fa-edit" aria-hidden="true"></i> Редактировать</a>
+								</div>
+								<?php endif; ?>
 								<div class="width-3-5">
 									<div class="box-price-btn">
 										<div class="grid">
