@@ -30,6 +30,8 @@ Homepage selection takes priority over promotional lists: one H1 in the hero, a 
 
 The hero selector blends into the industrial photograph with a compact dark navy surface, a fine border and a restrained green top edge. Reserve the light surface for the input itself; avoid a large white panel competing with the photograph and main heading.
 
+Equipment and parts entry cards use a newly generated matching image family: unbranded navy machinery, small green accents, soft studio light and a pale cool background. Canonical media lives in public/images/home-selection/*.webp; it illustrates categories and must not be reused as photographs of actual inventory. Desktop equipment cards pair text with an image; narrow cards put the image above the text. Keep imagery uncropped with contain, reserve dimensions, lazy-load it, and retain text links. No decorative arrows in the homepage selection journey. The specialist contact band uses the same dark navy family as the hero.
+
 ## Colors
 
 Blue identifies navigation and product links. Green marks purchase actions. White surfaces and subtle borders separate cards. Status always includes text, not color alone. Runtime owner for card colors: public/css/armour/product-card.css; this document mirrors that source.

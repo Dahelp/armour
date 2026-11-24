@@ -8,7 +8,7 @@
         <div class="home-hero__intro">
             <h1 class="home-hero__title" id="home-selection-title">Шины для вашей техники</h1>
             <p class="home-hero__lead">Для погрузчиков, спецтехники и квадроциклов. Найдите свой размер и сравните цены, характеристики и наличие.</p>
-            <a class="home-hero__equipment-link" href="#home-equipment">Выбрать по виду техники <span aria-hidden="true">↓</span></a>
+            <a class="home-hero__equipment-link" href="#home-equipment">Выбрать по виду техники</a>
         </div>
         <div class="home-selector">
             <h2>Подбор шин</h2>
@@ -23,7 +23,7 @@
                 </datalist>
                 <p class="home-selector__help" id="home-query-help">Введите маркировку с боковины шины или артикул товара.</p>
                 <p class="home-selector__error" id="home-query-error" data-selection-error role="alert" hidden>Укажите размер шины или артикул.</p>
-                <button type="submit" class="home-selector__submit">Подобрать шины <span aria-hidden="true">→</span></button>
+                <button type="submit" class="home-selector__submit">Подобрать шины</button>
             </form>
             <?php if ($homeSizes): ?>
             <nav class="home-selector__popular" aria-label="Типоразмеры из каталога">
@@ -31,7 +31,7 @@
                 <div><?php foreach (array_slice($homeSizes, 0, 5) as $homeSize): ?><a href="<?=h($homeSize['url'])?>"><?=h($homeSize['size'])?></a><?php endforeach; ?></div>
             </nav>
             <?php endif; ?>
-            <a class="home-selector__all" href="/tiposize">Все типоразмеры <span aria-hidden="true">→</span></a>
+            <a class="home-selector__all" href="/tiposize">Все типоразмеры</a>
         </div>
     </div>
 </section>

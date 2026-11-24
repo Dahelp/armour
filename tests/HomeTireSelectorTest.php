@@ -24,6 +24,13 @@ homeSelectionAssert($xp->query('//h1')->length === 1, 'Homepage must have one pr
 homeSelectionAssert($xp->query('//form[@action="/search/" and @method="get"]//input[@name="s"]')->length === 1, 'Search must work as a standard GET form without JS.');
 homeSelectionAssert($xp->query('//datalist/option')->length === 3, 'Available canonical sizes must be rendered server-side.');
 homeSelectionAssert($xp->query('//*[@class="home-equipment__list"]/li')->length === 6, 'Equipment choices are missing.');
+homeSelectionAssert($xp->query('//ul[@class="home-equipment__list"]//img')->length === 6, 'Every equipment section needs its matching generated image.');
+foreach ($xp->query('//img[starts-with(@src,"/images/home-selection/")]') as $image) {
+    $path = dirname(__DIR__).'/public'.$image->getAttribute('src');
+    homeSelectionAssert(is_file($path) && getimagesize($path) !== false, 'Category image is missing or invalid: '.$path);
+    homeSelectionAssert($image->getAttribute('loading') === 'lazy', 'Below-fold category media must load lazily.');
+}
+homeSelectionAssert(!str_contains($html,'→') && !str_contains($html,'↓'), 'Decorative arrows must be removed from homepage selection.');
 homeSelectionAssert(str_contains($html,'Квадроциклы, ATV и UTV') && str_contains($html,'home-catalog-directory'), 'ATV category and full directory must remain reachable.');
 homeSelectionAssert(!str_contains($html,'/gruzovye-shiny'), 'Empty truck category must stay hidden.');
 if (in_array('--preview',$argv,true)) echo $html;
