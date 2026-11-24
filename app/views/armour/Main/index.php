@@ -26,8 +26,8 @@
                 <button type="submit" class="home-selector__submit">Подобрать шины <span aria-hidden="true">→</span></button>
             </form>
             <?php if ($homeSizes): ?>
-            <nav class="home-selector__popular" aria-label="Популярные типоразмеры">
-                <span>Часто выбирают</span>
+            <nav class="home-selector__popular" aria-label="Типоразмеры из каталога">
+                <span>Быстрый переход по размеру</span>
                 <div><?php foreach (array_slice($homeSizes, 0, 5) as $homeSize): ?><a href="<?=h($homeSize['url'])?>"><?=h($homeSize['size'])?></a><?php endforeach; ?></div>
             </nav>
             <?php endif; ?>
