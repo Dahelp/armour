@@ -71,6 +71,7 @@ jobs:
           set -euo pipefail
           for path in / /catalog-front /shiny-23-5-25-20pr-superguider-klyushka; do
             marker='class="size-navigation"'
+            if [ "$path" = / ]; then marker='data-home-selection'; fi
             if [ "$path" = /shiny-23-5-25-20pr-superguider-klyushka ]; then marker='class="product-size-link"'; fi
             ok=0
             for attempt in $(seq 1 18); do
