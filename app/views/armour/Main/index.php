@@ -11,7 +11,7 @@
             <a class="home-hero__equipment-link" href="#home-equipment">Выбрать по виду техники <span aria-hidden="true">↓</span></a>
         </div>
         <div class="home-selector">
-            <h2>Знаете размер или артикул?</h2>
+            <h2>Подбор шин</h2>
             <form action="/search/" method="get" data-home-selection role="search" aria-label="Подбор шин">
                 <label for="home-tire-query">Размер шины или артикул</label>
                 <div class="home-selector__input">
