@@ -8,7 +8,7 @@ $curr = \ishop\App::$app->getProperty('currency');
 <main class="site-main catalog-listing">
     <h1><?=h(\app\services\TireSizeNotation::display(\app\services\StorefrontSeo::text((string)$filterHeading)))?></h1>
     <?php if (!empty($products)): ?>
-        <?php \app\widgets\product\Product::listing($products, $curr, $cardAttributes ?? [], $cardBrands ?? []); ?>
+        <?php \app\widgets\product\Product::listing($products, $curr, $cardAttributes ?? [], $cardBrands ?? [], ['hideSize' => (string)$params->url_params === 'tiposize']); ?>
         <?php if (isset($pagination) && $pagination->countPages > 1): ?><div class="product-pagination"><?=$pagination?></div><?php endif; ?>
     <?php else: ?>
         <div class="woocommerce-info"><?=h((string)($params->notproduct ?: 'В этой подборке товаров пока нет.'))?></div>

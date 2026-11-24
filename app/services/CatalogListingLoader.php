@@ -63,4 +63,20 @@ final class CatalogListingLoader
 
         return $result;
     }
+
+    /** Stable comparison fields; never replace a missing tire model with an unrelated dimension. */
+    public static function cardSummary(array $attributes, bool $hideSize = false): array
+    {
+        $rows = $attributes['_summary'] ?? [];
+        $byLabel = [];
+        foreach ($rows as $row) $byLabel[mb_strtolower(trim($row['label']), 'UTF-8')] = $row;
+        if (isset($byLabel['размер шины'])) {
+            $summary = [];
+            foreach ($hideSize ? ['модель', 'слойность (pr)'] : ['размер шины', 'модель', 'слойность (pr)'] as $label) {
+                if (isset($byLabel[$label])) $summary[] = $byLabel[$label];
+            }
+            return $summary;
+        }
+        return array_slice($rows, 0, 2);
+    }
 }

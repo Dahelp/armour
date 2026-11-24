@@ -9,7 +9,7 @@ $price = (float)($product['price'] ?? 0) * (float)($curr['value'] ?? 1);
 $image = basename((string)($product['img'] ?? ''));
 $imageSrc = '/images/product/baseimg/' . rawurlencode($image);
 $hasCartItem = $cartQty > 0;
-$summary = is_array($attribute) ? array_slice($attribute['_summary'] ?? [], 0, 3) : [];
+$summary = \app\services\CatalogListingLoader::cardSummary(is_array($attribute) ? $attribute : [], !empty($options['hideSize']));
 ?>
 <li class="i-product product product-card-unified type-product <?=$quantity > 0 ? 'instock' : 'outofstock'?> product-type-simple"
     itemscope itemtype="https://schema.org/Product" data-id="<?=$productId?>">
@@ -36,15 +36,13 @@ $summary = is_array($attribute) ? array_slice($attribute['_summary'] ?? [], 0, 3
         </dl>
         <?php endif; ?>
         <div class="stock product-card-unified__stock <?=$quantity > 0 ? 'is-available' : 'is-unavailable'?>">
-            <i class="fas <?=$quantity > 0 ? 'fa-check-circle' : 'fa-times-circle'?>" aria-hidden="true"></i>
-            <?php if ($quantity === 0): ?>Нет в наличии<?php else: ?>В наличии: <?=$quantity?> шт.<?php endif; ?>
+            <?php if ($quantity === 0): ?>Нет в наличии<?php else: ?>В наличии · <?=$quantity?> шт.<?php endif; ?>
         </div>
         <div class="box-price-btn product-card-unified__footer">
             <?php if ($price > 0): ?>
             <div class="price product-card-unified__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                 <link itemprop="availability" href="https://schema.org/<?=$quantity > 0 ? 'InStock' : 'OutOfStock'?>">
                 <meta itemprop="priceCurrency" content="RUB"><meta itemprop="price" content="<?=number_format($price, 2, '.', '')?>">
-                <span class="price_prefix">Цена</span>
                 <span class="price_html"><span class="woocommerce-Price-amount amount"><bdi><?=number_format($price, 0, '.', ' ')?> <span class="woocommerce-Price-currencySymbol">₽</span></bdi></span></span>
             </div>
             <?php else: ?><div class="product-card-unified__price-request">Цена по запросу</div><?php endif; ?>

@@ -36,7 +36,7 @@ Verdana with Arial/sans-serif fallback, including Cyrillic. Product names use th
 
 ## Layout
 
-All catalog product lists use ul.products.product-grid with direct li product children. A responsive auto-fill grid uses a 240px minimum track and 20px gap; below 600px it becomes one column. Product imagery reserves its aspect ratio, uses contain and never crops the tire. Authored SEO HTML follows pagination, independent of inventory state.
+All catalog product lists use ul.products.product-grid with direct li product children. A responsive auto-fill grid uses a 240px minimum track and 20px gap; below 600px it becomes one column. Product imagery reserves 205px height, uses contain and never crops the tire. Cards keep three title lines, compact spacing, stock quantities and a clear price without a redundant label. Tire comparisons use size, model and ply; size-specific pages omit the repeated size. Missing model data never causes an unrelated field to replace it. Authored SEO HTML follows pagination, independent of inventory state.
 
 ## Elevation & Depth
 
