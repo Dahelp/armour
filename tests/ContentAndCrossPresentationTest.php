@@ -13,6 +13,7 @@ $productController = (string)file_get_contents($root.'/app/controllers/ProductCo
 $productView = (string)file_get_contents($root.'/app/views/armour/Product/view.php');
 $searchController = (string)file_get_contents($root.'/app/controllers/SearchController.php');
 $layout = (string)file_get_contents($root.'/app/views/armour/layouts/watches.php');
+$layout .= (string)file_get_contents($root.'/app/views/armour/partials/store-footer.php');
 $productTabsCss = (string)file_get_contents($root.'/public/css/armour/product-tabs.css');
 $mainJs = (string)file_get_contents($root.'/public/js/main.js');
 

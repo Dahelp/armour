@@ -92,6 +92,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel="stylesheet" href="public/adminlte/plugins/select2/css/select2.min.css" />
 <link rel="stylesheet" href="public/adminlte/plugins/select2-bootstrap5-theme/select2-bootstrap-5-theme.min.css" />
 <link rel="stylesheet" href="/css/armour/product-card.css?v=<?=filemtime(WWW.'/css/armour/product-card.css')?>" />
+<link rel="stylesheet" href="/css/armour/store-footer.css?v=<?=filemtime(WWW.'/css/armour/store-footer.css')?>" />
 <?php if (($this->route['controller'] ?? '') === 'Main'): ?>
 <link rel="stylesheet" href="/css/armour/home-selection.css?v=<?=filemtime(WWW.'/css/armour/home-selection.css')?>" />
 <script defer src="/js/home-selection.js?v=<?=filemtime(WWW.'/js/home-selection.js')?>"></script>
@@ -345,123 +346,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
     <?php if(!empty($content)) { echo $content; } ?>
 </div>
 
-<!-- #footer -->
-<div id="footer_site_map" class="widget_text site-map position-relative">
-    <div class="textwidget custom-html-widget">
-                <div class="site-map__block font-14 hidden-phone fadeout">
-            <p class="text-uppercase text-bold font-14">ООО «Еккатрейд»</p>
-            <p>Московская область, г.Подольск, микрорайон Климовск, Коммунальная улица, 26</p>
-                    <div class="grid site-map__phone">
-                                                            <div class="width-1-2">
-                            <div>
-								<a class="footer-contacts-phone" href="tel:+79250707707">+7(925) <span>070 77 07</span></a><br>
-								<a class="footer-contacts-phone" href="tel:+79035406060">+7(903) <span>540 60 60</span></a>
-							</div>
-                        </div>
-                                                </div>
-        </div>
-    </div>
-</div>
-<div class="site-contacts">
-    <div class="widget_text col-full">
-        <div class="textwidget custom-html-widget">
-            <div class="grid grid-small">
-                <div class="width-1-4">
-                    <a class="footer-brand" href="/" aria-label="ТехШина — перейти на главную страницу">
-                        <svg class="footer-brand__logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" role="img" aria-labelledby="footer-techtires-logo-title">
-                            <title id="footer-techtires-logo-title">ТехШина</title>
-                            <g transform="translate(4 2)"><circle cx="48" cy="48" r="39" fill="none" stroke="#102f4a" stroke-width="14" stroke-dasharray="18 5"/><circle cx="48" cy="48" r="25" fill="#fff" stroke="#55b947" stroke-width="7"/><circle cx="48" cy="48" r="10" fill="#102f4a"/><path d="M42 42h12v12H42z" fill="#fff" transform="rotate(45 48 48)"/></g>
-                            <text x="104" y="59" fill="#102f4a" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="800" letter-spacing="-1">ТЕХ</text><text x="199" y="59" fill="#35414b" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="800" letter-spacing="-1">ШИНА</text><path d="M106 70h230" stroke="#55b947" stroke-width="5" stroke-linecap="round"/><text x="106" y="89" fill="#61717d" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" letter-spacing="2.4">ПРОМЫШЛЕННЫЕ ШИНЫ</text>
-                        </svg>
-                    </a>
-                    <a class="contact-link footer-home-link" href="/">Главная</a>
-                    <p class="text-bold font-15 footer-caption">Каталог продукции</p>
-					<div>
-						<a class="contact-link" href="/industrialnye-shiny">Индустриальные шины</a><br />
-						<a class="contact-link" href="/catalog-kvadrotciklov">Шины для квадроциклов</a><br />
-						<a class="contact-link" href="/filtra">Фильтры для погрузчиков</a><br />
-						<a class="contact-link" href="/catalog-disk">Диски для погрузчиков</a><br />
-						<a class="contact-link" href="/kamery-i-obodnye-lenty">Камеры и ободные ленты</a>
-					</div>
-                </div>
-				<div class="width-1-4">
-                    <p class="text-bold font-15 footer-caption">Покупателям</p>
-					<div>
-						<a class="contact-link" href="/dostavka">Доставка</a><br />
-						<a class="contact-link" href="/comp">О компании</a><br />
-						<a class="contact-link" href="/news">Новости</a><br />
-						<a class="contact-link" href="/contacts">Контакты</a>
-					</div>
-                </div>
-				<div class="width-1-4 text-top">
-                    <p class="text-bold font-15 footer-caption">Полезная информация</p>
-					<div>
-						<a class="contact-link" href="/articles">Каталог статей</a><br />
-						<a class="contact-link" href="/sitemap">Карта сайта</a><br />
-					</div>
-                </div>
-				<div class="width-1-4 text-top">
-                   <div class="widget_text widget widget_custom_html">
-						<div class="textwidget custom-html-widget">
-							<p class="text-bold font-15 footer-caption">Присоединяйтесь к нам в соцсетях</p>
-							<div class="socimg">
-								<a target="_blank" href="https://vk.com/techtires" title="ВКонтакте" rel="nofollow"><i class="fab fa-vk" style="font-size:24px;line-height: 1; color: var(--white);"></i></a>
-							</div>
-						</div>
-					</div>
-                </div>                
-            </div>
-        </div>
-    </div>
-</div>
-<footer id="colophon" class="site-footer" role="contentinfo">
-    <div class="col-full">
-        <div class="footer-widgets row fix">
-			<div class="block footer-widget-1 col-3">
-				<div class="widget_text widget widget_custom_html">
-					<div class="textwidget custom-html-widget">
-						<p class="text-bold font-15 footer-caption">Режим работы</p>
-						<div class="font-15"><i class="icon icon-office"></i><span class="contact-link">Офис: Пн-Пт: 09:00-17:00</span></div>
-						<div class="font-15"><i class="icon icon-warehouse"></i><span class="contact-link">Склад: Пн-Пт: 09:00-17:00<br><i>(отгрузка товара)</i></span></div>
-					</div>
-				</div>
-			</div>
-			<div class="block footer-widget-2 col-3">
-				<p class="text-bold font-15 footer-caption">Контактные телефоны</p>
-					<div>
-						<a class="footer-contacts-phone contact-link" href="tel:+79250707707">+7(925) <span>070 77 07</span></a><br />
-						<a class="footer-contacts-phone contact-link" href="tel:+79035406060">+7(903) <span>540 60 60</span></a>
-					</div>
-				
-			</div>
-			<div class="block footer-widget-3 col-3">
-				<div class="widget_text widget widget_custom_html">
-					<p class="text-bold font-15 footer-caption">Остались вопросы?</p>
-					<div>
-						<i class="icon icon-mail-white"></i><a href="mailto:a30@its50.ru">a30@its50.ru</a>
-					</div>
-					<div class="text-center">
-						<a href="#" class="text-uppercase font-14 btn btn-border btn-border-white btn-send show_form" rel="form3">Задать вопрос</a>
-					</div>        
-				</div>
-			</div>
-			<div class="block footer-widget-4 col-3">
-				<div class="widget_text widget widget_custom_html">
-					<div class="textwidget custom-html-widget">
-						<p>© ООО «Еккатрейд», г. Подольск<br>2023–<?=date('Y')?> гг.</p>
-						<p>ИНН 5074079702 · ОГРН 1235000003259</p>
-						<div class="footer-legal-links">
-							<a href="/politika-konfidencialnosti">Политика конфиденциальности</a>
-							<a href="/soglasie-na-obrabotku-personalnyh-dannyh">Согласие на обработку ПД</a>
-							<a href="/politika-fajlov-cookie">Политика файлов cookie</a>
-							<a href="/polzovatelskoe-soglashenie">Пользовательское соглашение</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
+<?php require APP . '/views/armour/partials/store-footer.php'; ?>
 </div>
 
 <div id="wpcf7-zakazat-zvonok-modal" rel="form2" class="black wpcf7-zakazat-zvonok-modal modal" style="display: none;">

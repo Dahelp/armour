@@ -15,6 +15,7 @@ $widget = (string)file_get_contents($root . '/app/widgets/product/Product.php');
 $homepage = (string)file_get_contents($root . '/app/views/armour/Main/index.php');
 $search = (string)file_get_contents($root . '/app/views/armour/Search/index.php');
 $layout = (string)file_get_contents($root . '/app/views/armour/layouts/watches.php');
+$layout .= (string)file_get_contents($root.'/app/views/armour/partials/store-footer.php');
 $cabinet = (string)file_get_contents($root . '/app/widgets/cabinet/cabinet_tpl.php');
 $responsiveCss = (string)file_get_contents($root . '/public/css/armour/mobile-fixes.css');
 $cardCss = (string)file_get_contents($root . '/public/css/armour/product-card.css');
