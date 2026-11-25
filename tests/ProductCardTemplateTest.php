@@ -36,7 +36,7 @@ productCardAssert(str_contains($template, 'data-id="<?=$productId?>"'), 'Dynamic
 productCardAssert(!str_contains($template, '$quantity <= 10'), 'Product card must display the exact available quantity for every in-stock item.');
 productCardAssert(str_contains($template, 'В наличии · <?=$quantity?> шт.'), 'Exact available quantity output is missing from the product card.');
 productCardAssert(str_contains($widget, "str_ends_with(\$attribute, '.php')"), 'Legacy widget template argument compatibility is missing.');
-productCardAssert(str_contains($homepage, 'new \\app\\widgets\\product\\Product'), 'Homepage does not use the shared card widget.');
+productCardAssert(str_contains($homepage, 'partials/home-products.php') && str_contains(file_get_contents($root . '/app/views/armour/partials/home-products.php'), '\\app\\widgets\\product\\Product::listing'), 'Homepage does not use the shared card listing renderer.');
 productCardAssert(str_contains($search, 'new \\app\\widgets\\product\\Product'), 'Search does not use the shared card widget.');
 productCardAssert(str_contains($cardCss, 'text-indent: 0 !important'), 'Legacy sprite CSS still hides quantity signs.');
 productCardAssert(str_contains($cardCss, 'background-image: none !important'), 'Quantity controls still depend on the missing legacy sprite.');

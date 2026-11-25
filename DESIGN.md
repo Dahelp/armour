@@ -32,6 +32,8 @@ The hero selector blends into the industrial photograph with a compact dark navy
 
 Equipment and parts entry cards use a newly generated matching image family: unbranded navy machinery, small green accents, soft studio light and a pale cool background. Canonical media lives in public/images/home-selection/*.webp; it illustrates categories and must not be reused as photographs of actual inventory. Desktop equipment cards pair text with an image; narrow cards put the image above the text. Keep imagery uncropped with contain, reserve dimensions, lazy-load it, and retain text links. No decorative arrows in the homepage selection journey. The specialist contact band uses the same dark navy family as the hero.
 
+Homepage purchase guidance continues this family: pale assurance surface, quiet product section headings, a navy four-step order panel and a two-column contact/FAQ section with native details disclosures and plus/minus indicators. Mobile uses a single column and preserves the ordered steps. Conditions are sourced from the published /dostavka page; do not invent delivery promises, discounts, reviews or guarantees. HomeProductSelections owns stock/price eligibility, four-product limits and deduplication (promotion, hit, new priority). All cards still use the canonical product renderer. Empty selections have no heading or shell. Existing authored SEO copy remains complete and server-rendered, with matching spacing and typography.
+
 ## Colors
 
 Blue identifies navigation and product links. Green marks purchase actions. White surfaces and subtle borders separate cards. Status always includes text, not color alone. Runtime owner for card colors: public/css/armour/product-card.css; this document mirrors that source.

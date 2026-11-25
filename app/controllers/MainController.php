@@ -11,9 +11,10 @@ class MainController extends AppController {
     public function indexAction(){
         $homeSizes = \app\services\HomeTireSelector::load();
         $brands = \R::find('brand', 'LIMIT 3');		
-        $hits = \R::find('product', "hit = '1' AND hide = 'show' LIMIT 4");
-		$sales = \R::find('product', "sale = '1' AND hide = 'show' LIMIT 4");
-		$new_products = \R::find('product', "new_product = '1' AND hide = 'show' LIMIT 4");
+        $homeSelections = \app\services\HomeProductSelections::load();
+        $hits = $homeSelections['hits'];
+        $sales = $homeSelections['sales'];
+        $new_products = $homeSelections['new_products'];
 		$homepageContentDate = '2024-01-01 00:00:00';
 		$articles = \R::getAll(
 			"SELECT c.* FROM contents c INNER JOIN content_type ct ON ct.id = c.type_id WHERE LOWER(ct.param_url) = ? AND c.hide = 'show' AND c.date_post >= ? ORDER BY c.date_post DESC, c.id DESC LIMIT 4",

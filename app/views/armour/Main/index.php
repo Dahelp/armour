@@ -44,44 +44,10 @@
 
 			
 <?php require APP . '/views/armour/partials/home-selection.php'; ?>
-<?php $curr = \ishop\App::$app->getProperty('currency'); ?>
-<?php if($hits){ ?>
-<div class="widget_text home-hit">
-    <h2 class="hit-caption">Хиты продаж</h2>
-    <div class="woocommerce columns-4">
-        <ul class="products product-grid">
-            <?php foreach($hits as $hit): ?>
-				<?php new \app\widgets\product\Product($hit, $curr, $cardAttributes[(int)$hit['id']] ?? [], $cardBrands[(int)($hit['brand_id'] ?? 0)] ?? []); ?>
-			<?php endforeach; ?>
-        </ul>
-	</div>
-</div>
-<?php } ?>
-<?php if($sales){ ?>
-<div class="home-sale position-relative">
-    <div class="sale-back"></div>
-    <h2 class="sale-caption">Акция</h2>
-    <div class="woocommerce product-slider">
-        <ul class="products product-grid">
-			<?php foreach($sales as $sale): ?>
-				<?php new \app\widgets\product\Product($sale, $curr, $cardAttributes[(int)$sale['id']] ?? [], $cardBrands[(int)($sale['brand_id'] ?? 0)] ?? []); ?>
-			<?php endforeach; ?>
-		</ul>		
-    </div>
-</div>
-<?php } ?>
-<?php if($new_products){ ?>
-    <div class="widget_text home-new-block">
-        <h2 class="new-caption">Новинки</h2>
-        <div class="woocommerce columns-4">
-            <ul class="products product-grid">
-                <?php foreach($new_products as $nprod): ?>
-					<?php new \app\widgets\product\Product($nprod, $curr, $cardAttributes[(int)$nprod['id']] ?? [], $cardBrands[(int)($nprod['brand_id'] ?? 0)] ?? []); ?>
-				<?php endforeach; ?>
-			</ul>
-        </div>
-    </div>
-<?php } ?>
+<?php require APP . '/views/armour/partials/home-assurance.php'; ?>
+<?php require APP . '/views/armour/partials/home-products.php'; ?>
+<?php require APP . '/views/armour/partials/home-purchase.php'; ?>
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

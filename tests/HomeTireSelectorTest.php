@@ -34,5 +34,8 @@ homeSelectionAssert(!str_contains($html,'→') && !str_contains($html,'↓'), 'D
 homeSelectionAssert(str_contains($html,'Квадроциклы, ATV и UTV'), 'ATV category must remain reachable.');
 homeSelectionAssert(!str_contains($html,'home-catalog-directory') && !str_contains($html,'Все категории шин и комплектующих'), 'Removed category disclosure must not reappear.');
 homeSelectionAssert(!str_contains($html,'/gruzovye-shiny'), 'Empty truck category must stay hidden.');
+homeSelectionAssert($xp->query('//section[@id="home-order"]//ol/li')->length === 4, 'Ordering guidance must retain its semantic sequence.');
+homeSelectionAssert($xp->query('//section[contains(@class,"home-questions")]//details/summary')->length === 6, 'Purchase questions must work without JavaScript.');
+homeSelectionAssert($xp->query('//section[@data-home-products]')->length === 0, 'Empty promotional selections must not render empty sections.');
 if (in_array('--preview',$argv,true)) echo $html;
 else echo "Homepage canonical selection and no-JS rendering checks passed.\n";
