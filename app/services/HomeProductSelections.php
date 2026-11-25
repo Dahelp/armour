@@ -9,7 +9,7 @@ final class HomeProductSelections
     {
         $candidates = [];
         foreach (['sales' => 'sale', 'hits' => 'hit', 'new_products' => 'new_product'] as $key => $flag) {
-            $candidates[$key] = \R::find('product', "$flag = '1' AND hide = 'show' AND quantity > 0 AND price > 0 ORDER BY id DESC LIMIT 12");
+            $candidates[$key] = \R::find('product', "$flag = '1' AND hide = 'show' AND quantity > 0 AND price > 0 ORDER BY id DESC LIMIT 15");
         }
         return self::distinct($candidates);
     }
@@ -27,7 +27,7 @@ final class HomeProductSelections
                     || (float)($product['quantity'] ?? 0) <= 0 || (float)($product['price'] ?? 0) <= 0) continue;
                 $selected[$key][] = $product;
                 $seen[$id] = true;
-                if (count($selected[$key]) === 4) break;
+                if (count($selected[$key]) === 5) break;
             }
         }
         return $selected;

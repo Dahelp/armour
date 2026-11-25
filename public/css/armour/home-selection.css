@@ -100,6 +100,7 @@ a.home-parts__card:hover { border-color: #7eabc8; }
 .home-products { margin: 38px 0; }
 .home-products .home-section-heading h2 { font-size: 25px; }
 .home-products ul.products.product-grid { margin-bottom: 0 !important; }
+@media (min-width: 1280px) { .home-products ul.products.product-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 .home-purchase { background: #0b304b; color: #fff; padding: 30px 28px 22px; border-radius: 8px; margin: 46px 0 38px; scroll-margin-top: 24px; }
 .home-purchase__intro { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: end; margin-bottom: 28px; }
 .home-purchase__label { color: #526776; font: 700 11px/1.5 Verdana, Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 8px; }
