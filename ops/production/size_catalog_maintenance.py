@@ -63,10 +63,19 @@ with tempfile.TemporaryDirectory() as directory:
             result=json.load(response)
         cipher=crypt_report(json.dumps(result,ensure_ascii=False).encode())
         (ROOT/'size-catalog-report.enc').write_bytes(report_mac(cipher)+cipher)
-        summary={'ok':result.get('ok'),'sizes':len(result.get('sizes',[])),'empty_sizes':sum(int(s['visible_products'])==0 for s in result.get('sizes',[])),'products':len(result.get('products',[])),'applied':len(result.get('applied',[])),'sitemap_urls':result.get('sitemap_urls')}
+        summary={'ok':result.get('ok'),'sizes':len(result.get('sizes',[])),'empty_sizes':sum(int(s['visible_products'])==0 for s in result.get('sizes',[])),'products':len(result.get('products',[])),'applied':len(result.get('applied',[])),'new_bindings':sum('alias' in item for item in result.get('applied',[])),'sitemap_urls':result.get('sitemap_urls')}
+        if mode=='true' and result.get('ok'):
+            normalize=lambda s: re.sub(r'\s+','',s.lower().replace('*','x').replace('х','x').replace('×','x'))
+            values={int(s['id']):s for s in result['sizes']}
+            bindings={}
+            for binding in result['bindings']:
+                bindings.setdefault(int(binding['product_id']),[]).append(values[int(binding['attr_id'])])
+            summary['verified_bindings']=sum(any(normalize(v['value'])==normalize(item['size']) for v in bindings.get(item['id'],[])) for item in plan)
         (ROOT/'size-catalog-summary.json').write_text(json.dumps(summary),encoding='utf-8')
         print(json.dumps({'ok':result.get('ok'),'sizes':len(result.get('sizes',[])),'products':len(result.get('products',[]))}))
         if result.get('ok') is not True:
             raise RuntimeError('Catalog size audit failed')
+        if mode=='true' and summary.get('verified_bindings')!=len(plan):
+            raise RuntimeError('Repaired bindings failed verification')
     finally:
         transfer(['--quote','DELE /public/'+name,'--output',os.devnull,'ftp://grass.gohost.ru:21//'])
