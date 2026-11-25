@@ -99,8 +99,6 @@ a.home-parts__card:hover { border-color: #7eabc8; }
 .home-assurance__list dd { margin: 0; color: #526776; font-size: 13px; line-height: 1.7; }
 .home-products { margin: 38px 0; }
 .home-products .home-section-heading h2 { font-size: 25px; }
-.home-products .home-section-heading p { font-size: 13px; }
-.home-products__availability { padding: 7px 11px; border: 1px solid #bed8c0; border-radius: 4px; color: #17632b; background: #f1f8f1; font-size: 12px; white-space: nowrap; }
 .home-products ul.products.product-grid { margin-bottom: 0 !important; }
 .home-purchase { background: #0b304b; color: #fff; padding: 30px 28px 22px; border-radius: 8px; margin: 46px 0 38px; scroll-margin-top: 24px; }
 .home-purchase__intro { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: end; margin-bottom: 28px; }
