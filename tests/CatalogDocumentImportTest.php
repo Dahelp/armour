@@ -62,16 +62,27 @@ checkCatalog((int)$db->query('SELECT COUNT(*) FROM attribute_value')->fetchColum
 checkCatalog((int)$db->query('SELECT COUNT(*) FROM attribute_product')->fetchColumn()===5,'Repeated import duplicated product filter links.');
 checkCatalog((int)$db->query('SELECT COUNT(*) FROM attribute_category')->fetchColumn()===5,'Repeated import duplicated category links.');
 checkCatalog((int)$db->query('SELECT COUNT(*) FROM url_alias')->fetchColumn()===4,'Repeated import duplicated canonical URLs.');
+$db->exec('INSERT INTO attribute_product (product_id,attr_id) VALUES (774,2)');
+$writer->bindSize(774,8,'11.00-20');
+$writer->bindSize(774,8,'11.00-20');
+checkCatalog((int)$db->query('SELECT COUNT(*) FROM attribute_product WHERE product_id=774')->fetchColumn()===2,'Size-only repair must preserve other groups and remain idempotent.');
+checkCatalog((int)$db->query('SELECT COUNT(*) FROM attribute_product WHERE product_id=774 AND attr_id=2')->fetchColumn()===1,'Size-only repair changed the existing brand binding.');
 
 // Exercise the real sitemap SQL against registered canonical aliases, including a stale historical URL.
 if(!defined('PATH'))define('PATH','https://techtires.ru');
 if(!class_exists('R'))class_alias(\RedBeanPHP\R::class,'R');
 R::setup('sqlite::memory:');
 foreach(['CREATE TABLE product (id INTEGER,hide TEXT)','CREATE TABLE category (id INTEGER,hide TEXT)','CREATE TABLE contents (id INTEGER,type_id INTEGER,hide TEXT)','CREATE TABLE content_type (id INTEGER,param_url TEXT,hide TEXT)','CREATE TABLE plagins_cross (product_id INTEGER,cross_abbreviated_name TEXT)','CREATE TABLE url_alias (sef TEXT,view TEXT,urlid INTEGER)','CREATE TABLE attribute_group (id INTEGER,url_params TEXT)','CREATE TABLE attribute_value (id INTEGER,attr_group_id INTEGER,value TEXT,alias TEXT,hide TEXT)'] as $sql)R::exec($sql);
+R::exec('CREATE TABLE attribute_product (product_id INTEGER,attr_id INTEGER)');
+R::exec("INSERT INTO product VALUES (1,'show'),(2,'hide')");
+R::exec('INSERT INTO attribute_product VALUES (1,10),(2,40)');
 R::exec("INSERT INTO attribute_group VALUES (1,'tiposize'),(2,'marka')");
 R::exec("INSERT INTO attribute_value VALUES (10,1,'11.00-20','tiposize-11.00-20','show'),(20,2,'EKKA','marka-ekka','show'),(30,2,'HIDDEN','marka-hidden','hide')");
 R::exec("INSERT INTO url_alias VALUES ('tiposize-11.00-20','Tiposize',10),('marka-ekka','Marka',20),('marka-EKKA.html','Marka',20),('marka-hidden','Marka',30)");
+R::exec("INSERT INTO attribute_value VALUES (40,1,'12.00-20','tiposize-12.00-20','show')");
+R::exec("INSERT INTO url_alias VALUES ('tiposize-12.00-20','Tiposize',40)");
 $urls=(new app\services\SitemapGenerator())->collectUrls();
 checkCatalog(in_array('https://techtires.ru/tiposize-11.00-20',$urls,true)&&in_array('https://techtires.ru/marka-ekka',$urls,true),'Canonical filters missing from sitemap.');
+checkCatalog(!in_array('https://techtires.ru/tiposize-12.00-20',$urls,true),'Sizes with only hidden products must not appear in sitemap.');
 foreach($urls as $url)checkCatalog(!str_contains($url,'.html')&&!str_contains($url,'/marka/')&&!str_contains($url,'/tiposize/')&&!str_contains($url,'hidden'),'Sitemap contains a noncanonical or hidden filter URL.');
 echo "Catalog document, facet identity/idempotency, canonical redirect and sitemap regression checks passed.\n";

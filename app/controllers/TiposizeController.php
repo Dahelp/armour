@@ -9,37 +9,28 @@ use ishop\libs\Pagination;
 class TiposizeController extends AppController {
 
     public function viewAction(){
-		
-		$alias = $this->route['alias'];
-		$up_registr = App::upRegistrLetter($alias);
-		$find = \R::findOne('attribute_value', 'alias = ?', [$alias]);
-		if(!$find){
-            throw new \Exception('Страница не найдена', 404);
+        $alias = $this->route['alias'];
+        $find = \R::findOne('attribute_value', "alias = ? AND hide = 'show' AND attr_group_id IN (SELECT id FROM attribute_group WHERE LOWER(url_params) = 'tiposize')", [$alias]);
+        if (!$find) throw new \Exception('Страница не найдена', 404);
+        $breadcrumbs = Breadcrumbs::getBreadcrumbs($find->id);
+        $page = max(1, (int)($_GET['page'] ?? 1));
+        $perpage = max(1, (int)App::$app->getProperty('pagination'));
+        $sql_sort = match ((string)($_GET['sort'] ?? '')) {
+            'price' => 'ORDER BY p.price ASC, p.id ASC',
+            'nal' => 'ORDER BY p.quantity DESC, p.id ASC',
+            'rate' => 'ORDER BY p.hit DESC, p.id ASC',
+            default => "ORDER BY FIELD(p.stock_status_id, 1,3,2,0), p.name ASC, p.id ASC",
+        };
+        $predicate = "p.hide = 'show' AND EXISTS (SELECT 1 FROM attribute_product ap WHERE ap.product_id = p.id AND ap.attr_id = ?)";
+        $total = (int)\R::getCell('SELECT COUNT(*) FROM product p WHERE '.$predicate, [$find->id]);
+        $products = [];
+        $ids = [];
+        $pagination = new Pagination($page, $perpage, $total);
+        if ($total > 0) {
+            $start = $pagination->getStart();
+            $products = \R::getAll("SELECT p.* FROM product p WHERE $predicate $sql_sort LIMIT $start, $perpage", [$find->id]);
         }
-		$breadcrumbs = Breadcrumbs::getBreadcrumbs($find->id);
-		$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perpage = App::$app->getProperty('pagination');
-		
-		if(!empty($_GET['sort'])){
-			if($_GET['sort'] == "price") { $sql_sort = "ORDER BY product.price ASC"; }
-			if($_GET['sort'] == "nal") { $sql_sort = "ORDER BY product.stock_status_id DESC"; }
-			if($_GET['sort'] == "rate") { $sql_sort = "ORDER BY product.hit DESC"; }
-		}else{
-			$sql_sort = "ORDER BY FIELD(`stock_status_id`, 1,3,2,0), name ASC";
-		}
-		
-        $total = \R::exec("SELECT product_id FROM attribute_product, product WHERE attribute_product.product_id = product.id AND attribute_product.attr_id = '".$find->id."' $sql_sort");
-		$ids = \R::getAll("SELECT product_id FROM attribute_product, product WHERE attribute_product.product_id = product.id AND attribute_product.attr_id = '".$find->id."' $sql_sort");
-		if($ids){
-			foreach($ids as $ds){
-				$prid .= "".$ds["product_id"].",";
-			}
-			$ids = rtrim($prid, ',');
-			$pagination = new Pagination($page, $perpage, $total);
-			$start = $pagination->getStart();
-			
-			$products = \R::find('product', "hide = 'show' AND id IN ($ids) $sql_sort LIMIT $start, $perpage");
-		}
+        if ($total === 0) $this->meta['robots'] = 'noindex, follow';
         //InSEO
 		$params = \R::findOne('attribute_group', "id = ?", [$find["attr_group_id"]]);
 		$inseo = \R::findOne('plagins_inseo', "tip = ? AND category_id = ? AND hide = 'show'", ['attribute_group', $find["attr_group_id"]]);
@@ -59,16 +50,14 @@ class TiposizeController extends AppController {
 
     }
 	public function indexAction(){
-		$alias = $_SERVER['REQUEST_URI'];
-		$alias = str_replace('/', '', $alias);
-		$type = \R::findOne('attribute_group', 'url_params = ?', [$alias]);
-		$groups = \R::findAll('attribute_value', 'attr_group_id = ?', [$type->id]);
-		/*SEO*/
-		if($this->route["controller"]){ $path_controller = "/".mb_strtolower($this->route["controller"]).""; }else{ $path_controller = ""; }
-		if($this->route["alias"]){ $path_alias = "/".$this->route["alias"].""; }else{ $path_alias = ""; }
-		$this->setMeta($type->seo_title, $type->seo_description, $type->seo_keywords, '' . App::$app->getProperty('shop_name') . '', ''.PATH.'/images/' . App::$app->getProperty('og_logo') . '', ''.PATH.''.$path_controller.''.$path_alias.'');
-		/*SEO*/
-        $this->set(compact('groups', 'type'));
-	}
-
+        $type = \R::findOne('attribute_group', "LOWER(url_params) = 'tiposize'");
+        if (!$type) throw new \Exception('Страница не найдена', 404);
+        $sizes = \app\services\TireSizeDirectory::load();
+        $query = mb_substr(is_string($_GET['q'] ?? '') ? trim($_GET['q'] ?? '') : '', 0, 100);
+        $stockOnly = (string)($_GET['stock'] ?? '') === '1';
+        $matched = count(array_filter($sizes, static fn($size) => \app\services\TireSizeDirectory::matches($size, $query, $stockOnly)));
+        if ($query !== '' || $stockOnly) $this->meta['robots'] = 'noindex, follow';
+        $this->setMeta($type->seo_title, $type->seo_description, $type->seo_keywords, App::$app->getProperty('shop_name'), PATH.'/images/'.App::$app->getProperty('og_logo'), PATH.'/tiposize');
+        $this->set(compact('sizes', 'type', 'query', 'stockOnly', 'matched'));
+    }
 }

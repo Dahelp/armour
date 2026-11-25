@@ -62,6 +62,8 @@ Canonical PHP card owner: app/widgets/product/product_tpl.php. Canonical list re
 
 ## Content
 
+The /tiposize directory uses TireSizeDirectory for visible-product counts, stock counts, natural ordering and registered canonical links. It has a GET search with immediate local filtering, equivalent x/*/Cyrillic notation, an explicit clear action, and a stock checkbox; R and slash notation remain distinct. Pale search panel and compact bordered size tiles continue the homepage palette. Empty registered size pages remain reachable with a message and a /tiposize return link, use noindex/follow, and preserve authored SEO content. Count and paginated product queries share the same visible-product predicate. Bindings repaired from a tire's explicit size characteristic use ProductDocumentFacets::bindSize; do not put disks or cameras into tire results merely because a compatible size is present.
+
 Never replace authored metadata or full HTML/list content. StorefrontSeo supplies render-time defaults when fields are empty. Filter headings derive from semantic group and value, since attribute_value has no name column. Catalog technical attributes and filters remain distinct. Unconfirmed zero prices display as request-only, without a zero-price Offer or purchase action.
 
 ## Accessibility

@@ -11,10 +11,10 @@ final class HomeTireSelector
             "SELECT av.value, MIN(u.sef) AS sef, COUNT(DISTINCT p.id) AS total
              FROM attribute_value av
              INNER JOIN attribute_group ag ON ag.id = av.attr_group_id AND LOWER(ag.url_params) = 'tiposize'
-             INNER JOIN url_alias u ON u.sef = av.alias AND LOWER(u.view) = 'tiposize'
+             INNER JOIN url_alias u ON u.sef = av.alias AND u.urlid = av.id AND LOWER(u.view) = 'tiposize'
              INNER JOIN attribute_product ap ON ap.attr_id = av.id
              INNER JOIN product p ON p.id = ap.product_id AND p.hide = 'show'
-             WHERE u.sef <> '' GROUP BY av.id, av.value ORDER BY total DESC, av.value"
+             WHERE av.hide = 'show' AND u.sef <> '' GROUP BY av.id, av.value ORDER BY total DESC, av.value"
         ));
     }
 

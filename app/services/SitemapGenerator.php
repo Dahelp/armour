@@ -77,7 +77,10 @@ final class SitemapGenerator
             "SELECT DISTINCT ua.sef FROM attribute_group ag
              INNER JOIN attribute_value av ON av.attr_group_id=ag.id
              INNER JOIN url_alias ua ON ua.urlid=av.id AND LOWER(ua.view)=LOWER(ag.url_params) AND ua.sef=av.alias
-             WHERE ag.url_params!='' AND av.hide='show' AND av.value!='' AND ua.sef NOT LIKE '%.html'"
+             WHERE ag.url_params!='' AND av.hide='show' AND av.value!='' AND ua.sef NOT LIKE '%.html'
+             AND (LOWER(ag.url_params)!='tiposize' OR EXISTS (
+                 SELECT 1 FROM attribute_product ap JOIN product p ON p.id=ap.product_id
+                 WHERE ap.attr_id=av.id AND p.hide='show'))"
         );
         foreach ($attributeUrls as $row) $paths[]=(string)$row['sef'];
         $baseUrl = rtrim((string)config_env('APP_URL', PATH), '/');

@@ -24,6 +24,16 @@ final class ProductDocumentFacets
     public function bind(int $productId,int $categoryId,array $facets): array
     {
         foreach(['tiposize','marka','protect','diameter','tire_type'] as $key)if(empty($facets[$key]))throw new \RuntimeException('Missing required product facet: '.$key);
+        return $this->bindResolved($productId,$categoryId,$facets);
+    }
+    /** Repair an existing tire's size only; leave all other facet groups untouched. */
+    public function bindSize(int $productId,int $categoryId,string $size): array
+    {
+        if(trim($size)==='')throw new \RuntimeException('Missing tire size.');
+        return $this->bindResolved($productId,$categoryId,['tiposize'=>$size]);
+    }
+    private function bindResolved(int $productId,int $categoryId,array $facets): array
+    {
         $result=[];
         foreach($facets as $prefix=>$value) {
             if($prefix==='tire_type'){$s=$this->db->prepare("SELECT id,url_params FROM attribute_group WHERE title=? AND url_params=''");$s->execute(['Тип шин']);}
@@ -50,7 +60,6 @@ final class ProductDocumentFacets
             $this->db->prepare('INSERT INTO attribute_product (product_id,attr_id) VALUES (?,?)')->execute([$productId,$avId]);
             $result[]=['group'=>$prefix,'value'=>$value,'id'=>$avId,'alias'=>$group['url_params']!==''?$alias:''];
         }
-        if(defined('CACHE')&&!\ishop\Cache::instance()->clear())throw new \RuntimeException('Unable to invalidate catalog filter caches.');
         if(defined('CACHE')&&!\ishop\Cache::instance()->clear())throw new \RuntimeException('Unable to invalidate catalog filter caches.');
         return $result;
     }

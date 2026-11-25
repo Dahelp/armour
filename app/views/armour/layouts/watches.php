@@ -97,6 +97,10 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel="stylesheet" href="/css/armour/home-selection.css?v=<?=filemtime(WWW.'/css/armour/home-selection.css')?>" />
 <script defer src="/js/home-selection.js?v=<?=filemtime(WWW.'/js/home-selection.js')?>"></script>
 <?php endif; ?>
+<?php if (($this->route['controller'] ?? '') === 'Tiposize'): ?>
+<link rel="stylesheet" href="/css/armour/size-directory.css?v=<?=filemtime(WWW.'/css/armour/size-directory.css')?>" />
+<script defer src="/js/size-directory.js?v=<?=filemtime(WWW.'/js/size-directory.js')?>"></script>
+<?php endif; ?>
 
 <style>
                 .lmp_load_more_button.br_lmp_button_settings .lmp_button:hover {
