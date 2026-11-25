@@ -31,7 +31,8 @@ foreach ($xp->query('//img[starts-with(@src,"/images/home-selection/")]') as $im
     homeSelectionAssert($image->getAttribute('loading') === 'lazy', 'Below-fold category media must load lazily.');
 }
 homeSelectionAssert(!str_contains($html,'→') && !str_contains($html,'↓'), 'Decorative arrows must be removed from homepage selection.');
-homeSelectionAssert(str_contains($html,'Квадроциклы, ATV и UTV') && str_contains($html,'home-catalog-directory'), 'ATV category and full directory must remain reachable.');
+homeSelectionAssert(str_contains($html,'Квадроциклы, ATV и UTV'), 'ATV category must remain reachable.');
+homeSelectionAssert(!str_contains($html,'home-catalog-directory') && !str_contains($html,'Все категории шин и комплектующих'), 'Removed category disclosure must not reappear.');
 homeSelectionAssert(!str_contains($html,'/gruzovye-shiny'), 'Empty truck category must stay hidden.');
 if (in_array('--preview',$argv,true)) echo $html;
 else echo "Homepage canonical selection and no-JS rendering checks passed.\n";

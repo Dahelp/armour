@@ -63,11 +63,7 @@ a.home-parts__card:hover { border-color: #7eabc8; }
 .home-selection-help__contact span { display: block; font-size: 12px; color: #d0dfe9; margin-bottom: 6px; }
 .home-selection-help__contact a { color: #fff; font: 700 19px/1.5 Verdana, Arial, sans-serif; white-space: nowrap; }
 .home-selection-help__contact a:hover { color: #b8e7b2; }
-.home-catalog-directory { margin: 0 0 36px; border-bottom: 1px solid #dfe6eb; }
-.home-catalog-directory > summary { cursor: pointer; color: #004a8e; font-size: 14px; padding: 14px 0; }
-.home-catalog-directory > div { padding-top: 16px; }
-.home-catalog-directory .col-full { width: 100%; max-width: none; padding: 0; margin: 0; }
-.home-selector :focus-visible, .home-equipment :focus-visible, .home-parts :focus-visible, .home-catalog-directory summary:focus-visible, .home-hero__equipment-link:focus-visible { outline: 3px solid #e49c22; outline-offset: 3px; }
+.home-selector :focus-visible, .home-equipment :focus-visible, .home-parts :focus-visible, .home-hero__equipment-link:focus-visible { outline: 3px solid #e49c22; outline-offset: 3px; }
 @media (max-width: 1100px) {
     .home-hero--selection .home-hero__content { gap: 28px; padding: 28px 20px; }
     .home-section-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
