@@ -6,6 +6,10 @@ on:
         type: boolean
         default: false
         description: Apply reviewed tire size bindings
+      audit_run_id:
+        type: string
+        default: ''
+        description: Run containing the encrypted reviewed audit
 concurrency:
   group: techtires-production
   cancel-in-progress: false
@@ -25,11 +29,14 @@ jobs:
         if: inputs.apply
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh run download 45613484653 -n size-catalog-report -D .runner/audit
+          AUDIT_RUN_ID: ${{ inputs.audit_run_id }}
+        run: |
+          [[ "$AUDIT_RUN_ID" =~ ^[0-9]+$ ]] || exit 1
+          gh run download "$AUDIT_RUN_ID" -n size-catalog-report -D .runner/audit
       - name: Audit catalog size bindings
         env:
           APPLY: ${{ inputs.apply }}
-          AUDIT_REPORT: .runner/audit/size-catalog-report.json
+          AUDIT_REPORT: .runner/audit/size-catalog-report.enc
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: python3 ops/production/size_catalog_maintenance.py
@@ -37,5 +44,7 @@ jobs:
         if: always()
         with:
           name: size-catalog-report
-          path: size-catalog-report.json
+          path: |
+            size-catalog-report.enc
+            size-catalog-summary.json
           retention-days: 3
