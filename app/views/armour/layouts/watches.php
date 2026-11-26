@@ -261,7 +261,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 	<li id="menu-item-24700" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-24700 menu-item"><span>Камеры и ободные ленты</span>
 	<ul class="sub-menu sub-menu--level_1">
 		<li id="menu-item-24866" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24866 menu-item"><a href="/kamery-dlya-spectehniki">Камеры для спецтехники</a></li>
-		<li id="menu-item-24869" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24869 menu-item"><a href="/obondnye-lenty-flipper">Ободные ленты (Флиппер)</a></li>
+		<li id="menu-item-24869" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24869 menu-item"><a href="/obodnye-lenty-flipper">Ободные ленты (Флиппер)</a></li>
 	</ul>
 	</li>
 </ul>
