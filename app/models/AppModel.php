@@ -103,21 +103,9 @@ class AppModel extends Model{
             $hmax = $wmax / $ratio;
         }
 
-        $img = "";
-        // imagecreatefromjpeg | imagecreatefromgif | imagecreatefrompng
-        switch($ext){
-            case("gif"):
-                $img = imagecreatefromgif($target);
-                break;
-            case("png"):
-                $img = imagecreatefrompng($target);
-                break;
-			case("webp"):
-                $img = imagecreatefromjpeg($target);
-                break;	
-            default:
-                $img = imagecreatefromjpeg($target);
-        }
+        // The source format is independent of the requested output extension.
+        $img = imagecreatefromstring(file_get_contents($target));
+        if ($img === false) throw new \RuntimeException('Не удалось прочитать изображение.', 422);
         $newImg = imagecreatetruecolor($wmax, $hmax); // создаем оболочку для новой картинки
 
         if($ext == "png"){
@@ -144,6 +132,7 @@ class AppModel extends Model{
                 imagejpeg($newImg, $dest);
         }
         imagedestroy($newImg);
+        imagedestroy($img);
 	}
 	
 	public static function urlalias($urli){

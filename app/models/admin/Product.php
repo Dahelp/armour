@@ -293,10 +293,10 @@ class Product extends AppModel {
 		if($name == 'single'){
 			if(@move_uploaded_file($_FILES[$name]['tmp_name'], $tmpdir)){
             
-                $_SESSION['single'] = $new_name;
             
 				self::resize($tmpdir, $basedir, $wmax, $hmax, 'webp');
 				self::resize($tmpdir, $minidir, $wmaxmini, $hmaxmini, 'webp');
+                $_SESSION['single'] = $new_name;
 				@unlink($tmpdir);
 				$res = array("file" => $new_name);
 				exit(json_encode($res));
@@ -304,9 +304,9 @@ class Product extends AppModel {
 		}
 		if($name == 'multi'){
 			if(@move_uploaded_file($_FILES[$name]['tmp_name'], $tmpdir)){
-                $_SESSION['multi'][] = $new_name;
 				
-				self::resize($tmpdir, $galdir, $wmax, $hmax, $ext);
+				self::resize($tmpdir, $galdir, $wmax, $hmax, 'webp');
+                $_SESSION['multi'][] = $new_name;
 				$res = array("file" => $new_name);
 				exit(json_encode($res));
 			}
@@ -314,9 +314,9 @@ class Product extends AppModel {
 		if($name == 'unload'){
 			if(@move_uploaded_file($_FILES[$name]['tmp_name'], $tmpdir)){
             
-                $_SESSION['unload'] = $new_name;
             
-				self::resize($tmpdir, $unldir, $wmax, $hmax, $ext);
+				self::resize($tmpdir, $unldir, $wmax, $hmax, 'webp');
+                $_SESSION['unload'] = $new_name;
 				@unlink($tmpdir);
 				$res = array("file" => $new_name);
 				exit(json_encode($res));
