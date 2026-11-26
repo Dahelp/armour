@@ -344,6 +344,21 @@ function productPhotoUpload(button, folder, append) {
         .css({position:'absolute',width:'100%',height:'100%',top:0,left:0,opacity:0,cursor:'pointer'});
     button.css({position:'relative',overflow:'hidden'}).append(input);
     var status = $('<p role="status" aria-live="polite"></p>').insertAfter(button);
+    var originalPreview = button.parent().find('.' + field).html();
+    var cancel = $('<button type="button" class="btn btn-default btn-sm">Отменить загрузку</button>').hide().insertAfter(status);
+    cancel.on('click',function() {
+        cancel.prop('disabled',true);
+        $.ajax({url:adminpath + button.data('url'),type:'POST',dataType:'json',
+            data:{name:field,cancel_upload:'1',_csrf:$('meta[name="csrf-token"]').attr('content')},
+            success:function(response) {
+                if (!response || !response.ok) {status.text('Не удалось отменить загрузку.');return;}
+                button.parent().find('.' + field).html(originalPreview);
+                status.text('Загрузка отменена. Текущее фото товара сохранено.');cancel.hide();
+            },
+            error:function() {status.text('Не удалось отменить загрузку. Повторите попытку.');},
+            complete:function() {cancel.prop('disabled',false);}
+        });
+    });
     input.on('change', function() {
         var file = this.files && this.files[0];
         if (!file) return;
@@ -371,6 +386,7 @@ function productPhotoUpload(button, folder, append) {
                 if (!append) preview.empty();
                 preview.append(image);
                 message('Фотография загружена. Нажмите «Сохранить».',false);
+                cancel.show();
             },
             error:function(xhr, reason) {
                 var text = xhr.responseJSON && xhr.responseJSON.error;

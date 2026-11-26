@@ -167,6 +167,15 @@ class ProductController extends AppController {
     }
 
     public function addImageAction(){
+        if (($_POST['cancel_upload'] ?? '') === '1') {
+            header('Content-Type: application/json; charset=utf-8');
+            $field=(string)($_POST['name'] ?? '');
+            if (!in_array($field,['single','multi','unload'],true)) {
+                http_response_code(422);echo json_encode(['error'=>'Неизвестное поле изображения.']);exit;
+            }
+            unset($_SESSION[$field]);
+            echo json_encode(['ok'=>true]);exit;
+        }
         if(isset($_GET['upload'])){
             if($_POST['name'] == 'single'){
                 $wmax = App::$app->getProperty('img_width');
