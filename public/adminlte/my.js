@@ -337,7 +337,55 @@ if($('div').is('#unload')){
         file;
 }
 
-if(buttonSingle){
+function productPhotoUpload(button, folder, append) {
+    var field = button.data('name');
+    var input = $('<input type="file" accept="image/jpeg,image/png,image/gif,image/webp">')
+        .attr('aria-label', 'Выбрать фото: ' + field)
+        .css({position:'absolute',width:'100%',height:'100%',top:0,left:0,opacity:0,cursor:'pointer'});
+    button.css({position:'relative',overflow:'hidden'}).append(input);
+    var status = $('<p role="status" aria-live="polite"></p>').insertAfter(button);
+    input.on('change', function() {
+        var file = this.files && this.files[0];
+        if (!file) return;
+        var area = button.parent();
+        function message(text, error) { status.text(text).css('color',error?'#b42318':'#247337'); }
+        if (!/\.(jpe?g|png|gif|webp)$/i.test(file.name)) {
+            message('Выберите изображение JPG, PNG, GIF или WebP.', true); input.val(''); return;
+        }
+        var data = new FormData();
+        data.append('name',field); data.append(field,file);
+        var token = $('meta[name="csrf-token"]').attr('content');
+        if (token) data.append('_csrf',token);
+        input.prop('disabled',true);
+        message('Загрузка фотографии…',false);
+        area.find('.overlay').show();
+        $.ajax({url:adminpath + button.data('url') + '?upload=1',type:'POST',data:data,
+            processData:false,contentType:false,dataType:'json',timeout:60000,
+            success:function(response) {
+                if (!response || response.error || !response.file || !/^[a-zA-Z0-9._-]+$/.test(response.file)) {
+                    message(response && response.error || 'Сервер не подтвердил загрузку фотографии.',true); return;
+                }
+                var image = $('<img>').attr('src','/images/product/' + folder + '/' + response.file)
+                    .css('max-height','160px');
+                var preview = area.find('.' + field);
+                if (!append) preview.empty();
+                preview.append(image);
+                message('Фотография загружена. Нажмите «Сохранить».',false);
+            },
+            error:function(xhr, reason) {
+                var text = xhr.responseJSON && xhr.responseJSON.error;
+                if (!text && (xhr.status===403 || xhr.status===419)) text='Сессия истекла. Обновите страницу и повторите загрузку.';
+                if (!text && xhr.status===413) text='Файл слишком большой. Выберите изображение меньшего размера.';
+                message(text || (reason==='timeout'?'Сервер не ответил вовремя. Повторите загрузку.':'Не удалось загрузить фотографию. Проверьте соединение и повторите попытку.'),true);
+            },
+            complete:function() { area.find('.overlay').hide(); input.prop('disabled',false).val(''); }
+        });
+    });
+}
+
+if(buttonSingle && buttonSingle.data('razdel') === 'product') {
+    productPhotoUpload(buttonSingle,'baseimg',false);
+} else if(buttonSingle){
     new AjaxUpload(buttonSingle, {
         action: adminpath + buttonSingle.data('url') + "?upload=1",
         data: {name: buttonSingle.data('name')},
@@ -362,7 +410,9 @@ if(buttonSingle){
     });
 }
 
-if(buttonMulti){
+if(buttonMulti && buttonMulti.data('razdel') === 'product') {
+    productPhotoUpload(buttonMulti,'gallery',true);
+} else if(buttonMulti){
     new AjaxUpload(buttonMulti, {
         action: adminpath + buttonMulti.data('url') + "?upload=1",
         data: {name: buttonMulti.data('name')},
@@ -387,7 +437,9 @@ if(buttonMulti){
     });
 }
 
-if(buttonUnload){
+if(buttonUnload && buttonUnload.data('razdel') === 'product') {
+    productPhotoUpload(buttonUnload,'unload',false);
+} else if(buttonUnload){
     new AjaxUpload(buttonUnload, {
         action: adminpath + buttonUnload.data('url') + "?upload=1",
         data: {name: buttonUnload.data('name')},

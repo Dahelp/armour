@@ -403,7 +403,7 @@
 <script src="bower_components/ckeditor/ckeditor.js"></script>
 <script src="bower_components/ckeditor/adapters/jquery.js"></script>
 <!-- Myscripts js -->
-<script src="my.js"></script>
+<script src="my.js?v=20261126-photo-upload"></script>
 <script>
   $(function () {
 	//Maska

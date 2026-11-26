@@ -188,7 +188,16 @@ class ProductController extends AppController {
 			}
             $name = $_POST['name'];
             $product = new Product();
-            $product->uploadImg($name, $wmax, $hmax, $wmaxmini, $hmaxmini);
+            header('Content-Type: application/json; charset=utf-8');
+            try {
+                $product->uploadImg($name, $wmax, $hmax, $wmaxmini, $hmaxmini);
+                http_response_code(422);
+                echo json_encode(['error'=>'Не удалось сохранить файл изображения. Повторите загрузку.'], JSON_UNESCAPED_UNICODE);
+            } catch (\Throwable $error) {
+                http_response_code(422);
+                echo json_encode(['error'=>$error->getCode()===422?$error->getMessage():'Не удалось обработать изображение. Попробуйте JPG или PNG.'], JSON_UNESCAPED_UNICODE);
+            }
+            exit;
         }
     }
 	
